@@ -12,7 +12,21 @@ import type { ProcessModel, ProcessNode, ProcessEdge } from "@/lib/types";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const LANE_W = 88;
-const STAGE_W = 188;
+const STAGE_W = 152; // 카드 밀도: 한 화면에 더 많은 게이트가 들어오도록 축소
+
+// 카드용 법조항 축약: 첫 근거의 첫 조문만, 괄호 설명 제거. "환경영향평가법 제24조 외 2"
+function compactLegal(
+  lb?: Array<{ law: string; article: string }>
+): string | null {
+  if (!lb || lb.length === 0) return null;
+  const first = lb[0];
+  const art = (first.article || "")
+    .split(",")[0]
+    .replace(/\([^)]*\)/g, "")
+    .trim();
+  const more = lb.length > 1 ? ` 외 ${lb.length - 1}` : "";
+  return `${first.law} ${art}${more}`.trim();
+}
 const LOOP_BELOW = 68;
 
 // ── Status styles ─────────────────────────────────────────────────────────────
@@ -186,9 +200,9 @@ function SwimlaneNodeCard({
       style={{
         display: "block",
         width: "100%",
-        maxWidth: 160,
+        maxWidth: 132,
         textAlign: "left",
-        padding: "8px 9px",
+        padding: "6px 7px",
         background: c.bg,
         border: `1.5px solid ${c.border}`,
         borderRadius: 8,
@@ -242,10 +256,10 @@ function SwimlaneNodeCard({
       {/* name — 2-line clamp */}
       <div
         style={{
-          fontSize: 11,
+          fontSize: 10.5,
           fontWeight: 620,
           color: c.ink,
-          lineHeight: 1.35,
+          lineHeight: 1.3,
           overflow: "hidden",
           display: "-webkit-box",
           WebkitLineClamp: 2,
@@ -258,9 +272,9 @@ function SwimlaneNodeCard({
       {/* actor */}
       <div
         style={{
-          fontSize: 10,
+          fontSize: 9,
           color: c.sub,
-          marginTop: 3,
+          marginTop: 2,
           overflow: "hidden",
           textOverflow: "ellipsis",
           whiteSpace: "nowrap",
@@ -268,6 +282,23 @@ function SwimlaneNodeCard({
       >
         {node.actor}
       </div>
+
+      {/* 법조항 — 카드에서 바로 근거 확인 (상세는 drawer) */}
+      {compactLegal(node.legal_basis) && (
+        <div
+          style={{
+            fontSize: 8.5,
+            color: "#87938d",
+            marginTop: 2,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            letterSpacing: "0.01em",
+          }}
+        >
+          § {compactLegal(node.legal_basis)}
+        </div>
+      )}
 
       {/* blocker */}
       {node.blocker && (
