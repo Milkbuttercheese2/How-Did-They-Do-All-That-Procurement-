@@ -6,7 +6,7 @@
  "priority": 69,
  "whyFirst": "지방재정의 상당 부분을 차지하는 보조금 관리 체계다. 재정 투명성과 선심성 논란이 만나는 지점이다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "지자체가 공익 목적으로 교부하는 보조금의 편성·교부·정산·환수를 규율한다. 부정수급과 유사·중복 지원을 막고 집행 투명성을 확보한다.",
   "stakeholders": "보조사업자(민간·단체·개인), 지방자치단체(교부·관리), 지방의회(예산 심의), 주민(수혜·감시), 행정안전부(기준·통합관리망 운영)",
@@ -85,5 +85,585 @@
   "지자체별 보조금 규모와 부정수급 환수 실적",
   "성과평가 결과의 차년도 반영 정도",
   "통합관리망 공시의 완결성"
- ]
+ ],
+ "process": {
+  "lanes": [
+   "보조사업자(민간·단체)",
+   "소관 부서(집행부)",
+   "지방보조금관리위원회",
+   "지방자치단체장(예산·회계)",
+   "지방의회",
+   "보탬e(통합관리망)"
+  ],
+  "stages": [
+   "G0 편성·공모",
+   "G1 신청",
+   "G2 심의·교부결정",
+   "G3 집행",
+   "G4 정산·검사",
+   "G5 성과평가",
+   "G6 환수·제재·공시"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "보조금 예산 편성·계상",
+    "lane": "지방자치단체장(예산·회계)",
+    "stage": "G0 편성·공모",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방자치단체장",
+    "action": "예산 계상",
+    "output_documents": [
+     "보조금 예산안"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제6조",
+      "text": "지방보조금은 예산에 계상하여 편성한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "지방보조금관리위원회 편성 심의",
+    "lane": "지방보조금관리위원회",
+    "stage": "G0 편성·공모",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방보조금관리위원회",
+    "action": "편성 심의",
+    "condition": "편성 적정성",
+    "output_documents": [
+     "편성 심의결과"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제32조",
+      "text": "지방보조금관리위원회가 편성·성과평가 등을 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "지방의회 보조금 예산 심의·의결",
+    "lane": "지방의회",
+    "stage": "G0 편성·공모",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방의회",
+    "action": "예산 의결",
+    "output_documents": [
+     "예산 의결서"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제47조",
+      "text": "지방의회는 예산의 심의·확정을 의결한다."
+     },
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제6조",
+      "text": "예산 계상"
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "보조사업 공모 공고",
+    "lane": "소관 부서(집행부)",
+    "stage": "G0 편성·공모",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "소관 부서",
+    "action": "공모 공고",
+    "output_documents": [
+     "공모 공고문"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제6조",
+      "text": "보조사업 수행을 위한 예산을 편성·공모한다."
+     },
+     {
+      "law": "행정안전부 지방보조금 관리기준(예규)",
+      "article": "공모·선정 기준"
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "보조사업자 교부 신청",
+    "lane": "보조사업자(민간·단체)",
+    "stage": "G1 신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "보조사업자",
+    "action": "교부 신청",
+    "output_documents": [
+     "사업계획서",
+     "교부신청서"
+    ],
+    "deadline": "공모 접수기간",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제7조",
+      "text": "보조사업을 하려는 자는 교부신청서를 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "신청 접수·자격·적격 검토",
+    "lane": "소관 부서(집행부)",
+    "stage": "G1 신청",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "소관 부서",
+    "action": "자격·적격 검토",
+    "input_documents": [
+     "교부신청서",
+     "사업계획서"
+    ],
+    "output_documents": [
+     "검토의견"
+    ],
+    "deadline": "접수 후 검토기간",
+    "blocker": "유사·중복 보조 여부와 신청 자격 확인 진행 중",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제7조",
+      "text": "교부신청을 접수하여 검토한다."
+     },
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제8조",
+      "text": "교부 여부·조건을 결정하기 위한 검토"
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "서류 보완 요구·재제출",
+    "lane": "보조사업자(민간·단체)",
+    "stage": "G1 신청",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "보조사업자",
+    "action": "서류 보완",
+    "input_documents": [
+     "검토의견"
+    ],
+    "output_documents": [
+     "보완 서류"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제7조",
+      "text": "신청 서류의 보완을 요구할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "지방보조금관리위원회 교부 심의",
+    "lane": "지방보조금관리위원회",
+    "stage": "G2 심의·교부결정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방보조금관리위원회",
+    "action": "교부 심의",
+    "condition": "교부 적정성·중복 여부",
+    "output_documents": [
+     "교부 심의결과"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제32조",
+      "text": "위원회가 지방보조금 교부 등을 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "교부 결정·조건 부과",
+    "lane": "지방자치단체장(예산·회계)",
+    "stage": "G2 심의·교부결정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체장",
+    "action": "교부 결정",
+    "condition": "교부·부결·조건",
+    "output_documents": [
+     "교부결정 통지",
+     "교부 조건"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제8조",
+      "text": "교부 여부와 조건을 결정하여 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "교부결정 등록·공시",
+    "lane": "보탬e(통합관리망)",
+    "stage": "G2 심의·교부결정",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "보탬e",
+    "action": "등록·공시",
+    "input_documents": [
+     "교부결정 통지"
+    ],
+    "output_documents": [
+     "교부 내역 등록"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제21조",
+      "text": "교부 내역을 등록·공시한다."
+     },
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제34조",
+      "text": "지방보조금통합관리망(보탬e)을 통해 관리한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "보조금 교부·사업 집행",
+    "lane": "보조사업자(민간·단체)",
+    "stage": "G3 집행",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "보조사업자",
+    "action": "사업 집행",
+    "input_documents": [
+     "교부결정 통지"
+    ],
+    "output_documents": [
+     "집행 증빙"
+    ],
+    "blocker": "목적 외 사용·유사 중복 지원 우려로 부정수급 위험이 상존한다",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제8조",
+      "text": "교부 조건에 따라 보조사업을 수행한다."
+     },
+     {
+      "law": "지방재정법",
+      "article": "지방재정 운용 원칙"
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "정산 보고·검사",
+    "lane": "소관 부서(집행부)",
+    "stage": "G4 정산·검사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소관 부서",
+    "action": "정산 검사",
+    "input_documents": [
+     "집행 증빙"
+    ],
+    "output_documents": [
+     "정산보고서",
+     "검사 결과"
+    ],
+    "deadline": "사업 종료 후 정산기한",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제17조",
+      "text": "보조금의 정산 결과에 따라 반환 대상을 확인한다."
+     },
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률 시행령",
+      "article": "정산·검사 세부"
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "성과평가 심의",
+    "lane": "지방보조금관리위원회",
+    "stage": "G5 성과평가",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방보조금관리위원회",
+    "action": "성과평가",
+    "condition": "성과 적정·미흡",
+    "input_documents": [
+     "정산보고서"
+    ],
+    "output_documents": [
+     "성과평가 결과"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제32조",
+      "text": "위원회가 보조사업 성과평가를 심의한다."
+     },
+     {
+      "law": "행정안전부 지방보조금 관리기준(예규)",
+      "article": "성과평가 기준"
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "부정수급 판정·환수 결정",
+    "lane": "지방자치단체장(예산·회계)",
+    "stage": "G6 환수·제재·공시",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체장",
+    "action": "환수 결정",
+    "condition": "부정수급·목적외 사용 여부",
+    "output_documents": [
+     "반환 명령",
+     "환수 결정"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제17조",
+      "text": "거짓·부정 수급 등에 대해 보조금 반환을 명한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "환수·제재부가금 부과·명단 공표",
+    "lane": "소관 부서(집행부)",
+    "stage": "G6 환수·제재·공시",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "소관 부서",
+    "action": "환수·제재",
+    "input_documents": [
+     "환수 결정"
+    ],
+    "output_documents": [
+     "환수 고지",
+     "제재부가금 부과",
+     "명단 공표"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제17조",
+      "text": "반환 명령에 따라 보조금을 환수한다."
+     },
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제21조",
+      "text": "제재·환수 내역을 공시한다."
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "교부·집행·환수 내역 공시",
+    "lane": "보탬e(통합관리망)",
+    "stage": "G6 환수·제재·공시",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "보탬e",
+    "action": "공시",
+    "input_documents": [
+     "환수 고지",
+     "성과평가 결과"
+    ],
+    "output_documents": [
+     "통합관리망 공시"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제21조",
+      "text": "교부·집행·환수 내역을 등록·공시한다."
+     },
+     {
+      "law": "지방자치단체 보조금 관리에 관한 법률",
+      "article": "제34조",
+      "text": "통합관리망을 통해 공시한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": "보완 필요"
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": "부정수급"
+   },
+   {
+    "id": "E12",
+    "source": "P15",
+    "target": "P16",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P05",
+    "target": "P06",
+    "type": "message",
+    "label": "교부 신청 접수"
+   },
+   {
+    "id": "M02",
+    "source": "P09",
+    "target": "P10",
+    "type": "message",
+    "label": "교부결정 등록"
+   },
+   {
+    "id": "M03",
+    "source": "P10",
+    "target": "P11",
+    "type": "message",
+    "label": "교부결정 통지"
+   },
+   {
+    "id": "L01",
+    "source": "P07",
+    "target": "P06",
+    "type": "loop",
+    "label": "서류 보완 재제출"
+   },
+   {
+    "id": "L02",
+    "source": "P15",
+    "target": "P12",
+    "type": "loop",
+    "label": "환수분 재정산·재검사"
+   }
+  ],
+  "warnings": [
+   "지방보조금관리위원회 운영과 통합관리망(보탬e) 공시 조문 번호(제32·34조)는 확인 필요 — 현장 검증 필요"
+  ]
+ }
 }

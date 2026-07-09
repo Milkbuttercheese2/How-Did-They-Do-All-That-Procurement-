@@ -6,7 +6,7 @@
  "priority": 94,
  "whyFirst": "국민이 가장 먼저 만나는 형사 절차의 입구이자, 검경 수사권 조정으로 구조가 크게 바뀐 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "범죄로부터 국민의 생명·신체·재산을 보호하고, 신고·고소된 사건의 진상을 규명한다. 112 신고 대응으로 긴급 위험에 개입하고, 수사를 통해 범죄 혐의를 밝혀 형사사법 절차로 연결한다.",
   "stakeholders": "신고자·피해자, 고소인·고발인, 피의자, 목격자·참고인, 경찰(수사부서·지구대·파출소), 검찰, 법원",
@@ -94,5 +94,575 @@
   "검찰 직접수사 개시 범위(검찰청법 제4조) 최신 개정 상태",
   "보완수사·재수사 요구로 인한 평균 사건 처리기간(운영 통계)",
   "경찰 불송치·이의신청 인용률(운영 통계)"
- ]
+ ],
+ "process": {
+  "institution_name": "경찰 수사와 112 신고 제도",
+  "law_name": "형사소송법",
+  "lanes": [
+   "신고자·시민",
+   "112치안종합상황실",
+   "지구대·파출소",
+   "경찰 수사부서",
+   "검찰",
+   "법원",
+   "형사사법정보시스템"
+  ],
+  "stages": [
+   "G0 신고접수",
+   "G1 출동·초동조치",
+   "G2 입건·수사개시",
+   "G3 수사",
+   "G4 송치판단",
+   "G5 이의·보완",
+   "G6 검찰처분"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "112 신고 접수",
+    "lane": "112치안종합상황실",
+    "stage": "G0 신고접수",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "112치안종합상황실",
+    "output_documents": [
+     "신고 접수기록"
+    ],
+    "deadline": "즉시",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "112신고의 운영 및 처리 등에 관한 법률",
+      "article": "112치안종합상황실 신고 접수",
+      "text": "112치안종합상황실이 신고를 접수한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "신고 코드 분류(code0~4)",
+    "lane": "112치안종합상황실",
+    "stage": "G0 신고접수",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "112치안종합상황실",
+    "condition": "code0(최우선)~code4",
+    "output_documents": [
+     "신고 분류표"
+    ],
+    "deadline": "접수 즉시",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "112신고의 운영 및 처리 등에 관한 법률",
+      "article": "신고 대응 코드 분류",
+      "text": "긴급성에 따라 신고 대응 코드를 분류한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "순찰차 출동 지령",
+    "lane": "112치안종합상황실",
+    "stage": "G1 출동·초동조치",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "112치안종합상황실",
+    "receiver": "지구대·파출소",
+    "output_documents": [
+     "출동 지령"
+    ],
+    "deadline": "분류 즉시",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "112신고의 운영 및 처리 등에 관한 법률",
+      "article": "긴급조치·출동 지령",
+      "text": "상황실은 신속히 출동 지령을 한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "현장 출동·초동조치",
+    "lane": "지구대·파출소",
+    "stage": "G1 출동·초동조치",
+    "type": "task",
+    "status": "risk",
+    "progress": 70,
+    "actor": "지구대·파출소 경찰관",
+    "output_documents": [
+     "현장 조치기록",
+     "초동수사 보고"
+    ],
+    "deadline": "지령 후 즉시",
+    "blocker": "현장 위치 특정 지연으로 도착 지체",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "경찰관 직무집행법",
+      "article": "제2조",
+      "text": "경찰관은 범죄의 예방·진압 및 수사 직무를 수행한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "입건 여부 판단(수사 개시)",
+    "lane": "경찰 수사부서",
+    "stage": "G2 입건·수사개시",
+    "type": "gateway",
+    "status": "current",
+    "progress": 50,
+    "actor": "사법경찰관",
+    "condition": "입건/내사종결",
+    "output_documents": [
+     "입건 결정",
+     "수사 개시 보고"
+    ],
+    "deadline": "초동조치 후",
+    "blocker": "입건·내사 여부 판단 검토 중",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제197조",
+      "text": "사법경찰관은 범죄의 혐의가 있다고 인식하는 때에는 수사한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "피의자·참고인 조사",
+    "lane": "경찰 수사부서",
+    "stage": "G3 수사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사법경찰관",
+    "output_documents": [
+     "피의자신문조서",
+     "참고인진술조서",
+     "수사보고"
+    ],
+    "deadline": "수사기간 내",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제197조",
+      "text": "사법경찰관은 범죄를 수사한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "강제수사 영장 신청",
+    "lane": "경찰 수사부서",
+    "stage": "G3 수사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사법경찰관",
+    "receiver": "검찰",
+    "output_documents": [
+     "압수·수색·체포영장 신청서"
+    ],
+    "deadline": "필요 시",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제215조",
+      "text": "사법경찰관은 검사에게 신청하여 영장을 청구받아 압수·수색한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "검사 영장 청구",
+    "lane": "검찰",
+    "stage": "G3 수사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "검사",
+    "receiver": "법원",
+    "output_documents": [
+     "영장 청구서"
+    ],
+    "deadline": "신청 후",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제215조",
+      "text": "검사는 법원에 영장을 청구한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "법원 영장 심사·발부",
+    "lane": "법원",
+    "stage": "G3 수사",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "판사",
+    "condition": "발부/기각",
+    "output_documents": [
+     "영장 발부/기각 결정"
+    ],
+    "deadline": "청구 후",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제201조",
+      "text": "판사는 청구가 이유 있으면 영장을 발부한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "송치/불송치 결정",
+    "lane": "경찰 수사부서",
+    "stage": "G4 송치판단",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사법경찰관",
+    "condition": "혐의 인정(송치)/불인정(불송치)",
+    "output_documents": [
+     "수사결과 검토서"
+    ],
+    "deadline": "수사 종결 시",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제245조의5",
+      "text": "사법경찰관은 혐의가 인정되면 송치하고, 그 밖의 경우 불송치한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "검찰 송치",
+    "lane": "경찰 수사부서",
+    "stage": "G4 송치판단",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사법경찰관",
+    "receiver": "검찰",
+    "output_documents": [
+     "송치서",
+     "수사기록"
+    ],
+    "deadline": "결정 후",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제245조의5",
+      "text": "혐의가 인정되면 지체 없이 사건을 검사에게 송치한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "불송치 결정·통지",
+    "lane": "경찰 수사부서",
+    "stage": "G4 송치판단",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사법경찰관",
+    "receiver": "신고자·시민",
+    "output_documents": [
+     "불송치 결정서",
+     "불송치 이유 통지"
+    ],
+    "deadline": "결정 후 7일 내",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제245조의6",
+      "text": "불송치한 경우 고소인 등에게 취지와 이유를 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "고소인 이의신청",
+    "lane": "신고자·시민",
+    "stage": "G5 이의·보완",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "고소인·피해자",
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "통지 받은 후",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제245조의7",
+      "text": "불송치 통지를 받은 사람은 이의를 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "검사 보완수사 요구",
+    "lane": "검찰",
+    "stage": "G5 이의·보완",
+    "type": "gateway",
+    "status": "loop",
+    "progress": 0,
+    "actor": "검사",
+    "receiver": "경찰 수사부서",
+    "condition": "보완 필요/불요",
+    "output_documents": [
+     "보완수사 요구서"
+    ],
+    "deadline": "송치·이의 검토 후",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제197조의2",
+      "text": "검사는 송치사건에 대해 보완수사를 요구할 수 있다."
+     },
+     {
+      "law": "검사와 사법경찰관의 상호협력과 일반적 수사준칙에 관한 규정",
+      "article": "보완수사 절차",
+      "text": "보완수사 요구와 이행 절차를 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "검사 기소·불기소 결정",
+    "lane": "검찰",
+    "stage": "G6 검찰처분",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "검사",
+    "condition": "기소/불기소",
+    "output_documents": [
+     "공소장",
+     "불기소 결정서"
+    ],
+    "deadline": "수사 종결 후",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "검찰청법",
+      "article": "제4조",
+      "text": "검사는 공소를 제기하고 그 유지에 필요한 사항을 수행한다."
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "공판(재판) 이행",
+    "lane": "법원",
+    "stage": "G6 검찰처분",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "법원",
+    "output_documents": [
+     "공판조서",
+     "판결"
+    ],
+    "deadline": "기소 후",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제246조",
+      "text": "공소는 검사가 제기하여 법원 재판으로 이행한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "KICS 사건 등록·관리",
+    "lane": "형사사법정보시스템",
+    "stage": "G2 입건·수사개시",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "형사사법정보시스템",
+    "input_documents": [
+     "입건 결정"
+    ],
+    "output_documents": [
+     "사건 등록기록"
+    ],
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "형사소송법",
+      "article": "제196조",
+      "text": "수사 사건은 형사사법정보시스템으로 관리된다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P15",
+    "target": "P16",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E14",
+    "source": "P10",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P03",
+    "target": "P04",
+    "type": "message",
+    "label": "현장 출동 지령"
+   },
+   {
+    "id": "M02",
+    "source": "P07",
+    "target": "P08",
+    "type": "message",
+    "label": "영장 신청"
+   },
+   {
+    "id": "M03",
+    "source": "P05",
+    "target": "S01",
+    "type": "message",
+    "label": "사건 입건 등록"
+   },
+   {
+    "id": "M04",
+    "source": "P12",
+    "target": "P13",
+    "type": "message",
+    "label": "불송치 통지"
+   },
+   {
+    "id": "L01",
+    "source": "P14",
+    "target": "P06",
+    "type": "loop",
+    "label": "보완수사 요구"
+   },
+   {
+    "id": "L02",
+    "source": "P13",
+    "target": "P10",
+    "type": "loop",
+    "label": "이의신청 재검토"
+   }
+  ],
+  "warnings": []
+ }
 }

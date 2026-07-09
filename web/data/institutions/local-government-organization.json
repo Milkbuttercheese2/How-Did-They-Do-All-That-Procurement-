@@ -6,7 +6,7 @@
  "priority": 64,
  "whyFirst": "지방자치의 뼈대인 조직·정원을 다룬다. 자치조직권과 국가의 총량 통제가 부딪치는 지점을 보여주는 기준 사례다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "지자체가 맡은 사무를 수행할 조직(집행기관·행정기구·정원)을 구성한다. 자치조직권을 보장하되, 국가는 기준인건비로 인력 총량을 관리한다.",
   "stakeholders": "지자체(기구·정원 편성), 지방공무원(임용·배치 대상), 주민(행정서비스 수혜), 행정안전부(기준 제시·통제), 지방의회(정원 조례 의결)",
@@ -85,5 +85,539 @@
   "기준인건비 초과 시 실제 교부세 불이익의 산식",
   "기관구성 다양화 특례의 활용 사례 유무",
   "지자체별 정원 증가 추세와 승인 관행"
- ]
+ ],
+ "process": {
+  "lanes": [
+   "행정안전부",
+   "지자체 조직부서",
+   "지방자치단체장",
+   "지방의회",
+   "인사위원회(지방)",
+   "정보시스템·공개"
+  ],
+  "stages": [
+   "G0 기준인건비 통보",
+   "G1 조직진단·수요분석",
+   "G2 조례·규칙안 마련",
+   "G3 기준인건비 협의",
+   "G4 의회 심의·의결",
+   "G5 공포·기구설치",
+   "G6 임용·배치",
+   "G7 통보·환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "연도 기준인건비 산정·통보",
+    "lane": "행정안전부",
+    "stage": "G0 기준인건비 통보",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "행정안전부",
+    "action": "기준인건비 산정·통보",
+    "output_documents": [
+     "연도별 기준인건비 통보"
+    ],
+    "deadline": "회계연도 전년도",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치단체의 행정기구와 정원기준 등에 관한 규정",
+      "article": "기준인건비 산정 기준"
+     },
+     {
+      "law": "행정안전부 기준인건비 산정·통보 지침",
+      "article": "연도별 기준인건비"
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "조직진단·행정수요 분석",
+    "lane": "지자체 조직부서",
+    "stage": "G1 조직진단·수요분석",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획·조직부서",
+    "action": "조직진단·수요분석",
+    "output_documents": [
+     "조직진단 결과",
+     "행정수요 분석서"
+    ],
+    "deadline": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제125조(행정기구와 정원)"
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "기구·정원 편성안 마련",
+    "lane": "지자체 조직부서",
+    "stage": "G1 조직진단·수요분석",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "조직부서",
+    "action": "기구·정원 편성",
+    "output_documents": [
+     "기구·정원 편성안"
+    ],
+    "deadline": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제125조(행정기구와 정원)"
+     },
+     {
+      "law": "지방자치단체의 행정기구와 정원기준 등에 관한 규정",
+      "article": "기구·정원 설치 기준"
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "행정기구 설치 조례·규칙 개정안 작성",
+    "lane": "지자체 조직부서",
+    "stage": "G2 조례·규칙안 마련",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "조직부서",
+    "action": "조례·규칙안 작성",
+    "output_documents": [
+     "행정기구 설치 조례안",
+     "정원 규칙안"
+    ],
+    "deadline": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제125조(행정기구와 정원)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제126조(직속기관)"
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "입법예고·주민의견 수렴",
+    "lane": "지자체 조직부서",
+    "stage": "G2 조례·규칙안 마련",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "조직부서",
+    "action": "입법예고·의견수렴",
+    "output_documents": [
+     "입법예고안",
+     "의견 검토서"
+    ],
+    "deadline": "예고기간 20일",
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제125조(행정기구와 정원)"
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "기준인건비 협의",
+    "lane": "행정안전부",
+    "stage": "G3 기준인건비 협의",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "행정안전부·조직부서",
+    "action": "기준인건비 협의",
+    "output_documents": [
+     "기준인건비 협의 결과"
+    ],
+    "deadline": "협의 기간",
+    "blocker": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "지방자치단체의 행정기구와 정원기준 등에 관한 규정",
+      "article": "기준인건비 협의"
+     },
+     {
+      "law": "행정안전부 기준인건비 산정·통보 지침",
+      "article": "협의 기준"
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "총량 초과분 편성 재조정",
+    "lane": "지자체 조직부서",
+    "stage": "G3 기준인건비 협의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "조직부서",
+    "action": "편성 재조정",
+    "output_documents": [
+     "편성 재조정안"
+    ],
+    "deadline": null,
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "지방자치단체의 행정기구와 정원기준 등에 관한 규정",
+      "article": "기준인건비 총량 관리"
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "기준인건비 총량 적합 판단",
+    "lane": "행정안전부",
+    "stage": "G3 기준인건비 협의",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "행정안전부",
+    "condition": "기준인건비 총량 초과 여부",
+    "output_documents": [
+     "협의 결과 통보"
+    ],
+    "deadline": null,
+    "blocker": "기준인건비 총량을 초과하면 교부세 산정 불이익 우려로 편성 재조정이 반복될 수 있다 (현장 검증 필요)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "지방자치단체의 행정기구와 정원기준 등에 관한 규정",
+      "article": "기준인건비"
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "조례·규칙안 의회 제출",
+    "lane": "지방자치단체장",
+    "stage": "G4 의회 심의·의결",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체장",
+    "action": "의안 제출",
+    "output_documents": [
+     "의안(조례안)"
+    ],
+    "deadline": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제76조(의안의 발의)"
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "소관 상임위원회 심사",
+    "lane": "지방의회",
+    "stage": "G4 의회 심의·의결",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소관 상임위원회",
+    "action": "조례안 심사",
+    "output_documents": [
+     "위원회 심사보고서"
+    ],
+    "deadline": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제64조(위원회의 설치)"
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "본회의 심의·의결",
+    "lane": "지방의회",
+    "stage": "G4 의회 심의·의결",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "본회의",
+    "condition": "재적의원 과반 출석·출석 과반 찬성",
+    "output_documents": [
+     "의결서"
+    ],
+    "deadline": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제47조(지방의회의 의결사항)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제73조(의결정족수)"
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "조례 공포·시행",
+    "lane": "지방자치단체장",
+    "stage": "G5 공포·기구설치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체장",
+    "action": "공포·시행",
+    "output_documents": [
+     "공포문"
+    ],
+    "deadline": "이송 후 20일 내",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제32조(조례와 규칙의 제정 절차 등)"
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "행정기구 설치·정원 책정",
+    "lane": "지자체 조직부서",
+    "stage": "G5 공포·기구설치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "조직부서",
+    "action": "기구 설치·정원 책정",
+    "output_documents": [
+     "기구 설치 내역",
+     "정원 책정표"
+    ],
+    "deadline": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제125조(행정기구와 정원)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제127조(사업소)"
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "공무원 임용·배치",
+    "lane": "인사위원회(지방)",
+    "stage": "G6 임용·배치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "인사위원회·인사부서",
+    "action": "임용·배치",
+    "output_documents": [
+     "임용·배치 내역"
+    ],
+    "deadline": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방공무원법",
+      "article": "임용·정원 원칙"
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "정원현황 통보·조직정보 공개",
+    "lane": "정보시스템·공개",
+    "stage": "G7 통보·환류",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "조직부서",
+    "action": "정원현황 통보·공개",
+    "output_documents": [
+     "정원 현황 통보",
+     "조직정보 공개자료"
+    ],
+    "deadline": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "지방자치단체의 행정기구와 정원기준 등에 관한 규정",
+      "article": "정원 통보·공개"
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "조직진단·감사 사후점검",
+    "lane": "행정안전부",
+    "stage": "G7 통보·환류",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "행정안전부·조직부서",
+    "action": "조직진단·감사",
+    "output_documents": [
+     "조직진단 결과",
+     "감사 지적사항"
+    ],
+    "deadline": null,
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제125조(행정기구와 정원)"
+     },
+     {
+      "law": "지방자치단체의 행정기구와 정원기준 등에 관한 규정",
+      "article": "조직진단"
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P06",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P05",
+    "target": "P06",
+    "type": "message",
+    "label": "기준인건비 협의 요청"
+   },
+   {
+    "id": "M02",
+    "source": "P09",
+    "target": "P10",
+    "type": "message",
+    "label": "조례안 이송"
+   },
+   {
+    "id": "M03",
+    "source": "P15",
+    "target": "P16",
+    "type": "message",
+    "label": "정원현황 통보·공개"
+   },
+   {
+    "id": "L01",
+    "source": "P08",
+    "target": "P07",
+    "type": "loop",
+    "label": "기준인건비 총량 초과 재검토"
+   },
+   {
+    "id": "L02",
+    "source": "P07",
+    "target": "P06",
+    "type": "loop",
+    "label": "편성 재조정 후 재협의"
+   },
+   {
+    "id": "L03",
+    "source": "P16",
+    "target": "P02",
+    "type": "loop",
+    "label": "조직진단 환류(차기)"
+   }
+  ],
+  "warnings": [
+   "기준인건비 총량과 자치조직권의 관계, 초과 시 교부세 산정 불이익 산식은 현장 검증 필요"
+  ]
+ }
 }

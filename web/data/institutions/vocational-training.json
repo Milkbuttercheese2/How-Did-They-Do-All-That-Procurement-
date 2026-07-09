@@ -6,7 +6,7 @@
  "priority": 40,
  "whyFirst": "고용보험 재정으로 개인·기업 훈련을 지원하는 대표적 인적자원개발 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "국민 누구나 평생에 걸쳐 직업능력을 개발하도록 지원해 취업·재취업과 생산성 향상을 돕는다. 훈련과정을 인정·평가하고 훈련비를 지원해 노동시장 미스매치와 저숙련 문제를 완화한다.",
   "stakeholders": "구직자·재직자·실업자 등 훈련생, 훈련을 실시하는 사업주, 직업훈련기관, 고용노동부·한국산업인력공단, 직업능력심사평가원",
@@ -82,5 +82,375 @@
   "사업주 훈련지원 비용 산정방식(운영 추정)",
   "훈련 취업률·부정수급 적발 현황",
   "고용보험 미가입자 대상 지원사업의 현행 범위"
- ]
+ ],
+ "process": {
+  "institution_name": "직업능력개발훈련 제도",
+  "law_name": "국민 평생 직업능력 개발법",
+  "lanes": [
+   "훈련생/구직자",
+   "고용센터",
+   "한국산업인력공단",
+   "훈련기관",
+   "직업능력심사평가원",
+   "사업주",
+   "정보시스템(HRD-Net)"
+  ],
+  "stages": [
+   "G0 과정인정신청",
+   "G1 인정심사",
+   "G2 계좌발급·상담",
+   "G3 수강·훈련실시",
+   "G4 출결·성과관리",
+   "G5 비용정산·지급",
+   "G6 사후관리·제재"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "훈련과정 인정 신청",
+    "lane": "훈련기관",
+    "stage": "G0 과정인정신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "훈련기관",
+    "action": "인정 신청",
+    "output_documents": ["과정인정 신청서", "훈련계획서"],
+    "deadline": "훈련 개시 전",
+    "blocker": null,
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제24조",
+      "text": "훈련기관은 직업능력개발훈련과정의 인정을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "과정 심사·인정",
+    "lane": "직업능력심사평가원",
+    "stage": "G1 인정심사",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "직업능력심사평가원",
+    "action": "심사·인정",
+    "output_documents": ["과정인정서", "심사결과"],
+    "deadline": "내부 처리기한",
+    "blocker": null,
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제24조",
+      "text": "훈련과정의 요건 충족 여부를 심사하여 인정한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "인정과정 등록·공개",
+    "lane": "정보시스템(HRD-Net)",
+    "stage": "G1 인정심사",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "HRD-Net",
+    "action": "등록·공개",
+    "input_documents": ["과정인정서"],
+    "output_documents": ["공개 과정정보"],
+    "blocker": null,
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법 시행령",
+      "article": "훈련과정 정보공개 관련 조문",
+      "text": "인정 훈련과정을 HRD-Net에 등록·공개한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "구직등록·계좌 발급 신청",
+    "lane": "훈련생/구직자",
+    "stage": "G2 계좌발급·상담",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "훈련생",
+    "receiver": "고용센터",
+    "action": "발급 신청",
+    "output_documents": ["구직등록", "계좌발급 신청서"],
+    "blocker": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제12조",
+      "text": "훈련 희망자는 직업능력개발계좌(내일배움카드) 발급을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "직업상담·훈련계획 수립",
+    "lane": "고용센터",
+    "stage": "G2 계좌발급·상담",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "고용센터",
+    "action": "상담·계획 수립",
+    "input_documents": ["구직등록"],
+    "output_documents": ["훈련상담 자료", "훈련계획"],
+    "blocker": null,
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "고용보험법",
+      "article": "제29조",
+      "text": "훈련상담을 거쳐 개인별 훈련계획을 수립한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "내일배움카드 발급",
+    "lane": "한국산업인력공단",
+    "stage": "G2 계좌발급·상담",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "한국산업인력공단",
+    "action": "계좌 발급",
+    "output_documents": ["직업능력개발계좌(내일배움카드)"],
+    "blocker": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제12조",
+      "text": "요건 확인 후 직업능력개발계좌를 발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "계좌적합과정 수강 신청",
+    "lane": "훈련생/구직자",
+    "stage": "G3 수강·훈련실시",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "훈련생",
+    "action": "수강 신청",
+    "input_documents": ["공개 과정정보", "내일배움카드"],
+    "output_documents": ["수강 신청내역"],
+    "blocker": null,
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제12조",
+      "text": "계좌적합 인정과정을 선택하여 수강을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "훈련 실시",
+    "lane": "훈련기관",
+    "stage": "G3 수강·훈련실시",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "훈련기관",
+    "action": "훈련 실시",
+    "input_documents": ["수강 신청내역", "과정인정서"],
+    "output_documents": ["훈련일지"],
+    "deadline": "인정 훈련기간",
+    "blocker": "훈련 진행 중(수료 전)",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제2조, 제24조",
+      "text": "인정과정에 따라 직업능력개발훈련을 실시한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "출결·성과 관리",
+    "lane": "훈련기관",
+    "stage": "G4 출결·성과관리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "훈련기관",
+    "action": "출결·성과 관리",
+    "output_documents": ["출결기록", "성과기록"],
+    "blocker": "훈련 미종료",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법 시행령",
+      "article": "훈련 실시·관리 관련 조문",
+      "text": "훈련생의 출결과 성과를 관리·기록한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "수료·자격취득·취업연계",
+    "lane": "훈련생/구직자",
+    "stage": "G4 출결·성과관리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "훈련생",
+    "action": "수료·취업연계",
+    "output_documents": ["수료증", "자격취득 내역"],
+    "blocker": "훈련 미종료",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제2조",
+      "text": "훈련을 수료하고 자격취득·취업으로 연계한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "비용 지원 신청",
+    "lane": "훈련기관",
+    "stage": "G5 비용정산·지급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "훈련기관",
+    "receiver": "한국산업인력공단",
+    "action": "비용 지원 신청",
+    "output_documents": ["비용지원 신청서", "정산 서류"],
+    "blocker": "수료 확정 전",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제53조, 제54조",
+      "text": "훈련 실시 후 훈련비용 지원을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "훈련성과 확인·비용 정산·지급",
+    "lane": "한국산업인력공단",
+    "stage": "G5 비용정산·지급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국산업인력공단",
+    "action": "정산·지급",
+    "input_documents": ["정산 서류", "출결기록", "성과기록"],
+    "output_documents": ["정산 결과", "지급 내역"],
+    "blocker": "지원 신청 전",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법 시행령",
+      "article": "제7조",
+      "text": "훈련성과를 확인하고 훈련비용을 정산·지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "부정훈련·부정수급 점검",
+    "lane": "한국산업인력공단",
+    "stage": "G6 사후관리·제재",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "한국산업인력공단",
+    "action": "부정 점검",
+    "condition": "허위 수강·유령 훈련생 등 부정수급 여부",
+    "output_documents": ["점검결과", "적발내역"],
+    "blocker": "부정수급 상시 모니터링 체계 미흡(운영 추정)",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제55조, 제56조",
+      "text": "거짓·부정한 방법의 지원금 수급 여부를 점검한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "인정취소·제재·환수",
+    "lane": "직업능력심사평가원",
+    "stage": "G6 사후관리·제재",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "직업능력심사평가원/공단",
+    "action": "인정취소·환수",
+    "input_documents": ["적발내역"],
+    "output_documents": ["인정취소 통보", "환수·지원제한 결정"],
+    "blocker": "적발 시 조건부 회귀 단계",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "국민 평생 직업능력 개발법",
+      "article": "제24조, 제55조, 제56조",
+      "text": "부정이 확인되면 과정 인정취소·지원 제한·환수 조치를 한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "사업주 훈련 인정·실시·지원",
+    "lane": "사업주",
+    "stage": "G3 수강·훈련실시",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업주",
+    "action": "인정·실시·지원 신청",
+    "output_documents": ["사업주 훈련 인정서", "실시비용 지원 신청서"],
+    "blocker": "사업주 훈련지원 비용 산정방식 확인 필요(운영 추정)",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "고용보험법",
+      "article": "제27조, 제28조",
+      "text": "사업주는 훈련을 인정받아 실시하고 실시비용을 사후 지원받는다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P09", "target": "P10", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P02", "target": "S01", "type": "message", "label": "인정과정 등록" },
+   { "id": "M02", "source": "S01", "target": "P06", "type": "message", "label": "과정 검색·선택" },
+   { "id": "M03", "source": "P14", "target": "P11", "type": "message", "label": "사업주 훈련비 지원 신청" },
+   { "id": "L01", "source": "P12", "target": "P13", "type": "loop", "label": "부정 적발 시 제재" },
+   { "id": "L02", "source": "P13", "target": "P07", "type": "loop", "label": "인정취소·환수 후 재점검" }
+  ],
+  "warnings": []
+ }
 }

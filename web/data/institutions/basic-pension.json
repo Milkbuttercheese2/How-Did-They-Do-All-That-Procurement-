@@ -6,7 +6,7 @@
  "priority": 32,
  "whyFirst": "선정기준-국민연금 연계 감액-재정이라는 노후소득보장 쟁점을 한 장에 담기 좋다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "노후 준비가 부족한 세대의 노인 빈곤을 완화한다. 국민연금이 성숙하기 전 노후 소득 공백을 조세로 메우는 준보편적 복지급여다. 소득·재산이 하위 70%인 노인에게 기준연금액 범위에서 매달 지급한다.",
   "stakeholders": "65세 이상 노인(하위 70%), 국민연금 수급 노인, 보건복지부, 시·군·구 및 읍·면·동, 국민연금공단, 재정을 부담하는 국가·지방자치단체",
@@ -82,5 +82,449 @@
   "국민연금 연계 감액 산식 현행 기준",
   "생계급여 수급 노인의 기초연금 소득산정(보충성) 현행 처리",
   "노인빈곤율·기초연금 수급률(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "기초연금 제도",
+  "law_name": "기초연금법",
+  "lanes": [
+   "신청자(수급희망자)",
+   "읍면동·국민연금공단(접수)",
+   "시군구(조사·결정)",
+   "국민연금공단(연계감액 산정)",
+   "사회보장정보원",
+   "보건복지부(기준 고시)"
+  ],
+  "stages": [
+   "G0 기준 고시",
+   "G1 신청·접수",
+   "G2 소득·재산 조사",
+   "G3 감액·선정 판정",
+   "G4 지급 결정·지급",
+   "G5 확인조사·변동",
+   "G6 이의신청"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "선정기준액·기준연금액 고시",
+    "lane": "보건복지부(기준 고시)",
+    "stage": "G0 기준 고시",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "보건복지부장관",
+    "action": "심의·고시",
+    "output_documents": [
+     "선정기준액 고시",
+     "기준연금액 고시"
+    ],
+    "deadline": "매년 고시(연도별 적용)",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제5조·제9조",
+      "text": "보건복지부장관은 소득인정액 하위 70% 수준의 선정기준액과 기준연금액을 정하여 고시한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "기초연금 신청",
+    "lane": "신청자(수급희망자)",
+    "stage": "G1 신청·접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "본인·대리인",
+    "receiver": "읍면동·국민연금공단",
+    "action": "급여 신청",
+    "output_documents": [
+     "기초연금 신청서"
+    ],
+    "deadline": "상시(65세 생일 1개월 전부터)",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제10조",
+      "text": "65세 이상 본인 또는 대리인은 급여를 신청할 수 있으며 65세 생일 1개월 전부터 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "신청 접수·상담",
+    "lane": "읍면동·국민연금공단(접수)",
+    "stage": "G1 신청·접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "읍·면·동·국민연금공단",
+    "action": "접수·상담",
+    "input_documents": [
+     "기초연금 신청서"
+    ],
+    "output_documents": [
+     "접수증",
+     "구비서류 안내"
+    ],
+    "deadline": "신청 당일 접수",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제10조·제11조",
+      "text": "신청을 받은 특별자치시장·군수·구청장 또는 국민연금공단은 신청을 접수하고 절차를 안내한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "금융정보 제공 동의·서류 접수",
+    "lane": "읍면동·국민연금공단(접수)",
+    "stage": "G1 신청·접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "읍·면·동",
+    "receiver": "시군구(조사·결정)",
+    "action": "동의서·서류 접수·이송",
+    "input_documents": [
+     "금융정보 제공 동의서",
+     "소득·재산 신고서"
+    ],
+    "output_documents": [
+     "조사 요청 자료"
+    ],
+    "deadline": "접수 후 지체 없이 이송",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제11조·제12조",
+      "text": "신청자는 금융정보 등 제공에 동의하여야 하며 관련 서류를 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "소득·재산 공적자료 조회(행복이음)",
+    "lane": "사회보장정보원",
+    "stage": "G2 소득·재산 조사",
+    "type": "system",
+    "status": "current",
+    "progress": 55,
+    "actor": "사회보장정보원(행복e음)",
+    "action": "소득·재산 전산조회",
+    "input_documents": [
+     "금융정보 제공 동의서",
+     "조사 요청 자료"
+    ],
+    "output_documents": [
+     "공적자료 조회결과",
+     "금융재산 조회결과"
+    ],
+    "deadline": "조사기간 내 회신",
+    "blocker": "금융·공적자료 회신 대기 중",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제12조",
+      "text": "보장기관은 소득·재산을 조사하며 사회보장정보시스템을 통해 공적자료·금융정보를 조회할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "소득인정액 산정",
+    "lane": "시군구(조사·결정)",
+    "stage": "G2 소득·재산 조사",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 15,
+    "actor": "시·군·구",
+    "action": "소득인정액 판정",
+    "condition": "소득평가액+재산의 소득환산액 산정",
+    "input_documents": [
+     "공적자료 조회결과",
+     "소득·재산 신고서"
+    ],
+    "output_documents": [
+     "소득인정액 산정 결과"
+    ],
+    "deadline": "지급결정 기한 내",
+    "blocker": "소득·재산 환산 방식이 복잡해 산정·탈락 혼란이 생긴다",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제2조·제12조",
+      "text": "소득인정액은 개별가구의 소득평가액과 재산의 소득환산액을 합산하여 산정한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "국민연금 연계 감액 산정",
+    "lane": "국민연금공단(연계감액 산정)",
+    "stage": "G3 감액·선정 판정",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "국민연금공단",
+    "action": "연계 감액 산정",
+    "input_documents": [
+     "국민연금 수급이력"
+    ],
+    "output_documents": [
+     "연계 감액 산정 결과"
+    ],
+    "deadline": "지급결정 기한 내",
+    "blocker": "국민연금 연계 감액이 가입 유인을 떨어뜨린다는 비판이 있다",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제5조",
+      "text": "국민연금 급여액 등을 고려하여 기준연금액의 일부를 감액할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "선정기준액 이하 여부 판정",
+    "lane": "시군구(조사·결정)",
+    "stage": "G3 감액·선정 판정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "action": "선정 판정",
+    "condition": "소득인정액이 선정기준액 이하인지 여부(하위 70%)",
+    "input_documents": [
+     "소득인정액 산정 결과"
+    ],
+    "output_documents": [
+     "선정 판정 결과"
+    ],
+    "deadline": "지급결정 기한 내",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제3조",
+      "text": "65세 이상이고 소득인정액이 선정기준액 이하인 사람을 수급권자로 한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "기준연금액 결정(감액 반영)",
+    "lane": "시군구(조사·결정)",
+    "stage": "G4 지급 결정·지급",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시장·군수·구청장",
+    "action": "지급액 결정",
+    "condition": "기준연금액에서 국민연금 연계·부부·소득역전 감액 반영",
+    "input_documents": [
+     "선정 판정 결과",
+     "연계 감액 산정 결과"
+    ],
+    "output_documents": [
+     "기초연금 지급 결정"
+    ],
+    "deadline": "지급결정 기한 내",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제5조·제8조",
+      "text": "소득역전 방지 및 부부 감액 등을 반영하여 실제 지급액을 결정한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "지급 결정 통지",
+    "lane": "시군구(조사·결정)",
+    "stage": "G4 지급 결정·지급",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "receiver": "신청자",
+    "action": "결정 통지",
+    "output_documents": [
+     "지급 결정 통지서",
+     "이의신청 방법 안내"
+    ],
+    "deadline": "신청일부터 30일 이내(자료 지연 시 60일)",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제15조",
+      "text": "보장기관은 지급 결정 내용을 신청인에게 서면으로 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "매월 지급",
+    "lane": "시군구(조사·결정)",
+    "stage": "G4 지급 결정·지급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "receiver": "수급자",
+    "action": "급여 지급",
+    "output_documents": [
+     "기초연금 계좌입금 내역"
+    ],
+    "deadline": "매월 정기 지급",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제14조",
+      "text": "기초연금은 수급권자에게 매월 정기적으로 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "소득변동 확인조사",
+    "lane": "시군구(조사·결정)",
+    "stage": "G5 확인조사·변동",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "시·군·구·사회보장정보원",
+    "action": "확인조사",
+    "output_documents": [
+     "확인조사 결과",
+     "변동 통보"
+    ],
+    "deadline": "정기·수시",
+    "blocker": "소득·재산 변동 확인 시 재산정 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제12조·제16조",
+      "text": "보장기관은 수급자의 소득·재산 등 지급 요건의 변동을 정기·수시로 확인조사한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "자격·급여 변동 처리",
+    "lane": "시군구(조사·결정)",
+    "stage": "G5 확인조사·변동",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "action": "급여 변경·환수 결정",
+    "condition": "소득인정액 변동에 따른 지급 정지·변경·환수 여부",
+    "input_documents": [
+     "확인조사 결과"
+    ],
+    "output_documents": [
+     "급여 변경·정지 통지",
+     "환수 결정(해당 시)"
+    ],
+    "deadline": "변동 확인 후 지체 없이",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제16조·제17조",
+      "text": "요건 변동 시 급여를 변경·정지하거나 잘못 지급한 급여를 환수할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "이의신청",
+    "lane": "신청자(수급희망자)",
+    "stage": "G6 이의신청",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "수급(권)자·신청자",
+    "receiver": "시장·군수·구청장",
+    "action": "이의신청",
+    "input_documents": [
+     "지급 결정 통지서"
+    ],
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "결정 통지받은 날부터 90일 이내",
+    "blocker": "지급 결정 불복 회귀 단계",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제22조",
+      "text": "결정에 이의가 있으면 90일 이내에 이의신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "이의신청 심사·재결정",
+    "lane": "시군구(조사·결정)",
+    "stage": "G6 이의신청",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시장·군수·구청장",
+    "action": "이의신청 심사·처분",
+    "condition": "이의신청 인용 여부(인용 시 지급 결정 시정 회귀)",
+    "input_documents": [
+     "이의신청서"
+    ],
+    "output_documents": [
+     "이의신청 처리결과 통지"
+    ],
+    "deadline": "이의신청 심사 후 통지",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "기초연금법",
+      "article": "제22조",
+      "text": "이의신청을 받으면 심사하여 결정을 변경하거나 급여를 지급하는 조치를 한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P08", "type": "sequence", "label": "소득인정액 산정" },
+   { "id": "E07", "source": "P08", "target": "P09", "type": "sequence", "label": "선정" },
+   { "id": "E08", "source": "P09", "target": "P10", "type": "sequence", "label": "지급 결정" },
+   { "id": "E09", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P12", "target": "P13", "type": "sequence", "label": null },
+   { "id": "E12", "source": "P14", "target": "P15", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P05", "target": "P07", "type": "message", "label": "국민연금 수급이력 연계" },
+   { "id": "M02", "source": "P07", "target": "P09", "type": "message", "label": "연계 감액 반영" },
+   { "id": "M03", "source": "P13", "target": "P10", "type": "message", "label": "급여 변동 통지" },
+   { "id": "M04", "source": "P10", "target": "P14", "type": "message", "label": "결정 불복 시" },
+   { "id": "L01", "source": "P12", "target": "P06", "type": "loop", "label": "소득변동 재산정 회귀" },
+   { "id": "L02", "source": "P14", "target": "P08", "type": "loop", "label": "이의신청 재판정 회귀" }
+  ],
+  "warnings": []
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 70,
  "whyFirst": "지방정부가 직접 시장 활동을 하는 영역이다. 공공서비스 제공과 재정 리스크가 함께 걸린 사례다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "지자체가 주민 생활에 필수적이면서 수익성도 있는 사업을 직접 또는 공사·공단을 통해 경영한다. 공공성과 경영 효율을 함께 추구한다.",
   "stakeholders": "지방자치단체(설립·출자자), 지방공기업 임직원, 주민·이용자(요금 부담·서비스 수혜), 행정안전부(설립 기준·경영평가), 지방의회(조례·예산 의결)",
@@ -85,5 +85,499 @@
   "지자체별 지방공기업 부채·적자 현황",
   "경영평가 결과의 실제 인사·성과 연계",
   "요금 현실화율과 원가 회수 정도"
- ]
+ ],
+ "process": {
+  "institution_name": "지방공기업 제도",
+  "law_name": "지방공기업법",
+  "lanes": [
+   "지방자치단체(장)",
+   "지방의회",
+   "임원추천위원회",
+   "행정안전부",
+   "지방공기업평가원",
+   "지방공기업(공사·공단)",
+   "정보시스템(클린아이)"
+  ],
+  "stages": [
+   "G0 설립검토",
+   "G1 조례·설립",
+   "G2 임원·출범",
+   "G3 사업운영",
+   "G4 경영평가",
+   "G5 개선·청산"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "설립 타당성 검토",
+    "lane": "지방자치단체(장)",
+    "stage": "G0 설립검토",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방자치단체",
+    "output_documents": [
+     "설립 타당성 검토서",
+     "사업계획서"
+    ],
+    "deadline": "내부 목표 90일",
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제49조의2",
+      "text": "지방공사 설립 전에 사업의 타당성을 검토한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "행안부 설립 협의",
+    "lane": "행정안전부",
+    "stage": "G0 설립검토",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "행정안전부",
+    "receiver": "지방자치단체",
+    "output_documents": [
+     "설립 협의 회신",
+     "설립 기준 검토의견"
+    ],
+    "deadline": "협의 요청 후 30일",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제49조의2",
+      "text": "설립 타당성 검토 결과에 대해 행정안전부장관과 협의한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "설치 조례안 마련",
+    "lane": "지방자치단체(장)",
+    "stage": "G1 조례·설립",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방자치단체",
+    "output_documents": [
+     "설치 조례안",
+     "정관안"
+    ],
+    "deadline": "내부 목표 30일",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제5조",
+      "text": "지방직영기업의 설치·운영은 조례로 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "지방의회 조례 의결",
+    "lane": "지방의회",
+    "stage": "G1 조례·설립",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방의회",
+    "output_documents": [
+     "설치 조례",
+     "의결서"
+    ],
+    "deadline": "정례회 회기",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제49조",
+      "text": "지방공사를 설립하려면 조례로 정하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "법인 설립·출자·등기",
+    "lane": "지방자치단체(장)",
+    "stage": "G1 조례·설립",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방자치단체",
+    "output_documents": [
+     "법인 설립등기",
+     "출자증서"
+    ],
+    "deadline": "조례 시행 후 60일",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제49조",
+      "text": "지방공사는 법인으로 하며 설립등기로 성립한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "임원추천위 구성·사장 추천",
+    "lane": "임원추천위원회",
+    "stage": "G2 임원·출범",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "임원추천위원회",
+    "output_documents": [
+     "임원 추천서",
+     "후보 심사결과"
+    ],
+    "deadline": "내부 목표 45일",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제58조",
+      "text": "사장과 임원은 임원추천위원회의 추천 등 절차를 거쳐 임명한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "사장·임원 임명",
+    "lane": "지방자치단체(장)",
+    "stage": "G2 임원·출범",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방자치단체장",
+    "output_documents": [
+     "임명장",
+     "계약서"
+    ],
+    "deadline": "추천 후 14일",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제58조",
+      "text": "지방자치단체장은 임원추천위원회가 추천한 사람 중에서 사장을 임명한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "사업계획·예산 편성",
+    "lane": "지방공기업(공사·공단)",
+    "stage": "G3 사업운영",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "지방공기업",
+    "output_documents": [
+     "연간 사업계획",
+     "예산서"
+    ],
+    "deadline": "회계연도 개시 전",
+    "blocker": "요금 현실화 계획 미확정",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제2조",
+      "text": "지방공기업이 경영하는 사업의 범위에 따라 사업계획을 수립한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "사업 운영·요금 부과",
+    "lane": "지방공기업(공사·공단)",
+    "stage": "G3 사업운영",
+    "type": "task",
+    "status": "risk",
+    "progress": 48,
+    "actor": "지방공기업",
+    "output_documents": [
+     "요금 고지",
+     "재무제표"
+    ],
+    "deadline": "상시",
+    "blocker": "도시개발·교통 부문 만성 적자",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제2조",
+      "text": "적용 대상 사업을 경영하며 원가를 고려해 요금을 부과한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "경영정보 공시(클린아이)",
+    "lane": "정보시스템(클린아이)",
+    "stage": "G4 경영평가",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "경영정보 공개시스템",
+    "output_documents": [
+     "경영공시 자료"
+    ],
+    "deadline": "결산 후 공시기한",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제78조",
+      "text": "지방공기업은 경영 상황을 공시하고 경영평가 자료를 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "경영평가 실시",
+    "lane": "지방공기업평가원",
+    "stage": "G4 경영평가",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방공기업평가원",
+    "output_documents": [
+     "경영평가 보고서",
+     "지표별 점수"
+    ],
+    "deadline": "매년 상반기",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제78조",
+      "text": "행정안전부장관은 지방공기업 경영에 대한 평가를 실시한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "경영평가 결과 확정·등급 부여",
+    "lane": "행정안전부",
+    "stage": "G4 경영평가",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "행정안전부",
+    "condition": "평가등급, 부실 여부, 개선명령 필요성",
+    "output_documents": [
+     "평가결과 통보",
+     "등급표"
+    ],
+    "deadline": "평가 후 통보",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제78조",
+      "text": "경영평가 결과에 따라 등급을 부여하고 필요한 조치를 명할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "경영개선명령",
+    "lane": "행정안전부",
+    "stage": "G5 개선·청산",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "행정안전부",
+    "receiver": "지방공기업",
+    "output_documents": [
+     "경영개선명령서"
+    ],
+    "deadline": "평가결과 확정 후",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제78조의2",
+      "text": "경영 부실 시 행정안전부장관은 경영개선명령을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "경영개선계획 수립·이행",
+    "lane": "지방공기업(공사·공단)",
+    "stage": "G5 개선·청산",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "지방공기업",
+    "output_documents": [
+     "경영개선계획",
+     "이행실적 보고"
+    ],
+    "deadline": "명령 후 이행기간",
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제78조의2",
+      "text": "개선명령을 받은 기업은 경영개선계획을 수립·이행하고 그 결과를 보고한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "해산·청산",
+    "lane": "지방자치단체(장)",
+    "stage": "G5 개선·청산",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체",
+    "output_documents": [
+     "해산 조례",
+     "청산 종결등기"
+    ],
+    "deadline": "의회 의결 후",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "지방공기업법",
+      "article": "제49조",
+      "text": "지방공사의 해산은 조례로 정하며 청산 절차를 거친다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P13",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P01",
+    "target": "P02",
+    "type": "message",
+    "label": "설립 타당성 협의 요청"
+   },
+   {
+    "id": "M02",
+    "source": "P09",
+    "target": "P10",
+    "type": "message",
+    "label": "경영정보 공시자료"
+   },
+   {
+    "id": "M03",
+    "source": "P10",
+    "target": "P11",
+    "type": "message",
+    "label": "공시자료 제공"
+   },
+   {
+    "id": "L01",
+    "source": "P13",
+    "target": "P14",
+    "type": "loop",
+    "label": "경영개선명령 이행"
+   },
+   {
+    "id": "L02",
+    "source": "P14",
+    "target": "P11",
+    "type": "loop",
+    "label": "개선 후 재평가"
+   }
+  ],
+  "warnings": []
+ }
 }

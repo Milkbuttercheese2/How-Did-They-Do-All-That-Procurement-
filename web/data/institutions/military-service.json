@@ -6,7 +6,7 @@
  "priority": 93,
  "whyFirst": "국가의 존립을 뒷받침하는 대표적 국민 의무이자, 공정성 논란이 끊이지 않는 판정·처분 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "국가 안보에 필요한 병력을 공정하게 확보한다. 국민개병제를 바탕으로, 신체·심리·학력 등 자질을 검사해 현역·보충역 등으로 병역을 배분한다. 병역의무의 형평성 확보가 핵심 목표다.",
   "stakeholders": "병역의무자(만 18세 병역준비역 편입, 19세 병역판정검사 대상 남성), 현역병·사회복무요원·대체복무요원, 병무청·각 군, 고용·학업에 영향을 받는 본인과 가족",
@@ -89,5 +89,552 @@
   "병역면탈 적발 건수와 처벌 현황(운영 통계)",
   "사회복무요원 복무기관 배정·관리 실태(운영 추정)",
   "대체복무 편입·복무 운영 실태"
- ]
+ ],
+ "process": {
+  "institution_name": "병역 제도",
+  "law_name": "병역법",
+  "lanes": [
+   "병역의무자",
+   "지방병무청",
+   "병무청",
+   "각 군/부대",
+   "대체역 심사위원회",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 준비역편입",
+   "G1 판정검사",
+   "G2 신체등급판정",
+   "G3 병역처분",
+   "G4 입영통지",
+   "G5 복무이행",
+   "G6 처분변경",
+   "G7 전역·예비역"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "병역준비역 편입(만18세)",
+    "lane": "병무청",
+    "stage": "G0 준비역편입",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "병무청",
+    "output_documents": [
+     "병역준비역 편입 기록"
+    ],
+    "deadline": "18세가 되는 해 1월",
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제8조",
+      "text": "대한민국 국민인 남성은 18세부터 병역준비역에 편입된다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "병역판정검사 통지(만19세)",
+    "lane": "지방병무청",
+    "stage": "G1 판정검사",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방병무청장",
+    "receiver": "병역의무자",
+    "output_documents": [
+     "병역판정검사 통지서"
+    ],
+    "deadline": "검사일 30일 전",
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제11조",
+      "text": "19세가 되는 해에 병역판정검사를 받게 하며 검사일시·장소를 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "병역판정검사 수검",
+    "lane": "병역의무자",
+    "stage": "G1 판정검사",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "병역의무자",
+    "output_documents": [
+     "수검 확인",
+     "신체·심리검사 자료"
+    ],
+    "deadline": "지정 검사일",
+    "confidence": 0.87,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제11조",
+      "text": "병역의무자는 병역판정검사를 받아야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "신체검사·심리·적성검사",
+    "lane": "지방병무청",
+    "stage": "G2 신체등급판정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방병무청",
+    "output_documents": [
+     "신체검사 결과",
+     "심리검사 결과",
+     "적성분류 자료"
+    ],
+    "deadline": "검사 당일",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제12조",
+      "text": "질병·심신장애의 정도에 따라 신체등급을 판정한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "신체등급 판정(1~7급)",
+    "lane": "지방병무청",
+    "stage": "G2 신체등급판정",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 80,
+    "actor": "지방병무청장",
+    "condition": "1~3급/4급/5급/6급/7급(재검사) 구분",
+    "output_documents": [
+     "신체등급 판정표"
+    ],
+    "deadline": "검사 당일",
+    "blocker": "일부 대상자 7급 재검사 대상으로 등급 확정 지연",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제12조",
+      "text": "신체 및 심리상태를 검사하여 1급부터 7급까지 신체등급을 판정한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "병역처분 결정",
+    "lane": "지방병무청",
+    "stage": "G3 병역처분",
+    "type": "gateway",
+    "status": "current",
+    "progress": 55,
+    "actor": "지방병무청장",
+    "receiver": "병역의무자",
+    "condition": "현역/보충역/전시근로역/면제/재병역판정검사",
+    "output_documents": [
+     "병역처분 통지서"
+    ],
+    "deadline": "검사 결과 확정 후",
+    "blocker": "현역·보충역 배분 소요 산정 대기",
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제14조",
+      "text": "신체등급과 학력·연령을 고려하여 현역·보충역·전시근로역·병역면제로 병역처분한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "현역병입영 통지",
+    "lane": "지방병무청",
+    "stage": "G4 입영통지",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방병무청장",
+    "receiver": "병역의무자",
+    "output_documents": [
+     "현역병입영 통지서"
+    ],
+    "deadline": "입영일 30일 전",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제16조",
+      "text": "현역병입영 대상자에게 입영일자와 부대를 지정하여 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "사회복무요원 소집 통지",
+    "lane": "지방병무청",
+    "stage": "G4 입영통지",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방병무청장",
+    "receiver": "병역의무자",
+    "output_documents": [
+     "사회복무요원 소집통지서"
+    ],
+    "deadline": "소집일 전",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제26조",
+      "text": "보충역은 사회복무요원 등으로 소집되어 복무한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "대체역 편입 심사",
+    "lane": "대체역 심사위원회",
+    "stage": "G4 입영통지",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "대체역 심사위원회",
+    "condition": "편입 인용/기각",
+    "output_documents": [
+     "대체역 편입 결정서"
+    ],
+    "deadline": "신청 후 심사기간",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "대체역의 편입 및 복무 등에 관한 법률",
+      "article": "대체역 편입 심사",
+      "text": "양심적 병역거부자의 대체역 편입 여부를 심사·의결한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "현역 입영·복무 개시",
+    "lane": "각 군/부대",
+    "stage": "G5 복무이행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "각 군",
+    "output_documents": [
+     "입영 확인",
+     "복무기록"
+    ],
+    "deadline": "지정 입영일",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제20조",
+      "text": "현역병입영 대상자는 입영하여 현역으로 복무한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "사회복무·대체복무 개시",
+    "lane": "병역의무자",
+    "stage": "G5 복무이행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사회복무요원/대체복무요원",
+    "output_documents": [
+     "복무개시 확인",
+     "복무기관 배정서"
+    ],
+    "deadline": "지정 소집일",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제26조",
+      "text": "사회복무요원은 복무기관에 배치되어 복무한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "복무 중 질병·사유 발생",
+    "lane": "병역의무자",
+    "stage": "G6 처분변경",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "복무자",
+    "output_documents": [
+     "병역처분변경 신청서",
+     "진단서"
+    ],
+    "deadline": "사유 발생 시",
+    "blocker": "처분변경 사유 소명 진행",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제65조",
+      "text": "질병·심신장애 등 사유가 있으면 병역처분을 변경할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "재병역판정검사·처분변경 심사",
+    "lane": "지방병무청",
+    "stage": "G6 처분변경",
+    "type": "gateway",
+    "status": "loop",
+    "progress": 0,
+    "actor": "지방병무청장",
+    "condition": "처분 유지/변경",
+    "output_documents": [
+     "재병역판정검사 결과",
+     "병역처분 변경 결정"
+    ],
+    "deadline": "신청 접수 후",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제14조의2",
+      "text": "현역병입영 대상자 등에 대하여 재병역판정검사를 실시할 수 있다."
+     },
+     {
+      "law": "병역법",
+      "article": "제65조",
+      "text": "신체등급 변동 등에 따라 병역처분을 변경한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "전역·소집해제",
+    "lane": "각 군/부대",
+    "stage": "G7 전역·예비역",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "각 군/복무기관",
+    "output_documents": [
+     "전역증",
+     "복무만료 확인서"
+    ],
+    "deadline": "복무만료일",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제5조",
+      "text": "병역의 종류에 따라 복무를 마치면 전역·소집해제된다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "예비역·전시근로역 편입",
+    "lane": "병무청",
+    "stage": "G7 전역·예비역",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "병무청",
+    "output_documents": [
+     "예비역 편입 기록",
+     "병적 정리"
+    ],
+    "deadline": "전역과 동시",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제5조",
+      "text": "현역을 마친 사람은 예비역에, 해당자는 전시근로역에 편입된다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "병무민원포털 처분·입영 관리",
+    "lane": "정보시스템",
+    "stage": "G3 병역처분",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "병무행정 정보시스템",
+    "input_documents": [
+     "병역처분 통지서"
+    ],
+    "output_documents": [
+     "처분 조회 자료",
+     "입영 신청 기록"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "병역법",
+      "article": "제11조",
+      "text": "병역판정검사·병역처분·입영 사항을 병무행정 정보체계로 관리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P10",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P06",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P08",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P06",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P09",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E14",
+    "source": "P11",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P06",
+    "target": "S01",
+    "type": "message",
+    "label": "병역처분 등록"
+   },
+   {
+    "id": "M02",
+    "source": "P02",
+    "target": "P03",
+    "type": "message",
+    "label": "판정검사 통지"
+   },
+   {
+    "id": "M03",
+    "source": "P10",
+    "target": "P15",
+    "type": "message",
+    "label": "복무기록 통보"
+   },
+   {
+    "id": "M04",
+    "source": "P10",
+    "target": "P12",
+    "type": "message",
+    "label": "복무 중 질병 발생"
+   },
+   {
+    "id": "L01",
+    "source": "P12",
+    "target": "P13",
+    "type": "loop",
+    "label": "처분변경 사유 발생"
+   },
+   {
+    "id": "L02",
+    "source": "P13",
+    "target": "P06",
+    "type": "loop",
+    "label": "병역처분 재결정"
+   }
+  ],
+  "warnings": []
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 44,
  "whyFirst": "소득연계 심사와 급여 지급 구조를 보여주는 대표적 교육복지 급여 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "가구 소득수준에 따라 대학 등록금을 차등 지원해 경제적 부담을 덜고 균등한 고등교육 기회를 보장한다. 등록금 부담 완화와 학업 중단 방지가 정책목표다.",
   "stakeholders": "대학 재학생·신입생, 학부모(가구), 한국장학재단, 교육부, 대학(등록금 반영)",
@@ -82,5 +82,337 @@
   "성적·이수학점 지원요건 최신 내용",
   "저소득 구간 등록금 실질 부담 수준(운영 추정)",
   "대학원생 등 지원대상 확대 여부"
- ]
+ ],
+ "process": {
+  "institution_name": "국가장학금 제도",
+  "law_name": "한국장학재단 설립 등에 관한 법률",
+  "lanes": [
+   "학생/학부모",
+   "한국장학재단",
+   "소득·재산 조사기관",
+   "대학",
+   "교육부",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 정책·공고",
+   "G1 신청·동의",
+   "G2 소득산정",
+   "G3 요건·구간확정",
+   "G4 지급",
+   "G5 이의·재산정",
+   "G6 사후확인"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "장학정책·예산·지원단가 결정",
+    "lane": "교육부",
+    "stage": "G0 정책·공고",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부장관",
+    "action": "정책 결정",
+    "output_documents": ["지원구간·단가 계획", "예산 배정"],
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "고등교육법",
+      "article": "제7조",
+      "text": "국가는 장학·학자금 지원을 위한 재정을 편성한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "학기별 국가장학금 신청 공고",
+    "lane": "한국장학재단",
+    "stage": "G0 정책·공고",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "한국장학재단",
+    "action": "공고",
+    "output_documents": ["신청 공고문"],
+    "deadline": "학기별 신청기간",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "장학금 지급 업무 관련 조문",
+      "text": "재단은 학기별로 국가장학금 신청을 공고한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "온라인 신청·가구원 정보제공 동의",
+    "lane": "학생/학부모",
+    "stage": "G1 신청·동의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "학생/학부모",
+    "receiver": "한국장학재단",
+    "action": "신청·동의",
+    "output_documents": ["장학금 신청서", "가구원 정보제공 동의서"],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "신청·자료 활용 관련 조문",
+      "text": "학생은 온라인으로 신청하고 가구원 소득·재산 조사에 동의한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "소득·재산 자료 연계 조사",
+    "lane": "소득·재산 조사기관",
+    "stage": "G2 소득산정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "보건복지부·국세청",
+    "action": "소득·재산 조사",
+    "output_documents": ["가구 소득·재산 조사자료"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "소득·재산 조사 연계 관련 조문",
+      "text": "관계기관 자료를 연계하여 가구 소득·재산을 조사한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "학자금지원구간(소득분위) 산정",
+    "lane": "한국장학재단",
+    "stage": "G2 소득산정",
+    "type": "task",
+    "status": "current",
+    "progress": 60,
+    "actor": "한국장학재단",
+    "action": "구간 산정",
+    "input_documents": ["가구 소득·재산 조사자료"],
+    "output_documents": ["학자금지원구간 산정 결과"],
+    "blocker": "조사 시점과 실제 형편 불일치(운영 추정)",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "지원구간 산정 관련 조문",
+      "text": "소득·재산을 환산해 학자금지원구간을 산정한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "성적·이수학점 등 지원요건 확인",
+    "lane": "한국장학재단",
+    "stage": "G3 요건·구간확정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국장학재단",
+    "action": "요건 확인",
+    "input_documents": ["학사·성적 자료"],
+    "output_documents": ["지원요건 확인 결과"],
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "지원요건 관련 조문",
+      "text": "성적·이수학점 등 지원요건 충족 여부를 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "성적기준 미달 탈락·구제 판단",
+    "lane": "한국장학재단",
+    "stage": "G3 요건·구간확정",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "한국장학재단",
+    "action": "탈락·구제 판단",
+    "condition": "성적기준 미달 시 탈락 또는 구제요건 적용",
+    "output_documents": ["탈락 통보", "구제 결정"],
+    "blocker": "성적기준 미달 취약계층 사각지대",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "지원요건·구제 관련 조문",
+      "text": "성적기준 미달자는 탈락하되 일부 구제요건을 적용한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "지원구간별 지원금액 결정",
+    "lane": "한국장학재단",
+    "stage": "G3 요건·구간확정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국장학재단",
+    "action": "지원금액 결정",
+    "output_documents": ["지원금액 결정 내역"],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "지원금 결정 관련 조문",
+      "text": "지원구간에 따라 지원금액을 결정한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "대학 지급·등록금 차감·환급",
+    "lane": "대학",
+    "stage": "G4 지급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "대학",
+    "action": "지급·정산",
+    "input_documents": ["지급명세"],
+    "output_documents": ["등록금 차감·환급 내역"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "지급·정산 관련 조문",
+      "text": "재단은 대학을 통해 등록금에 지원금을 반영·환급한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "이의신청·구간 재산정",
+    "lane": "한국장학재단",
+    "stage": "G5 이의·재산정",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "한국장학재단",
+    "action": "재산정",
+    "input_documents": ["이의신청서", "추가 소득·재산 자료"],
+    "output_documents": ["재산정 결과"],
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "이의신청·재산정 관련 조문",
+      "text": "이의신청이 있으면 지원구간을 재산정한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "학기말 학사·성적 사후확인",
+    "lane": "대학",
+    "stage": "G6 사후확인",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "대학·한국장학재단",
+    "action": "사후확인",
+    "output_documents": ["학사·성적 사후확인 결과"],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "사후확인·환수 관련 조문",
+      "text": "학기말 학사정보로 지원 적정성을 사후확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "학기별 재신청",
+    "lane": "학생/학부모",
+    "stage": "G1 신청·동의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "학생/학부모",
+    "action": "재신청",
+    "output_documents": ["차기 학기 신청서"],
+    "blocker": "신청기간 도래 대기",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "학기별 신청 관련 조문",
+      "text": "학생은 매 학기 국가장학금을 재신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "부족분 학자금대출 보완(ICL)",
+    "lane": "한국장학재단",
+    "stage": "G4 지급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국장학재단",
+    "action": "대출 안내·실행",
+    "output_documents": ["학자금대출 약정"],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "취업 후 학자금 상환 특별법",
+      "article": "취업 후 상환 학자금대출 관련 조문",
+      "text": "지원 부족분은 취업 후 상환 학자금대출로 보완한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "재단 포털 신청·조회(kosaf)",
+    "lane": "정보시스템",
+    "stage": "G1 신청·동의",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국장학재단 포털",
+    "action": "신청·조회 처리",
+    "output_documents": ["신청·심사 진행상태"],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "한국장학재단 설립 등에 관한 법률",
+      "article": "정보시스템 운영 관련 조문",
+      "text": "재단 포털로 신청·조회·지급을 처리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P09", "target": "P11", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P02", "target": "S01", "type": "message", "label": "포털 신청·조회" },
+   { "id": "M02", "source": "P05", "target": "P13", "type": "message", "label": "부족분 대출 안내" },
+   { "id": "M03", "source": "P08", "target": "P10", "type": "message", "label": "이의신청 접수" },
+   { "id": "M04", "source": "P10", "target": "P05", "type": "message", "label": "재산정 반영" },
+   { "id": "L01", "source": "P11", "target": "P12", "type": "loop", "label": "학기 종료·재신청" },
+   { "id": "L02", "source": "P12", "target": "P03", "type": "loop", "label": "다음 학기 신청" }
+  ],
+  "warnings": []
+ }
 }

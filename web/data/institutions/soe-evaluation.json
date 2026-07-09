@@ -6,7 +6,7 @@
  "priority": 28,
  "whyFirst": "공공부문 책임경영을 강제하는 대표적 평가 장치다. 재정·평가형 제도의 기준 사례로, 성과급·인사 연동 구조를 보여준다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "공기업·준정부기관의 한 해 경영실적을 평가해 책임경영을 강제하고 공공성과 효율성을 높인다. 결과를 성과급·기관장 인사와 연동한다.",
   "stakeholders": "공기업·준정부기관, 기획재정부(총괄), 공공기관운영위원회, 경영평가단(민간 전문가), 임직원(성과급 대상), 국민(서비스·요금 이용자)",
@@ -80,5 +80,530 @@
   "경영목표 설정·경영지침 관련 조문 번호의 최신 확인",
   "연도별 평가지표 구성·가중치",
   "평가 결과의 성과급·인사 실제 반영"
- ]
+ ],
+ "process": {
+  "institution_name": "공공기관 경영평가 제도",
+  "law_name": "공공기관의 운영에 관한 법률",
+  "lanes": [
+   "기획재정부",
+   "공공기관",
+   "경영평가단",
+   "공공기관운영위원회",
+   "주무기관",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 편람·목표설정",
+   "G1 실적보고서 제출",
+   "G2 평가단 구성",
+   "G3 서면·실사 평가",
+   "G4 채점·등급 부여",
+   "G5 심의·확정",
+   "G6 성과급·인사 연계",
+   "G7 개선·환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "경영평가편람 확정",
+    "lane": "기획재정부",
+    "stage": "G0 편람·목표설정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획재정부",
+    "action": "편람 확정",
+    "output_documents": [
+     "경영평가편람"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제48조",
+      "text": "기획재정부장관은 경영실적 평가 기준·방법을 담은 편람을 마련한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "경영목표·경영지침 설정",
+    "lane": "공공기관",
+    "stage": "G0 편람·목표설정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "공공기관",
+    "action": "목표 설정",
+    "input_documents": [
+     "경영평가편람"
+    ],
+    "output_documents": [
+     "경영목표",
+     "경영지침 반영 계획"
+    ],
+    "blocker": "경영목표 설정·경영지침 관련 조문 번호의 최신 확인 필요(운영 추정)",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "경영목표 설정 조항",
+      "text": "공공기관은 경영지침에 따라 연간 경영목표를 설정한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "경영실적보고서 제출",
+    "lane": "공공기관",
+    "stage": "G1 실적보고서 제출",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "공공기관",
+    "receiver": "기획재정부",
+    "action": "실적 제출",
+    "output_documents": [
+     "경영실적보고서",
+     "계량 실적자료"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제48조",
+      "text": "공공기관은 경영실적보고서를 작성하여 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "경영평가단 구성",
+    "lane": "기획재정부",
+    "stage": "G2 평가단 구성",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획재정부",
+    "action": "평가단 구성",
+    "output_documents": [
+     "경영평가단 구성",
+     "분야별 배정"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제48조",
+      "text": "기획재정부장관은 민간 전문가로 경영평가단을 구성한다."
+     },
+     {
+      "law": "공공기관의 운영에 관한 법률 시행령",
+      "article": "경영평가단 구성 조문",
+      "text": "평가단 구성·운영의 세부 절차를 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "서면·실사·면담 평가",
+    "lane": "경영평가단",
+    "stage": "G3 서면·실사 평가",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "경영평가단",
+    "action": "서면·실사 평가",
+    "input_documents": [
+     "경영실적보고서"
+    ],
+    "output_documents": [
+     "평가조서"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "기획재정부 공기업·준정부기관 경영평가편람",
+      "article": "평가 수행 절차",
+      "text": "평가단은 서면·실사·면담으로 경영실적을 평가한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "계량지표 채점",
+    "lane": "경영평가단",
+    "stage": "G4 채점·등급 부여",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "경영평가단",
+    "action": "계량 채점",
+    "output_documents": [
+     "계량지표 채점 결과"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "기획재정부 공기업·준정부기관 경영평가편람",
+      "article": "계량지표 가중치",
+      "text": "계량지표를 가중치에 따라 채점한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "비계량지표 채점",
+    "lane": "경영평가단",
+    "stage": "G4 채점·등급 부여",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "경영평가단",
+    "action": "비계량 채점",
+    "output_documents": [
+     "비계량지표 채점 결과"
+    ],
+    "blocker": "평가지표가 자주 바뀌고 정책 코드(일자리·안전 등) 반영 논란(운영 추정)",
+    "confidence": 0.73,
+    "legal_basis": [
+     {
+      "law": "기획재정부 공기업·준정부기관 경영평가편람",
+      "article": "비계량지표 평가",
+      "text": "비계량지표는 평가위원의 정성 평가로 채점한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "등급 부여(S~E)",
+    "lane": "경영평가단",
+    "stage": "G4 채점·등급 부여",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "경영평가단",
+    "action": "등급 부여",
+    "condition": "계량·비계량 종합점수에 따른 등급(S~E) 산정",
+    "input_documents": [
+     "계량지표 채점 결과",
+     "비계량지표 채점 결과"
+    ],
+    "output_documents": [
+     "기관별 등급안"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "기획재정부 공기업·준정부기관 경영평가편람",
+      "article": "등급 기준",
+      "text": "종합점수에 따라 S부터 E까지 등급을 부여한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "운영위원회 심의·의결",
+    "lane": "공공기관운영위원회",
+    "stage": "G5 심의·확정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공공기관운영위원회",
+    "action": "심의·의결",
+    "condition": "평가 결과·등급의 확정 여부",
+    "input_documents": [
+     "기관별 등급안"
+    ],
+    "output_documents": [
+     "심의·의결 결과"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제8조, 제48조",
+      "text": "공공기관운영위원회가 평가 결과를 심의·의결한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "평가 결과 확정·공개",
+    "lane": "기획재정부",
+    "stage": "G5 심의·확정",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기획재정부",
+    "receiver": "공공기관",
+    "action": "결과 확정·공개",
+    "input_documents": [
+     "심의·의결 결과"
+    ],
+    "output_documents": [
+     "경영평가 결과 보고서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제48조",
+      "text": "확정된 경영평가 결과를 공개한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "성과급 차등 지급",
+    "lane": "공공기관",
+    "stage": "G6 성과급·인사 연계",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공공기관",
+    "action": "성과급 지급",
+    "input_documents": [
+     "경영평가 결과 보고서"
+    ],
+    "output_documents": [
+     "성과급 지급 내역"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제48조",
+      "text": "평가 등급에 따라 임직원 성과급을 차등 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "기관장 해임건의·문책",
+    "lane": "공공기관운영위원회",
+    "stage": "G6 성과급·인사 연계",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "공공기관운영위원회",
+    "action": "해임건의·문책",
+    "condition": "부진기관 기관장 해임건의·경고 등 인사조치 여부",
+    "output_documents": [
+     "해임건의·문책 결과"
+    ],
+    "blocker": "등급 하락 시 성과급·사기 급락과 결과 불복 소송 사례(운영 추정)",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제48조",
+      "text": "평가 결과가 부진한 기관의 장에 대해 해임을 건의할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "미흡기관 개선계획 제출",
+    "lane": "주무기관",
+    "stage": "G7 개선·환류",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "주무기관·공공기관",
+    "receiver": "기획재정부",
+    "action": "개선계획 제출",
+    "output_documents": [
+     "경영개선계획"
+    ],
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제48조",
+      "text": "평가 결과 미흡기관은 경영개선계획을 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "개선계획 이행점검·환류",
+    "lane": "기획재정부",
+    "stage": "G7 개선·환류",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "기획재정부",
+    "action": "이행점검·환류",
+    "input_documents": [
+     "경영개선계획"
+    ],
+    "output_documents": [
+     "이행점검 결과"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "제48조",
+      "text": "개선계획 이행을 점검하고 다음 평가에 환류한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "알리오 경영정보 공개",
+    "lane": "정보시스템",
+    "stage": "G5 심의·확정",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "알리오(경영정보 공개시스템)",
+    "action": "경영정보 공개",
+    "input_documents": [
+     "경영평가 결과 보고서"
+    ],
+    "output_documents": [
+     "공개 게시자료"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "공공기관의 운영에 관한 법률",
+      "article": "경영정보 공시 조항",
+      "text": "경영평가 결과 등 경영정보를 통합공시시스템에 공개한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": "등급안 상정"
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": "의결"
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": "미흡·부진 통보"
+   },
+   {
+    "id": "E13",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P01",
+    "target": "P02",
+    "type": "message",
+    "label": "평가편람 시달"
+   },
+   {
+    "id": "M02",
+    "source": "P03",
+    "target": "P05",
+    "type": "message",
+    "label": "실적자료 제출"
+   },
+   {
+    "id": "M03",
+    "source": "P10",
+    "target": "S01",
+    "type": "message",
+    "label": "알리오 공개"
+   },
+   {
+    "id": "L01",
+    "source": "P14",
+    "target": "P02",
+    "type": "loop",
+    "label": "개선사항 차기 목표 반영 회귀"
+   },
+   {
+    "id": "L02",
+    "source": "P09",
+    "target": "P06",
+    "type": "loop",
+    "label": "재심의·재채점 요구"
+   }
+  ],
+  "warnings": []
+ }
 }

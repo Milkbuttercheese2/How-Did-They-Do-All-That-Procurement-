@@ -6,7 +6,7 @@
  "priority": 100,
  "whyFirst": "국민 생명과 기본권 제한이 정면으로 부딪히는 영역이자, 코로나19로 제도 전반이 재정비된 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "감염병의 발생과 유행을 예방·감시하고 신속히 차단해 국민의 생명과 건강을 보호한다. 신고·역학조사·격리·방역조치·예방접종을 통해 확산을 억제하고 피해를 최소화한다.",
   "stakeholders": "일반 국민·감염병 환자와 접촉자, 신고 의무를 지는 의사·의료기관, 질병관리청·보건복지부·보건소, 격리·영업제한으로 손실을 입는 개인·사업자, 백신·치료제 공급자",
@@ -89,5 +89,596 @@
   "격리·생활지원비 지급 기준과 예산 운영(운영 지침)",
   "동선 정보 수집·공개의 법적 근거와 현행 운영",
   "감염병 위기경보 단계별 조치 세부기준(운영 지침)"
- ]
+ ],
+ "process": {
+  "institution_name": "감염병 대응 제도",
+  "law_name": "감염병의 예방 및 관리에 관한 법률",
+  "lanes": [
+   "의료기관/의사",
+   "보건소(시군구)",
+   "질병관리청",
+   "시·도/지자체",
+   "중대본/중수본",
+   "환자/접촉자",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 신고",
+   "G1 사례확인·감시",
+   "G2 역학조사",
+   "G3 위기경보판단",
+   "G4 격리·방역조치",
+   "G5 예방접종·치료",
+   "G6 손실보상·환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "감염병 진단·의사 신고",
+    "lane": "의료기관/의사",
+    "stage": "G0 신고",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "의사·의료기관",
+    "receiver": "보건소(시군구)",
+    "action": "신고",
+    "output_documents": [
+     "감염병 발생 신고서"
+    ],
+    "deadline": "진단 즉시",
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제11조",
+      "text": "의사 등은 감염병 환자 등을 진단하면 관할 보건소장 등에게 신고하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "감염병 급수 판정·신고시한 적용",
+    "lane": "의료기관/의사",
+    "stage": "G0 신고",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "의사·의료기관",
+    "action": "급수 판정",
+    "condition": "1급(즉시)·2·3급(24시간)·4급(7일) 신고시한 구분",
+    "output_documents": [
+     "급수별 신고 분류"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제2조",
+      "text": "감염병을 1급부터 4급까지 분류하며 급수에 따라 신고시한이 달라진다."
+     },
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제11조",
+      "text": "감염병 급수에 따른 신고시한 내에 신고하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "보건소 사례 접수·확인",
+    "lane": "보건소(시군구)",
+    "stage": "G1 사례확인·감시",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "보건소",
+    "action": "접수·사례확인",
+    "input_documents": [
+     "감염병 발생 신고서"
+    ],
+    "output_documents": [
+     "사례 확인기록"
+    ],
+    "deadline": "신고 접수 즉시",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제11조",
+      "text": "보건소장은 신고를 받은 감염병 발생 사례를 확인하고 보고 체계로 이관한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "질병청 보고·감시체계 가동",
+    "lane": "질병관리청",
+    "stage": "G1 사례확인·감시",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "질병관리청",
+    "action": "보고·감시 가동",
+    "input_documents": [
+     "사례 확인기록"
+    ],
+    "output_documents": [
+     "감시 보고",
+     "발생 동향 분석"
+    ],
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제18조",
+      "text": "질병관리청장은 감염병 발생을 감시하고 필요한 역학조사를 준비한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "역학조사 실시",
+    "lane": "질병관리청",
+    "stage": "G2 역학조사",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "질병관리청·보건소",
+    "action": "역학조사",
+    "input_documents": [
+     "감시 보고"
+    ],
+    "output_documents": [
+     "역학조사서",
+     "감염경로 분석"
+    ],
+    "deadline": "발생 인지 즉시",
+    "blocker": "감염경로 추적·검체 분석 진행 중",
+    "confidence": 0.87,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제18조",
+      "text": "질병관리청장 등은 감염병 발생 시 지체 없이 역학조사를 하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "접촉자 파악·명단 작성",
+    "lane": "보건소(시군구)",
+    "stage": "G2 역학조사",
+    "type": "task",
+    "status": "risk",
+    "progress": 40,
+    "actor": "보건소",
+    "action": "접촉자 조사",
+    "input_documents": [
+     "역학조사서"
+    ],
+    "output_documents": [
+     "접촉자 명단",
+     "동선 정보"
+    ],
+    "blocker": "동선·접촉자 정보 수집 지연 및 개인정보 쟁점",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제18조",
+      "text": "역학조사를 위해 접촉자를 파악하고 필요한 정보를 조사한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "위기경보 단계 판단",
+    "lane": "질병관리청",
+    "stage": "G3 위기경보판단",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "질병관리청",
+    "action": "위기경보 판단",
+    "condition": "관심·주의·경계·심각 단계 판정",
+    "input_documents": [
+     "감염경로 분석",
+     "접촉자 명단"
+    ],
+    "output_documents": [
+     "위기경보 발령"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "재난 및 안전관리 기본법",
+      "article": "감염병 재난 위기경보",
+      "text": "감염병 재난의 위기경보 단계(관심·주의·경계·심각)를 판단·발령한다."
+     },
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제34조",
+      "text": "감염병 위기관리대책에 따라 유행 대응 수위를 조정한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "중대본·중수본 가동",
+    "lane": "중대본/중수본",
+    "stage": "G3 위기경보판단",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "중앙재난안전대책본부·중앙사고수습본부",
+    "action": "대응체계 가동",
+    "input_documents": [
+     "위기경보 발령"
+    ],
+    "output_documents": [
+     "대응 지침",
+     "방역 총괄계획"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "재난 및 안전관리 기본법",
+      "article": "중앙재난안전대책본부",
+      "text": "심각 단계 등에서 중앙재난안전대책본부·중앙사고수습본부를 가동한다."
+     },
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제34조",
+      "text": "감염병 위기관리대책에 따라 총괄 대응체계를 운영한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "환자 입원·격리 조치",
+    "lane": "보건소(시군구)",
+    "stage": "G4 격리·방역조치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "보건소",
+    "receiver": "환자/접촉자",
+    "action": "입원·격리",
+    "input_documents": [
+     "접촉자 명단"
+    ],
+    "output_documents": [
+     "입원·격리 통지서"
+    ],
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제41조",
+      "text": "감염병 환자 등은 감염병관리기관 등에서 입원치료·격리하도록 한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "강제처분 명령",
+    "lane": "보건소(시군구)",
+    "stage": "G4 격리·방역조치",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "보건소",
+    "action": "강제처분 판단·명령",
+    "condition": "격리 거부·조사 불응 시 강제처분 필요 여부",
+    "output_documents": [
+     "강제처분 명령서"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제42조",
+      "text": "감염병에 관하여 필요하면 조사·진찰·격리 등 강제처분을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "집합제한·방역조치",
+    "lane": "시·도/지자체",
+    "stage": "G4 격리·방역조치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·도/지자체",
+    "action": "방역조치 집행",
+    "input_documents": [
+     "대응 지침"
+    ],
+    "output_documents": [
+     "집합제한 명령",
+     "소독·방역 조치"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제47조",
+      "text": "감염병 유행 시 교통 차단·집합 제한 등 방역 조치를 할 수 있다."
+     },
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제49조",
+      "text": "집합 제한·소독 등 감염병 예방 조치를 명할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "예방접종 시행·백신 배분",
+    "lane": "질병관리청",
+    "stage": "G5 예방접종·치료",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "질병관리청·보건소",
+    "action": "예방접종·백신 배분",
+    "output_documents": [
+     "예방접종 기록",
+     "백신 배분계획"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제49조",
+      "text": "감염병 예방을 위해 예방접종 등 필요한 예방 조치를 한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "치료·의료대응",
+    "lane": "의료기관/의사",
+    "stage": "G5 예방접종·치료",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "의료기관",
+    "receiver": "환자/접촉자",
+    "action": "입원치료",
+    "input_documents": [
+     "입원·격리 통지서"
+    ],
+    "output_documents": [
+     "치료기록"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제41조",
+      "text": "감염병관리기관 등에서 환자에 대한 입원치료를 실시한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "손실보상 청구·심의·지급",
+    "lane": "시·도/지자체",
+    "stage": "G6 손실보상·환류",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·도/지자체·질병관리청",
+    "receiver": "환자/접촉자",
+    "action": "보상 심의·지급",
+    "output_documents": [
+     "손실보상 청구서",
+     "보상 결정서"
+    ],
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제70조",
+      "text": "격리·영업제한 등으로 발생한 손실을 심의를 거쳐 보상한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "유행종료·백서·제도개선",
+    "lane": "질병관리청",
+    "stage": "G6 손실보상·환류",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "질병관리청",
+    "action": "평가·환류",
+    "output_documents": [
+     "대응 백서",
+     "제도 개선안"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제34조",
+      "text": "유행 종료 후 대응을 평가하고 감염병 위기관리대책을 보완한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "질병보건통합관리시스템 정보관리",
+    "lane": "정보시스템",
+    "stage": "G1 사례확인·감시",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "질병보건통합관리시스템",
+    "action": "정보 등록·관리",
+    "input_documents": [
+     "사례 확인기록",
+     "역학조사서"
+    ],
+    "output_documents": [
+     "통합 감시자료"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "감염병의 예방 및 관리에 관한 법률",
+      "article": "제18조",
+      "text": "역학조사 및 감시 정보를 정보시스템으로 관리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E14",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P02",
+    "target": "P03",
+    "type": "message",
+    "label": "감염병 신고서 전송"
+   },
+   {
+    "id": "M02",
+    "source": "P08",
+    "target": "P11",
+    "type": "message",
+    "label": "방역조치 지시"
+   },
+   {
+    "id": "M03",
+    "source": "P05",
+    "target": "P09",
+    "type": "message",
+    "label": "격리 대상 통보"
+   },
+   {
+    "id": "M04",
+    "source": "P04",
+    "target": "S01",
+    "type": "message",
+    "label": "감시정보 등록"
+   },
+   {
+    "id": "L01",
+    "source": "P15",
+    "target": "P04",
+    "type": "loop",
+    "label": "감시체계 보완 환류"
+   },
+   {
+    "id": "L02",
+    "source": "P15",
+    "target": "P07",
+    "type": "loop",
+    "label": "위기대응체계 개선 환류"
+   }
+  ],
+  "warnings": []
+ }
 }

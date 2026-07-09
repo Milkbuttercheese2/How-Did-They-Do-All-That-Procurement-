@@ -6,7 +6,7 @@
  "priority": 33,
  "whyFirst": "종합조사-등급-바우처로 이어지는 사회서비스 전달체계와 65세 연령 절벽 쟁점을 담기 좋다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "혼자 일상생활과 사회생활을 하기 어려운 장애인의 자립을 지원한다. 활동보조 등 서비스를 제공해 돌봄 부담을 사회가 나누고, 시설이 아닌 지역사회에서 살아갈 수 있도록 돕는다. 소득이 아니라 활동지원 필요도에 따라 급여량을 정한다.",
   "stakeholders": "만 6세 이상 65세 미만 등록장애인, 가족(보호자), 보건복지부, 국민연금공단(조사·심의 지원), 시·군·구, 활동지원기관, 활동지원사",
@@ -86,5 +86,465 @@
   "서비스 지원 종합조사 항목·활동지원등급 현행 기준",
   "만 65세 전환 시 급여량 감소 규모(운영 추정)",
   "활동지원사 수급·서비스 대기 실태(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "장애인활동지원 제도",
+  "law_name": "장애인활동 지원에 관한 법률",
+  "lanes": [
+   "신청자(장애인·보호자)",
+   "읍면동(접수)",
+   "국민연금공단(종합조사)",
+   "시군구 수급자격심의위원회",
+   "활동지원기관",
+   "사회서비스 전자바우처 시스템",
+   "보건복지부(기준 고시)"
+  ],
+  "stages": [
+   "G0 기준 고시",
+   "G1 신청·접수",
+   "G2 종합조사",
+   "G3 수급자격 심의·등급",
+   "G4 이용권 발급·계약",
+   "G5 서비스 제공·결제",
+   "G6 갱신·이의신청"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "급여비용·종합조사 기준 고시",
+    "lane": "보건복지부(기준 고시)",
+    "stage": "G0 기준 고시",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "보건복지부장관",
+    "action": "심의·고시",
+    "output_documents": [
+     "급여비용 고시",
+     "서비스 지원 종합조사 기준"
+    ],
+    "deadline": "매년 고시(연도별 적용)",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제33조·제35조",
+      "text": "보건복지부장관은 급여비용과 서비스 지원 종합조사 기준을 정하여 고시한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "활동지원급여 신청",
+    "lane": "신청자(장애인·보호자)",
+    "stage": "G1 신청·접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "만6세~65세미만 등록장애인·대리인",
+    "receiver": "읍면동(접수)",
+    "action": "급여 신청",
+    "output_documents": [
+     "활동지원급여 신청서"
+    ],
+    "deadline": "상시 신청",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제6조",
+      "text": "활동지원급여를 받으려는 사람은 특별자치시장·군수·구청장에게 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "신청 접수·상담",
+    "lane": "읍면동(접수)",
+    "stage": "G1 신청·접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "읍·면·동",
+    "action": "접수·상담",
+    "input_documents": [
+     "활동지원급여 신청서"
+    ],
+    "output_documents": [
+     "접수증",
+     "종합조사 의뢰"
+    ],
+    "deadline": "신청 당일 접수",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제6조",
+      "text": "신청을 받은 시·군·구는 접수하고 서비스 지원 종합조사를 의뢰한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "서비스 지원 종합조사(인정조사)",
+    "lane": "국민연금공단(종합조사)",
+    "stage": "G2 종합조사",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "국민연금공단 조사원",
+    "action": "방문 종합조사",
+    "input_documents": [
+     "종합조사 의뢰"
+    ],
+    "output_documents": [
+     "서비스 지원 종합조사표"
+    ],
+    "deadline": "조사기간 내 완료",
+    "blocker": "방문 종합조사 일정 조율로 조사가 지연될 수 있다(운영 추정)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제7조",
+      "text": "국민연금공단은 신청인의 심신상태와 활동지원이 필요한 정도를 조사한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "종합조사 점수 산정",
+    "lane": "국민연금공단(종합조사)",
+    "stage": "G2 종합조사",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "국민연금공단",
+    "action": "종합점수 산정",
+    "condition": "기능제한·사회활동·가구환경 점수 합산",
+    "input_documents": [
+     "서비스 지원 종합조사표"
+    ],
+    "output_documents": [
+     "종합조사 점수표"
+    ],
+    "deadline": "심의 회부 전",
+    "blocker": "종합조사 점수가 실제 필요를 충분히 반영하지 못한다는 지적이 있다",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제7조",
+      "text": "조사 결과를 점수화하여 활동지원등급 판정 자료로 제공한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "수급자격심의위원회 심의",
+    "lane": "시군구 수급자격심의위원회",
+    "stage": "G3 수급자격 심의·등급",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "수급자격심의위원회",
+    "action": "수급자격 심의",
+    "condition": "신청자격·조사결과 기반 수급자격 인정 여부",
+    "input_documents": [
+     "종합조사 점수표"
+    ],
+    "output_documents": [
+     "심의결과"
+    ],
+    "deadline": "결정 전 심의",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제8조·제9조",
+      "text": "시·군·구에 둔 수급자격심의위원회가 수급자격과 활동지원등급을 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "활동지원등급·급여량 결정",
+    "lane": "시군구 수급자격심의위원회",
+    "stage": "G3 수급자격 심의·등급",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시장·군수·구청장",
+    "action": "등급·급여량 결정",
+    "condition": "종합조사 점수 구간별 활동지원등급·월 급여량",
+    "input_documents": [
+     "심의결과"
+    ],
+    "output_documents": [
+     "활동지원등급 결정",
+     "월 급여량"
+    ],
+    "deadline": "심의 후 결정",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제9조",
+      "text": "심의 결과에 따라 활동지원등급과 급여량을 결정한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "수급자격 결정 통지",
+    "lane": "시군구 수급자격심의위원회",
+    "stage": "G3 수급자격 심의·등급",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "receiver": "신청자",
+    "action": "결정 통지",
+    "output_documents": [
+     "수급자격 결정 통지서",
+     "이의신청 방법 안내"
+    ],
+    "deadline": "신청일부터 30일 이내(연장 가능)",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제9조",
+      "text": "수급자격 결정 내용을 신청인에게 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "활동지원 이용권(바우처) 발급",
+    "lane": "사회서비스 전자바우처 시스템",
+    "stage": "G4 이용권 발급·계약",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구·전자바우처 시스템",
+    "action": "이용권 발급",
+    "input_documents": [
+     "활동지원등급 결정"
+    ],
+    "output_documents": [
+     "활동지원 이용권(바우처)"
+    ],
+    "deadline": "결정 후 발급",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제17조",
+      "text": "시·군·구는 수급자에게 활동지원급여 이용권을 발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "활동지원기관 이용 계약",
+    "lane": "활동지원기관",
+    "stage": "G4 이용권 발급·계약",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "수급자·활동지원기관",
+    "action": "이용 계약",
+    "input_documents": [
+     "활동지원 이용권(바우처)"
+    ],
+    "output_documents": [
+     "이용 계약서"
+    ],
+    "deadline": "이용 개시 전",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제16조·제20조",
+      "text": "수급자는 지정 활동지원기관과 계약하여 급여를 이용한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "활동보조·방문목욕·방문간호 제공",
+    "lane": "활동지원기관",
+    "stage": "G5 서비스 제공·결제",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "활동지원사",
+    "action": "서비스 제공",
+    "output_documents": [
+     "서비스 제공기록"
+    ],
+    "deadline": "월 급여량 범위 내",
+    "blocker": "활동지원사 부족·낮은 처우로 야간·최중증 돌봄 공백이 생긴다",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제16조",
+      "text": "활동지원사는 활동보조·방문목욕·방문간호 급여를 제공한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "바우처 급여비용 결제·청구",
+    "lane": "사회서비스 전자바우처 시스템",
+    "stage": "G5 서비스 제공·결제",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "전자바우처 시스템·활동지원기관",
+    "action": "결제·청구",
+    "input_documents": [
+     "서비스 제공기록"
+    ],
+    "output_documents": [
+     "급여비용 청구내역"
+    ],
+    "deadline": "제공 후 정산",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제25조",
+      "text": "활동지원기관은 제공한 급여비용을 전자바우처로 청구·정산받는다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "본인부담금 납부",
+    "lane": "신청자(장애인·보호자)",
+    "stage": "G5 서비스 제공·결제",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "수급자",
+    "action": "본인부담금 납부",
+    "output_documents": [
+     "본인부담금 납부내역"
+    ],
+    "deadline": "매월 납부",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제33조",
+      "text": "수급자는 소득수준에 따른 본인부담금을 부담한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "갱신·등급 재심사",
+    "lane": "국민연금공단(종합조사)",
+    "stage": "G6 갱신·이의신청",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "국민연금공단·시·군·구",
+    "action": "갱신 재조사·재심사",
+    "output_documents": [
+     "갱신 종합조사표",
+     "갱신 결정"
+    ],
+    "deadline": "유효기간 만료 전",
+    "blocker": "유효기간 만료 시 종합조사·심의 회귀 단계",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제20조·제21조",
+      "text": "활동지원 수급자격은 유효기간이 있으며 갱신 시 종합조사·심의를 다시 거친다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "이의신청",
+    "lane": "신청자(장애인·보호자)",
+    "stage": "G6 갱신·이의신청",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "수급자·신청자",
+    "receiver": "시장·군수·구청장",
+    "action": "이의신청",
+    "input_documents": [
+     "수급자격 결정 통지서"
+    ],
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "결정 통지받은 날부터 90일 이내",
+    "blocker": "수급자격·등급 결정 불복 회귀 단계",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제36조",
+      "text": "수급자격·활동지원등급 결정에 이의가 있으면 이의신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "이의신청 심사·재결정",
+    "lane": "시군구 수급자격심의위원회",
+    "stage": "G6 갱신·이의신청",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시장·군수·구청장",
+    "action": "이의신청 심사·처분",
+    "condition": "이의신청 인용 여부(인용 시 등급·급여량 시정 회귀)",
+    "input_documents": [
+     "이의신청서"
+    ],
+    "output_documents": [
+     "이의신청 처리결과 통지"
+    ],
+    "deadline": "이의신청 심사 후 통지",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "장애인활동 지원에 관한 법률",
+      "article": "제36조",
+      "text": "이의신청을 심사하여 결정을 변경하는 조치를 한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": "수급자격 인정" },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": "등급 결정" },
+   { "id": "E08", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P09", "target": "P10", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "E12", "source": "P13", "target": "P14", "type": "sequence", "label": null },
+   { "id": "E13", "source": "P15", "target": "P16", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P04", "target": "P06", "type": "message", "label": "종합조사 결과 심의 회부" },
+   { "id": "M02", "source": "P12", "target": "P13", "type": "message", "label": "본인부담금 고지" },
+   { "id": "M03", "source": "P08", "target": "P15", "type": "message", "label": "결정 불복 시 이의신청" },
+   { "id": "L01", "source": "P14", "target": "P05", "type": "loop", "label": "갱신 재조사 회귀" },
+   { "id": "L02", "source": "P15", "target": "P06", "type": "loop", "label": "이의신청 재심의 회귀" }
+  ],
+  "warnings": []
+ }
 }

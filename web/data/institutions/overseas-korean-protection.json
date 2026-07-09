@@ -6,7 +6,7 @@
  "priority": 98,
  "whyFirst": "국경 밖 국민에 대한 국가 보호의무의 근거이자, 자구노력 원칙과 국가책임의 경계가 쟁점인 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "해외에 체류·거주하는 국민이 사건·사고, 재난, 범죄피해, 체포·구금 등을 겪을 때 국가가 영사조력을 제공한다. 재외국민의 생명·신체·재산을 보호하고, 위기 상황에서 안전을 지원한다.",
   "stakeholders": "재외국민(여행자·유학생·주재원·교민), 사건·사고·재난 피해 당사자와 가족, 외교부·재외공관, 영사콜센터, 현지 당국·의료기관",
@@ -94,5 +94,512 @@
   "재외국민보호위원회 구성·운영 실태",
   "연도별 영사조력 제공 건수와 유형(운영 통계)",
   "대규모 재난·철수 대응 사례별 소요와 한계(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "재외국민보호 제도",
+  "law_name": "재외국민보호를 위한 영사조력법",
+  "lanes": [
+   "재외국민/가족",
+   "영사콜센터",
+   "재외공관",
+   "외교부 본부",
+   "재외국민보호위원회/대책본부",
+   "현지 당국·의료기관",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 접수·상담",
+   "G1 초동대응",
+   "G2 위난판단",
+   "G3 대책본부·안전조치",
+   "G4 신분·긴급지원",
+   "G5 비용정산",
+   "G6 사후관리"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "사건·사고 접수(24시간)",
+    "lane": "영사콜센터",
+    "stage": "G0 접수·상담",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "영사콜센터",
+    "action": "접수",
+    "output_documents": [
+     "영사조력 요청 접수",
+     "상담기록"
+    ],
+    "deadline": "24시간 상시",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제9조",
+      "text": "재외국민의 사건·사고 발생 시 영사조력을 제공한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "상담·통역·현지 연계 안내",
+    "lane": "영사콜센터",
+    "stage": "G0 접수·상담",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "영사콜센터",
+    "action": "상담·안내",
+    "output_documents": [
+     "상담기록",
+     "현지 연계 안내"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제9조",
+      "text": "영사조력의 일환으로 상담·통역 및 현지 기관 연계를 안내한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "재외공관 초동 대응",
+    "lane": "재외공관",
+    "stage": "G1 초동대응",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "재외공관",
+    "action": "초동대응",
+    "input_documents": [
+     "영사조력 요청 접수"
+    ],
+    "output_documents": [
+     "사건·사고 접수보고"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제9조",
+      "text": "재외공관은 사건·사고를 접수하고 초동 대응을 한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "사실 확인·현지기관 연계",
+    "lane": "재외공관",
+    "stage": "G1 초동대응",
+    "type": "task",
+    "status": "current",
+    "progress": 48,
+    "actor": "재외공관",
+    "receiver": "현지 당국·의료기관",
+    "action": "사실확인·연계",
+    "output_documents": [
+     "현지기관 협조공문"
+    ],
+    "blocker": "현지 당국 회신 대기 중",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제9조",
+      "text": "재외공관은 사실을 확인하고 현지 당국·병원·변호인 등과 연계한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "체포·구금 시 영사접견",
+    "lane": "재외공관",
+    "stage": "G1 초동대응",
+    "type": "task",
+    "status": "risk",
+    "progress": 30,
+    "actor": "재외공관",
+    "receiver": "재외국민/가족",
+    "action": "영사접견",
+    "output_documents": [
+     "접견기록"
+    ],
+    "blocker": "현지 당국 접견 허가 지연",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제11조",
+      "text": "체포·구금된 재외국민에 대하여 영사접견 등 영사조력을 제공한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "위난상황 판단",
+    "lane": "외교부 본부",
+    "stage": "G2 위난판단",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "외교부",
+    "action": "위난판단",
+    "condition": "여행경보·철수 권고 필요 여부, 대책본부 가동 여부",
+    "output_documents": [
+     "위난상황 판단 결과"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제13조",
+      "text": "재외국민의 안전을 위협하는 위난상황을 판단하고 필요한 조치를 한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "여행경보·방문금지 지정",
+    "lane": "외교부 본부",
+    "stage": "G2 위난판단",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "외교부",
+    "action": "경보지정",
+    "output_documents": [
+     "여행경보 공지",
+     "방문금지 지정"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "여권법",
+      "article": "제17조",
+      "text": "외교부장관은 국민의 생명·신체 등을 위해 여권의 사용 제한(방문·체류 금지)을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "대책본부 가동",
+    "lane": "재외국민보호위원회/대책본부",
+    "stage": "G3 대책본부·안전조치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "대책본부",
+    "action": "대책본부 가동",
+    "output_documents": [
+     "대책본부 운영계획"
+    ],
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제13조",
+      "text": "위난상황에 대응하기 위하여 대책본부를 운영할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "안전조치·대피·철수 지원",
+    "lane": "재외공관",
+    "stage": "G3 대책본부·안전조치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "재외공관",
+    "receiver": "재외국민/가족",
+    "action": "안전조치",
+    "output_documents": [
+     "대피·철수 지원기록"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제13조",
+      "text": "위난상황에서 재외국민의 대피·철수 등 안전조치를 지원한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "긴급 여권 발급 등 신분지원",
+    "lane": "재외공관",
+    "stage": "G4 신분·긴급지원",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "재외공관",
+    "receiver": "재외국민/가족",
+    "action": "신분지원",
+    "output_documents": [
+     "긴급여권",
+     "인우보증 서류"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "여권법 및 하위법령",
+      "article": "긴급여권 발급 관련 조문",
+      "text": "재외국민의 신분 보호를 위하여 긴급여권 등을 발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "긴급지원·신속대응팀 파견",
+    "lane": "외교부 본부",
+    "stage": "G4 신분·긴급지원",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "외교부",
+    "receiver": "재외공관",
+    "action": "신속대응",
+    "output_documents": [
+     "신속대응팀 파견"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제13조",
+      "text": "필요한 경우 신속대응팀 파견 등 긴급지원을 한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "비용 정산(본인부담·상환)",
+    "lane": "재외공관",
+    "stage": "G5 비용정산",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "재외공관",
+    "receiver": "재외국민/가족",
+    "action": "비용정산",
+    "condition": "자구노력·본인부담 원칙, 국가 대지급 상환 여부",
+    "output_documents": [
+     "비용 정산서",
+     "상환 고지"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제19조",
+      "text": "영사조력에 드는 비용은 원칙적으로 재외국민이 부담하고, 국가가 대신 지출한 비용은 상환받을 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "사후관리·귀국 지원",
+    "lane": "재외공관",
+    "stage": "G6 사후관리",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "재외공관",
+    "receiver": "재외국민/가족",
+    "action": "사후관리",
+    "output_documents": [
+     "귀국 지원기록"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제9조",
+      "text": "상황 종료 후 사후관리 및 귀국 지원 등 영사조력을 제공한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "사례평가·제도개선",
+    "lane": "외교부 본부",
+    "stage": "G6 사후관리",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "외교부",
+    "action": "평가·개선",
+    "output_documents": [
+     "사례평가 보고",
+     "개선안"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법",
+      "article": "제13조",
+      "text": "위기대응 사례를 평가하여 재외국민보호 체계를 개선한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "해외안전여행(0404) 정보 제공",
+    "lane": "정보시스템",
+    "stage": "G3 대책본부·안전조치",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "해외안전여행 시스템",
+    "action": "안전공지 게시",
+    "input_documents": [
+     "여행경보 공지"
+    ],
+    "output_documents": [
+     "안전공지 게시자료"
+    ],
+    "confidence": 0.73,
+    "legal_basis": [
+     {
+      "law": "재외국민보호를 위한 영사조력법 및 하위법령",
+      "article": "안전정보 제공 관련 조문",
+      "text": "해외안전여행 시스템으로 안전정보·경보를 제공한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P01",
+    "target": "P03",
+    "type": "message",
+    "label": "사건·사고 전파"
+   },
+   {
+    "id": "M02",
+    "source": "P06",
+    "target": "P08",
+    "type": "message",
+    "label": "위난상황 보고"
+   },
+   {
+    "id": "M03",
+    "source": "P08",
+    "target": "S01",
+    "type": "message",
+    "label": "안전공지 게시"
+   },
+   {
+    "id": "L01",
+    "source": "P13",
+    "target": "P04",
+    "type": "loop",
+    "label": "추가 지원 요청"
+   },
+   {
+    "id": "L02",
+    "source": "P14",
+    "target": "P06",
+    "type": "loop",
+    "label": "위기대응체계 개선 환류"
+   }
+  ],
+  "warnings": []
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 71,
  "whyFirst": "초중등 교육재정의 근간이며, 내국세 연동 방식과 학령인구 변화가 충돌하는 재정 이슈의 핵심이다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "시·도교육청에 초·중등 교육에 필요한 재정을 안정적으로 보장한다. 내국세와 교육세에 연동해 재원을 자동 배분하고 지역 간 교육재정을 형평화한다.",
   "stakeholders": "시·도교육청(교육감, 재원 운용), 학교·학생(수혜), 교육부(산정·교부), 기획재정부(내국세 재원 연계), 시·도(법정전출금 부담)",
@@ -85,5 +85,493 @@
   "연도별 교부율·교부금 규모 최신치",
   "시·도교육청 이월·불용 실적",
   "내국세 연동 개편 논의의 진행 상황"
- ]
+ ],
+ "process": {
+  "institution_name": "지방교육재정교부금 제도",
+  "law_name": "지방교육재정교부금법",
+  "lanes": [
+   "기획재정부",
+   "교육부",
+   "시·도교육청(교육감)",
+   "시·도",
+   "학교",
+   "정보시스템(지방교육재정알리미)"
+  ],
+  "stages": [
+   "G0 재원확정",
+   "G1 산정",
+   "G2 교부",
+   "G3 예산편성",
+   "G4 집행",
+   "G5 정산·환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "내국세 세수 실적 산정",
+    "lane": "기획재정부",
+    "stage": "G0 재원확정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획재정부",
+    "output_documents": [
+     "내국세 세수 실적",
+     "세입 전망"
+    ],
+    "deadline": "예산편성기",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제3조",
+      "text": "내국세 총액을 기준으로 교부금 재원을 산출한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "교부금 재원 확정(내국세 20.79%+교육세)",
+    "lane": "교육부",
+    "stage": "G0 재원확정",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부",
+    "output_documents": [
+     "교부금 재원 규모",
+     "재원 산출내역"
+    ],
+    "deadline": "예산편성기",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제3조",
+      "text": "교부금은 내국세 총액의 20.79%와 교육세 세입액으로 한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "기준재정수요액 산정",
+    "lane": "교육부",
+    "stage": "G1 산정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부",
+    "output_documents": [
+     "기준재정수요액 산정자료"
+    ],
+    "deadline": "교부 전",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제5조",
+      "text": "측정항목과 단위비용으로 기준재정수요액을 산정한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "기준재정수입액 산정",
+    "lane": "교육부",
+    "stage": "G1 산정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부",
+    "output_documents": [
+     "기준재정수입액 산정자료"
+    ],
+    "deadline": "교부 전",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제5조",
+      "text": "지방세 등으로 기준재정수입액을 산정한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "보통교부금 산정·차등 배분 결정",
+    "lane": "교육부",
+    "stage": "G1 산정",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부",
+    "condition": "기준재정수요액이 기준재정수입액을 초과하는 부족액",
+    "output_documents": [
+     "보통교부금 배분내역"
+    ],
+    "deadline": "교부 전",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제5조",
+      "text": "기준재정수입액이 수요액에 미치지 못하는 교육청에 그 차액을 보통교부금으로 교부한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "보통교부금 교부(재원 97%)",
+    "lane": "교육부",
+    "stage": "G2 교부",
+    "type": "task",
+    "status": "current",
+    "progress": 58,
+    "actor": "교육부",
+    "receiver": "시·도교육청(교육감)",
+    "output_documents": [
+     "보통교부금 교부 결정·통지"
+    ],
+    "deadline": "회계연도 중",
+    "blocker": "학령인구 반영 지표 조정 진행",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제5조",
+      "text": "보통교부금은 교부금 재원의 대부분을 차지하며 교육청에 교부한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "특별교부금 사업 신청·심사",
+    "lane": "교육부",
+    "stage": "G2 교부",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 40,
+    "actor": "교육부",
+    "condition": "국가시책사업·지역현안·재해대책 해당 여부",
+    "output_documents": [
+     "특별교부금 심사결과"
+    ],
+    "deadline": "수시",
+    "blocker": "특별교부금 재량 배분 논란",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제5조의2",
+      "text": "특별교부금은 특별한 재정수요가 있을 때 교부한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "특별교부금 교부(재원 3%)",
+    "lane": "교육부",
+    "stage": "G2 교부",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "교육부",
+    "receiver": "시·도교육청(교육감)",
+    "output_documents": [
+     "특별교부금 교부 결정"
+    ],
+    "deadline": "수시",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제5조의2",
+      "text": "특별교부금은 교부금 재원의 일정 비율로 한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "시·도 법정전출금 전출",
+    "lane": "시·도",
+    "stage": "G2 교부",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·도",
+    "receiver": "시·도교육청(교육감)",
+    "output_documents": [
+     "법정전출금 전출조서"
+    ],
+    "deadline": "회계연도 중",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제5조",
+      "text": "시·도는 법령에 따른 전출금을 교육비특별회계로 전출한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "시·도교육청 예산 편성",
+    "lane": "시·도교육청(교육감)",
+    "stage": "G3 예산편성",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·도교육청",
+    "output_documents": [
+     "교육비특별회계 예산서"
+    ],
+    "deadline": "회계연도 개시 전",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제9조",
+      "text": "교부금은 교육·학예에 관한 세출예산에 계상한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "교부금 예산 계상 확인",
+    "lane": "교육부",
+    "stage": "G3 예산편성",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "교육부",
+    "condition": "교부 목적·용도 부합 여부",
+    "output_documents": [
+     "계상 확인 결과"
+    ],
+    "deadline": "예산 확정 전",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제9조",
+      "text": "교부금이 교육·학예 목적에 계상되었는지 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "학교·교육사업 집행",
+    "lane": "학교",
+    "stage": "G4 집행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "학교·교육기관",
+    "output_documents": [
+     "사업 집행내역",
+     "지출결의"
+    ],
+    "deadline": "회계연도 중",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제9조",
+      "text": "교부금은 교육·학예 사무의 세출로만 집행한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "지방교육재정알리미 공시",
+    "lane": "정보시스템(지방교육재정알리미)",
+    "stage": "G4 집행",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방교육재정알리미",
+    "output_documents": [
+     "재정공시 자료"
+    ],
+    "deadline": "공시기한",
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제9조",
+      "text": "교부금 집행 현황을 공시한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "결산·정산",
+    "lane": "시·도교육청(교육감)",
+    "stage": "G5 정산·환류",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·도교육청",
+    "condition": "과부족액 발생 여부",
+    "output_documents": [
+     "결산서",
+     "정산 결과"
+    ],
+    "deadline": "회계연도 종료 후",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제5조",
+      "text": "교부액에 과부족이 있으면 이후 교부액에서 정산한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "차년도 산정 반영",
+    "lane": "교육부",
+    "stage": "G5 정산·환류",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "교육부",
+    "output_documents": [
+     "차년도 산정 반영자료"
+    ],
+    "deadline": "차년도 교부 전",
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "지방교육재정교부금법",
+      "article": "제3조",
+      "text": "정산 결과와 세수 변동을 차년도 재원·산정에 반영한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P01",
+    "target": "P02",
+    "type": "message",
+    "label": "내국세 세수 통보"
+   },
+   {
+    "id": "M02",
+    "source": "P06",
+    "target": "P10",
+    "type": "message",
+    "label": "보통교부금 교부 통지"
+   },
+   {
+    "id": "M03",
+    "source": "P12",
+    "target": "P13",
+    "type": "message",
+    "label": "집행 실적 공시자료"
+   },
+   {
+    "id": "L01",
+    "source": "P14",
+    "target": "P15",
+    "type": "loop",
+    "label": "정산 결과 반영"
+   },
+   {
+    "id": "L02",
+    "source": "P15",
+    "target": "P03",
+    "type": "loop",
+    "label": "차년도 기준재정수요 재산정"
+   }
+  ],
+  "warnings": []
+ }
 }

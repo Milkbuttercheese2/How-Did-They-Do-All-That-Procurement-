@@ -6,7 +6,7 @@
  "priority": 45,
  "whyFirst": "생애 전 주기 학습권을 보장하는 대표적 교육 진흥형 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "학교교육 밖에서 이뤄지는 모든 형태의 조직적 학습을 진흥해 국민의 학습권과 재교육 기회를 보장한다. 학력·학점 인정과 평생학습도시 지원으로 성인 학습과 사회통합을 촉진한다.",
   "stakeholders": "성인 학습자(경력단절·고령·저학력 등 포함), 평생교육기관, 지방자치단체, 교육부·국가평생교육진흥원, 기업(재직자 교육)",
@@ -82,5 +82,338 @@
   "평생교육이용권(바우처) 지원 대상·단가",
   "학점은행제 학점·학위 인정 기준 최신 내용",
   "취약계층 평생학습 참여율(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "평생교육 제도",
+  "law_name": "평생교육법",
+  "lanes": [
+   "학습자",
+   "평생교육기관",
+   "국가평생교육진흥원",
+   "교육부",
+   "시·도/지자체",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 기본계획",
+   "G1 기관·과정 인가",
+   "G2 등록·수강",
+   "G3 학점인정",
+   "G4 학위수여",
+   "G5 지원사업",
+   "G6 성과환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "평생교육진흥 기본계획 수립",
+    "lane": "교육부",
+    "stage": "G0 기본계획",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부장관",
+    "action": "계획 수립",
+    "output_documents": ["평생교육진흥 기본계획"],
+    "deadline": "5년 단위",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "평생교육법",
+      "article": "제9조",
+      "text": "교육부장관은 5년마다 평생교육진흥 기본계획을 수립한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "시·도 연도별 시행계획 수립",
+    "lane": "시·도/지자체",
+    "stage": "G0 기본계획",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "시·도지사·교육감",
+    "action": "시행계획 수립",
+    "output_documents": ["연도별 시행계획"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "평생교육법",
+      "article": "제5조",
+      "text": "지방자치단체는 지역 평생교육 진흥 시책을 수립·시행한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "평생교육기관 등록·신고",
+    "lane": "평생교육기관",
+    "stage": "G1 기관·과정 인가",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "평생교육기관",
+    "receiver": "국가평생교육진흥원",
+    "action": "등록·신고",
+    "output_documents": ["기관 등록·신고 서류"],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "평생교육법 시행령",
+      "article": "기관 등록·신고 관련 조문",
+      "text": "평생교육기관은 등록·신고 후 프로그램을 운영한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "학점은행 교육과정 평가인정",
+    "lane": "국가평생교육진흥원",
+    "stage": "G1 기관·과정 인가",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "국가평생교육진흥원",
+    "action": "평가인정",
+    "condition": "교육과정 기준 충족 여부",
+    "output_documents": ["평가인정 학습과정 목록"],
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "학점인정 등에 관한 법률",
+      "article": "학습과정 평가인정 관련 조문",
+      "text": "학습과정을 평가하여 학점 인정 대상으로 인정한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "학습자 수강·등록",
+    "lane": "학습자",
+    "stage": "G2 등록·수강",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "학습자",
+    "action": "수강·등록",
+    "output_documents": ["수강 등록 내역"],
+    "blocker": "취약계층 접근성 제약(운영 추정)",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "평생교육법",
+      "article": "제5조",
+      "text": "국민은 평생교육 프로그램에 참여해 학습할 권리를 가진다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "프로그램 이수·학습결과 관리",
+    "lane": "평생교육기관",
+    "stage": "G2 등록·수강",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "평생교육기관",
+    "action": "이수관리",
+    "output_documents": ["이수증", "학습결과 기록"],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "평생교육법",
+      "article": "제5조",
+      "text": "기관은 학습자의 이수와 학습결과를 관리한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "학점·학력 인정 신청",
+    "lane": "학습자",
+    "stage": "G3 학점인정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "학습자",
+    "receiver": "국가평생교육진흥원",
+    "action": "인정 신청",
+    "input_documents": ["이수증", "학습결과 기록"],
+    "output_documents": ["학점·학력 인정 신청서"],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "학점인정 등에 관한 법률",
+      "article": "학점인정 신청 관련 조문",
+      "text": "학습자는 학습경험에 대한 학점·학력 인정을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "학점·학력 심사·인정",
+    "lane": "국가평생교육진흥원",
+    "stage": "G3 학점인정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국가평생교육진흥원",
+    "action": "심사·인정",
+    "condition": "인정 기준 충족·보완 필요 여부",
+    "output_documents": ["학점 인정서", "보완 요구"],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "학점인정 등에 관한 법률",
+      "article": "학점·학력 인정 심사 관련 조문",
+      "text": "신청 학습경험을 심사하여 학점·학력을 인정한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "보완·재심사",
+    "lane": "학습자",
+    "stage": "G3 학점인정",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "학습자·평생교육기관",
+    "action": "보완",
+    "input_documents": ["보완 요구"],
+    "output_documents": ["보완 자료"],
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "학점인정 등에 관한 법률",
+      "article": "보완·재심사 관련 조문",
+      "text": "보완 요구 시 자료를 보완하여 재심사를 받는다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "학위수여 요건 충족·수여",
+    "lane": "국가평생교육진흥원",
+    "stage": "G4 학위수여",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "교육부장관·국가평생교육진흥원",
+    "action": "학위수여",
+    "input_documents": ["학점 인정서"],
+    "output_documents": ["학위증"],
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "학점인정 등에 관한 법률",
+      "article": "학위수여 관련 조문",
+      "text": "학점 인정 요건을 충족하면 학위를 수여한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "평생학습도시·바우처 지원 신청·집행",
+    "lane": "시·도/지자체",
+    "stage": "G5 지원사업",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·도/지자체",
+    "action": "지원 신청·집행",
+    "output_documents": ["지원사업 신청서", "바우처 집행 내역"],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "평생교육법",
+      "article": "제15조",
+      "text": "평생학습도시 및 평생교육이용권 지원을 신청·집행한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "성과 점검·환류",
+    "lane": "교육부",
+    "stage": "G6 성과환류",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "교육부장관",
+    "action": "성과 점검",
+    "output_documents": ["성과 점검 결과", "개선 환류"],
+    "blocker": "취약계층 참여율 저조(운영 추정)",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "평생교육법",
+      "article": "제9조",
+      "text": "기본계획 이행 성과를 점검하여 정책에 환류한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "평생교육사 자격 관리",
+    "lane": "국가평생교육진흥원",
+    "stage": "G1 기관·과정 인가",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국가평생교육진흥원",
+    "action": "자격 관리",
+    "output_documents": ["평생교육사 자격증"],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "평생교육법 시행령",
+      "article": "평생교육사 자격 관련 조문",
+      "text": "평생교육사 자격을 심사·부여하고 배치를 관리한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "학점은행·평생학습계좌 시스템",
+    "lane": "정보시스템",
+    "stage": "G3 학점인정",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국가평생교육진흥원 시스템",
+    "action": "학습이력 관리",
+    "input_documents": ["학습결과 기록", "학점 인정서"],
+    "output_documents": ["학습이력·학점 기록"],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "학점인정 등에 관한 법률",
+      "article": "학습이력 관리 관련 조문",
+      "text": "학점은행·평생학습계좌 시스템으로 학습이력을 관리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P08", "target": "P10", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P03", "target": "P13", "type": "message", "label": "평생교육사 배치" },
+   { "id": "M02", "source": "P06", "target": "S01", "type": "message", "label": "학습이력 기록" },
+   { "id": "M03", "source": "P08", "target": "S01", "type": "message", "label": "학점 인정 등록" },
+   { "id": "L01", "source": "P08", "target": "P09", "type": "loop", "label": "보완 요구" },
+   { "id": "L02", "source": "P09", "target": "P07", "type": "loop", "label": "보완 후 재신청" }
+  ],
+  "warnings": []
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 17,
  "whyFirst": "국가의 규범이 실제로 만들어지는 경로를 보여주며, 입법예고·국회 입법절차 등 인접 제도의 뼈대가 된다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "법령의 제정·개정을 정해진 절차로 규율해 내용의 적법성·체계 정합성과 국민 의견 반영을 확보한다. 부처가 임의로 규범을 만드는 것을 막고 법제처 심사와 국무회의 심의로 통제한다.",
   "stakeholders": "법령을 입안하는 주관부처, 협의 대상 관계부처, 법제처(심사), 규제개혁위원회·국무회의, 의견을 내는 국민·이해관계자, 법령의 적용을 받는 수범자.",
@@ -95,6 +95,448 @@
  "fieldVerification": [
   "부처 협의·법제처 심사의 실제 소요기간(운영 추정)",
   "입법예고 의견 반영 실태(운영 추정)",
-  "정부입법지원센터·국가법령정보센터 운영 상세"
- ]
+  "정부입법지원센터·국가법령정보센터 운영 상세",
+  "법제처 심사와 규제심사 중첩에 따른 일정 관리 실태(운영 추정)",
+  "법률 제·개정과 하위법령(대통령령·부령) 제·개정의 실제 병행 처리 흐름(운영 추정)"
+ ],
+ "process": {
+  "institution_name": "법령 제정·개정 절차(정부입법)",
+  "law_name": "법제업무 운영규정·행정절차법",
+  "lanes": [
+   "주관부처",
+   "관계부처",
+   "국민·이해관계자",
+   "규제개혁위원회",
+   "법제처",
+   "국무회의·대통령",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 입안",
+   "G1 관계기관 협의",
+   "G2 입법예고",
+   "G3 규제심사",
+   "G4 법제처 심사",
+   "G5 국무회의 심의",
+   "G6 공포·시행"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "법령안 입안",
+    "lane": "주관부처",
+    "stage": "G0 입안",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "주관부처",
+    "action": "입안",
+    "output_documents": [
+     "법령안 원안",
+     "정부입법계획 반영"
+    ],
+    "deadline": "정부입법계획 일정",
+    "blocker": null,
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "법제업무 운영규정",
+      "article": "법령안 입안 관련 조문",
+      "text": "주관부처는 정부입법계획에 따라 법령안을 입안한다."
+     },
+     {
+      "law": "대한민국헌법",
+      "article": "제75조, 제95조",
+      "text": "대통령령·총리령·부령은 법률의 위임 범위에서 제정한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "관계기관 협의 요청",
+    "lane": "주관부처",
+    "stage": "G1 관계기관 협의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "주관부처",
+    "receiver": "관계부처",
+    "action": "협의 요청",
+    "output_documents": [
+     "관계기관 협의요청서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "법제업무 운영규정",
+      "article": "관계기관 협의 관련 조문",
+      "text": "법령안은 관계기관에 협의를 요청한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "관계부처 협의 의견",
+    "lane": "관계부처",
+    "stage": "G1 관계기관 협의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "관계부처",
+    "action": "협의 의견 제출",
+    "output_documents": [
+     "관계부처 협의의견"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "법제업무 운영규정",
+      "article": "관계기관 협의 관련 조문",
+      "text": "관계부처는 소관 사항에 대한 협의의견을 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "이견 조정",
+    "lane": "주관부처",
+    "stage": "G1 관계기관 협의",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "주관부처",
+    "action": "조정·판단",
+    "condition": "관계부처 이견 조정 여부",
+    "output_documents": [
+     "조정결과",
+     "재협의 요청"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "법제업무 운영규정",
+      "article": "관계기관 협의 관련 조문",
+      "text": "협의 이견은 조정하며, 미조정 시 재협의한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "협의 보완·조정",
+    "lane": "주관부처",
+    "stage": "G1 관계기관 협의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "주관부처",
+    "action": "보완",
+    "input_documents": [
+     "재협의 요청"
+    ],
+    "output_documents": [
+     "수정 법령안"
+    ],
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "법제업무 운영규정",
+      "article": "관계기관 협의 관련 조문",
+      "text": "이견이 조정되지 않으면 법령안을 보완하여 재협의한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "입법예고",
+    "lane": "주관부처",
+    "stage": "G2 입법예고",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "주관부처",
+    "receiver": "국민·이해관계자",
+    "action": "입법예고",
+    "output_documents": [
+     "입법예고안",
+     "예고 공고문"
+    ],
+    "deadline": "원칙 40일",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "행정절차법",
+      "article": "제41조, 제43조",
+      "text": "법령 제·개정 시 입법예고하며 예고기간은 특별한 사정이 없으면 40일 이상으로 한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "국민 의견 제출",
+    "lane": "국민·이해관계자",
+    "stage": "G2 입법예고",
+    "type": "task",
+    "status": "current",
+    "progress": 45,
+    "actor": "국민·이해관계자",
+    "action": "의견 제출",
+    "input_documents": [
+     "입법예고안"
+    ],
+    "output_documents": [
+     "제출 의견"
+    ],
+    "deadline": "입법예고 기간 내",
+    "blocker": "예고기간 진행 중",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "행정절차법",
+      "article": "제44조",
+      "text": "누구든지 예고된 법령안에 대하여 의견을 제출할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "의견 검토·반영",
+    "lane": "주관부처",
+    "stage": "G2 입법예고",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "주관부처",
+    "action": "의견 검토·반영",
+    "input_documents": [
+     "제출 의견"
+    ],
+    "output_documents": [
+     "의견 반영결과",
+     "수정 법령안"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "행정절차법",
+      "article": "제44조",
+      "text": "제출된 의견을 검토하여 처리결과를 반영·통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "규제심사",
+    "lane": "규제개혁위원회",
+    "stage": "G3 규제심사",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "규제개혁위원회",
+    "action": "규제심사",
+    "condition": "규제 신설·강화 해당 여부",
+    "output_documents": [
+     "규제심사 결과"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "행정규제기본법",
+      "article": "제10조",
+      "text": "규제를 신설·강화하는 법령안은 규제개혁위원회의 심사를 받는다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "법제처 심사",
+    "lane": "법제처",
+    "stage": "G4 법제처 심사",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "법제처",
+    "action": "심사",
+    "input_documents": [
+     "규제심사 완료 법령안"
+    ],
+    "output_documents": [
+     "법제처 심사의견",
+     "심사완료본"
+    ],
+    "blocker": "법제처 심사와 규제심사가 겹쳐 일정 관리가 어려움(운영 추정)",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "법제업무 운영규정",
+      "article": "법령안 심사 관련 조문",
+      "text": "법령안은 법제처의 자구·체계 및 적법성 심사를 거친다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "차관회의 사전심의",
+    "lane": "국무회의·대통령",
+    "stage": "G5 국무회의 심의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "차관회의",
+    "action": "사전심의",
+    "output_documents": [
+     "차관회의 심의결과"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "차관회의 규정",
+      "article": "차관회의 심의 관련 조문",
+      "text": "법률안·대통령령안은 국무회의 상정 전 차관회의 심의를 거친다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "국무회의 심의·의결",
+    "lane": "국무회의·대통령",
+    "stage": "G5 국무회의 심의",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국무회의",
+    "action": "심의·의결",
+    "condition": "법률안·대통령령안 의결 여부",
+    "output_documents": [
+     "국무회의 의결서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "대한민국헌법",
+      "article": "제89조",
+      "text": "법률안과 대통령령안은 국무회의 심의를 거친다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "대통령 재가",
+    "lane": "국무회의·대통령",
+    "stage": "G5 국무회의 심의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "대통령",
+    "action": "재가",
+    "output_documents": [
+     "재가 문서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "대한민국헌법",
+      "article": "제89조",
+      "text": "국무회의 심의를 거친 법령안을 대통령이 재가한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "법률안 국회 제출·의결",
+    "lane": "국무회의·대통령",
+    "stage": "G6 공포·시행",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국회",
+    "action": "심의·의결",
+    "condition": "법률안에 한해 국회 심의·의결",
+    "output_documents": [
+     "국회 의결 법률",
+     "정부 이송"
+    ],
+    "blocker": "법률 제·개정에 한해 발동",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "대한민국헌법",
+      "article": "제52조, 제53조",
+      "text": "정부는 법률안을 제출하고, 국회 의결 후 정부로 이송되어 공포된다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "공포번호 부여·관보 게재",
+    "lane": "국무회의·대통령",
+    "stage": "G6 공포·시행",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "행정안전부(공포)",
+    "action": "공포",
+    "output_documents": [
+     "공포문(관보)",
+     "제·개정 법령"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "법령 등 공포에 관한 법률",
+      "article": "공포 방법·시행일 관련 조문",
+      "text": "법령은 공포번호를 부여받아 관보 게재로 공포하고 시행일에 효력이 발생한다."
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "정부입법 진행·법령 공개",
+    "lane": "정보시스템",
+    "stage": "G6 공포·시행",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "정부입법지원센터·국가법령정보센터",
+    "action": "진행 공개·법령 등록",
+    "input_documents": [
+     "입법예고안",
+     "제·개정 법령"
+    ],
+    "output_documents": [
+     "공개 게시자료",
+     "등록 법령"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "법제업무 운영규정",
+      "article": "정부입법 공개 관련 조문",
+      "text": "정부입법 진행과 확정 법령을 정보시스템에 공개·등록한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P06", "type": "sequence", "label": "협의 완료" },
+   { "id": "E05", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P07", "target": "P08", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P09", "target": "P10", "type": "sequence", "label": "규제심사 통과" },
+   { "id": "E09", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P12", "target": "P13", "type": "sequence", "label": "의결" },
+   { "id": "E12", "source": "P13", "target": "P15", "type": "sequence", "label": "대통령령 공포" },
+   { "id": "M01", "source": "P06", "target": "P16", "type": "message", "label": "입법예고안 공개" },
+   { "id": "M02", "source": "P12", "target": "P14", "type": "message", "label": "법률안 국회 이송" },
+   { "id": "M03", "source": "P14", "target": "P15", "type": "message", "label": "국회 의결·정부 이송" },
+   { "id": "M04", "source": "P15", "target": "P16", "type": "message", "label": "법령 공포·공개" },
+   { "id": "L01", "source": "P04", "target": "P05", "type": "loop", "label": "이견 미조정" },
+   { "id": "L02", "source": "P05", "target": "P02", "type": "loop", "label": "재협의" }
+  ],
+  "warnings": []
+ }
 }

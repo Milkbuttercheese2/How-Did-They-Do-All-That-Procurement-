@@ -6,7 +6,7 @@
  "priority": 78,
  "whyFirst": "공익신고와 짝을 이루는 반부패 신고 제도다. 신고-이첩-수사-보호-보상 축과 신고자 신분보장의 실효성이라는 쟁점이 선명하다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "공직자의 직무 관련 부패행위와 공공기관의 부패를 드러내 바로잡는다. 국민 누구나 신고할 수 있게 하고 신고자를 비밀보장·신분보장·신변보호·보상으로 두텁게 지켜, 부패를 통제하고 청렴성을 높이는 것이 목적이다.",
   "stakeholders": "부패행위를 신고하는 국민, 신고의무가 있는 공직자, 신고를 접수·이첩하는 국민권익위원회, 조사·수사를 담당하는 감사원·수사기관, 신고 대상 공직자·공공기관",
@@ -82,5 +82,557 @@
   "이첩 사건의 처분·기소율(운영 추정)",
   "신분보장·보호조치 신청 대비 인용률(운영 추정)",
   "비실명 대리신고 도입·운영 여부 확인"
- ]
+ ],
+ "process": {
+  "institution_name": "부패신고 제도",
+  "law_name": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+  "lanes": [
+   "신고자",
+   "국민권익위원회",
+   "조사·수사기관(감사원 등)",
+   "위원회 회의",
+   "공공기관/피신고 공직자",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 신고준비",
+   "G1 접수·확인",
+   "G2 이첩·조사",
+   "G3 결과통보",
+   "G4 신분·신변보호",
+   "G5 보상·책임감면"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "부패행위 인지·증거 준비",
+    "lane": "신고자",
+    "stage": "G0 신고준비",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "신고자",
+    "action": "증거 준비",
+    "output_documents": [
+     "신고 요지",
+     "증거자료"
+    ],
+    "deadline": "상시",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제2조",
+      "text": "부패행위란 공직자가 직무와 관련하여 그 지위·권한을 남용하거나 법령을 위반하여 이익을 도모하는 행위 등을 말한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "공직자 신고의무 이행",
+    "lane": "공공기관/피신고 공직자",
+    "stage": "G0 신고준비",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "공직자",
+    "action": "신고의무 이행",
+    "output_documents": [
+     "신고 자료"
+    ],
+    "deadline": "부패행위 인지 시",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제56조",
+      "text": "공직자는 그 직무를 행함에 있어 다른 공직자의 부패행위를 알게 되면 이를 수사기관·감사원·국민권익위원회에 신고하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "실명 신고서 제출",
+    "lane": "신고자",
+    "stage": "G1 접수·확인",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "신고자",
+    "receiver": "국민권익위원회",
+    "action": "신고서 제출",
+    "output_documents": [
+     "부패신고서",
+     "신고자 인적사항"
+    ],
+    "deadline": "상시",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제58조",
+      "text": "부패행위 신고를 하려는 자는 자신의 인적사항과 신고 취지·이유·내용을 적고 서명한 문서로 하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "부패신고 접수",
+    "lane": "국민권익위원회",
+    "stage": "G1 접수·확인",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국민권익위원회",
+    "action": "신고 접수",
+    "input_documents": [
+     "부패신고서"
+    ],
+    "output_documents": [
+     "접수증"
+    ],
+    "deadline": "접수 즉시",
+    "confidence": 0.87,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제55조",
+      "text": "누구든지 부패행위를 알게 된 때에는 이를 국민권익위원회에 신고할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "신고내용 사실확인·요건검토",
+    "lane": "국민권익위원회",
+    "stage": "G1 접수·확인",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "국민권익위원회",
+    "action": "사실확인",
+    "condition": "신고 내용의 특정성·구체성과 조사 필요성 검토",
+    "input_documents": [
+     "부패신고서",
+     "증거자료"
+    ],
+    "output_documents": [
+     "사실확인 결과"
+    ],
+    "deadline": "접수 후 확인 기간",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제59조",
+      "text": "국민권익위원회는 접수된 신고사항에 대하여 신고자를 상대로 사실관계를 확인할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "조사기관 이첩·수사의뢰",
+    "lane": "국민권익위원회",
+    "stage": "G2 이첩·조사",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "국민권익위원회",
+    "receiver": "조사·수사기관(감사원 등)",
+    "action": "이첩·수사의뢰",
+    "condition": "감사·수사·조사 대상 판단과 소관기관 결정",
+    "output_documents": [
+     "이첩 결정서",
+     "수사의뢰서"
+    ],
+    "deadline": "사실확인 후 지체 없이",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제59조",
+      "text": "국민권익위원회는 접수된 신고사항이 조사가 필요한 경우 감사원·수사기관 또는 해당 공공기관의 감독기관에 이첩한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "감사·수사 진행",
+    "lane": "조사·수사기관(감사원 등)",
+    "stage": "G2 이첩·조사",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "감사원·수사기관",
+    "action": "감사·수사",
+    "input_documents": [
+     "이첩 결정서",
+     "수사의뢰서"
+    ],
+    "output_documents": [
+     "감사자료",
+     "수사기록"
+    ],
+    "deadline": "조사기관 처리기간",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제59조",
+      "text": "이첩을 받은 조사기관은 감사·수사 또는 조사를 종료한 후 그 결과를 국민권익위원회에 통보하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "조사결과 통보",
+    "lane": "조사·수사기관(감사원 등)",
+    "stage": "G3 결과통보",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "감사원·수사기관",
+    "receiver": "국민권익위원회",
+    "action": "결과 통보",
+    "output_documents": [
+     "조사결과 통보서"
+    ],
+    "deadline": "조사 종료 후 즉시",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제59조",
+      "text": "조사기관은 감사·수사·조사 결과를 국민권익위원회에 통보하고, 위원회는 이를 신고자에게 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "결과 검토·재조사 요구 판단",
+    "lane": "위원회 회의",
+    "stage": "G3 결과통보",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민권익위원회",
+    "action": "결과 검토",
+    "condition": "조사결과의 충실성 검토와 재조사 요구 필요성",
+    "input_documents": [
+     "조사결과 통보서"
+    ],
+    "output_documents": [
+     "검토 의견",
+     "재조사 요구서"
+    ],
+    "deadline": "통보받은 후 검토 기간",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제59조",
+      "text": "국민권익위원회는 조사기관의 조사결과가 충분하지 아니하다고 인정되면 조사기관에 재조사를 요구할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "재조사",
+    "lane": "조사·수사기관(감사원 등)",
+    "stage": "G2 이첩·조사",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "감사원·수사기관",
+    "action": "재조사",
+    "input_documents": [
+     "재조사 요구서"
+    ],
+    "output_documents": [
+     "재조사 결과 통보서"
+    ],
+    "deadline": "재조사 요구받은 후",
+    "blocker": "재조사 요구 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제59조",
+      "text": "재조사를 요구받은 조사기관은 재조사를 종료한 후 그 결과를 국민권익위원회에 통보하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "신고자 비밀·신분보장",
+    "lane": "국민권익위원회",
+    "stage": "G4 신분·신변보호",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국민권익위원회",
+    "action": "신분보장",
+    "output_documents": [
+     "비밀·신분보장 관리기록"
+    ],
+    "deadline": "접수 시부터 상시",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제64조",
+      "text": "누구든지 신고자의 신분이나 신고 내용을 그 신고자의 동의 없이 다른 사람에게 알려주거나 공개해서는 아니 된다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "불이익조치 금지·신변보호",
+    "lane": "국민권익위원회",
+    "stage": "G4 신분·신변보호",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국민권익위원회",
+    "action": "신변보호",
+    "output_documents": [
+     "신변보호 조치 결정"
+    ],
+    "deadline": "위해 우려 시 신속히",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제62조",
+      "text": "누구든지 신고자에게 신고를 이유로 신분상 불이익이나 근무조건상 차별을 하여서는 아니 된다."
+     },
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제66조",
+      "text": "국민권익위원회는 신고자가 신고를 이유로 생명·신체에 대한 위해를 받을 우려가 있으면 신변보호조치를 하도록 요청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "불이익조치 발생·신분보장 신청",
+    "lane": "신고자",
+    "stage": "G4 신분·신변보호",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "신고자",
+    "receiver": "국민권익위원회",
+    "action": "신분보장 신청",
+    "output_documents": [
+     "신분보장 조치 신청서"
+    ],
+    "deadline": "불이익조치 안 날부터",
+    "blocker": "신분보장에도 인사·조직 내 보복과 2차 피해가 발생한다",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제62조",
+      "text": "신고자는 신고를 이유로 불이익조치를 받은 경우 국민권익위원회에 신분보장 등 필요한 조치를 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "책임감면",
+    "lane": "위원회 회의",
+    "stage": "G5 보상·책임감면",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민권익위원회",
+    "action": "책임감면 판단",
+    "condition": "신고와 관련한 신고자의 위법행위 감면 요건 충족 여부",
+    "input_documents": [
+     "부패신고서"
+    ],
+    "output_documents": [
+     "책임감면 결정"
+    ],
+    "deadline": "처리 과정에서",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제66조",
+      "text": "신고와 관련하여 신고자 자신의 범죄가 발견된 경우 그 형을 감경하거나 면제할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "보상금·포상금·구조금 지급",
+    "lane": "국민권익위원회",
+    "stage": "G5 보상·책임감면",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민권익위원회",
+    "action": "보상·구조 지급",
+    "condition": "수입 회복·증대 여부, 공익 기여도, 구조 필요성",
+    "input_documents": [
+     "보상금 신청서"
+    ],
+    "output_documents": [
+     "보상금 결정서",
+     "구조금 지급 결정"
+    ],
+    "deadline": "신청 후 지급 결정 기간",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제68조",
+      "text": "신고로 인하여 공공기관에 직접적인 수입의 회복·증대 등이 있으면 신고자에게 보상금을 지급하고, 공익 증진에 기여한 경우 포상금을 지급할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "청렴포털 부패신고 등록",
+    "lane": "정보시스템",
+    "stage": "G1 접수·확인",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "부패신고시스템",
+    "action": "등록",
+    "input_documents": [
+     "부패신고서"
+    ],
+    "output_documents": [
+     "접수 등록기록"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "부패방지 및 국민권익위원회의 설치와 운영에 관한 법률",
+      "article": "제58조",
+      "text": "부패신고는 국민권익위원회가 운영하는 신고 접수 창구를 통하여 문서로 제출한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": "조사 필요"
+   },
+   {
+    "id": "E06",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P04",
+    "target": "P11",
+    "type": "sequence",
+    "label": "접수 즉시 보호"
+   },
+   {
+    "id": "E08",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P09",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P06",
+    "target": "P07",
+    "type": "message",
+    "label": "조사기관 이첩"
+   },
+   {
+    "id": "M02",
+    "source": "P08",
+    "target": "P09",
+    "type": "message",
+    "label": "조사결과 통보"
+   },
+   {
+    "id": "M03",
+    "source": "P04",
+    "target": "S01",
+    "type": "message",
+    "label": "신고 등록"
+   },
+   {
+    "id": "L01",
+    "source": "P09",
+    "target": "P10",
+    "type": "loop",
+    "label": "재조사 요구"
+   },
+   {
+    "id": "L02",
+    "source": "P10",
+    "target": "P08",
+    "type": "loop",
+    "label": "재조사 결과 통보"
+   }
+  ],
+  "warnings": []
+ }
 }

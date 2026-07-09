@@ -6,7 +6,7 @@
  "priority": 26,
  "whyFirst": "지자체 간 재정 형평을 조정하는 핵심 장치다. 국세와 지방재정을 잇는 수직·수평 재정조정의 기준 사례가 된다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "지자체 간 재정 불균형을 조정하고 기본 행정수준에 필요한 재원을 보장한다. 내국세 일부를 지방으로 이전하는 수직·수평 재정조정 장치다.",
   "stakeholders": "전 지자체(교부 대상), 행정안전부(총괄·산정), 기획재정부(재원=내국세 연계), 주민(행정서비스 수혜), 불교부단체(재정력이 높은 일부 지자체)",
@@ -85,5 +85,537 @@
   "연도별 교부세율·재원 규모 최신치",
   "특별교부세의 실제 배분 기준·내역",
   "자체노력 반영 산식의 효과"
- ]
+ ],
+ "process": {
+  "institution_name": "지방교부세 제도",
+  "law_name": "지방교부세법",
+  "lanes": [
+   "기획재정부(내국세)",
+   "행정안전부",
+   "지방자치단체",
+   "지방재정 심의·자문",
+   "감사원·정산",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 재원확정",
+   "G1 수요·수입 산정",
+   "G2 보통교부세 산정·교부",
+   "G3 특별교부세 심사·교부",
+   "G4 부동산·소방안전교부세",
+   "G5 예산편성·집행",
+   "G6 정산·환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "내국세 실적·전망 산출",
+    "lane": "기획재정부(내국세)",
+    "stage": "G0 재원확정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획재정부",
+    "action": "내국세 산출",
+    "output_documents": [
+     "내국세 실적·전망 자료"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제4조",
+      "text": "교부세 재원은 해당 연도 내국세 총액을 기준으로 산정한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "교부세 재원 확정(내국세 19.24%)",
+    "lane": "기획재정부(내국세)",
+    "stage": "G0 재원확정",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획재정부",
+    "receiver": "행정안전부",
+    "action": "재원 확정",
+    "condition": "내국세 총액의 19.24%로 교부세 총재원 확정",
+    "output_documents": [
+     "교부세 재원 규모"
+    ],
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제4조",
+      "text": "교부세의 재원은 내국세 총액의 1만분의 1천924로 한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "기준재정수요액 산정",
+    "lane": "행정안전부",
+    "stage": "G1 수요·수입 산정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "행정안전부",
+    "action": "수요액 산정",
+    "input_documents": [
+     "교부세 재원 규모"
+    ],
+    "output_documents": [
+     "기준재정수요액 산정 자료"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제6조",
+      "text": "측정항목별 기준재정수요액을 산정한다."
+     },
+     {
+      "law": "지방교부세법 시행령",
+      "article": "기준재정수요액 산정 조문",
+      "text": "측정항목·단위비용 등 수요액 산정 세부를 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "기준재정수입액 산정",
+    "lane": "행정안전부",
+    "stage": "G1 수요·수입 산정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "행정안전부",
+    "action": "수입액 산정",
+    "output_documents": [
+     "기준재정수입액 산정 자료"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제6조",
+      "text": "지방세 등을 기준으로 기준재정수입액을 산정한다."
+     },
+     {
+      "law": "지방교부세법 시행령",
+      "article": "기준재정수입액 산정 조문",
+      "text": "표준세율 적용 등 수입액 산정 세부를 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "재정부족액 산정·교부 대상 판정",
+    "lane": "행정안전부",
+    "stage": "G2 보통교부세 산정·교부",
+    "type": "gateway",
+    "status": "current",
+    "progress": 55,
+    "actor": "행정안전부",
+    "action": "부족액 판정",
+    "condition": "기준재정수요액이 기준재정수입액을 초과하는 단체가 교부 대상",
+    "input_documents": [
+     "기준재정수요액 산정 자료",
+     "기준재정수입액 산정 자료"
+    ],
+    "output_documents": [
+     "재정부족액 산정 내역",
+     "불교부단체 명단"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제6조제1항",
+      "text": "기준재정수입액이 기준재정수요액에 미치지 못하는 단체에 보통교부세를 교부한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "보통교부세 산정·교부 결정",
+    "lane": "행정안전부",
+    "stage": "G2 보통교부세 산정·교부",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "행정안전부",
+    "action": "보통교부세 산정",
+    "input_documents": [
+     "재정부족액 산정 내역"
+    ],
+    "output_documents": [
+     "보통교부세 산정 내역",
+     "교부 결정"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제6조",
+      "text": "재정부족액을 기준으로 보통교부세를 산정하여 교부한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "교부 결정 통지·수령",
+    "lane": "지방자치단체",
+    "stage": "G2 보통교부세 산정·교부",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체",
+    "action": "교부 통지·수령",
+    "input_documents": [
+     "교부 결정"
+    ],
+    "output_documents": [
+     "교부 통지서"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제6조",
+      "text": "행정안전부장관은 교부세의 금액을 결정하여 지방자치단체에 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "특별교부세 수요 신청",
+    "lane": "지방자치단체",
+    "stage": "G3 특별교부세 심사·교부",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체",
+    "receiver": "행정안전부",
+    "action": "수요 신청",
+    "output_documents": [
+     "특별교부세 신청서",
+     "지역현안·재해 수요자료"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제9조",
+      "text": "지역현안·재해대책·시책수요 등에 대해 특별교부세 교부를 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "특별교부세 수요 심사",
+    "lane": "행정안전부",
+    "stage": "G3 특별교부세 심사·교부",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "행정안전부",
+    "action": "수요 심사",
+    "condition": "지역현안·재해·시책 수요의 인정 여부와 교부 규모",
+    "output_documents": [
+     "특별교부세 심사 결과"
+    ],
+    "blocker": "특별교부세의 재량 배분·정치적 배분 논란(운영 추정)",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제9조",
+      "text": "행정안전부장관은 특별한 재정수요를 심사하여 특별교부세를 교부한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "부동산·소방안전교부세 산정·교부",
+    "lane": "행정안전부",
+    "stage": "G4 부동산·소방안전교부세",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "행정안전부",
+    "action": "산정·교부",
+    "output_documents": [
+     "부동산교부세 산정 내역",
+     "소방안전교부세 산정 내역"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "제9조의3, 제9조의4",
+      "text": "종합부동산세를 재원으로 부동산교부세를, 담배 개별소비세 일부를 재원으로 소방안전교부세를 교부한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "교부세 일반재원 예산편성",
+    "lane": "지방자치단체",
+    "stage": "G5 예산편성·집행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체",
+    "action": "예산편성",
+    "input_documents": [
+     "교부 통지서"
+    ],
+    "output_documents": [
+     "지자체 예산서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방재정법",
+      "article": "지방재정 운용 원칙 조문",
+      "text": "교부세는 용도를 특정하지 않는 일반재원으로 예산에 편성·집행한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "결산·교부 과부족 정산",
+    "lane": "지방재정 심의·자문",
+    "stage": "G6 정산·환류",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방재정부담심의",
+    "action": "과부족 정산",
+    "condition": "교부 과다·과소 여부와 차년도 정산 규모",
+    "input_documents": [
+     "지자체 예산서",
+     "결산 자료"
+    ],
+    "output_documents": [
+     "정산 결과"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "지방교부세법",
+      "article": "정산 관련 조문",
+      "text": "교부세의 과부족이 발생하면 다음 연도에 정산한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "정산 결과 차년도 반영",
+    "lane": "행정안전부",
+    "stage": "G6 정산·환류",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "행정안전부",
+    "action": "차년도 반영",
+    "input_documents": [
+     "정산 결과"
+    ],
+    "output_documents": [
+     "차년도 산정 반영 내역"
+    ],
+    "blocker": "정산분 차년도 반영 절차·시점의 실무 흐름(운영 추정)",
+    "confidence": 0.73,
+    "legal_basis": [
+     {
+      "law": "행정안전부 보통교부세 산정 지침",
+      "article": "정산·보정 반영 기준",
+      "text": "정산 결과를 다음 연도 산정에 반영한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "자체노력·감사 반영 점검",
+    "lane": "감사원·정산",
+    "stage": "G6 정산·환류",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "감사원·행정안전부",
+    "action": "자체노력·감사 점검",
+    "output_documents": [
+     "자체노력 반영 점검 결과"
+    ],
+    "blocker": "자체노력 반영(인센티브·페널티)의 실효성 검증 곤란(운영 추정)",
+    "confidence": 0.71,
+    "legal_basis": [
+     {
+      "law": "행정안전부 보통교부세 산정 지침",
+      "article": "자체노력 반영 기준",
+      "text": "자체수입 확충 등 자체노력을 산정에 반영·점검한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "교부세 산정·교부 내역 공개",
+    "lane": "정보시스템",
+    "stage": "G5 예산편성·집행",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "재정정보 공개시스템",
+    "action": "내역 공개",
+    "input_documents": [
+     "보통교부세 산정 내역",
+     "교부 결정"
+    ],
+    "output_documents": [
+     "공개 게시자료"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "지방재정법",
+      "article": "재정공시 관련 조문",
+      "text": "교부세 산정·교부 내역을 재정공시로 공개한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": "재정부족 발생"
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": "수요 인정"
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P12",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P02",
+    "target": "P03",
+    "type": "message",
+    "label": "내국세 재원 통보"
+   },
+   {
+    "id": "M02",
+    "source": "P06",
+    "target": "S01",
+    "type": "message",
+    "label": "교부 내역 공개"
+   },
+   {
+    "id": "M03",
+    "source": "P07",
+    "target": "P11",
+    "type": "message",
+    "label": "교부액 예산 반영"
+   },
+   {
+    "id": "L01",
+    "source": "P13",
+    "target": "P03",
+    "type": "loop",
+    "label": "정산분 차년도 재산정 회귀"
+   },
+   {
+    "id": "L02",
+    "source": "P09",
+    "target": "P08",
+    "type": "loop",
+    "label": "특별교부세 수요 보완"
+   }
+  ],
+  "warnings": []
+ }
 }

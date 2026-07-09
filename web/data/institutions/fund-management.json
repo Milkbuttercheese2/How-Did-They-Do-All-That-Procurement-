@@ -6,7 +6,7 @@
  "priority": 24,
  "whyFirst": "예산과 나란히 국가재정을 이루는 축이다. 국민연금·고용보험 등 사회보험성 기금의 재정 구조를 이해하는 기준이 된다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "특정 목적 사업을 위해 예산과 별도로 자금을 조성·운용한다. 세입세출 예산의 경직성을 보완해 탄력적 재정운용을 가능하게 한다.",
   "stakeholders": "기금관리주체(부처·공공기관), 기획재정부(총괄·조정), 국회(계획·결산 심의), 자산운용위원회, 가입자·수혜자(국민연금 등), 부담금 납부자",
@@ -87,5 +87,491 @@
   "기금별 여유자금 운용 수익률·전략",
   "기금운용계획 변경의 실제 빈도·규모",
   "기금 존치평가 결과의 반영 실태"
- ]
+ ],
+ "process": {
+  "institution_name": "기금 운용 제도",
+  "law_name": "국가재정법",
+  "lanes": [
+   "기금관리주체(부처·공공기관)",
+   "자산운용위원회",
+   "기획재정부",
+   "국무회의·대통령",
+   "국회",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 중기계획·수요전망",
+   "G1 운용계획안 수립",
+   "G2 기재부 협의·조정",
+   "G3 정부안·국회제출",
+   "G4 국회 심의·확정",
+   "G5 조성·집행·운용",
+   "G6 결산·기금평가",
+   "G7 환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "중기사업계획서·자금수요 전망",
+    "lane": "기금관리주체(부처·공공기관)",
+    "stage": "G0 중기계획·수요전망",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기금관리주체",
+    "action": "5개년 사업계획·자금수요 산정",
+    "output_documents": [
+     "중기사업계획서"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제66조(기금운용계획안의 수립)"
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "기금운용계획안 작성",
+    "lane": "기금관리주체(부처·공공기관)",
+    "stage": "G1 운용계획안 수립",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기금관리주체",
+    "action": "수입·지출계획, 자금운용계획 작성",
+    "output_documents": [
+     "기금운용계획안"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제66조(기금운용계획안의 수립)"
+     },
+     {
+      "law": "국가재정법",
+      "article": "제67조(기금운용계획안의 내용)"
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "기획재정부 협의·조정",
+    "lane": "기획재정부",
+    "stage": "G2 기재부 협의·조정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획재정부",
+    "action": "계획안 협의·지출한도 조정",
+    "output_documents": [
+     "협의·조정 결과"
+    ],
+    "blocker": "기금운용계획 변경·조정에 대한 국회 통제가 약하다는 지적이 있다 (현장 검증 필요)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제66조(기금운용계획안의 수립)"
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "계획안 조정 재작성·재협의",
+    "lane": "기금관리주체(부처·공공기관)",
+    "stage": "G2 기재부 협의·조정",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "기금관리주체",
+    "action": "조정 요구 반영·재협의",
+    "blocker": "기재부 조정 요구에 따른 계획안 재작성이 반복된다 (현장 검증 필요)",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제66조(기금운용계획안의 수립)"
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "국무회의 심의·대통령 승인",
+    "lane": "국무회의·대통령",
+    "stage": "G3 정부안·국회제출",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "국무회의·대통령",
+    "action": "정부 기금운용계획안 심의·승인",
+    "output_documents": [
+     "확정 정부계획안"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "대한민국헌법",
+      "article": "제89조(국무회의 심의사항)"
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "기금운용계획안 국회 제출",
+    "lane": "기획재정부",
+    "stage": "G3 정부안·국회제출",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "정부(기획재정부)",
+    "receiver": "국회",
+    "action": "예산안과 함께 계획안 제출",
+    "output_documents": [
+     "기금운용계획안 제출서"
+    ],
+    "deadline": "회계연도 개시 120일 전까지",
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제68조(기금운용계획안의 국회제출)"
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "국회 상임위·예결위 심의",
+    "lane": "국회",
+    "stage": "G4 국회 심의·확정",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "국회 소관 상임위원회·예산결산특별위원회",
+    "action": "기금운용계획안 심사",
+    "output_documents": [
+     "심사보고서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "국회법",
+      "article": "제84조의2(기금운용계획안의 회부 등)"
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "본회의 의결·계획 확정",
+    "lane": "국회",
+    "stage": "G4 국회 심의·확정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국회 본회의",
+    "action": "기금운용계획 의결·확정",
+    "output_documents": [
+     "확정 기금운용계획"
+    ],
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "대한민국헌법",
+      "article": "제54조(예산 심의·확정)"
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "자산운용지침 심의·의결",
+    "lane": "자산운용위원회",
+    "stage": "G5 조성·집행·운용",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "자산운용위원회",
+    "action": "여유자금 자산운용지침 심의",
+    "output_documents": [
+     "자산운용지침"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제76조(자산운용위원회)"
+     },
+     {
+      "law": "국가재정법",
+      "article": "제79조(자산운용지침의 제정)"
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "부담금·출연금·운용수익 기금 조성",
+    "lane": "기금관리주체(부처·공공기관)",
+    "stage": "G5 조성·집행·운용",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기금관리주체",
+    "action": "재원 수납·기금 적립",
+    "output_documents": [
+     "수입 실적"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제67조(기금운용계획안의 내용)"
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "사업비 지출·여유자금 자산운용",
+    "lane": "기금관리주체(부처·공공기관)",
+    "stage": "G5 조성·집행·운용",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "기금관리주체",
+    "action": "사업비 집행·여유자금 운용",
+    "output_documents": [
+     "집행 실적",
+     "운용수익 내역"
+    ],
+    "blocker": "여유자금 운용의 수익성·안정성 균형과 목적 외 전용 논란이 상존한다 (현장 검증 필요)",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제79조(자산운용지침의 제정)"
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "결산·기금운용평가",
+    "lane": "기획재정부",
+    "stage": "G6 결산·기금평가",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기획재정부",
+    "action": "기금 결산·운용 성과평가",
+    "output_documents": [
+     "기금운용평가 보고서",
+     "결산서"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제82조(기금운용의 평가)"
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "기금 존치평가",
+    "lane": "기획재정부",
+    "stage": "G6 결산·기금평가",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기획재정부",
+    "action": "기금 존치·통폐합 여부 평가",
+    "output_documents": [
+     "존치평가 결과"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제82조(기금운용의 평가)"
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "평가결과 차년도 계획 환류",
+    "lane": "기금관리주체(부처·공공기관)",
+    "stage": "G7 환류",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기금관리주체",
+    "action": "평가·존치결과 차년도 계획 반영",
+    "output_documents": [
+     "개선계획"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제82조(기금운용의 평가)"
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "기금 운용·결산 정보 공개",
+    "lane": "정보시스템",
+    "stage": "G5 조성·집행·운용",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "재정정보 공개시스템",
+    "action": "기금 운용·집행 정보 공표",
+    "input_documents": [
+     "집행 실적",
+     "운용수익 내역"
+    ],
+    "output_documents": [
+     "기금 재정정보 공개자료"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제9조(재정정보의 공표)"
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P06",
+    "target": "P07",
+    "type": "message",
+    "label": "계획안 국회 제출"
+   },
+   {
+    "id": "M02",
+    "source": "P11",
+    "target": "S01",
+    "type": "message",
+    "label": "운용·집행 실적 공개"
+   },
+   {
+    "id": "M03",
+    "source": "P12",
+    "target": "P14",
+    "type": "message",
+    "label": "기금운용평가 결과 통보"
+   },
+   {
+    "id": "L01",
+    "source": "P04",
+    "target": "P02",
+    "type": "loop",
+    "label": "수정 계획안 재작성"
+   },
+   {
+    "id": "L02",
+    "source": "P14",
+    "target": "P01",
+    "type": "loop",
+    "label": "평가결과 차년도 환류"
+   }
+  ],
+  "warnings": [
+   "기금운용계획 변경의 국회 통제 범위와 여유자금 운용 실태는 공개자료가 제한적 — 현장 검증 필요"
+  ]
+ }
 }

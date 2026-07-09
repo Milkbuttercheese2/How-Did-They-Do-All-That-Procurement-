@@ -6,7 +6,7 @@
  "priority": 16,
  "whyFirst": "법령·예산·주요 정책이 정부 차원에서 확정되는 관문으로, 행정권 행사의 의사결정 구조를 한 장에 보여준다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "정부의 권한에 속하는 중요 정책을 합의제로 심의해 결정의 신중성과 정당성을 확보한다. 헌법이 정한 사항은 반드시 국무회의 심의를 거치게 하여 대통령의 권한 행사를 절차적으로 통제한다.",
   "stakeholders": "대통령(의장)·국무총리(부의장)·국무위원(각부 장관), 안건을 올리는 중앙행정기관, 차관회의 구성원(국무조정실장·각 부처 차관), 배석 기관장, 정책의 영향을 받는 국민.",
@@ -89,6 +89,389 @@
  "fieldVerification": [
   "국무회의 실제 심의 시간·토론 밀도(운영 추정)",
   "차관회의 조정에서 걸러지는 안건 비율(운영 추정)",
-  "정부 의안관리 시스템 운영 상세"
- ]
+  "정부 의안관리 시스템 운영 상세",
+  "긴급안건의 차관회의 생략 비율과 사유(운영 추정)",
+  "국무회의 의결의 실제 후속 처리(국회 이송·공포·시행) 소요(운영 추정)"
+ ],
+ "process": {
+  "institution_name": "국무회의와 차관회의",
+  "law_name": "대한민국헌법·정부조직법",
+  "lanes": [
+   "주관부처",
+   "관계부처",
+   "국무조정실",
+   "차관회의",
+   "국무회의",
+   "대통령",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 안건 준비",
+   "G1 부처 협의",
+   "G2 차관회의",
+   "G3 국무회의 심의",
+   "G4 재가·처리",
+   "G5 기록·환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "안건 작성·제출",
+    "lane": "주관부처",
+    "stage": "G0 안건 준비",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "주관부처",
+    "receiver": "국무조정실",
+    "action": "안건 작성·제출",
+    "output_documents": [
+     "안건 원안(법령안·정책·예산)"
+    ],
+    "deadline": "내부 목표 14일",
+    "blocker": null,
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "정부조직법",
+      "article": "제12조",
+      "text": "국무위원은 소관 사무에 관하여 국무회의에 의안을 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "의안 접수·검토",
+    "lane": "국무조정실",
+    "stage": "G0 안건 준비",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국무조정실(의안 담당)",
+    "action": "접수·검토",
+    "output_documents": [
+     "의안 접수대장",
+     "검토의견"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국무회의 규정",
+      "article": "의안 제출·처리 관련 조문",
+      "text": "국무회의에 상정할 의안은 사무처가 접수·정리한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "관계부처 협의",
+    "lane": "관계부처",
+    "stage": "G1 부처 협의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "관계부처",
+    "action": "협의",
+    "output_documents": [
+     "관계부처 협의의견"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국무회의 규정",
+      "article": "의안 협의 관련 조문",
+      "text": "상정 안건은 관계부처 협의를 거쳐 이견을 조정한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "이견 조정",
+    "lane": "국무조정실",
+    "stage": "G1 부처 협의",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "국무조정실",
+    "action": "조정·판단",
+    "condition": "부처 간 이견 조정 여부",
+    "output_documents": [
+     "조정결과",
+     "재협의 요청"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "정부조직법",
+      "article": "제20조",
+      "text": "국무조정실은 각 부처의 이견을 조정한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "협의 보완·재협의",
+    "lane": "주관부처",
+    "stage": "G1 부처 협의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "주관부처",
+    "action": "보완",
+    "input_documents": [
+     "재협의 요청"
+    ],
+    "output_documents": [
+     "보완 안건"
+    ],
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "국무회의 규정",
+      "article": "의안 협의 관련 조문",
+      "text": "이견이 조정되지 않은 안건은 보완하여 재협의한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "차관회의 상정",
+    "lane": "국무조정실",
+    "stage": "G2 차관회의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국무조정실",
+    "receiver": "차관회의",
+    "action": "상정",
+    "output_documents": [
+     "차관회의 상정안"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "차관회의 규정",
+      "article": "차관회의 상정 관련 조문",
+      "text": "국무회의에 제출할 의안은 미리 차관회의에 상정한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "차관회의 사전심의",
+    "lane": "차관회의",
+    "stage": "G2 차관회의",
+    "type": "gateway",
+    "status": "current",
+    "progress": 50,
+    "actor": "국무조정실장(차관회의 의장)",
+    "action": "사전심의",
+    "condition": "국무회의 상정 적합 여부",
+    "output_documents": [
+     "차관회의 심의결과"
+    ],
+    "blocker": "일부 부처 이견으로 조정 진행 중",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "차관회의 규정",
+      "article": "차관회의 심의 관련 조문",
+      "text": "차관회의는 국무회의 상정 전 안건을 사전 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "국무회의 상정안 확정",
+    "lane": "국무조정실",
+    "stage": "G2 차관회의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국무조정실",
+    "action": "상정안 확정",
+    "output_documents": [
+     "국무회의 상정안",
+     "안건 목록"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국무회의 규정",
+      "article": "의안 상정 관련 조문",
+      "text": "차관회의를 거친 안건을 국무회의 상정안으로 확정한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "국무회의 심의·의결",
+    "lane": "국무회의",
+    "stage": "G3 국무회의 심의",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "국무회의",
+    "action": "심의·의결",
+    "condition": "구성원 과반 출석, 출석 3분의 2 찬성",
+    "output_documents": [
+     "의결서",
+     "회의록"
+    ],
+    "blocker": "안건 대량 상정으로 개별 심의가 형식화되는 경향(운영 추정)",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "대한민국헌법",
+      "article": "제89조",
+      "text": "헌법 제89조 각 호의 사항은 반드시 국무회의 심의를 거쳐야 한다."
+     },
+     {
+      "law": "국무회의 규정",
+      "article": "의사·의결정족수 관련 조문",
+      "text": "구성원 과반수 출석과 출석 3분의 2 찬성으로 의결한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "대통령 재가",
+    "lane": "대통령",
+    "stage": "G4 재가·처리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "대통령",
+    "action": "재가",
+    "output_documents": [
+     "재가 문서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "대한민국헌법",
+      "article": "제89조",
+      "text": "국무회의 심의를 거친 사항을 대통령이 재가한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "안건 처리(이송·공포·시행)",
+    "lane": "주관부처",
+    "stage": "G4 재가·처리",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "주관부처",
+    "action": "후속 처리",
+    "condition": "안건 유형별 후속(법률안 국회 이송 / 대통령령 공포 / 정책 시행)",
+    "output_documents": [
+     "이송 공문",
+     "공포문",
+     "시행 지침"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "정부조직법",
+      "article": "제12조",
+      "text": "심의·의결된 안건은 유형에 따라 국회 이송·공포·시행으로 처리된다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "의결서·회의록 작성",
+    "lane": "국무조정실",
+    "stage": "G5 기록·환류",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국무조정실(사무처)",
+    "action": "기록 작성",
+    "output_documents": [
+     "의결서",
+     "국무회의 회의록"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "국무회의 규정",
+      "article": "회의록 작성 관련 조문",
+      "text": "국무회의의 의결 사항과 경과는 회의록으로 작성·관리한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "안건·의결 기록 공개",
+    "lane": "정보시스템",
+    "stage": "G5 기록·환류",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "정부 의안관리 시스템",
+    "action": "기록 관리·공개",
+    "input_documents": [
+     "의결서",
+     "회의록"
+    ],
+    "output_documents": [
+     "공개 게시자료"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "국무회의 규정",
+      "article": "의안 관리 관련 조문",
+      "text": "안건과 의결 결과를 정부 의안관리 시스템으로 관리·공개한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "긴급안건 직접 상정",
+    "lane": "국무조정실",
+    "stage": "G2 차관회의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국무조정실",
+    "receiver": "국무회의",
+    "action": "긴급 상정",
+    "output_documents": [
+     "긴급안건 상정 통보"
+    ],
+    "blocker": "긴급 안건에 한해 차관회의 사전심의 생략(운영 추정)",
+    "confidence": 0.73,
+    "legal_basis": [
+     {
+      "law": "차관회의 규정",
+      "article": "긴급 안건 관련 조문",
+      "text": "긴급을 요하는 안건은 차관회의를 생략하고 국무회의에 직접 상정할 수 있다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P06", "type": "sequence", "label": "이견 조정 완료" },
+   { "id": "E05", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P07", "target": "P08", "type": "sequence", "label": "사전심의 통과" },
+   { "id": "E07", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P09", "target": "P10", "type": "sequence", "label": "의결" },
+   { "id": "E09", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P01", "target": "P14", "type": "message", "label": "긴급안건 지정" },
+   { "id": "M02", "source": "P14", "target": "P09", "type": "message", "label": "차관회의 생략 상정" },
+   { "id": "M03", "source": "P12", "target": "P13", "type": "message", "label": "의결서·회의록 공개" },
+   { "id": "L01", "source": "P04", "target": "P05", "type": "loop", "label": "이견 미조정" },
+   { "id": "L02", "source": "P05", "target": "P03", "type": "loop", "label": "재협의" }
+  ],
+  "warnings": []
+ }
 }

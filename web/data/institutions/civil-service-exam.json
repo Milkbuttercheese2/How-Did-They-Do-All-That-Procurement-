@@ -6,7 +6,7 @@
  "priority": 41,
  "whyFirst": "실적주의·공개경쟁이라는 공직 인사의 기본 원리를 보여주는 대표 채용 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "공직에 필요한 인재를 능력과 실적에 따라 공정하게 선발한다. 공개경쟁을 원칙으로 정실·엽관을 배제하고 실적주의를 실현한다. 국민에 대한 균등한 공직 취임 기회 보장도 목표다.",
   "stakeholders": "응시자(수험생), 채용기관(각 부처·지자체), 인사혁신처·시험실시기관, 국민(행정서비스 수요자)",
@@ -82,5 +82,373 @@
   "임용 적체 규모와 평균 대기기간(운영 추정)",
   "가산점·지역인재 우대제도의 현행 기준",
   "경력경쟁채용 비중과 검증 절차"
- ]
+ ],
+ "process": {
+  "institution_name": "공무원 채용 제도",
+  "law_name": "국가공무원법",
+  "lanes": [
+   "응시자",
+   "인사혁신처(시험실시기관)",
+   "면접위원회",
+   "관계기관(신원조회)",
+   "채용·임용기관",
+   "정보시스템(사이버국가고시센터)"
+  ],
+  "stages": [
+   "G0 소요·계획",
+   "G1 공고·접수",
+   "G2 필기전형",
+   "G3 면접전형",
+   "G4 최종합격·명부",
+   "G5 임용추천·검증",
+   "G6 임용"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "결원·소요 인원 산정",
+    "lane": "채용·임용기관",
+    "stage": "G0 소요·계획",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "채용기관",
+    "action": "소요 인원 산정",
+    "output_documents": ["결원 현황", "채용 소요"],
+    "blocker": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "국가공무원법",
+      "article": "제28조",
+      "text": "결원 보충을 위한 신규채용 소요 인원을 산정한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "시험계획 공고",
+    "lane": "인사혁신처(시험실시기관)",
+    "stage": "G1 공고·접수",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "인사혁신처",
+    "action": "시험계획 공고",
+    "output_documents": ["시험 시행계획 공고"],
+    "blocker": null,
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "공무원임용시험령",
+      "article": "시험 공고 관련 조문",
+      "text": "시험의 구분·과목·일정 등 시행계획을 공고한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "원서접수·발표 시스템 게시",
+    "lane": "정보시스템(사이버국가고시센터)",
+    "stage": "G1 공고·접수",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "사이버국가고시센터",
+    "action": "게시·접수 처리",
+    "input_documents": ["시험 시행계획 공고"],
+    "output_documents": ["온라인 접수내역"],
+    "blocker": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "공무원임용시험령",
+      "article": "원서접수 관련 조문",
+      "text": "사이버국가고시센터에서 공고 게시와 원서접수를 처리한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "응시원서 접수",
+    "lane": "응시자",
+    "stage": "G1 공고·접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "응시자",
+    "action": "원서 접수",
+    "output_documents": ["응시원서"],
+    "blocker": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "국가공무원법",
+      "article": "제36조",
+      "text": "응시자격을 갖춘 자가 응시원서를 접수한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "응시자격 확인",
+    "lane": "인사혁신처(시험실시기관)",
+    "stage": "G1 공고·접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "인사혁신처",
+    "action": "자격 확인",
+    "input_documents": ["응시원서"],
+    "output_documents": ["응시자격 확인결과"],
+    "blocker": null,
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "국가공무원법",
+      "article": "제35조, 제36조",
+      "text": "평등 원칙에 따라 응시자격을 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "필기시험 실시",
+    "lane": "인사혁신처(시험실시기관)",
+    "stage": "G2 필기전형",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "인사혁신처",
+    "action": "필기시험 실시",
+    "output_documents": ["필기 채점자료"],
+    "blocker": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "공무원임용시험령",
+      "article": "필기시험 관련 조문",
+      "text": "시험과목에 따라 필기시험을 실시한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "필기 합격자 결정",
+    "lane": "인사혁신처(시험실시기관)",
+    "stage": "G2 필기전형",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "인사혁신처",
+    "action": "합격자 결정",
+    "condition": "필기 합격선 충족 여부",
+    "output_documents": ["필기 합격자 명단"],
+    "blocker": null,
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "공무원임용시험령",
+      "article": "합격결정 관련 조문",
+      "text": "필기시험 성적에 따라 합격자를 결정한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "면접시험 실시",
+    "lane": "면접위원회",
+    "stage": "G3 면접전형",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "면접위원회",
+    "action": "면접 실시",
+    "input_documents": ["필기 합격자 명단"],
+    "output_documents": ["면접 평정표"],
+    "deadline": "면접 시행기간",
+    "blocker": "면접 진행 중(최종 미확정)",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "공무원임용시험령",
+      "article": "면접시험 관련 조문",
+      "text": "필기 합격자를 대상으로 면접시험을 실시한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "최종 합격자 결정·명부 등재",
+    "lane": "인사혁신처(시험실시기관)",
+    "stage": "G4 최종합격·명부",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "인사혁신처",
+    "action": "최종결정·명부 등재",
+    "input_documents": ["면접 평정표", "필기 채점자료"],
+    "output_documents": ["최종 합격자 명단", "채용후보자 명부"],
+    "blocker": "면접 미완료",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "국가공무원법",
+      "article": "제26조",
+      "text": "시험성적·근무성적·능력 실증에 따라 최종 합격자를 결정하고 채용후보자 명부에 등재한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "임용추천",
+    "lane": "인사혁신처(시험실시기관)",
+    "stage": "G5 임용추천·검증",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "인사혁신처",
+    "receiver": "채용·임용기관",
+    "action": "임용 추천",
+    "input_documents": ["채용후보자 명부"],
+    "output_documents": ["임용추천서"],
+    "blocker": "명부 확정 전",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "공무원임용시험령",
+      "article": "채용후보자 명부·추천 관련 조문",
+      "text": "명부 순위와 결원에 따라 임용을 추천한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "신원조회·결격사유 조회",
+    "lane": "관계기관(신원조회)",
+    "stage": "G5 임용추천·검증",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "관계기관",
+    "action": "신원·결격 조회",
+    "output_documents": ["신원조회 회보", "결격사유 조회결과"],
+    "blocker": "추천 전",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국가공무원법",
+      "article": "제33조",
+      "text": "임용 전 결격사유 해당 여부와 신원을 조회한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "임용대기·적체",
+    "lane": "채용·임용기관",
+    "stage": "G5 임용추천·검증",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "채용기관",
+    "action": "임용 대기",
+    "input_documents": ["임용추천서", "신원조회 회보"],
+    "output_documents": ["임용대기자 관리"],
+    "blocker": "채용규모 축소·정원 관리로 임용 적체 발생(운영 추정)",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "국가공무원법",
+      "article": "제28조",
+      "text": "결원·정원 범위에서 임용을 진행하며 그 범위를 넘는 후보자는 대기한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "차순위 재추천 회귀",
+    "lane": "인사혁신처(시험실시기관)",
+    "stage": "G5 임용추천·검증",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "인사혁신처",
+    "action": "차순위 재추천",
+    "input_documents": ["결격·포기 통보"],
+    "output_documents": ["차순위 임용추천서"],
+    "blocker": "결격·임용포기 시 조건부 회귀 단계",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "공무원임용시험령",
+      "article": "명부 순위·추천 관련 조문",
+      "text": "결격·임용포기 등이 발생하면 명부 차순위자를 재추천한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "시보임용",
+    "lane": "채용·임용기관",
+    "stage": "G6 임용",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "채용기관",
+    "action": "시보 임용",
+    "output_documents": ["시보임용장"],
+    "blocker": "임용대기 해소 전",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "국가공무원법",
+      "article": "제29조",
+      "text": "신규채용자는 일정 기간 시보로 임용한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "정규 임용",
+    "lane": "채용·임용기관",
+    "stage": "G6 임용",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "채용기관",
+    "action": "정규 임용",
+    "output_documents": ["임용장"],
+    "blocker": "시보기간 미경과",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "국가공무원법",
+      "article": "제29조",
+      "text": "시보기간의 근무성적이 양호하면 정규 공무원으로 임용한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P09", "target": "P10", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P11", "target": "P13", "type": "sequence", "label": null },
+   { "id": "E12", "source": "P13", "target": "P14", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P02", "target": "S01", "type": "message", "label": "공고 게시" },
+   { "id": "M02", "source": "S01", "target": "P03", "type": "message", "label": "온라인 원서접수" },
+   { "id": "M03", "source": "P06", "target": "P07", "type": "message", "label": "필기합격 통지" },
+   { "id": "L01", "source": "P10", "target": "P12", "type": "loop", "label": "결격·임용포기 시 재추천" },
+   { "id": "L02", "source": "P12", "target": "P09", "type": "loop", "label": "차순위자 임용추천 회귀" }
+  ],
+  "warnings": []
+ }
 }

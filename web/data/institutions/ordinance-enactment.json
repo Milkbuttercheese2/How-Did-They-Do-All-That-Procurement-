@@ -6,7 +6,7 @@
  "priority": 66,
  "whyFirst": "지방 스스로 규범을 만드는 자치입법권을 다룬다. 자치권과 법률우위 원칙이 충돌하는 대표 지점이다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "지자체가 지역 사무를 규율할 자치법규를 제정한다. 법령의 범위에서만 효력을 가지며, 주민 권리 제한·의무 부과에는 법률 위임이 필요하다.",
   "stakeholders": "지방의회(의결), 지방자치단체장(발의·공포), 주민(적용 대상·청구 주체), 행정안전부·상급 지자체(위법 조례 통제), 규제 대상 사업자",
@@ -85,5 +85,551 @@
   "재의요구·대법원 제소의 실제 활용 빈도",
   "위법 조례 시정 요구 처리 관행",
   "조례 비용추계 제도의 운영 실태"
- ]
+ ],
+ "process": {
+  "lanes": [
+   "주민/이해관계자",
+   "지방자치단체장(집행부)",
+   "법제부서·조례규칙심의회",
+   "지방의회",
+   "상급기관(행안부·시·도)",
+   "대법원",
+   "자치법규정보시스템"
+  ],
+  "stages": [
+   "G0 입안",
+   "G1 입법예고",
+   "G2 심의회 심사",
+   "G3 의회 제출·회부",
+   "G4 위원회·본회의 의결",
+   "G5 이송·재의",
+   "G6 제소·확정",
+   "G7 공포·시행"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "조례안 입안(집행부·의원·주민청구)",
+    "lane": "지방자치단체장(집행부)",
+    "stage": "G0 입안",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "단체장·의원·주민",
+    "action": "조례안 입안",
+    "output_documents": [
+     "조례안",
+     "제안이유"
+    ],
+    "deadline": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제28조(조례)"
+     },
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "주민조례청구"
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "비용추계·사전영향분석",
+    "lane": "법제부서·조례규칙심의회",
+    "stage": "G0 입안",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "법제·예산부서",
+    "action": "비용추계·영향분석",
+    "output_documents": [
+     "비용추계서"
+    ],
+    "deadline": null,
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제28조(조례)"
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "입법예고·주민의견 수렴",
+    "lane": "법제부서·조례규칙심의회",
+    "stage": "G1 입법예고",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "법제부서",
+    "action": "입법예고·의견수렴",
+    "output_documents": [
+     "입법예고문",
+     "의견 검토서"
+    ],
+    "deadline": "예고기간",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제28조(조례)"
+     },
+     {
+      "law": "자치법규 입안·심사 지침",
+      "article": "입법예고"
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "주민 의견·주민조례청구 제출",
+    "lane": "주민/이해관계자",
+    "stage": "G1 입법예고",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "주민·이해관계자",
+    "action": "의견·청구 제출",
+    "output_documents": [
+     "주민의견서",
+     "주민조례청구"
+    ],
+    "deadline": null,
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "조례 제정·개폐 청구"
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "조례규칙심의회·법제 심사",
+    "lane": "법제부서·조례규칙심의회",
+    "stage": "G2 심의회 심사",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "조례규칙심의회",
+    "action": "법제 심사",
+    "output_documents": [
+     "법제심사 의견"
+    ],
+    "deadline": null,
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제29조(규칙)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제32조(조례와 규칙의 제정 절차 등)"
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "조례안 의회 제출(발의)",
+    "lane": "지방자치단체장(집행부)",
+    "stage": "G3 의회 제출·회부",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방자치단체장",
+    "action": "조례안 제출",
+    "output_documents": [
+     "의안(조례안)"
+    ],
+    "deadline": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제76조(의안의 발의)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제32조(조례와 규칙의 제정 절차 등)"
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "본회의 보고·소관 위원회 회부",
+    "lane": "지방의회",
+    "stage": "G3 의회 제출·회부",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "의장",
+    "action": "본회의 보고·회부",
+    "output_documents": [
+     "회부서"
+    ],
+    "deadline": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제64조(위원회의 설치)"
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "상임위원회 심사",
+    "lane": "지방의회",
+    "stage": "G4 위원회·본회의 의결",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "소관 상임위원회",
+    "action": "조례안 심사",
+    "output_documents": [
+     "위원회 심사보고서"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제64조(위원회의 설치)"
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "본회의 심의·의결",
+    "lane": "지방의회",
+    "stage": "G4 위원회·본회의 의결",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "본회의",
+    "condition": "재적의원 과반 출석·출석 과반 찬성",
+    "output_documents": [
+     "의결서"
+    ],
+    "deadline": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제28조(조례)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제47조(지방의회의 의결사항)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제73조(의결정족수)"
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "집행부 이송",
+    "lane": "지방의회",
+    "stage": "G5 이송·재의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "의장",
+    "action": "조례안 이송",
+    "output_documents": [
+     "이송 공문"
+    ],
+    "deadline": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제32조(조례와 규칙의 제정 절차 등)"
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "단체장 재의요구 판단",
+    "lane": "지방자치단체장(집행부)",
+    "stage": "G5 이송·재의",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "지방자치단체장",
+    "condition": "이송 후 20일 내 재의요구 여부",
+    "output_documents": [
+     "재의요구서 또는 공포 결정"
+    ],
+    "deadline": "이송 후 20일 내",
+    "blocker": "단체장이 20일 내 재의를 요구(거부권)하거나 상급기관이 위법을 이유로 재의요구를 지시하면 확정이 지연된다",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제32조(조례와 규칙의 제정 절차 등)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제120조(지방자치단체의 장의 재의 요구와 제소)"
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "재의 요구·재의결",
+    "lane": "지방의회",
+    "stage": "G5 이송·재의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "본회의",
+    "action": "재의결(재적 과반 출석·2/3 찬성)",
+    "output_documents": [
+     "재의결 결과"
+    ],
+    "deadline": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제120조(지방자치단체의 장의 재의 요구와 제소)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제32조(조례와 규칙의 제정 절차 등)"
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "상급기관 위법 재의·제소 지시",
+    "lane": "상급기관(행안부·시·도)",
+    "stage": "G6 제소·확정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "행정안전부·시·도지사",
+    "condition": "조례가 법령에 위반되는지 여부",
+    "output_documents": [
+     "재의요구 지시",
+     "제소 지시"
+    ],
+    "deadline": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제192조(지방의회 의결의 재의와 제소)"
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "대법원 제소·판결",
+    "lane": "대법원",
+    "stage": "G6 제소·확정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "대법원",
+    "action": "조례 무효 확인 소송·집행정지",
+    "output_documents": [
+     "대법원 판결"
+    ],
+    "deadline": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제192조(지방의회 의결의 재의와 제소)"
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "조례 공포·시행",
+    "lane": "지방자치단체장(집행부)",
+    "stage": "G7 공포·시행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체장(또는 의장)",
+    "action": "공포·시행",
+    "output_documents": [
+     "공포문"
+    ],
+    "deadline": "이송 후 20일 내",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제32조(조례와 규칙의 제정 절차 등)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제33조(조례와 규칙의 공포 방법 등)"
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "자치법규정보시스템 등재·사후 정비",
+    "lane": "자치법규정보시스템",
+    "stage": "G7 공포·시행",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "법제부서",
+    "action": "등재·위법·중복 조례 정비",
+    "output_documents": [
+     "자치법규정보시스템 등재",
+     "정비 결과"
+    ],
+    "deadline": null,
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "지방자치법",
+      "article": "제33조(조례와 규칙의 공포 방법 등)"
+     },
+     {
+      "law": "지방자치법",
+      "article": "제30조(조례와 규칙의 입법한계)"
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P11",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P04",
+    "target": "P05",
+    "type": "message",
+    "label": "주민의견·조례청구 반영"
+   },
+   {
+    "id": "M02",
+    "source": "P09",
+    "target": "P13",
+    "type": "message",
+    "label": "위법 조례 심사 통보"
+   },
+   {
+    "id": "M03",
+    "source": "P15",
+    "target": "P16",
+    "type": "message",
+    "label": "공포문 자치법규정보시스템 등재"
+   },
+   {
+    "id": "L01",
+    "source": "P11",
+    "target": "P12",
+    "type": "loop",
+    "label": "단체장·상급기관 재의요구"
+   },
+   {
+    "id": "L02",
+    "source": "P12",
+    "target": "P09",
+    "type": "loop",
+    "label": "재의결 재상정"
+   },
+   {
+    "id": "L03",
+    "source": "P16",
+    "target": "P01",
+    "type": "loop",
+    "label": "위법·중복 조례 정비 환류"
+   }
+  ],
+  "warnings": [
+   "재의요구·대법원 제소(제192조)의 실제 활용 빈도와 위법 조례 시정 관행은 현장 검증 필요"
+  ]
+ }
 }

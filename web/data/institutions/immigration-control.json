@@ -6,7 +6,7 @@
  "priority": 96,
  "whyFirst": "국경 관리와 외국인 체류질서의 근간이자, 강제퇴거·보호를 둘러싼 인권 쟁점이 큰 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "국가의 안전과 질서를 지키면서 사람의 국경 이동을 관리한다. 외국인의 입국·체류·출국을 자격에 따라 허용·제한하고, 체류질서를 위반한 외국인에 대한 강제퇴거 등 조치로 이민·체류 행정의 기본틀을 유지한다.",
   "stakeholders": "입·출국하는 내국인과 외국인, 사증 발급을 신청하는 외국인·초청자, 고용주, 법무부 출입국·외국인정책 당국, 재외공관, 항공·항만 운영자",
@@ -89,5 +89,553 @@
   "체류자격 별표(시행령) 최신 개정 내용",
   "미등록 체류자 규모와 단속·자진출국 통계(운영 통계)",
   "출입국·이민관리청 설립 추진 경과"
- ]
+ ],
+ "process": {
+  "institution_name": "출입국관리 제도",
+  "law_name": "출입국관리법",
+  "lanes": [
+   "외국인/초청자",
+   "재외공관",
+   "출입국관리공무원",
+   "출입국·외국인청",
+   "법무부/이의신청기관",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 사증신청",
+   "G1 사증심사·발급",
+   "G2 입국심사",
+   "G3 체류관리",
+   "G4 자격변경·연장",
+   "G5 위반조사",
+   "G6 강제퇴거·이의"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "사증(비자) 발급 신청",
+    "lane": "외국인/초청자",
+    "stage": "G0 사증신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "외국인/초청자",
+    "action": "신청",
+    "output_documents": [
+     "사증발급신청서",
+     "초청장"
+    ],
+    "deadline": "입국 예정 전",
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제7조",
+      "text": "외국인이 입국하려면 유효한 여권과 사증을 가지고 있어야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "사증발급인정서 발급",
+    "lane": "출입국·외국인청",
+    "stage": "G0 사증신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "출입국·외국인청",
+    "receiver": "재외공관",
+    "action": "발급",
+    "output_documents": [
+     "사증발급인정서"
+    ],
+    "deadline": "내부 처리기간",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제7조",
+      "text": "법무부장관은 초청 등의 신청에 따라 사증발급인정서를 발급할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "체류자격·입국목적 심사",
+    "lane": "재외공관",
+    "stage": "G1 사증심사·발급",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "재외공관",
+    "action": "심사",
+    "condition": "체류자격·목적 적정 여부, 발급 또는 거부",
+    "output_documents": [
+     "심사결과"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제7조",
+      "text": "재외공관의 장은 체류자격과 입국목적을 심사하여 사증을 발급하거나 거부한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "사증 발급",
+    "lane": "재외공관",
+    "stage": "G1 사증심사·발급",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "재외공관",
+    "receiver": "외국인/초청자",
+    "action": "발급",
+    "output_documents": [
+     "사증"
+    ],
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제7조",
+      "text": "심사 결과에 따라 재외공관의 장이 사증을 발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "출입국항 입국심사",
+    "lane": "출입국관리공무원",
+    "stage": "G2 입국심사",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "출입국관리공무원",
+    "action": "입국심사",
+    "condition": "입국금지 사유 해당 여부, 여권·사증 유효성",
+    "output_documents": [
+     "입국심사인",
+     "입국신고서"
+    ],
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제12조",
+      "text": "외국인은 입국하려면 출입국항에서 출입국관리공무원의 입국심사를 받아야 한다."
+     },
+     {
+      "law": "출입국관리법",
+      "article": "제11조",
+      "text": "법무부장관은 일정한 사유가 있는 외국인의 입국을 금지할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "입국 불허·송환",
+    "lane": "출입국관리공무원",
+    "stage": "G2 입국심사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국관리공무원",
+    "receiver": "항공·항만 운영자",
+    "action": "송환지시",
+    "output_documents": [
+     "입국불허결정",
+     "송환지시서"
+    ],
+    "blocker": "입국금지 사유 확인 시",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제11조",
+      "text": "입국금지 사유에 해당하는 외국인은 입국을 불허하고 송환할 수 있다."
+     },
+     {
+      "law": "출입국관리법",
+      "article": "제12조",
+      "text": "입국심사 결과 요건을 갖추지 못한 외국인은 입국을 허가하지 아니한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "외국인등록",
+    "lane": "출입국·외국인청",
+    "stage": "G3 체류관리",
+    "type": "task",
+    "status": "risk",
+    "progress": 58,
+    "actor": "출입국·외국인청",
+    "action": "등록",
+    "output_documents": [
+     "외국인등록증"
+    ],
+    "deadline": "입국일부터 90일 내",
+    "blocker": "등록 구비서류 일부 미비",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제31조",
+      "text": "90일을 초과하여 체류하려는 외국인은 외국인등록을 하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "체류자격 부여·체류",
+    "lane": "외국인/초청자",
+    "stage": "G3 체류관리",
+    "type": "task",
+    "status": "current",
+    "progress": 45,
+    "actor": "외국인/초청자",
+    "action": "체류",
+    "input_documents": [
+     "외국인등록증"
+    ],
+    "output_documents": [
+     "체류자격 확인"
+    ],
+    "blocker": "체류자격 요건 정리 중",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제23조",
+      "text": "체류자격을 가지지 아니한 사람이 체류자격을 얻으려면 체류자격 부여를 받아야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "체류기간 연장허가 심사",
+    "lane": "출입국·외국인청",
+    "stage": "G4 자격변경·연장",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "action": "연장심사",
+    "condition": "체류기간 초과 여부, 연장 요건 충족",
+    "output_documents": [
+     "체류기간연장허가"
+    ],
+    "deadline": "체류기간 만료 전",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제25조",
+      "text": "체류기간을 초과하여 계속 체류하려는 외국인은 체류기간 연장허가를 받아야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "체류자격 변경허가",
+    "lane": "출입국·외국인청",
+    "stage": "G4 자격변경·연장",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "action": "변경허가",
+    "input_documents": [
+     "변경허가 신청서"
+    ],
+    "output_documents": [
+     "체류자격변경허가"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제24조",
+      "text": "체류자격과 다른 활동을 하려는 외국인은 체류자격 변경허가를 받아야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "체류질서 위반조사",
+    "lane": "출입국관리공무원",
+    "stage": "G5 위반조사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국관리공무원",
+    "action": "위반조사",
+    "output_documents": [
+     "위반조사서",
+     "용의자 심문조서"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제46조",
+      "text": "강제퇴거 대상자에 해당하는지 조사하기 위하여 위반조사를 한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "통고처분·범칙금",
+    "lane": "출입국·외국인청",
+    "stage": "G5 위반조사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "receiver": "외국인/초청자",
+    "action": "통고처분",
+    "output_documents": [
+     "통고처분서",
+     "범칙금 납부고지"
+    ],
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "출입국관리법 및 하위법령",
+      "article": "통고처분 관련 조문",
+      "text": "출입국사범에 대하여 범칙금 통고처분을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "강제퇴거 대상자 심사·보호",
+    "lane": "출입국·외국인청",
+    "stage": "G6 강제퇴거·이의",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "action": "심사·보호",
+    "condition": "강제퇴거 대상자 해당 여부, 보호 필요성",
+    "output_documents": [
+     "강제퇴거명령서",
+     "보호명령서"
+    ],
+    "blocker": "보호기간 관련 인권 쟁점 검토",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제46조",
+      "text": "강제퇴거 대상자에 해당하면 강제퇴거명령을 할 수 있다."
+     },
+     {
+      "law": "출입국관리법",
+      "article": "제63조",
+      "text": "강제퇴거명령 집행을 위하여 필요하면 외국인을 보호할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "이의신청",
+    "lane": "법무부/이의신청기관",
+    "stage": "G6 강제퇴거·이의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "법무부장관",
+    "action": "이의심사",
+    "input_documents": [
+     "이의신청서"
+    ],
+    "output_documents": [
+     "이의신청 결정"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제60조",
+      "text": "강제퇴거명령에 이의가 있는 외국인은 법무부장관에게 이의신청을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "강제퇴거 집행 또는 출국명령·자진출국",
+    "lane": "출입국·외국인청",
+    "stage": "G6 강제퇴거·이의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "action": "집행",
+    "output_documents": [
+     "강제퇴거 집행기록",
+     "출국명령서"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제46조",
+      "text": "강제퇴거명령을 받은 사람은 강제퇴거되거나 출국명령에 따라 출국한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "하이코리아·출입국정보시스템 관리",
+    "lane": "정보시스템",
+    "stage": "G3 체류관리",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국정보시스템",
+    "action": "기록·공개",
+    "input_documents": [
+     "외국인등록증",
+     "체류허가"
+    ],
+    "output_documents": [
+     "체류정보 기록"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "출입국관리법 및 하위법령",
+      "article": "정보관리 관련 조문",
+      "text": "사증·체류·등록 정보를 출입국정보시스템에 기록·관리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P05",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P13",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P02",
+    "target": "P04",
+    "type": "message",
+    "label": "사증발급인정서"
+   },
+   {
+    "id": "M02",
+    "source": "P07",
+    "target": "S01",
+    "type": "message",
+    "label": "외국인등록 정보"
+   },
+   {
+    "id": "M03",
+    "source": "P13",
+    "target": "P14",
+    "type": "message",
+    "label": "이의신청 대상 통지"
+   },
+   {
+    "id": "L01",
+    "source": "P10",
+    "target": "P08",
+    "type": "loop",
+    "label": "체류자격 변경·갱신"
+   },
+   {
+    "id": "L02",
+    "source": "P14",
+    "target": "P13",
+    "type": "loop",
+    "label": "이의신청 재심사"
+   }
+  ],
+  "warnings": []
+ }
 }

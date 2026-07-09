@@ -6,7 +6,7 @@
  "priority": 61,
  "whyFirst": "한정된 주택을 어떤 기준으로 배분할지가 핵심인 대표적 배분·추첨형 제도다. 가점·추첨·특별공급을 둘러싼 형평 논쟁이 제도설계 쟁점을 잘 보여준다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "한정된 신규 주택을 실수요자·무주택자에게 공정하게 배분한다. 투기 수요를 억제하고 주거복지 대상(신혼·다자녀·생애최초 등)에게 기회를 배분하는 것이 목적이다.",
   "stakeholders": "청약통장 가입자·무주택자, 신혼부부·다자녀·생애최초 등 특별공급 대상, 사업주체(건설사·공공), 국토교통부, 한국부동산원(청약홈), 지방자치단체",
@@ -87,5 +87,547 @@
   "규제지역별 가점제·추첨제 비율과 거주요건 현행 기준",
   "특별공급 유형별 배정 비율의 최신 개정 확인",
   "부적격 당첨·자격 부정 적발 규모와 검증 실태(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "주택청약 제도",
+  "law_name": "주택법",
+  "lanes": [
+   "청약자/이해관계자",
+   "사업주체(건설사·공공)",
+   "시장·군수·구청장",
+   "한국부동산원",
+   "청약홈(정보시스템)",
+   "국토교통부장관"
+  ],
+  "stages": [
+   "G0 청약자격형성",
+   "G1 모집공고",
+   "G2 청약접수",
+   "G3 순위·당첨자선정",
+   "G4 자격검증",
+   "G5 계약",
+   "G6 사후관리"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "청약통장 가입·납입",
+    "lane": "청약자/이해관계자",
+    "stage": "G0 청약자격형성",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "청약통장 가입자",
+    "output_documents": [
+     "주택청약종합저축 가입내역"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "주택법",
+      "article": "제56조",
+      "text": "입주자저축(청약통장) 가입·납입으로 청약 자격을 형성한다."
+     }
+    ],
+    "action": "가입·납입"
+   },
+   {
+    "id": "P02",
+    "name": "규제지역·공급기준 확인",
+    "lane": "국토교통부장관",
+    "stage": "G0 청약자격형성",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국토교통부장관",
+    "output_documents": [
+     "규제지역 지정",
+     "공급기준"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주택법",
+      "article": "제63조·제63조의2",
+      "text": "투기과열지구·조정대상지역 지정으로 가점·추첨·전매 기준을 정한다."
+     },
+     {
+      "law": "주택법",
+      "article": "제57조",
+      "text": "분양가상한제 적용주택의 공급기준을 정한다."
+     }
+    ],
+    "action": "기준 확인"
+   },
+   {
+    "id": "P03",
+    "name": "입주자모집공고(안) 작성",
+    "lane": "사업주체(건설사·공공)",
+    "stage": "G1 모집공고",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "사업주체",
+    "output_documents": [
+     "입주자모집공고(안)"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "주택법",
+      "article": "제54조",
+      "text": "사업주체는 주택공급을 위해 입주자모집공고를 작성한다."
+     },
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "입주자모집공고 기준",
+      "text": "공급대상·자격·일정을 공고안에 담는다."
+     }
+    ],
+    "action": "공고안 작성"
+   },
+   {
+    "id": "P04",
+    "name": "입주자모집공고 승인",
+    "lane": "시장·군수·구청장",
+    "stage": "G1 모집공고",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "시장·군수·구청장",
+    "output_documents": [
+     "입주자모집공고 승인"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "주택법",
+      "article": "제54조",
+      "text": "시장·군수·구청장이 입주자모집공고를 승인한다."
+     },
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "공고 승인기준",
+      "text": "자격요건·거주요건 등을 확인하여 승인한다."
+     }
+    ],
+    "action": "승인",
+    "condition": "자격·거주요건 등 적합 여부"
+   },
+   {
+    "id": "P05",
+    "name": "입주자모집공고 게시",
+    "lane": "청약홈(정보시스템)",
+    "stage": "G1 모집공고",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "한국부동산원(청약홈)",
+    "output_documents": [
+     "게시된 입주자모집공고"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "모집공고 게시",
+      "text": "승인된 입주자모집공고를 청약홈에 게시·공개한다."
+     }
+    ],
+    "action": "게시"
+   },
+   {
+    "id": "P06",
+    "name": "청약 자격·순위 확인",
+    "lane": "청약자/이해관계자",
+    "stage": "G2 청약접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "청약 신청자",
+    "output_documents": [
+     "무주택 확인",
+     "순위 확인"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "순위·자격요건",
+      "text": "무주택기간·거주기간·통장기간 등으로 순위·자격을 확인한다."
+     }
+    ],
+    "action": "자격 확인"
+   },
+   {
+    "id": "P07",
+    "name": "청약 접수(일반·특별공급 신청)",
+    "lane": "청약홈(정보시스템)",
+    "stage": "G2 청약접수",
+    "type": "system",
+    "status": "current",
+    "progress": 50,
+    "actor": "한국부동산원(청약홈)",
+    "output_documents": [
+     "청약 접수내역"
+    ],
+    "deadline": "공고상 청약접수 기간",
+    "blocker": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "주택법",
+      "article": "제54조",
+      "text": "청약홈을 통해 일반·특별공급 청약을 접수한다."
+     },
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "청약 접수",
+      "text": "일반공급·특별공급 유형별로 청약을 전산 접수한다."
+     }
+    ],
+    "action": "접수"
+   },
+   {
+    "id": "P08",
+    "name": "순위·가점·추첨 산정",
+    "lane": "한국부동산원",
+    "stage": "G3 순위·당첨자선정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국부동산원",
+    "output_documents": [
+     "가점 산정표",
+     "추첨 결과"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "가점제·추첨제",
+      "text": "순위·가점제 또는 추첨제로 당첨자를 선정한다."
+     }
+    ],
+    "action": "당첨자 산정",
+    "condition": "가점제/추첨제 배분비율 적용"
+   },
+   {
+    "id": "P09",
+    "name": "당첨자 발표",
+    "lane": "한국부동산원",
+    "stage": "G3 순위·당첨자선정",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국부동산원",
+    "output_documents": [
+     "당첨자 명단"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "당첨자 발표",
+      "text": "선정된 당첨자를 청약홈에 발표한다."
+     }
+    ],
+    "action": "발표"
+   },
+   {
+    "id": "P10",
+    "name": "당첨자 서류심사·부적격 검증",
+    "lane": "사업주체(건설사·공공)",
+    "stage": "G4 자격검증",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업주체",
+    "output_documents": [
+     "자격서류 심사결과",
+     "부적격 통보"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "자격 검증",
+      "text": "무주택·소득·자산 등 당첨자 자격서류를 심사하고 부적격을 가린다."
+     }
+    ],
+    "action": "자격 검증",
+    "condition": "당첨자 자격 적격 여부"
+   },
+   {
+    "id": "P11",
+    "name": "부적격 소명",
+    "lane": "청약자/이해관계자",
+    "stage": "G4 자격검증",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "부적격 당첨자",
+    "output_documents": [
+     "소명서",
+     "증빙서류"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "부적격 소명",
+      "text": "부적격 통보를 받은 당첨자는 소명·증빙을 제출한다."
+     }
+    ],
+    "action": "소명"
+   },
+   {
+    "id": "P12",
+    "name": "예비입주자 승계·재선정",
+    "lane": "한국부동산원",
+    "stage": "G4 자격검증",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "한국부동산원",
+    "output_documents": [
+     "예비입주자 명단",
+     "승계 결과"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "주택공급에 관한 규칙",
+      "article": "예비입주자 승계",
+      "text": "부적격·계약포기 물량은 예비입주자 순번으로 승계·재선정한다."
+     }
+    ],
+    "action": "승계·재선정"
+   },
+   {
+    "id": "P13",
+    "name": "분양계약 체결",
+    "lane": "사업주체(건설사·공공)",
+    "stage": "G5 계약",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업주체·당첨자",
+    "output_documents": [
+     "분양계약서"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "주택법",
+      "article": "제54조",
+      "text": "적격 당첨자와 분양계약을 체결하여 주택을 공급한다."
+     }
+    ],
+    "action": "계약"
+   },
+   {
+    "id": "P14",
+    "name": "전매제한·실거주 의무 관리",
+    "lane": "시장·군수·구청장",
+    "stage": "G6 사후관리",
+    "type": "task",
+    "status": "risk",
+    "progress": 50,
+    "actor": "시장·군수·구청장",
+    "output_documents": [
+     "전매제한 관리",
+     "거주의무 확인"
+    ],
+    "deadline": null,
+    "blocker": "위장전입 등 자격부정 검증 부담(운영 추정)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "주택법",
+      "article": "제57조",
+      "text": "분양가상한제 적용주택은 전매제한·거주의무 기준을 적용한다."
+     }
+    ],
+    "action": "사후 관리"
+   },
+   {
+    "id": "P15",
+    "name": "입주",
+    "lane": "청약자/이해관계자",
+    "stage": "G6 사후관리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "입주자",
+    "output_documents": [
+     "입주 확인"
+    ],
+    "deadline": null,
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주택법",
+      "article": "제54조",
+      "text": "분양계약과 대금 납부 후 입주한다."
+     }
+    ],
+    "action": "입주"
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P13",
+    "type": "sequence",
+    "label": "적격"
+   },
+   {
+    "id": "E11",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": "소명·재선정"
+   },
+   {
+    "id": "M01",
+    "source": "P04",
+    "target": "P05",
+    "type": "message",
+    "label": "공고 승인"
+   },
+   {
+    "id": "M02",
+    "source": "P07",
+    "target": "P08",
+    "type": "message",
+    "label": "청약 접수내역"
+   },
+   {
+    "id": "M03",
+    "source": "P09",
+    "target": "P10",
+    "type": "message",
+    "label": "당첨자 명단"
+   },
+   {
+    "id": "L01",
+    "source": "P10",
+    "target": "P11",
+    "type": "loop",
+    "label": "부적격 통보"
+   },
+   {
+    "id": "L02",
+    "source": "P12",
+    "target": "P13",
+    "type": "loop",
+    "label": "예비입주자 승계"
+   }
+  ],
+  "warnings": []
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 46,
  "whyFirst": "쿼터 결정·사업주 허가·근로계약이라는 인력 도입 관리 구조를 보여주는 대표 인허가형 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "내국인 구인이 어려운 중소·영세 사업장의 인력난을 합법적 외국인력 도입으로 해소한다. 도입 규모(쿼터)를 관리하고 근로조건을 보호해 불법고용과 인권침해를 줄인다. 내국인 일자리 보호도 원칙이다.",
   "stakeholders": "외국인력을 원하는 사업주(제조·농축산·건설 등), 입국 외국인근로자, 송출국·송출기관, 고용노동부·산업인력공단, 지역 노동시장",
@@ -82,5 +82,366 @@
   "사업장 변경 허용 사유·횟수 최신 기준",
   "사업주 부담 보험·수수료 항목(운영 추정)",
   "숙련기능인력(E-7-4) 전환 요건과 규모"
- ]
+ ],
+ "process": {
+  "institution_name": "외국인고용허가 제도",
+  "law_name": "외국인근로자의 고용 등에 관한 법률",
+  "lanes": [
+   "외국인력정책위원회",
+   "사업주",
+   "고용노동부/고용센터",
+   "한국산업인력공단(EPS)",
+   "외국인근로자",
+   "법무부(출입국)",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 쿼터결정",
+   "G1 내국인구인",
+   "G2 고용허가신청",
+   "G3 추천·선정",
+   "G4 허가·계약",
+   "G5 입국·배치",
+   "G6 체류·사후관리"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "연간 도입 규모·업종 심의·의결",
+    "lane": "외국인력정책위원회",
+    "stage": "G0 쿼터결정",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "외국인력정책위원회",
+    "action": "쿼터 심의·의결",
+    "condition": "업종별 도입 규모·송출국 결정",
+    "output_documents": ["연간 도입계획", "쿼터 배정"],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제4조",
+      "text": "외국인력정책위원회가 연간 도입 규모·업종을 심의·의결한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "내국인 구인노력(구인신청)",
+    "lane": "사업주",
+    "stage": "G1 내국인구인",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "사업주",
+    "receiver": "고용노동부/고용센터",
+    "action": "구인신청",
+    "output_documents": ["내국인 구인신청서"],
+    "deadline": "일정 기간 구인",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제6조",
+      "text": "사업주는 일정 기간 내국인 구인노력을 해야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "내국인 구인노력 확인",
+    "lane": "고용노동부/고용센터",
+    "stage": "G1 내국인구인",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "고용센터",
+    "action": "구인 확인",
+    "condition": "내국인 채용 실패 확인 여부",
+    "output_documents": ["내국인 구인확인서"],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제6조",
+      "text": "고용센터는 내국인 구인노력 이행을 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "고용허가 신청",
+    "lane": "사업주",
+    "stage": "G2 고용허가신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "사업주",
+    "receiver": "고용노동부/고용센터",
+    "action": "고용허가 신청",
+    "output_documents": ["고용허가 신청서"],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제8조",
+      "text": "사업주는 고용센터에 외국인 고용허가를 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "쿼터·점수제 요건 심사",
+    "lane": "고용노동부/고용센터",
+    "stage": "G2 고용허가신청",
+    "type": "gateway",
+    "status": "current",
+    "progress": 55,
+    "actor": "고용센터",
+    "action": "요건 심사",
+    "condition": "쿼터 범위·사업장 점수제 요건 충족 여부",
+    "output_documents": ["허가요건 심사 결과"],
+    "blocker": "쿼터 소진·현장 수요 불일치(운영 추정)",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제8조",
+      "text": "도입 규모와 사업장 요건에 따라 고용허가 요건을 심사한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "외국인 구직명부 추천",
+    "lane": "한국산업인력공단(EPS)",
+    "stage": "G3 추천·선정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국산업인력공단",
+    "receiver": "사업주",
+    "action": "구직자 추천",
+    "input_documents": ["외국인 구직명부"],
+    "output_documents": ["추천 후보자 명단"],
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제8조",
+      "text": "공단은 구직명부에서 적격 외국인력을 추천한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "근로자 선정",
+    "lane": "사업주",
+    "stage": "G3 추천·선정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업주",
+    "action": "선정",
+    "input_documents": ["추천 후보자 명단"],
+    "output_documents": ["선정 결과"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제8조",
+      "text": "사업주는 추천된 후보자 중에서 근로자를 선정한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "고용허가서 발급·표준근로계약 체결",
+    "lane": "고용노동부/고용센터",
+    "stage": "G4 허가·계약",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "고용센터·한국산업인력공단",
+    "action": "허가서 발급·계약",
+    "output_documents": ["고용허가서", "표준근로계약서"],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제8조·제9조",
+      "text": "고용허가서를 발급하고 표준근로계약을 체결한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "사증 발급·입국",
+    "lane": "법무부(출입국)",
+    "stage": "G5 입국·배치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "법무부",
+    "action": "사증 발급",
+    "input_documents": ["고용허가서", "표준근로계약서"],
+    "output_documents": ["비전문취업(E-9) 사증", "입국 기록"],
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "비전문취업(E-9) 사증 관련 조문",
+      "text": "고용허가에 근거해 비전문취업 사증을 발급하고 입국을 허가한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "취업교육·건강검진·사업장 배치",
+    "lane": "한국산업인력공단(EPS)",
+    "stage": "G5 입국·배치",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국산업인력공단",
+    "action": "취업교육·배치",
+    "output_documents": ["취업교육 수료", "건강검진 결과", "사업장 배치"],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제11조",
+      "text": "입국 근로자는 취업교육을 이수하고 사업장에 배치된다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "고용변동 신고",
+    "lane": "사업주",
+    "stage": "G6 체류·사후관리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업주",
+    "receiver": "고용노동부/고용센터",
+    "action": "고용변동 신고",
+    "output_documents": ["고용변동 신고서"],
+    "deadline": "사유 발생 15일 이내",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률 시행령",
+      "article": "고용변동 신고 관련 조문",
+      "text": "고용변동 사유 발생 시 15일 이내 신고한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "사업장 변경 제한·관리",
+    "lane": "고용노동부/고용센터",
+    "stage": "G6 체류·사후관리",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "고용센터",
+    "action": "변경 심사·관리",
+    "condition": "사업장 변경 사유·횟수 제한 충족 여부",
+    "output_documents": ["사업장 변경 허가·불허", "관리 조치"],
+    "blocker": "이동권 갈등·변경 사유 제한(운영 추정)",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제25조",
+      "text": "사업장 변경은 법정 사유·횟수 내에서만 허용한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "재고용·체류연장",
+    "lane": "사업주",
+    "stage": "G6 체류·사후관리",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "사업주·한국산업인력공단",
+    "action": "재고용 신청",
+    "output_documents": ["재고용 허가", "체류연장 승인"],
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "제18조·제12조",
+      "text": "취업활동 기간 범위에서 재고용·체류연장을 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "체류기간 만료·출국",
+    "lane": "법무부(출입국)",
+    "stage": "G6 체류·사후관리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "법무부",
+    "action": "출국 확인",
+    "output_documents": ["출국 기록"],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "체류기간·출국 관련 조문",
+      "text": "체류기간이 만료되면 외국인근로자는 출국한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "EPS 시스템 신청·배정·관리",
+    "lane": "정보시스템",
+    "stage": "G2 고용허가신청",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "고용허가제(EPS) 시스템",
+    "action": "신청·배정 처리",
+    "input_documents": ["고용허가 신청서", "고용변동 신고서"],
+    "output_documents": ["신청·배정·관리 이력"],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "외국인근로자의 고용 등에 관한 법률",
+      "article": "고용허가 절차 관련 조문",
+      "text": "EPS 시스템으로 신청·배정·관리를 처리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P09", "target": "P10", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "E12", "source": "P12", "target": "P14", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P04", "target": "S01", "type": "message", "label": "EPS 신청 접수" },
+   { "id": "M02", "source": "P08", "target": "S01", "type": "message", "label": "허가·계약 등록" },
+   { "id": "M03", "source": "P11", "target": "S01", "type": "message", "label": "고용변동 신고 접수" },
+   { "id": "L01", "source": "P12", "target": "P13", "type": "loop", "label": "재고용·체류연장" },
+   { "id": "L02", "source": "P13", "target": "P10", "type": "loop", "label": "재고용 배치" }
+  ],
+  "warnings": []
+ }
 }

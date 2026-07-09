@@ -6,7 +6,7 @@
  "priority": 81,
  "whyFirst": "소액·다수 피해를 일괄 처리하는 대체적 분쟁해결의 대표 형태다. 개시 요건·조정 효력·불참자 확대라는 쟁점이 뚜렷해 지도로 그릴 가치가 크다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "동일·유사한 피해가 다수에게 발생한 사건을 하나로 묶어 일괄 조정한다. 개별 소송의 시간·비용 부담을 줄이고, 소액·다수 피해를 신속하게 구제하며 사업자의 자발적 피해보상을 유도하는 것이 목적이다.",
   "stakeholders": "같은 유형 피해를 입은 다수 소비자·정보주체(신청 당사자), 피해를 유발한 사업자·개인정보처리자, 조정을 맡는 소비자분쟁조정위원회·개인정보 분쟁조정위원회, 국가·지자체·소비자단체 등 의뢰 주체",
@@ -82,5 +82,487 @@
   "집단분쟁조정 대상 사건 요건(피해자 수 등)의 최신 기준",
   "조정 성립률·사업자 이행률(운영 추정)",
   "불참자 보상 확대 적용의 실제 사례(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "집단분쟁조정 제도",
+  "law_name": "소비자기본법·개인정보 보호법",
+  "lanes": [
+   "신청·의뢰 주체(소비자·단체·국가)",
+   "피해 소비자/정보주체",
+   "한국소비자원/개인정보위(사무국)",
+   "분쟁조정위원회",
+   "사업자/개인정보처리자",
+   "법원(후속)",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 피해확인·요건",
+   "G1 의뢰·신청",
+   "G2 개시의결·공고",
+   "G3 참가·대표선임",
+   "G4 심의·조정결정",
+   "G5 보상권고·이행",
+   "G6 소송연계"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "동일·유사 피해 다수 발생 확인·집계",
+    "lane": "신청·의뢰 주체(소비자·단체·국가)",
+    "stage": "G0 피해확인·요건",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "소비자단체·소비자원",
+    "action": "피해 집계",
+    "output_documents": [
+     "피해 현황 자료"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "동일·유사한 피해가 다수 소비자에게 발생한 사건을 집단분쟁조정 대상으로 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "집단분쟁조정 요건 검토(50인 이상 등)",
+    "lane": "신청·의뢰 주체(소비자·단체·국가)",
+    "stage": "G0 피해확인·요건",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "소비자단체·소비자원",
+    "action": "요건 검토",
+    "condition": "피해자 수(개인정보 50명 이상 등)·공통 쟁점 충족 여부",
+    "output_documents": [
+     "요건 검토서"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "개인정보 보호법",
+      "article": "제49조",
+      "text": "50명 이상 정보주체에게 같은 사안의 피해가 발생하는 등 요건을 갖추면 집단분쟁조정을 의뢰·신청할 수 있다."
+     },
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "다수 소비자에게 같은 원인의 피해가 발생한 사건에 대해 집단분쟁조정을 의뢰·신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "집단분쟁조정 의뢰·신청서 제출",
+    "lane": "신청·의뢰 주체(소비자·단체·국가)",
+    "stage": "G1 의뢰·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국가·지자체·소비자단체·당사자",
+    "receiver": "분쟁조정위원회",
+    "action": "의뢰·신청",
+    "output_documents": [
+     "집단분쟁조정 의뢰·신청서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "국가·지방자치단체·소비자원·소비자단체·사업자 또는 당사자는 집단분쟁조정을 의뢰·신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "요건 심사·절차 개시 의결",
+    "lane": "분쟁조정위원회",
+    "stage": "G2 개시의결·공고",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "분쟁조정위원회",
+    "action": "개시 의결",
+    "condition": "대상 요건 충족 여부",
+    "output_documents": [
+     "개시 결정"
+    ],
+    "deadline": "의뢰·신청 후 개시 결정",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "위원회는 요건을 갖춘 사건에 대해 집단분쟁조정 절차의 개시를 의결한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "개시 사실 공고",
+    "lane": "한국소비자원/개인정보위(사무국)",
+    "stage": "G2 개시의결·공고",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "사무국",
+    "receiver": "피해 소비자/정보주체",
+    "action": "개시 공고",
+    "input_documents": [
+     "개시 결정"
+    ],
+    "output_documents": [
+     "개시 공고문"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "소비자기본법 시행령",
+      "article": "집단분쟁조정 공고",
+      "text": "위원회는 절차 개시 사실을 공고하여 추가 피해자의 참가 신청을 받는다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "추가 피해자 참가 신청 접수",
+    "lane": "피해 소비자/정보주체",
+    "stage": "G3 참가·대표선임",
+    "type": "task",
+    "status": "risk",
+    "progress": 40,
+    "actor": "피해 소비자/정보주체",
+    "receiver": "사무국",
+    "action": "참가 신청",
+    "output_documents": [
+     "참가 신청서"
+    ],
+    "deadline": "공고에서 정한 참가 기간",
+    "blocker": "참가 신청이 저조하면 대표성·구제 범위가 좁아진다(운영 추정)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "소비자기본법 시행령",
+      "article": "참가 신청",
+      "text": "공고 기간 내 추가 피해자는 집단분쟁조정 절차에 참가를 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "대표당사자 선임",
+    "lane": "피해 소비자/정보주체",
+    "stage": "G3 참가·대표선임",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "피해 소비자/정보주체",
+    "action": "대표 선임",
+    "output_documents": [
+     "대표당사자 선임서"
+    ],
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조의2",
+      "text": "당사자 중에서 절차를 대표할 대표당사자를 선임할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "사실조사·심의",
+    "lane": "분쟁조정위원회",
+    "stage": "G4 심의·조정결정",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "분쟁조정위원회",
+    "action": "사실조사·심의",
+    "input_documents": [
+     "피해 현황 자료",
+     "참가 신청서"
+    ],
+    "output_documents": [
+     "심의자료",
+     "조사 결과"
+    ],
+    "deadline": "개시 후 30일 내 심의(연장 가능)",
+    "blocker": "쟁점·손해액 산정 심의 진행 중",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "위원회는 집단분쟁조정을 위해 사실조사를 하고 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "조정 결정(보상안 제시)·통지",
+    "lane": "분쟁조정위원회",
+    "stage": "G4 심의·조정결정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "분쟁조정위원회",
+    "receiver": "당사자",
+    "action": "조정 결정",
+    "condition": "보상 범위·금액 결정",
+    "output_documents": [
+     "조정 결정서",
+     "보상안"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "위원회는 집단분쟁조정 결정을 하여 당사자에게 보상안을 제시·통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "수락 여부 결정",
+    "lane": "사업자/개인정보처리자",
+    "stage": "G5 보상권고·이행",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업자·당사자",
+    "action": "수락 여부",
+    "condition": "조정 결정 수락 여부",
+    "output_documents": [
+     "수락서·거부 통지"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "당사자가 조정 결정을 수락하면 재판상 화해의 효력이 생긴다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "보상계획서 제출(불참자 확대 적용)",
+    "lane": "사업자/개인정보처리자",
+    "stage": "G5 보상권고·이행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업자·개인정보처리자",
+    "receiver": "분쟁조정위원회",
+    "action": "보상계획 제출",
+    "output_documents": [
+     "보상계획서"
+    ],
+    "blocker": "불참자 확대 적용이 권고에 그쳐 이행되지 않을 수 있다(운영 추정)",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "위원회는 사업자에게 조정에 참가하지 않은 피해자에 대한 보상계획서 제출을 권고할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "재판상 화해 효력·보상 이행",
+    "lane": "사업자/개인정보처리자",
+    "stage": "G5 보상권고·이행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업자·개인정보처리자",
+    "receiver": "피해 소비자/정보주체",
+    "action": "보상 이행",
+    "input_documents": [
+     "수락서",
+     "보상계획서"
+    ],
+    "output_documents": [
+     "보상·환급 내역",
+     "이행 확인"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "수락된 조정 결정은 재판상 화해의 효력을 가지며 사업자는 이에 따라 보상을 이행한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "불수락 시 소송 제기(단체소송 등)",
+    "lane": "법원(후속)",
+    "stage": "G6 소송연계",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "소비자단체·피해자·법원",
+    "action": "소송 제기",
+    "output_documents": [
+     "소장",
+     "판결"
+    ],
+    "blocker": "조정 불성립 시 소송으로 이행하는 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제70조",
+      "text": "조정이 성립되지 않으면 소비자단체소송 등 소송으로 이행할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "사건 기록·공고 게시 시스템",
+    "lane": "정보시스템",
+    "stage": "G2 개시의결·공고",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "위원회 정보시스템",
+    "action": "기록·게시",
+    "input_documents": [
+     "의뢰·신청서",
+     "개시 공고문"
+    ],
+    "output_documents": [
+     "사건 기록",
+     "공고 게시자료"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "소비자기본법 시행령",
+      "article": "공고·기록",
+      "text": "집단분쟁조정 사건과 공고 내용을 시스템에 기록·게시한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": "요건 충족"
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": "개시 의결"
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": "심의 종결"
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P12",
+    "type": "sequence",
+    "label": "수락"
+   },
+   {
+    "id": "M01",
+    "source": "P05",
+    "target": "S01",
+    "type": "message",
+    "label": "개시 공고 게시"
+   },
+   {
+    "id": "M02",
+    "source": "P09",
+    "target": "P11",
+    "type": "message",
+    "label": "불참자 보상계획 권고"
+   },
+   {
+    "id": "M03",
+    "source": "P03",
+    "target": "S01",
+    "type": "message",
+    "label": "신청 접수 등록"
+   },
+   {
+    "id": "L01",
+    "source": "P09",
+    "target": "P06",
+    "type": "loop",
+    "label": "참가자 추가 모집 재개"
+   },
+   {
+    "id": "L02",
+    "source": "P10",
+    "target": "P13",
+    "type": "loop",
+    "label": "불수락 시 소송 이행"
+   }
+  ],
+  "warnings": []
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 88,
  "whyFirst": "국가가 보증하는 디지털 신원의 기반이다. 모바일 운전면허증·주민등록증으로 국민이 직접 체감하며 디지털 신원생태계의 관문이 된다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "실물 신분증을 스마트폰에 담아 언제나 본인임을 증명하게 한다. 위·변조를 막고, 온·오프라인에서 필요한 정보만 골라 제출(선택적 제공)하게 해 프라이버시를 지키며 신원확인을 편리하게 하는 것이 목적이다.",
   "stakeholders": "신분증을 발급·이용하는 국민, 발급·운영하는 행정안전부·경찰청 등 발급기관, 신원을 확인하는 검증기관(관공서·금융·통신·주류판매 등), 시스템 운영지원기관(한국조폐공사 등), 개인정보 감독기관.",
@@ -87,5 +87,324 @@
   "모바일 신분증 5종(주민등록·운전면허·장애인·국가보훈·외국인등록) 발급 현황",
   "검증 인프라·민간 수용처 확대 실태(운영 추정)",
   "분실·해킹 대응 및 재발급 실무"
- ]
+ ],
+ "process": {
+  "institution_name": "모바일 신분증",
+  "law_name": "주민등록법",
+  "lanes": [
+   "신청인(국민)",
+   "발급기관(행정안전부·주민센터)",
+   "경찰청(도로교통공단)",
+   "운영기관(한국조폐공사)",
+   "검증기관",
+   "신원확인시스템"
+  ],
+  "stages": [
+   "G0 신청",
+   "G1 본인확인",
+   "G2 발급",
+   "G3 저장",
+   "G4 제시·검증",
+   "G5 선택제공",
+   "G6 분실·정지",
+   "G7 갱신·재발급"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "모바일 신분증 발급 신청",
+    "lane": "신청인(국민)",
+    "stage": "G0 신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "신청인",
+    "receiver": "발급기관(행정안전부·주민센터)",
+    "action": "발급 신청",
+    "output_documents": ["발급 신청서"],
+    "confidence": 0.75,
+    "legal_basis": [
+     { "law": "주민등록법", "article": "제25조", "text": "주민은 주민등록증을 모바일 형태로 발급받기 위해 신청한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "실물 신분증 대면확인 접수",
+    "lane": "발급기관(행정안전부·주민센터)",
+    "stage": "G0 신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "발급기관",
+    "action": "대면확인 접수",
+    "input_documents": ["실물 주민등록증·운전면허증"],
+    "output_documents": ["접수 확인"],
+    "confidence": 0.74,
+    "legal_basis": [
+     { "law": "주민등록법", "article": "제25조", "text": "발급기관은 신청인의 실물 신분증으로 대면확인을 접수한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "본인확인(IC 신분증·대면)",
+    "lane": "발급기관(행정안전부·주민센터)",
+    "stage": "G1 본인확인",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "발급기관",
+    "action": "본인확인",
+    "condition": "IC 주민등록증·대면확인 등 본인확인 성공 여부",
+    "output_documents": ["본인확인 결과"],
+    "confidence": 0.73,
+    "legal_basis": [
+     { "law": "주민등록법", "article": "제25조", "text": "발급 전 본인 여부를 확인한다.(운영 추정)" },
+     { "law": "전자정부법", "article": "모바일 신분증 발급 근거 조항", "text": "모바일 신분증 발급 시 본인확인 절차를 거친다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "자격·발급정보 검증",
+    "lane": "신원확인시스템",
+    "stage": "G1 본인확인",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "신원확인시스템",
+    "action": "자격·발급정보 검증",
+    "output_documents": ["자격 검증 결과"],
+    "confidence": 0.72,
+    "legal_basis": [
+     { "law": "전자정부법", "article": "모바일 신분증 발급 근거 조항", "text": "발급 자격과 신원정보를 시스템으로 검증한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "모바일 신분증 발급(DID 자격증명 생성)",
+    "lane": "운영기관(한국조폐공사)",
+    "stage": "G2 발급",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "한국조폐공사(운영기관)",
+    "action": "자격증명 발급",
+    "output_documents": ["모바일 신분증(디지털 자격증명)"],
+    "confidence": 0.72,
+    "legal_basis": [
+     { "law": "주민등록법", "article": "제25조", "text": "모바일 주민등록증을 발급한다.(운영 추정)" },
+     { "law": "전자정부법", "article": "모바일 신분증 발급 근거 조항", "text": "분산신원(DID) 기반으로 모바일 신분증을 발급한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "모바일 운전면허증 발급",
+    "lane": "경찰청(도로교통공단)",
+    "stage": "G2 발급",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "경찰청·도로교통공단",
+    "action": "운전면허증 발급",
+    "output_documents": ["모바일 운전면허증"],
+    "confidence": 0.74,
+    "legal_basis": [
+     { "law": "도로교통법", "article": "모바일 운전면허증 발급 근거 조항", "text": "운전면허증을 모바일 형태로 발급한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "단말 보안영역 저장(기기 1대 원칙)",
+    "lane": "신청인(국민)",
+    "stage": "G3 저장",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "신청인",
+    "action": "단말 보안저장",
+    "output_documents": ["단말 저장 완료"],
+    "blocker": "단말 보안영역 저장·활성화 진행 중",
+    "confidence": 0.7,
+    "legal_basis": [
+     { "law": "개인정보 보호법", "article": "안전조치 관련 조문", "text": "신원정보를 단말 보안영역에 안전하게 저장한다." }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "발급 완료·활성화 통지",
+    "lane": "발급기관(행정안전부·주민센터)",
+    "stage": "G3 저장",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "발급기관",
+    "receiver": "신청인(국민)",
+    "action": "발급 완료 통지",
+    "output_documents": ["발급 완료 통지"],
+    "confidence": 0.7,
+    "legal_basis": [
+     { "law": "전자정부법", "article": "모바일 신분증 발급 근거 조항", "text": "발급 완료 및 활성화 사실을 통지한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "이용 시 QR·NFC 제시",
+    "lane": "신청인(국민)",
+    "stage": "G4 제시·검증",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "신청인",
+    "receiver": "검증기관",
+    "action": "신원 제시",
+    "output_documents": ["제시용 QR·NFC 토큰"],
+    "confidence": 0.72,
+    "legal_basis": [
+     { "law": "전자정부법", "article": "모바일 신분증 효력 근거 조항", "text": "모바일 신분증은 실물 신분증과 동일한 효력으로 제시한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "진위·유효성 확인",
+    "lane": "검증기관",
+    "stage": "G4 제시·검증",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "검증기관(관공서·금융·통신 등)",
+    "action": "진위·유효성 확인",
+    "condition": "진위·유효기간·효력정지 여부",
+    "output_documents": ["검증 결과"],
+    "confidence": 0.73,
+    "legal_basis": [
+     { "law": "전자정부법", "article": "모바일 신분증 효력 근거 조항", "text": "검증기관은 모바일 신분증의 진위와 유효성을 확인한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "신원확인시스템 검증 응답",
+    "lane": "신원확인시스템",
+    "stage": "G4 제시·검증",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "신원확인시스템",
+    "action": "검증 응답",
+    "output_documents": ["검증 응답값"],
+    "confidence": 0.72,
+    "legal_basis": [
+     { "law": "전자정부법", "article": "모바일 신분증 효력 근거 조항", "text": "신원확인시스템이 진위·유효성 검증 결과를 응답한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "선택적 정보 제공(최소항목)",
+    "lane": "신청인(국민)",
+    "stage": "G5 선택제공",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "신청인",
+    "receiver": "검증기관",
+    "action": "선택정보 제공",
+    "output_documents": ["선택 제출 항목"],
+    "confidence": 0.75,
+    "legal_basis": [
+     { "law": "개인정보 보호법", "article": "최소수집 관련 조문", "text": "이용 목적에 필요한 최소 항목만 선택적으로 제공한다." }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "분실·기기변경 신고",
+    "lane": "신청인(국민)",
+    "stage": "G6 분실·정지",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "신청인",
+    "receiver": "발급기관(행정안전부·주민센터)",
+    "action": "분실·기기변경 신고",
+    "output_documents": ["분실·변경 신고서"],
+    "blocker": "분실·기기변경 시 회귀 단계",
+    "confidence": 0.7,
+    "legal_basis": [
+     { "law": "주민등록법", "article": "제25조", "text": "분실·기기변경 시 신고한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "효력정지·폐기 처리",
+    "lane": "발급기관(행정안전부·주민센터)",
+    "stage": "G6 분실·정지",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "발급기관",
+    "action": "효력정지·폐기",
+    "condition": "분실·도용 위험에 따른 효력정지 여부",
+    "output_documents": ["효력정지 처리결과"],
+    "blocker": "단말 분실·해킹 시 신원 도용 위험",
+    "confidence": 0.72,
+    "legal_basis": [
+     { "law": "주민등록법", "article": "제25조", "text": "분실 신고 시 모바일 신분증의 효력을 정지하거나 폐기한다.(운영 추정)" },
+     { "law": "전자정부법", "article": "모바일 신분증 부정사용 처벌 근거 조항", "text": "부정사용 방지를 위해 효력정지·폐기 조치를 한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "재발급 신청·처리",
+    "lane": "신청인(국민)",
+    "stage": "G7 갱신·재발급",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "신청인·발급기관",
+    "action": "재발급 신청·처리",
+    "output_documents": ["재발급 신청서", "재발급 결과"],
+    "blocker": "효력정지 후 재발급 회귀 단계",
+    "confidence": 0.73,
+    "legal_basis": [
+     { "law": "주민등록법", "article": "제25조", "text": "효력정지·폐기 후 본인확인을 거쳐 재발급한다.(운영 추정)" }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "유효기간(3년) 경과 갱신",
+    "lane": "발급기관(행정안전부·주민센터)",
+    "stage": "G7 갱신·재발급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "발급기관",
+    "action": "유효기간 갱신",
+    "deadline": "유효기간 3년 이내",
+    "output_documents": ["갱신 결과"],
+    "confidence": 0.7,
+    "legal_basis": [
+     { "law": "주민등록법", "article": "제25조", "text": "유효기간 경과 시 모바일 신분증을 갱신한다.(운영 추정)" }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": "본인확인 성공" },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P07", "target": "P08", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P09", "target": "P10", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P10", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P12", "target": "P16", "type": "sequence", "label": "정상 이용 지속" },
+   { "id": "E12", "source": "P13", "target": "P14", "type": "sequence", "label": null },
+   { "id": "E13", "source": "P14", "target": "P15", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P05", "target": "P06", "type": "message", "label": "운전면허 자격증명 발급" },
+   { "id": "M02", "source": "P09", "target": "P10", "type": "message", "label": "QR·NFC 신원 제시" },
+   { "id": "M03", "source": "P11", "target": "P10", "type": "message", "label": "진위·유효성 검증 응답" },
+   { "id": "M04", "source": "P14", "target": "P11", "type": "message", "label": "효력정지 등록" },
+   { "id": "L01", "source": "P12", "target": "P13", "type": "loop", "label": "분실·훼손 발생" },
+   { "id": "L02", "source": "P15", "target": "P03", "type": "loop", "label": "재발급 본인확인 재수행" }
+  ],
+  "warnings": []
+ }
 }

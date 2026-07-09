@@ -6,7 +6,7 @@
  "priority": 67,
  "whyFirst": "주민이 대표기관을 거치지 않고 입법을 직접 발의하는 직접민주 장치다. 주민참여 제도의 기준 사례다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "주민이 직접 조례안을 발안하도록 보장해 지방자치의 민주성·책임성을 높인다. 서명 요건을 갖춘 청구를 지방의회가 심사·의결한다.",
   "stakeholders": "18세 이상 주민(청구권자), 지방의회 의장·지방의회(수리·심사·의결), 지방자치단체(서명 확인 지원), 주민 전체(적용 대상)",
@@ -85,5 +85,487 @@
   "지자체별 청구 성립·의결 실적",
   "주민e직접 온라인 청구 이용 실태",
   "심사기한(1년) 준수 여부"
- ]
+ ],
+ "process": {
+  "lanes": [
+   "주민 대표자",
+   "청구권자(서명 주민)",
+   "지방자치단체(집행부)",
+   "주민e직접(정보시스템)",
+   "지방의회 의장",
+   "지방의회(위원회·본회의)"
+  ],
+  "stages": [
+   "G0 대표자 선정",
+   "G1 서명 요청·수집",
+   "G2 명부 제출·심사",
+   "G3 이의·수리",
+   "G4 발의",
+   "G5 심사·의결",
+   "G6 통지·공개"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "대표자 선정·청구취지·조례안 작성",
+    "lane": "주민 대표자",
+    "stage": "G0 대표자 선정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "주민 대표자",
+    "action": "대표자 선정·작성",
+    "output_documents": [
+     "청구 취지서",
+     "조례안"
+    ],
+    "deadline": "내부 준비",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제6조",
+      "text": "주민조례청구는 대표자를 선정하여 청구 취지와 조례안을 갖추어야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "대표자 증명서 발급",
+    "lane": "지방의회 의장",
+    "stage": "G0 대표자 선정",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방의회 의장",
+    "action": "증명서 발급",
+    "output_documents": [
+     "대표자 증명서"
+    ],
+    "deadline": "신청 후 처리기한",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제6조",
+      "text": "지방의회 의장은 대표자에게 증명서를 발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "서명요청 활동·청구인 서명 수집",
+    "lane": "청구권자(서명 주민)",
+    "stage": "G1 서명 요청·수집",
+    "type": "task",
+    "status": "risk",
+    "progress": 60,
+    "actor": "청구권자·수임인",
+    "action": "서명 요청·수집",
+    "output_documents": [
+     "청구인명부(서명)"
+    ],
+    "deadline": "수집기간(6개월 등)",
+    "blocker": "인구 규모별 법정 서명수(청구권자 총수의 일정 비율) 확보가 불확실하다 (현장 검증 필요)",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제5조·제7조",
+      "text": "청구권자는 인구 규모별 기준 이상 서명을 모아 서명요청 활동을 한다."
+     },
+     {
+      "law": "주민조례발안에 관한 법률 시행령",
+      "article": "서명·서명요청 절차"
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "전자서명 접수",
+    "lane": "주민e직접(정보시스템)",
+    "stage": "G1 서명 요청·수집",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "주민e직접",
+    "action": "전자서명 접수",
+    "output_documents": [
+     "전자서명 명부"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제8조",
+      "text": "청구인은 전자적 방식으로 서명할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "청구인명부 제출",
+    "lane": "주민 대표자",
+    "stage": "G2 명부 제출·심사",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "주민 대표자",
+    "receiver": "지방의회 의장",
+    "action": "명부 제출",
+    "input_documents": [
+     "청구인명부(서명)",
+     "전자서명 명부"
+    ],
+    "output_documents": [
+     "청구서",
+     "청구인명부"
+    ],
+    "deadline": "수집기간 만료 전",
+    "blocker": "유효 서명수 최종 집계·정리 진행 중",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제9조",
+      "text": "대표자는 청구인명부를 지방의회 의장에게 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "서명 대조·유효 확인 지원",
+    "lane": "지방자치단체(집행부)",
+    "stage": "G2 명부 제출·심사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체",
+    "action": "주민등록 대조",
+    "output_documents": [
+     "서명 확인 결과"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제10조",
+      "text": "서명의 유효 여부를 심사·확인한다."
+     },
+     {
+      "law": "주민조례발안에 관한 법률 시행령",
+      "article": "서명 확인 절차"
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "청구인명부 심사·공표·열람",
+    "lane": "지방의회 의장",
+    "stage": "G2 명부 제출·심사",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방의회 의장",
+    "action": "명부 공표·열람",
+    "output_documents": [
+     "명부 공표",
+     "열람 대장"
+    ],
+    "deadline": "제출 후 공표·열람기간",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제10조",
+      "text": "의장은 청구인명부를 심사하고 공표하여 열람하게 한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "이의신청",
+    "lane": "청구권자(서명 주민)",
+    "stage": "G3 이의·수리",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "청구권자·이해관계인",
+    "action": "이의신청",
+    "input_documents": [
+     "명부 공표"
+    ],
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "열람기간 내",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제11조",
+      "text": "누구든지 열람기간에 서명에 관한 이의를 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "이의신청 심사·명부 정정",
+    "lane": "지방의회 의장",
+    "stage": "G3 이의·수리",
+    "type": "gateway",
+    "status": "loop",
+    "progress": 0,
+    "actor": "지방의회 의장",
+    "action": "이의 심사·정정",
+    "condition": "이의 이유 유무",
+    "output_documents": [
+     "이의 결정",
+     "정정 명부"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제11조",
+      "text": "의장은 이의를 심사하여 명부를 정정하거나 이의를 각하한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "청구 수리·각하 결정",
+    "lane": "지방의회 의장",
+    "stage": "G3 이의·수리",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방의회 의장",
+    "action": "수리·각하",
+    "condition": "청구 요건(서명수 등) 충족 여부",
+    "output_documents": [
+     "수리 통보",
+     "각하 통보"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제12조",
+      "text": "요건을 갖춘 청구는 수리하고 그렇지 않으면 각하한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "의장 명의 조례안 발의(수리 후 30일)",
+    "lane": "지방의회 의장",
+    "stage": "G4 발의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방의회 의장",
+    "action": "조례안 발의",
+    "output_documents": [
+     "발의 의안"
+    ],
+    "deadline": "수리일부터 30일 이내",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제12조",
+      "text": "의장은 수리한 날부터 30일 이내에 의장 명의로 발의한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "소관 위원회 심사",
+    "lane": "지방의회(위원회·본회의)",
+    "stage": "G5 심사·의결",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소관 위원회",
+    "action": "안건 심사",
+    "input_documents": [
+     "발의 의안"
+    ],
+    "output_documents": [
+     "심사보고서"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제13조",
+      "text": "주민청구조례안은 소관 위원회 심사를 거친다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "본회의 의결(수리 후 1년 내)",
+    "lane": "지방의회(위원회·본회의)",
+    "stage": "G5 심사·의결",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방의회",
+    "action": "의결",
+    "condition": "가결·부결",
+    "output_documents": [
+     "의결서"
+    ],
+    "deadline": "수리일부터 1년 이내(1년 연장 가능)",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제13조",
+      "text": "지방의회는 수리한 날부터 1년 이내에 의결한다."
+     },
+     {
+      "law": "지방자치법",
+      "article": "제19조",
+      "text": "주민은 조례의 제정·개정·폐지를 청구할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "결과 청구인 통지·공개",
+    "lane": "지방의회 의장",
+    "stage": "G6 통지·공개",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방의회 의장",
+    "action": "결과 통지·공개",
+    "output_documents": [
+     "처리결과 통지",
+     "공개 게시"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "주민조례발안에 관한 법률",
+      "article": "제13조",
+      "text": "의결 결과를 대표자에게 통지하고 공개한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P07",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": "수리"
+   },
+   {
+    "id": "E08",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P02",
+    "target": "P03",
+    "type": "message",
+    "label": "대표자 증명서 교부"
+   },
+   {
+    "id": "M02",
+    "source": "P05",
+    "target": "P06",
+    "type": "message",
+    "label": "청구인명부 제출"
+   },
+   {
+    "id": "M03",
+    "source": "P13",
+    "target": "P14",
+    "type": "message",
+    "label": "의결 결과 통보"
+   },
+   {
+    "id": "L01",
+    "source": "P07",
+    "target": "P08",
+    "type": "loop",
+    "label": "이의신청"
+   },
+   {
+    "id": "L02",
+    "source": "P09",
+    "target": "P07",
+    "type": "loop",
+    "label": "명부 정정·재공표"
+   }
+  ],
+  "warnings": [
+   "주민e직접 온라인 청구 이용 실태와 지자체별 서명 확인 절차 세부는 공개자료가 제한적 — 현장 검증 필요"
+  ]
+ }
 }

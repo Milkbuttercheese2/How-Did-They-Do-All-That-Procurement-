@@ -6,7 +6,7 @@
  "priority": 84,
  "whyFirst": "행정정보공동이용·공공데이터·모바일 신분증 등 모든 디지털 행정 제도의 뿌리다. 국민이 매일 쓰는 정부24·홈택스가 여기서 나온다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "행정기관의 업무를 전자화해 효율을 높이고, 국민이 창구 방문 없이 온라인으로 민원을 처리하게 한다. 종이·대면 절차를 전자문서·전자민원으로 바꿔 행정의 투명성과 접근성을 높이는 것이 목적이다.",
   "stakeholders": "서비스를 이용하는 국민·기업, 전자정부를 총괄하는 행정안전부, 시스템을 구축·운영하는 각 행정기관, 전문지원기관(한국지능정보사회진흥원 등), 시스템 구축 사업자, 디지털 취약계층.",
@@ -87,5 +87,489 @@
   "정부 정보시스템 장애 대응·안정성 실태(운영 추정)",
   "디지털 취약계층 이용 지원 실무",
   "부처별 중복 구축·유지비 규모(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "전자정부",
+  "law_name": "전자정부법",
+  "lanes": [
+   "국민/기업",
+   "행정안전부(총괄)",
+   "각 행정기관",
+   "전문지원기관(NIA)",
+   "시스템 구축 사업자",
+   "감리법인",
+   "정보시스템(공통기반)"
+  ],
+  "stages": [
+   "G0 기본계획",
+   "G1 사업기획",
+   "G2 구축·연계",
+   "G3 감리·개통",
+   "G4 서비스등록",
+   "G5 전자민원처리",
+   "G6 성과평가·고도화"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "전자정부 기본계획 수립",
+    "lane": "행정안전부(총괄)",
+    "stage": "G0 기본계획",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "행정안전부",
+    "action": "기본계획 수립",
+    "output_documents": [
+     "전자정부 기본계획"
+    ],
+    "deadline": "5년 단위 수립",
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제5조",
+      "text": "행정안전부장관은 전자정부의 구현·운영·발전을 위한 기본계획을 수립한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "소관 시행계획·전자화 대상 선정",
+    "lane": "각 행정기관",
+    "stage": "G1 사업기획",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "각 중앙행정기관·지자체",
+    "action": "시행계획 수립·대상 선정",
+    "input_documents": [
+     "전자정부 기본계획"
+    ],
+    "output_documents": [
+     "기관 시행계획",
+     "전자화 대상 목록"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제5조의2",
+      "text": "행정기관등의 장은 기본계획에 따라 소관 시행계획을 수립·시행한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "사업계획 수립·예산 협의",
+    "lane": "각 행정기관",
+    "stage": "G1 사업기획",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "각 행정기관",
+    "receiver": "행정안전부",
+    "action": "사업계획·예산 협의",
+    "output_documents": [
+     "정보화사업 계획서",
+     "예산 협의자료"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제5조의2",
+      "text": "시행계획에 따른 정보화사업 계획을 수립하고 총괄기관과 협의한다."
+     },
+     {
+      "law": "전자정부법 시행령",
+      "article": "전자정부사업 계획 관련 조문",
+      "text": "정보화사업의 계획 수립과 사전협의 절차를 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "정보화사업 발주·계약",
+    "lane": "각 행정기관",
+    "stage": "G2 구축·연계",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "각 행정기관",
+    "receiver": "시스템 구축 사업자",
+    "action": "발주·계약",
+    "output_documents": [
+     "제안요청서(RFP)",
+     "구축 계약서"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제45조",
+      "text": "정보기술아키텍처를 기반으로 정보화사업을 추진한다."
+     },
+     {
+      "law": "전자정부법 시행령",
+      "article": "정보화사업 추진 관련 조문",
+      "text": "정보시스템 구축사업의 발주·관리 세부사항을 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "정보시스템 구축·공통기반 연계",
+    "lane": "시스템 구축 사업자",
+    "stage": "G2 구축·연계",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "시스템 구축 사업자",
+    "action": "구축·연계",
+    "input_documents": [
+     "구축 계약서",
+     "정보기술아키텍처"
+    ],
+    "output_documents": [
+     "정보시스템",
+     "연계 규격서"
+    ],
+    "blocker": "행정정보 공동이용 연계 규격 조정 진행 중",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제36조",
+      "text": "행정정보 공동이용 체계와 연계하여 정보시스템을 구축한다."
+     },
+     {
+      "law": "전자정부법",
+      "article": "제45조",
+      "text": "정보기술아키텍처 표준에 따라 시스템을 구축한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "기술지원·표준화 검토",
+    "lane": "전문지원기관(NIA)",
+    "stage": "G2 구축·연계",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "한국지능정보사회진흥원(NIA)",
+    "action": "기술지원·표준화",
+    "output_documents": [
+     "기술지원 결과",
+     "표준 적용 검토서"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제45조",
+      "text": "전문기관은 정보기술아키텍처 도입·표준화를 기술지원한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "정보시스템 감리",
+    "lane": "감리법인",
+    "stage": "G3 감리·개통",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 30,
+    "actor": "감리법인",
+    "action": "감리·적합판정",
+    "condition": "감리 결과 적합 여부, 지적사항 보완 필요성",
+    "input_documents": [
+     "정보시스템",
+     "구축 산출물"
+    ],
+    "output_documents": [
+     "감리 결과보고서",
+     "시정조치 요구"
+    ],
+    "blocker": "감리 지적사항 다수로 개통 지연 우려",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제57조",
+      "text": "행정기관등의 장은 대통령령으로 정하는 정보시스템에 대하여 감리를 시행한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "감리 지적사항 보완",
+    "lane": "시스템 구축 사업자",
+    "stage": "G3 감리·개통",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "시스템 구축 사업자",
+    "action": "지적사항 보완",
+    "input_documents": [
+     "시정조치 요구"
+    ],
+    "output_documents": [
+     "보완 결과서"
+    ],
+    "blocker": "감리 지적 시 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제57조",
+      "text": "감리 결과 지적된 사항을 보완하여 재감리를 받는다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "서비스 개통·전자민원창구 등록",
+    "lane": "각 행정기관",
+    "stage": "G4 서비스등록",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "각 행정기관",
+    "receiver": "정보시스템(공통기반)",
+    "action": "개통·서비스 등록",
+    "output_documents": [
+     "서비스 등록 요청",
+     "개통 확인서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제9조",
+      "text": "행정기관등의 장은 방문 없는 민원처리를 위한 전자정부서비스를 제공한다."
+     },
+     {
+      "law": "전자정부법",
+      "article": "제7조",
+      "text": "전자적 민원처리 신청 등을 위한 서비스 기반을 마련한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "정부24 서비스 등록·공개",
+    "lane": "정보시스템(공통기반)",
+    "stage": "G4 서비스등록",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "전자민원창구(정부24)",
+    "action": "서비스 등록·공개",
+    "input_documents": [
+     "서비스 등록 요청"
+    ],
+    "output_documents": [
+     "공개 서비스 목록"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제9조",
+      "text": "전자민원창구를 통하여 민원을 처리할 수 있도록 서비스를 등록·공개한다."
+     },
+     {
+      "law": "전자정부법 시행령",
+      "article": "전자민원창구 운영 관련 조문",
+      "text": "전자민원창구의 운영·서비스 등록 세부사항을 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "온라인 본인인증·민원 신청",
+    "lane": "국민/기업",
+    "stage": "G5 전자민원처리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민·기업",
+    "action": "본인인증·신청",
+    "output_documents": [
+     "전자민원 신청서",
+     "본인인증 결과"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제7조",
+      "text": "민원인은 전자적으로 민원의 처리를 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "전자적 접수·행정정보 공동이용 조회",
+    "lane": "각 행정기관",
+    "stage": "G5 전자민원처리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "각 행정기관",
+    "action": "전자접수·공동이용 조회",
+    "input_documents": [
+     "전자민원 신청서"
+    ],
+    "output_documents": [
+     "접수 확인",
+     "공동이용 조회 결과"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제36조",
+      "text": "행정기관등은 행정정보 공동이용을 통해 구비서류를 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "전자적 심사·처리",
+    "lane": "각 행정기관",
+    "stage": "G5 전자민원처리",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "각 행정기관",
+    "action": "전자심사·처리",
+    "output_documents": [
+     "처리 결과",
+     "내부 결재"
+    ],
+    "blocker": "노후 시스템 장애 대응 미흡으로 처리 지연 우려(운영 추정)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제9조",
+      "text": "행정기관등은 민원을 전자적으로 접수·처리한다."
+     },
+     {
+      "law": "행정절차법",
+      "article": "제24조",
+      "text": "처분은 전자문서로 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "전자문서 통보·전자증명서 발급",
+    "lane": "각 행정기관",
+    "stage": "G5 전자민원처리",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "각 행정기관",
+    "receiver": "국민/기업",
+    "action": "전자문서 통보·발급",
+    "output_documents": [
+     "전자 통보서",
+     "전자증명서"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "행정절차법",
+      "article": "제24조",
+      "text": "처분을 전자문서로 하여 통지한다."
+     },
+     {
+      "law": "민원 처리에 관한 법률",
+      "article": "전자민원 처리 관련 조문",
+      "text": "민원처리 결과를 전자문서로 통지·발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "이용현황 점검·성과평가",
+    "lane": "행정안전부(총괄)",
+    "stage": "G6 성과평가·고도화",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "행정안전부",
+    "action": "이용실태 조사·성과평가",
+    "output_documents": [
+     "이용실태 조사 결과",
+     "성과평가 보고서"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제25조",
+      "text": "전자정부서비스의 이용실태를 조사·분석하여 서비스를 개선한다."
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "서비스 개선·고도화",
+    "lane": "각 행정기관",
+    "stage": "G6 성과평가·고도화",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "각 행정기관",
+    "action": "개선·고도화",
+    "input_documents": [
+     "성과평가 보고서"
+    ],
+    "output_documents": [
+     "고도화 계획"
+    ],
+    "blocker": "성과평가 결과 차기 계획 반영 시 회귀 단계",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "전자정부법",
+      "article": "제25조",
+      "text": "이용실태 분석 결과를 반영하여 전자정부서비스를 개선한다."
+     },
+     {
+      "law": "전자정부법",
+      "article": "제5조의2",
+      "text": "개선사항을 차기 시행계획에 반영한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P07", "target": "P09", "type": "sequence", "label": "감리 적합" },
+   { "id": "E08", "source": "P08", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P09", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P12", "target": "P13", "type": "sequence", "label": null },
+   { "id": "E12", "source": "P13", "target": "P14", "type": "sequence", "label": null },
+   { "id": "E13", "source": "P14", "target": "P15", "type": "sequence", "label": null },
+   { "id": "E14", "source": "P15", "target": "P16", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P03", "target": "P01", "type": "message", "label": "사업계획·예산 협의" },
+   { "id": "M02", "source": "P09", "target": "P10", "type": "message", "label": "전자민원창구 서비스 등록" },
+   { "id": "M03", "source": "P10", "target": "P11", "type": "message", "label": "정부24 서비스 공개" },
+   { "id": "L01", "source": "P07", "target": "P08", "type": "loop", "label": "감리 지적 보완" },
+   { "id": "L02", "source": "P16", "target": "P02", "type": "loop", "label": "차기연도 고도화 반영" }
+  ],
+  "warnings": []
+ }
 }

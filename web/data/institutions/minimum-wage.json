@@ -6,7 +6,7 @@
  "priority": 37,
  "whyFirst": "위원회 심의로 사회적 기준을 정하고 고시로 강제하는 대표적 기준설정형 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "임금의 최저수준을 국가가 정해 저임금 근로자를 보호하고 임금격차를 완화한다. 근로자의 생활안정과 노동력의 질 향상을 목표로 한다. 최저임금 미만 지급은 금지되고 위반 시 형사처벌 대상이다.",
   "stakeholders": "적용 대상 근로자(특히 저임금·단시간·아르바이트), 임금을 부담하는 사용자(특히 소상공인·영세사업주), 노·사·공익 위원, 고용노동부",
@@ -73,5 +73,521 @@
   "산입범위 개편(최저임금법 제6조) 최신 조문 확인",
   "업종별 차등적용 논의의 현행 제도화 여부",
   "정부 재정지원(일자리안정자금 등)의 현행 운영 여부(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "최저임금 제도",
+  "law_name": "최저임금법",
+  "lanes": [
+   "고용노동부장관",
+   "최저임금위원회(전원회의)",
+   "전문위원회",
+   "노·사 위원",
+   "공익위원",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 심의요청",
+   "G1 실태조사",
+   "G2 전문위검토",
+   "G3 심의·조정",
+   "G4 의결·표결",
+   "G5 고시·이의",
+   "G6 확정·적용"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "최저임금 심의 요청",
+    "lane": "고용노동부장관",
+    "stage": "G0 심의요청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "고용노동부장관",
+    "receiver": "최저임금위원회",
+    "action": "심의 요청",
+    "output_documents": [
+     "심의 요청서"
+    ],
+    "deadline": "매년 3월 31일까지",
+    "blocker": null,
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제8조제1항·시행령 제7조",
+      "text": "고용노동부장관은 매년 3월 31일까지 최저임금위원회에 최저임금 심의를 요청한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "심의 안건 상정·운영계획",
+    "lane": "최저임금위원회(전원회의)",
+    "stage": "G0 심의요청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "최저임금위원회",
+    "action": "안건 상정",
+    "output_documents": [
+     "심의 운영계획"
+    ],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제12조·제14조",
+      "text": "최저임금위원회는 근로자·사용자·공익위원 각 9명으로 구성되어 심의를 운영한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "생계비·임금실태 조사",
+    "lane": "전문위원회",
+    "stage": "G1 실태조사",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "전문위원회·사무국",
+    "action": "실태조사",
+    "output_documents": [
+     "생계비 조사자료",
+     "임금실태조사 결과"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제23조",
+      "text": "위원회는 근로자의 생계비와 임금실태 등을 조사·연구한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "전문위원회 임금수준 심사",
+    "lane": "전문위원회",
+    "stage": "G2 전문위검토",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "전문위원회",
+    "action": "전문 심사",
+    "input_documents": [
+     "생계비 조사자료",
+     "임금실태조사 결과"
+    ],
+    "output_documents": [
+     "전문위원회 검토보고"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제19조",
+      "text": "위원회는 전문위원회를 두어 임금수준 등 안건을 사전 심사하게 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "노·사 최초 요구안 제시",
+    "lane": "노·사 위원",
+    "stage": "G3 심의·조정",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "근로자·사용자 위원",
+    "action": "요구안 제시",
+    "output_documents": [
+     "근로자안",
+     "사용자안"
+    ],
+    "blocker": "노·사 요구안 격차가 커 조정이 지연된다",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제8조제1항",
+      "text": "위원회는 근로자·사용자 위원이 제시한 안을 놓고 최저임금안을 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "공익위원 심의촉진구간·조정안 제시",
+    "lane": "공익위원",
+    "stage": "G3 심의·조정",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 30,
+    "actor": "공익위원",
+    "action": "조정안 제시",
+    "condition": "노·사 합의 실패 시 공익위원 조정안 상정",
+    "output_documents": [
+     "심의촉진구간",
+     "공익위원 조정안"
+    ],
+    "blocker": "노·사 대립으로 공익위원 캐스팅보트에 결정이 좌우된다(운영 추정)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제8조·제14조",
+      "text": "합의가 이루어지지 않으면 공익위원이 조정안을 제시하고 표결에 부친다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "노·사 수정안 제출",
+    "lane": "노·사 위원",
+    "stage": "G3 심의·조정",
+    "type": "task",
+    "status": "loop",
+    "progress": 20,
+    "actor": "근로자·사용자 위원",
+    "action": "수정안 제출",
+    "output_documents": [
+     "수정 요구안"
+    ],
+    "blocker": "수정안 제출·재협상 회귀 단계",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제8조제1항",
+      "text": "위원은 심의 과정에서 수정안을 제출하여 재협상할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "최저임금안 표결·의결",
+    "lane": "최저임금위원회(전원회의)",
+    "stage": "G4 의결·표결",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "최저임금위원회",
+    "action": "표결·의결",
+    "condition": "재적위원 과반 출석, 출석위원 과반 찬성",
+    "output_documents": [
+     "표결 결과",
+     "의결서"
+    ],
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제8조제1항·제17조",
+      "text": "위원회는 최저임금안을 표결로 의결한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "최저임금안 제출",
+    "lane": "최저임금위원회(전원회의)",
+    "stage": "G4 의결·표결",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "위원회 위원장",
+    "receiver": "고용노동부장관",
+    "action": "최저임금안 제출",
+    "output_documents": [
+     "최저임금안"
+    ],
+    "deadline": "심의 요청 후 90일 이내",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제8조제2항",
+      "text": "위원회는 심의 요청을 받은 날부터 90일 이내에 최저임금안을 고용노동부장관에게 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "최저임금안 고시",
+    "lane": "고용노동부장관",
+    "stage": "G5 고시·이의",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "고용노동부장관",
+    "action": "안 고시",
+    "input_documents": [
+     "최저임금안"
+    ],
+    "output_documents": [
+     "최저임금안 고시문"
+    ],
+    "deadline": "안 접수 후 지체 없이",
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제9조제1항",
+      "text": "고용노동부장관은 최저임금안을 받으면 이를 고시하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "이의제기",
+    "lane": "노·사 위원",
+    "stage": "G5 고시·이의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "근로자·사용자 대표(단체)",
+    "receiver": "고용노동부장관",
+    "action": "이의 제기",
+    "output_documents": [
+     "이의제기서"
+    ],
+    "deadline": "고시일부터 10일 이내",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제9조제2항",
+      "text": "근로자·사용자를 대표하는 자는 고시된 최저임금안에 대해 10일 이내에 이의를 제기할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "재심의 요청 판단",
+    "lane": "고용노동부장관",
+    "stage": "G5 고시·이의",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "고용노동부장관",
+    "action": "재심의 판단",
+    "condition": "이의에 이유가 있으면 위원회에 재심의 요청",
+    "output_documents": [
+     "재심의 요청서",
+     "이의 검토결과"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제9조제3항",
+      "text": "고용노동부장관은 이의가 이유 있다고 인정되면 위원회에 재심의를 요청하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "최저임금 결정·고시",
+    "lane": "고용노동부장관",
+    "stage": "G6 확정·적용",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "고용노동부장관",
+    "action": "결정·고시",
+    "output_documents": [
+     "최저임금 확정 고시문"
+    ],
+    "deadline": "매년 8월 5일까지",
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제8조제1항·제10조",
+      "text": "고용노동부장관은 매년 8월 5일까지 최저임금을 결정하여 고시한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "효력 발생·지급의무·주지",
+    "lane": "고용노동부장관",
+    "stage": "G6 확정·적용",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사용자·근로감독관",
+    "action": "적용·감독",
+    "output_documents": [
+     "주지 공고",
+     "지급 감독 결과"
+    ],
+    "deadline": "다음 연도 1월 1일 효력 발생",
+    "blocker": "급격한 인상 시 소상공인 부담과 재정지원 운영 여부가 쟁점이 된다(운영 추정)",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제6조·제10조",
+      "text": "고시된 최저임금은 다음 연도 1월 1일부터 효력이 발생하고, 미만 지급은 무효이며 차액을 지급하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "심의자료·의결내용 공개",
+    "lane": "정보시스템",
+    "stage": "G3 심의·조정",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "최저임금위원회 정보시스템(minimumwage.go.kr)",
+    "action": "자료 공개",
+    "input_documents": [
+     "생계비 조사자료",
+     "심의 자료"
+    ],
+    "output_documents": [
+     "공개 게시자료"
+    ],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "최저임금법",
+      "article": "제11조",
+      "text": "최저임금 관련 자료와 결정 내용을 주지·공개한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P08",
+    "type": "sequence",
+    "label": "합의·조정 성립"
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": "수정안 상정"
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": "의결"
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P13",
+    "type": "sequence",
+    "label": "이의 없음"
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": "이의 기각"
+   },
+   {
+    "id": "E13",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P03",
+    "target": "S01",
+    "type": "message",
+    "label": "실태조사 자료 공개"
+   },
+   {
+    "id": "M02",
+    "source": "P10",
+    "target": "P11",
+    "type": "message",
+    "label": "이의제기 안내"
+   },
+   {
+    "id": "M03",
+    "source": "P05",
+    "target": "S01",
+    "type": "message",
+    "label": "심의자료 공개"
+   },
+   {
+    "id": "L01",
+    "source": "P06",
+    "target": "P07",
+    "type": "loop",
+    "label": "노·사 수정안 요구"
+   },
+   {
+    "id": "L02",
+    "source": "P12",
+    "target": "P08",
+    "type": "loop",
+    "label": "재심의 표결"
+   }
+  ],
+  "warnings": []
+ }
 }

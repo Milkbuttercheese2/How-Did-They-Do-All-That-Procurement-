@@ -6,7 +6,7 @@
  "priority": 99,
  "whyFirst": "장기체류 외국인의 신분과 행정서비스의 기준점이자, 이민 통계·관리의 토대가 되는 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "장기체류 외국인의 인적사항·체류자격을 국가가 파악·관리한다. 외국인등록증으로 신분을 증명하고, 체류질서 관리와 행정서비스 제공의 기준을 만든다.",
   "stakeholders": "90일 초과 체류 외국인(유학생·근로자·결혼이민자·주재원 등), 고용주·교육기관, 법무부·출입국관서, 등록정보를 활용하는 지자체·공공기관·금융기관",
@@ -80,5 +80,539 @@
   "하이코리아 예약 대기기간(운영 추정)",
   "모바일 외국인등록증 도입 추진 경과",
   "지자체·공공기관 외국인 정보 연계 범위(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "외국인등록 제도",
+  "law_name": "출입국관리법",
+  "lanes": [
+   "외국인(신청인)",
+   "고용주/교육기관",
+   "출입국·외국인청",
+   "법무부 본부",
+   "관할 지자체",
+   "정보시스템(하이코리아)"
+  ],
+  "stages": [
+   "G0 대상판정",
+   "G1 예약·신청",
+   "G2 심사·확인",
+   "G3 등록증 발급",
+   "G4 등록사항 변경",
+   "G5 체류지 변경",
+   "G6 말소·전환"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "등록 대상 여부 확인",
+    "lane": "외국인(신청인)",
+    "stage": "G0 대상판정",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "외국인",
+    "action": "대상판정",
+    "condition": "입국 후 90일 초과 체류 예정 여부",
+    "output_documents": [
+     "체류자격·기간 확인표"
+    ],
+    "deadline": "입국 즉시 판단",
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제31조",
+      "text": "입국한 날부터 90일을 초과하여 체류하려는 외국인은 외국인등록을 하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "하이코리아 방문 예약",
+    "lane": "외국인(신청인)",
+    "stage": "G1 예약·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "외국인",
+    "action": "예약",
+    "output_documents": [
+     "방문예약 확인서"
+    ],
+    "deadline": "신청 전 사전 예약",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제31조",
+      "text": "외국인등록 신청을 위해 관할 지방출입국·외국인관서 방문 절차를 예약한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "고용주·교육기관 체류 협조",
+    "lane": "고용주/교육기관",
+    "stage": "G1 예약·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "고용주·교육기관",
+    "receiver": "외국인",
+    "action": "협조자료 제공",
+    "output_documents": [
+     "재직·재학 증명",
+     "표준근로계약서"
+    ],
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제31조",
+      "text": "체류자격 입증을 위해 고용·교육기관이 재직·재학 관련 자료를 제공한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "외국인등록 신청서 제출",
+    "lane": "외국인(신청인)",
+    "stage": "G1 예약·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "외국인",
+    "receiver": "출입국·외국인청",
+    "action": "신청·제출",
+    "input_documents": [
+     "재직·재학 증명"
+    ],
+    "output_documents": [
+     "외국인등록신청서",
+     "여권",
+     "표준규격 사진"
+    ],
+    "deadline": "입국일부터 90일 이내",
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제31조",
+      "text": "90일을 초과하여 체류하려는 외국인은 90일 이내에 외국인등록을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "접수·서류 확인",
+    "lane": "출입국·외국인청",
+    "stage": "G2 심사·확인",
+    "type": "task",
+    "status": "risk",
+    "progress": 70,
+    "actor": "출입국·외국인청",
+    "action": "접수·확인",
+    "input_documents": [
+     "외국인등록신청서",
+     "여권"
+    ],
+    "output_documents": [
+     "접수증",
+     "보완요청"
+    ],
+    "deadline": "방문 당일 접수",
+    "blocker": "제출서류 일부 미비(증명서 보완 대기)",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제31조",
+      "text": "관할 관서는 외국인등록 신청을 접수하고 제출서류를 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "체류자격·인적사항·생체정보 확인",
+    "lane": "출입국·외국인청",
+    "stage": "G2 심사·확인",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "출입국·외국인청",
+    "action": "심사·생체정보 등록",
+    "input_documents": [
+     "외국인등록신청서",
+     "여권"
+    ],
+    "output_documents": [
+     "심사기록",
+     "지문·얼굴 생체정보"
+    ],
+    "deadline": "접수 후 심사기간",
+    "blocker": "체류자격 확인·생체정보 대조 진행 중",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제32조",
+      "text": "성명·생년월일·국적·체류자격 등 외국인등록사항과 생체정보를 확인·등록한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "외국인등록번호 부여",
+    "lane": "정보시스템(하이코리아)",
+    "stage": "G2 심사·확인",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국정보시스템",
+    "action": "등록번호 생성",
+    "input_documents": [
+     "심사기록"
+    ],
+    "output_documents": [
+     "외국인등록번호"
+    ],
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제31조",
+      "text": "등록한 외국인에게 외국인등록번호를 부여한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "외국인등록증 발급",
+    "lane": "출입국·외국인청",
+    "stage": "G3 등록증 발급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "receiver": "외국인",
+    "action": "발급",
+    "input_documents": [
+     "외국인등록번호",
+     "심사기록"
+    ],
+    "output_documents": [
+     "외국인등록증"
+    ],
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제33조",
+      "text": "청장·사무소장 등은 외국인등록을 한 사람에게 외국인등록증을 발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "지자체 외국인주민 정보 연계",
+    "lane": "관할 지자체",
+    "stage": "G3 등록증 발급",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "관할 지자체",
+    "action": "정보 연계·현황 관리",
+    "input_documents": [
+     "외국인등록 정보"
+    ],
+    "output_documents": [
+     "외국인주민 현황자료"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제88조의2",
+      "text": "외국인등록 정보는 행정기관의 신분확인·행정서비스에 활용될 수 있다."
+     },
+     {
+      "law": "재한외국인 처우 기본법",
+      "article": "재한외국인 정보·처우 정책 근거",
+      "text": "지자체는 외국인주민 현황을 파악하고 행정서비스를 연계한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "등록사항 변경신고",
+    "lane": "외국인(신청인)",
+    "stage": "G4 등록사항 변경",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "외국인",
+    "receiver": "출입국·외국인청",
+    "action": "변경신고",
+    "output_documents": [
+     "등록사항 변경신고서"
+    ],
+    "deadline": "변경사유 발생일부터 15일 이내",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제35조",
+      "text": "성명·국적·근무처 등 외국인등록사항이 변경되면 변경신고를 하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "근무처 변경 등 심사·기록",
+    "lane": "출입국·외국인청",
+    "stage": "G4 등록사항 변경",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "action": "심사·기록 갱신",
+    "input_documents": [
+     "등록사항 변경신고서"
+    ],
+    "output_documents": [
+     "변경사항 반영 기록"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제35조",
+      "text": "관할 관서는 변경신고 내용을 심사하고 외국인등록사항을 갱신한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "체류지(주소) 변경신고",
+    "lane": "외국인(신청인)",
+    "stage": "G5 체류지 변경",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "외국인",
+    "receiver": "출입국·외국인청",
+    "action": "전입신고",
+    "output_documents": [
+     "체류지 변경신고서"
+    ],
+    "deadline": "전입한 날부터 14일 이내",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제36조",
+      "text": "체류지를 변경한 외국인은 전입한 날부터 14일 이내에 체류지 변경신고를 하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "체류지 변경 처리·지자체 통보",
+    "lane": "출입국·외국인청",
+    "stage": "G5 체류지 변경",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "receiver": "관할 지자체",
+    "action": "기록 갱신·통보",
+    "input_documents": [
+     "체류지 변경신고서"
+    ],
+    "output_documents": [
+     "체류지 갱신기록",
+     "지자체 통보"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제36조",
+      "text": "체류지 변경신고를 받은 관서는 기록을 갱신하고 관할 지자체에 통보한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "출국·영주취득 여부 판단",
+    "lane": "출입국·외국인청",
+    "stage": "G6 말소·전환",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "출입국·외국인청",
+    "action": "판단",
+    "condition": "완전출국·영주자격 취득·자격변경 여부",
+    "output_documents": [
+     "말소·전환 판단서"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제37조",
+      "text": "출국·영주자격 취득 등 사유가 있으면 외국인등록을 말소하거나 전환한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "외국인등록 말소·전환",
+    "lane": "법무부 본부",
+    "stage": "G6 말소·전환",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "법무부 본부",
+    "action": "말소·전환 처리",
+    "input_documents": [
+     "말소·전환 판단서"
+    ],
+    "output_documents": [
+     "등록 말소기록",
+     "영주증 전환기록"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "출입국관리법",
+      "article": "제37조",
+      "text": "완전출국하거나 영주자격을 취득한 경우 외국인등록을 말소하거나 전환한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P08",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P03",
+    "target": "P04",
+    "type": "message",
+    "label": "체류 협조자료"
+   },
+   {
+    "id": "M02",
+    "source": "P08",
+    "target": "P09",
+    "type": "message",
+    "label": "외국인등록 정보 통보"
+   },
+   {
+    "id": "M03",
+    "source": "P13",
+    "target": "P09",
+    "type": "message",
+    "label": "체류지 변경 통보"
+   },
+   {
+    "id": "L01",
+    "source": "P11",
+    "target": "P10",
+    "type": "loop",
+    "label": "새 변경사항 발생 시 15일 내 재신고"
+   },
+   {
+    "id": "L02",
+    "source": "P13",
+    "target": "P12",
+    "type": "loop",
+    "label": "체류지 재이동 시 14일 내 재신고"
+   }
+  ],
+  "warnings": []
+ }
 }

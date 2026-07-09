@@ -6,7 +6,7 @@
  "priority": 50,
  "whyFirst": "시장경제의 심판 역할을 하는 제도다. 조사→심의→의결→불복의 준사법 절차와 처리기간·전속고발권 논쟁이 뚜렷해 제도 지도로 그리기 좋다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "자유롭고 공정한 경쟁질서를 지킨다. 독과점 남용, 담합(카르텔), 불공정거래, 부당한 기업결합을 금지·시정해 소비자후생과 중소기업을 보호하는 것이 목적이다.",
   "stakeholders": "사업자·사업자단체(규제대상), 소비자, 경쟁·피해 기업(신고인), 공정거래위원회, 법원(불복소송), 중소협력업체",
@@ -87,5 +87,587 @@
   "사건 유형별 평균 처리기간(운영 추정)",
   "과징금 부과·감면(리니언시) 실무 운영",
   "동의의결·전속고발 발동 실태(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "공정거래(시정조치·과징금) 제도",
+  "law_name": "독점규제 및 공정거래에 관한 법률",
+  "lanes": [
+   "신고인/피해기업",
+   "피심인(사업자)",
+   "공정위 사무처(심사관)",
+   "위원회(전원회의·소회의)",
+   "검찰·법원(후속)",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 착수(신고·인지)",
+   "G1 조사",
+   "G2 심사보고서·의견청취",
+   "G3 심의",
+   "G4 의결·처분",
+   "G5 이행·불복"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "위반혐의 신고·직권 인지",
+    "lane": "신고인/피해기업",
+    "stage": "G0 착수(신고·인지)",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "신고인·공정위",
+    "receiver": "공정위 사무처",
+    "action": "신고·인지",
+    "output_documents": [
+     "신고서",
+     "사건 인지보고"
+    ],
+    "deadline": "상시",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제80조",
+      "text": "누구든지 법 위반 사실을 신고할 수 있고, 공정위는 직권으로 위반 혐의를 인지해 조사할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "심사 착수 여부 결정",
+    "lane": "공정위 사무처(심사관)",
+    "stage": "G0 착수(신고·인지)",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "심사관",
+    "action": "심사 착수 판단",
+    "condition": "사건 성립요건·심사 실익 충족 여부",
+    "input_documents": [
+     "신고서",
+     "사건 인지보고"
+    ],
+    "output_documents": [
+     "사건 심사착수 보고"
+    ],
+    "deadline": "접수 후 지체 없이",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "공정거래위원회 회의운영 및 사건절차 등에 관한 규칙",
+      "article": "사건 착수 관련 조항",
+      "text": "심사관은 신고·인지 사건의 심사 착수 여부를 결정한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "자료제출 요구·현장조사",
+    "lane": "공정위 사무처(심사관)",
+    "stage": "G1 조사",
+    "type": "task",
+    "status": "risk",
+    "progress": 60,
+    "actor": "심사관",
+    "receiver": "피심인(사업자)",
+    "action": "조사·자료수집",
+    "output_documents": [
+     "자료제출 요구서",
+     "현장조사 조서"
+    ],
+    "deadline": "사건별 조사기간",
+    "blocker": "대형 사건의 자료·경제분석 부담으로 조사가 장기화된다(운영 추정)",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제81조",
+      "text": "공정위는 위반행위 조사를 위해 당사자에게 자료제출을 요구하고 현장조사를 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "피심인 자료제출·의견",
+    "lane": "피심인(사업자)",
+    "stage": "G1 조사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "피심인",
+    "receiver": "공정위 사무처(심사관)",
+    "action": "자료제출·소명",
+    "input_documents": [
+     "자료제출 요구서"
+    ],
+    "output_documents": [
+     "제출자료",
+     "소명서"
+    ],
+    "deadline": "요구서에서 정한 기한",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제81조",
+      "text": "조사 대상 사업자는 자료를 제출하고 조사에 협조하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "심사보고서 작성·상정",
+    "lane": "공정위 사무처(심사관)",
+    "stage": "G2 심사보고서·의견청취",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "심사관",
+    "receiver": "위원회(전원회의·소회의)",
+    "action": "심사보고서 작성",
+    "input_documents": [
+     "제출자료",
+     "현장조사 조서"
+    ],
+    "output_documents": [
+     "심사보고서",
+     "위반행위 심사의견"
+    ],
+    "deadline": "조사 종료 후",
+    "blocker": "경제분석·법리검토 병행으로 상정 준비 지연",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "공정거래위원회 회의운영 및 사건절차 등에 관한 규칙",
+      "article": "심사보고서 작성 관련 조항",
+      "text": "심사관은 조사 결과를 정리한 심사보고서를 작성해 위원회에 상정한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "피심인 통지·의견청취(방어권)",
+    "lane": "피심인(사업자)",
+    "stage": "G2 심사보고서·의견청취",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "피심인",
+    "action": "의견서 제출·진술",
+    "input_documents": [
+     "심사보고서"
+    ],
+    "output_documents": [
+     "피심인 의견서"
+    ],
+    "deadline": "심의기일 전 통지기간",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제93조",
+      "text": "공정위는 시정조치·과징금을 부과하기 전에 당사자에게 의견을 진술할 기회를 주어야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "사건 심의(전원회의·소회의)",
+    "lane": "위원회(전원회의·소회의)",
+    "stage": "G3 심의",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "위원회",
+    "action": "심의",
+    "condition": "전원회의·소회의 관장사항 구분, 위법성 판단",
+    "input_documents": [
+     "심사보고서",
+     "피심인 의견서"
+    ],
+    "output_documents": [
+     "심의조서"
+    ],
+    "deadline": "심의기일",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제59조",
+      "text": "위원회의 심의·의결은 전원회의와 소회의가 관장사항을 나누어 처리한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "동의의결 절차(대안 경로)",
+    "lane": "위원회(전원회의·소회의)",
+    "stage": "G3 심의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "위원회·피심인",
+    "action": "동의의결 개시·인용",
+    "input_documents": [
+     "동의의결 신청서",
+     "시정방안"
+    ],
+    "output_documents": [
+     "동의의결서"
+    ],
+    "deadline": "개시 후 시정방안 협의기간",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제89조",
+      "text": "피심인은 시정방안을 제출해 동의의결을 신청할 수 있고, 위원회는 위법 확정 없이 사건을 종결할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "의결: 시정명령·과징금·고발",
+    "lane": "위원회(전원회의·소회의)",
+    "stage": "G4 의결·처분",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "위원회",
+    "action": "의결",
+    "condition": "시정명령·과징금·고발·무혐의 결정",
+    "input_documents": [
+     "심의조서"
+    ],
+    "output_documents": [
+     "의결서",
+     "시정명령",
+     "과징금 산정내역"
+    ],
+    "deadline": "심의 종결 후",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제7조·제8조·제42조·제43조·제49조·제50조",
+      "text": "위원회는 위반행위에 대해 시정조치를 명하고 과징금을 부과할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "처분 통지·과징금 납부고지",
+    "lane": "공정위 사무처(심사관)",
+    "stage": "G4 의결·처분",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위 사무처",
+    "receiver": "피심인(사업자)",
+    "action": "처분 통지",
+    "input_documents": [
+     "의결서"
+    ],
+    "output_documents": [
+     "의결서 정본",
+     "과징금 납부고지서"
+    ],
+    "deadline": "의결 후 지체 없이",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제103조",
+      "text": "공정위는 과징금 납부의무자에게 납부기한을 정해 납부를 명한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "시정명령 이행 점검",
+    "lane": "공정위 사무처(심사관)",
+    "stage": "G5 이행·불복",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위 사무처·피심인",
+    "action": "이행 점검",
+    "input_documents": [
+     "시정명령"
+    ],
+    "output_documents": [
+     "이행결과 보고",
+     "이행강제금 부과(미이행 시)"
+    ],
+    "deadline": "시정명령상 이행기한",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제16조",
+      "text": "공정위는 시정조치 불이행 시 이행강제금을 부과하는 등 이행을 확보한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "이의신청",
+    "lane": "피심인(사업자)",
+    "stage": "G5 이행·불복",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "피심인",
+    "receiver": "위원회(전원회의·소회의)",
+    "action": "이의신청",
+    "input_documents": [
+     "의결서 정본"
+    ],
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "처분 통지받은 날부터 30일 이내",
+    "blocker": "불복 회귀 단계",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제96조",
+      "text": "처분에 불복하는 자는 통지받은 날부터 30일 이내에 공정위에 이의신청을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "재심의·재결",
+    "lane": "위원회(전원회의·소회의)",
+    "stage": "G5 이행·불복",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "위원회",
+    "action": "재심의·재결",
+    "condition": "이의신청 인용·기각 판단",
+    "input_documents": [
+     "이의신청서"
+    ],
+    "output_documents": [
+     "재결서"
+    ],
+    "deadline": "이의신청 받은 날부터 60일(30일 연장 가능)",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제96조",
+      "text": "위원회는 이의신청에 대해 재결을 하며, 기간은 연장할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "행정소송(취소소송)",
+    "lane": "검찰·법원(후속)",
+    "stage": "G5 이행·불복",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "피심인·법원",
+    "action": "취소소송",
+    "input_documents": [
+     "의결서·재결서"
+    ],
+    "output_documents": [
+     "소장",
+     "판결"
+    ],
+    "deadline": "처분·재결 통지받은 날부터 30일 이내",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제99조·제100조",
+      "text": "처분에 불복하는 자는 서울고등법원에 취소소송을 제기할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "전속고발·형사처벌",
+    "lane": "검찰·법원(후속)",
+    "stage": "G5 이행·불복",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위·검찰",
+    "receiver": "검찰·법원(후속)",
+    "action": "고발·형사처벌",
+    "input_documents": [
+     "의결서",
+     "고발 요청"
+    ],
+    "output_documents": [
+     "고발장",
+     "형사판결"
+    ],
+    "deadline": "의결에 따른 고발 시",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제129조",
+      "text": "일정 위반행위는 공정위의 고발이 있어야 공소를 제기할 수 있다(전속고발)."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "사건관리시스템·의결서 공개",
+    "lane": "정보시스템",
+    "stage": "G4 의결·처분",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위 사건관리시스템",
+    "action": "기록·공개",
+    "input_documents": [
+     "의결서"
+    ],
+    "output_documents": [
+     "공개 의결서"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "공정거래법",
+      "article": "제68조",
+      "text": "위원회의 심의·의결은 의결서로 작성하며, 의결서는 공개된다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": "심사 착수"
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P09",
+    "type": "sequence",
+    "label": "심의 종결"
+   },
+   {
+    "id": "E08",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": "재심의 청구"
+   },
+   {
+    "id": "E11",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": "재결 불복"
+   },
+   {
+    "id": "M01",
+    "source": "P03",
+    "target": "P04",
+    "type": "message",
+    "label": "자료제출 요구"
+   },
+   {
+    "id": "M02",
+    "source": "P07",
+    "target": "P08",
+    "type": "message",
+    "label": "동의의결 개시 신청"
+   },
+   {
+    "id": "M03",
+    "source": "P10",
+    "target": "S01",
+    "type": "message",
+    "label": "의결서 공개"
+   },
+   {
+    "id": "M04",
+    "source": "P09",
+    "target": "P15",
+    "type": "message",
+    "label": "전속고발"
+   },
+   {
+    "id": "L01",
+    "source": "P11",
+    "target": "P12",
+    "type": "loop",
+    "label": "이의신청·불복"
+   },
+   {
+    "id": "L02",
+    "source": "P13",
+    "target": "P09",
+    "type": "loop",
+    "label": "재심의 후 재의결"
+   }
+  ],
+  "warnings": []
+ }
 }

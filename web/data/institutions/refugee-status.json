@@ -6,7 +6,7 @@
  "priority": 97,
  "whyFirst": "국제 인권규범과 국내 이민통제가 충돌하는 최전선이자, 낮은 인정률과 심사 지연이 논쟁인 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "인종·종교·국적·정치적 의견 등을 이유로 박해받을 우려가 있는 외국인을 보호한다. 난민협약상 국제 의무를 이행해 난민 요건을 심사하고, 인정자에게 체류·처우를 보장한다.",
   "stakeholders": "난민신청자·인정자·인도적체류자, 신청 가족, 법무부·출입국관서·난민심사관, 난민위원회, 지원 NGO·변호인, 통역인",
@@ -89,5 +89,534 @@
   "심사·이의신청·행정소송 평균 처리기간(운영 통계)",
   "인도적체류자 처우 규정의 실제 운영",
   "출입국항 신청 회부율(운영 통계)"
- ]
+ ],
+ "process": {
+  "institution_name": "난민심사 제도",
+  "law_name": "난민법",
+  "lanes": [
+   "난민신청자",
+   "지방출입국·외국인관서",
+   "난민심사관",
+   "법무부장관",
+   "난민위원회",
+   "법원",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 신청접수",
+   "G1 회부심사",
+   "G2 사실조사·면접",
+   "G3 인정심사·결정",
+   "G4 이의신청",
+   "G5 행정소송",
+   "G6 처우·체류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "난민인정 신청",
+    "lane": "난민신청자",
+    "stage": "G0 신청접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "난민신청자",
+    "receiver": "지방출입국·외국인관서",
+    "action": "신청",
+    "output_documents": [
+     "난민인정신청서"
+    ],
+    "confidence": 0.9,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제5조",
+      "text": "대한민국에 있는 외국인은 지방출입국·외국인관서의 장에게 난민인정을 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "출입국항 회부심사",
+    "lane": "지방출입국·외국인관서",
+    "stage": "G1 회부심사",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "지방출입국·외국인관서",
+    "action": "회부결정",
+    "condition": "7일 내 심사 회부 여부, 미결정 시 입국 허가",
+    "output_documents": [
+     "회부결정"
+    ],
+    "deadline": "신청일부터 7일 내",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제6조",
+      "text": "출입국항에서의 신청은 7일 이내에 심사 회부 여부를 결정하고, 미결정 시 입국을 허가한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "난민신청자 지위 체류·접수",
+    "lane": "난민신청자",
+    "stage": "G2 사실조사·면접",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "난민신청자",
+    "action": "체류",
+    "output_documents": [
+     "난민신청 접수증"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제5조",
+      "text": "난민인정 신청자는 난민인정 여부가 결정될 때까지 대한민국에 체류할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "면접·사실조사",
+    "lane": "난민심사관",
+    "stage": "G2 사실조사·면접",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "난민심사관",
+    "action": "면접·조사",
+    "output_documents": [
+     "면접조서",
+     "사실조사 자료"
+    ],
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제8조",
+      "text": "난민심사관은 신청자를 면접하고 사실을 조사한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "국가정황 정보 검토",
+    "lane": "난민심사관",
+    "stage": "G2 사실조사·면접",
+    "type": "task",
+    "status": "risk",
+    "progress": 60,
+    "actor": "난민심사관",
+    "action": "정황검토",
+    "output_documents": [
+     "국가정황 정보 검토서"
+    ],
+    "blocker": "출신국 정황 정보 확보 지연",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제8조",
+      "text": "심사를 위하여 출신국 등에 관한 정보를 수집·검토한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "심사보고서 작성",
+    "lane": "난민심사관",
+    "stage": "G3 인정심사·결정",
+    "type": "task",
+    "status": "current",
+    "progress": 42,
+    "actor": "난민심사관",
+    "receiver": "법무부장관",
+    "action": "보고서 작성",
+    "input_documents": [
+     "면접조서",
+     "국가정황 정보 검토서"
+    ],
+    "output_documents": [
+     "난민심사보고서"
+    ],
+    "blocker": "박해 개연성 판단 정리 중",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제8조",
+      "text": "난민심사관은 심사 결과를 정리하여 보고한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "인정·불인정 결정",
+    "lane": "법무부장관",
+    "stage": "G3 인정심사·결정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "법무부장관",
+    "action": "결정",
+    "condition": "난민 요건 충족 여부, 인정 또는 불인정",
+    "output_documents": [
+     "난민인정 결정문",
+     "불인정 결정문"
+    ],
+    "deadline": "접수일부터 6개월 내(연장 가능)",
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제18조",
+      "text": "법무부장관은 접수일부터 6개월 안에 난민인정 여부를 결정한다."
+     },
+     {
+      "law": "난민법",
+      "article": "제19조",
+      "text": "난민에 해당하지 아니하면 난민불인정 결정을 한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "난민인정증명서 발급·처우",
+    "lane": "지방출입국·외국인관서",
+    "stage": "G6 처우·체류",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방출입국·외국인관서",
+    "receiver": "난민신청자",
+    "action": "발급·처우",
+    "output_documents": [
+     "난민인정증명서"
+    ],
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제18조",
+      "text": "난민으로 인정하는 경우 난민인정증명서를 발급한다."
+     },
+     {
+      "law": "난민법",
+      "article": "제31조",
+      "text": "난민으로 인정된 사람은 국민에 준하는 처우를 받는다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "인도적 체류 허가",
+    "lane": "법무부장관",
+    "stage": "G6 처우·체류",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "법무부장관",
+    "action": "인도적체류 허가",
+    "condition": "난민 불인정이나 생명·신체 위험 등 인도적 사유 존재",
+    "output_documents": [
+     "인도적체류 허가"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제2조의3",
+      "text": "박해 외의 사유로 생명·신체의 자유 등이 위협받을 합리적 근거가 있는 사람에게 인도적 체류를 허가할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "난민불인정 통지",
+    "lane": "지방출입국·외국인관서",
+    "stage": "G4 이의신청",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방출입국·외국인관서",
+    "receiver": "난민신청자",
+    "action": "통지",
+    "output_documents": [
+     "난민불인정 통지서"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제19조",
+      "text": "난민불인정 결정을 하면 그 사유와 이의신청 방법을 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "이의신청",
+    "lane": "난민신청자",
+    "stage": "G4 이의신청",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "난민신청자",
+    "receiver": "난민위원회",
+    "action": "이의신청",
+    "input_documents": [
+     "난민불인정 통지서"
+    ],
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "통지받은 날부터 30일 내",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제21조",
+      "text": "난민불인정 결정에 이의가 있으면 30일 이내에 이의신청을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "난민위원회 심의",
+    "lane": "난민위원회",
+    "stage": "G4 이의신청",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "난민위원회",
+    "action": "심의",
+    "condition": "이의신청 인용 또는 기각",
+    "output_documents": [
+     "이의신청 심의결과"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제21조",
+      "text": "이의신청은 난민위원회의 심의를 거쳐 결정한다."
+     },
+     {
+      "law": "난민법",
+      "article": "제25조",
+      "text": "난민위원회는 이의신청에 대한 심의를 위하여 둔다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "행정소송 제기",
+    "lane": "법원",
+    "stage": "G5 행정소송",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "난민신청자",
+    "receiver": "법원",
+    "action": "소송제기",
+    "input_documents": [
+     "이의신청 심의결과"
+    ],
+    "output_documents": [
+     "소장",
+     "판결"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "난민법 및 행정소송법",
+      "article": "이의신청 기각 후 불복",
+      "text": "이의신청이 기각되면 행정소송으로 다툴 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "난민신청자 생계비·처우 지원",
+    "lane": "지방출입국·외국인관서",
+    "stage": "G2 사실조사·면접",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방출입국·외국인관서",
+    "action": "지원",
+    "output_documents": [
+     "지원 결정"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "난민법",
+      "article": "제40조",
+      "text": "난민신청자에게 생계비 등을 지원할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "출입국·난민 심사 시스템 관리",
+    "lane": "정보시스템",
+    "stage": "G3 인정심사·결정",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "난민심사 정보시스템",
+    "action": "기록·관리",
+    "input_documents": [
+     "난민인정 결정문"
+    ],
+    "output_documents": [
+     "사건 기록"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "난민법 및 하위법령",
+      "article": "심사 사건관리 관련 조문",
+      "text": "난민 신청·심사·결정 사건을 정보시스템으로 관리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P07",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P10",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P03",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P06",
+    "target": "P07",
+    "type": "message",
+    "label": "난민심사보고서 상신"
+   },
+   {
+    "id": "M02",
+    "source": "P08",
+    "target": "S01",
+    "type": "message",
+    "label": "난민인정 정보 등록"
+   },
+   {
+    "id": "M03",
+    "source": "P11",
+    "target": "P12",
+    "type": "message",
+    "label": "이의신청 회부"
+   },
+   {
+    "id": "L01",
+    "source": "P11",
+    "target": "P07",
+    "type": "loop",
+    "label": "이의신청 재심사"
+   },
+   {
+    "id": "L02",
+    "source": "P13",
+    "target": "P07",
+    "type": "loop",
+    "label": "판결에 따른 재처분"
+   }
+  ],
+  "warnings": []
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 80,
  "whyFirst": "다른 권리구제 제도를 실제로 이용하게 해주는 접근권의 토대다. 신청-심사-구조 흐름과 소득 요건·구조 범위라는 쟁점이 뚜렷하다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "경제적 어려움이나 법률 지식 부족으로 권리를 지키지 못하는 국민을 돕는다. 무료 법률상담·소송대리·형사변호를 제공해 재판청구권과 실질적 평등을 보장하고, 법의 보호에서 소외되는 사각지대를 줄이는 것이 목적이다.",
   "stakeholders": "법률구조를 신청하는 저소득·취약계층 국민, 구조를 제공하는 대한법률구조공단과 변호사·공익법인, 상대방 당사자, 재원을 대는 국가·기금",
@@ -82,5 +82,508 @@
   "구조 대상 소득·재산 요건의 최신 기준",
   "구조 신청 대비 결정률·거절 사유(운영 추정)",
   "지자체·공익법인 법률지원과의 역할 분담"
- ]
+ ],
+ "process": {
+  "institution_name": "법률구조 제도",
+  "law_name": "법률구조법",
+  "lanes": [
+   "신청인/구조대상자",
+   "공단 상담·접수(지부·132)",
+   "공단 심사부",
+   "담당 변호사",
+   "법원",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 상담신청",
+   "G1 상담·검토",
+   "G2 구조신청",
+   "G3 자격·타당성심사",
+   "G4 구조결정·수행",
+   "G5 종결·상환"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "법률구조 상담 신청(132·지부 방문)",
+    "lane": "신청인/구조대상자",
+    "stage": "G0 상담신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "구조대상자",
+    "receiver": "대한법률구조공단",
+    "action": "상담 신청",
+    "output_documents": [
+     "상담 신청서",
+     "사건 개요"
+    ],
+    "deadline": "수시",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제1조",
+      "text": "경제적으로 어렵거나 법을 잘 모르는 국민에게 법률구조를 제공한다는 목적에 근거해 상담을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "무료 법률상담·사건 검토",
+    "lane": "공단 상담·접수(지부·132)",
+    "stage": "G1 상담·검토",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "대한법률구조공단",
+    "action": "상담·검토",
+    "input_documents": [
+     "상담 신청서"
+    ],
+    "output_documents": [
+     "상담 결과",
+     "사건 검토메모"
+    ],
+    "deadline": "상담일",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제8조",
+      "text": "대한법률구조공단은 법률상담·소송대리 등 법률구조 업무를 수행한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "법률구조 신청서·소명자료 제출",
+    "lane": "신청인/구조대상자",
+    "stage": "G2 구조신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "구조대상자",
+    "receiver": "공단 심사부",
+    "action": "신청서 제출",
+    "output_documents": [
+     "법률구조 신청서",
+     "소득·재산 소명자료"
+    ],
+    "deadline": "상담 후",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제7조",
+      "text": "법률구조 대상자는 소명자료를 갖추어 법률구조를 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "구조 대상 자격심사(소득·재산)",
+    "lane": "공단 심사부",
+    "stage": "G3 자격·타당성심사",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "공단 심사부",
+    "action": "자격 심사",
+    "condition": "기준 중위소득 등 소득·재산 요건 충족 여부",
+    "input_documents": [
+     "소득·재산 소명자료"
+    ],
+    "output_documents": [
+     "자격심사 결과"
+    ],
+    "deadline": "신청 후 통상 처리기간",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "법률구조법 시행령",
+      "article": "구조 대상자 소득·재산 요건",
+      "text": "구조 대상자의 소득·재산이 시행령이 정한 요건(기준 중위소득 등)에 해당하는지 심사한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "구조 타당성·승소가능성·집행가능성 심사",
+    "lane": "공단 심사부",
+    "stage": "G3 자격·타당성심사",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 45,
+    "actor": "공단 심사부",
+    "action": "타당성 심사",
+    "condition": "승소 가능성·집행 가능성·구조 필요성",
+    "output_documents": [
+     "타당성 심사서"
+    ],
+    "deadline": "내부 처리기간",
+    "blocker": "승소 가능성 심사에서 구조 거절 위험(운영 기준 검토 중)",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "법률구조법 시행령",
+      "article": "구조 결정 기준(운영 규칙)",
+      "text": "승소 가능성·집행 가능성 등을 심사해 구조 여부를 정한다(공단 내부 운영 기준, 현장 검증 필요)."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "구조 결정·담당 변호사 배정",
+    "lane": "공단 심사부",
+    "stage": "G4 구조결정·수행",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "공단 심사부",
+    "receiver": "담당 변호사",
+    "action": "구조 결정·배정",
+    "input_documents": [
+     "자격심사 결과",
+     "타당성 심사서"
+    ],
+    "output_documents": [
+     "구조 결정서",
+     "배정 통지"
+    ],
+    "deadline": "심사 완료 후",
+    "blocker": "담당 변호사 배정 조율 중",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제8조",
+      "text": "공단은 구조를 결정하고 소속·전담 변호사를 배정해 구조 업무를 수행한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "위임장·소송 위임",
+    "lane": "신청인/구조대상자",
+    "stage": "G4 구조결정·수행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "구조대상자",
+    "receiver": "담당 변호사",
+    "action": "소송 위임",
+    "output_documents": [
+     "소송위임장"
+    ],
+    "deadline": "구조 결정 후",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제8조",
+      "text": "구조대상자는 담당 변호사에게 소송수행을 위임한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "소송대리·형사변호 수행",
+    "lane": "담당 변호사",
+    "stage": "G4 구조결정·수행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "담당 변호사",
+    "receiver": "법원",
+    "action": "소송대리·변호",
+    "input_documents": [
+     "소송위임장"
+    ],
+    "output_documents": [
+     "소장·준비서면",
+     "변론자료"
+    ],
+    "deadline": "재판 진행에 따라",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제21조의2",
+      "text": "범죄피해자 등에 대한 법률구조로 소송대리·형사변호를 수행한다."
+     },
+     {
+      "law": "형사소송법",
+      "article": "제33조",
+      "text": "일정한 사유가 있으면 법원은 국선변호인을 선정한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "재판 진행·판결",
+    "lane": "법원",
+    "stage": "G4 구조결정·수행",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "법원",
+    "action": "심리·판결",
+    "input_documents": [
+     "소장·준비서면"
+    ],
+    "output_documents": [
+     "판결문"
+    ],
+    "deadline": "재판 절차에 따라",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제8조",
+      "text": "공단 변호사가 수행한 소송에 대하여 법원이 심리·판결한다(구조 수행의 결과 단계)."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "종결·비용 정산",
+    "lane": "담당 변호사",
+    "stage": "G5 종결·상환",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "담당 변호사",
+    "receiver": "공단 심사부",
+    "action": "종결 보고·정산",
+    "output_documents": [
+     "종결 보고서",
+     "비용 정산서"
+    ],
+    "deadline": "사건 종결 후",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제33조 이하",
+      "text": "사건 종결 후 소송비용 등을 정산한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "상환·면제 판단",
+    "lane": "공단 심사부",
+    "stage": "G5 종결·상환",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공단 심사부",
+    "action": "상환·면제 판단",
+    "condition": "승소 이익 유무·무자력 여부(무자력자 상환 면제)",
+    "output_documents": [
+     "상환·면제 결정"
+    ],
+    "deadline": "정산 후",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제33조 이하",
+      "text": "승소로 이익을 얻은 경우 비용을 상환하게 하되 무자력자는 상환을 면제할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "비용 상환·회수",
+    "lane": "신청인/구조대상자",
+    "stage": "G5 종결·상환",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "구조대상자",
+    "receiver": "대한법률구조공단",
+    "action": "비용 상환",
+    "output_documents": [
+     "상환 확인"
+    ],
+    "deadline": "결정에 따라",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제33조 이하",
+      "text": "구조대상자는 결정된 소송비용을 공단에 상환하고 공단은 이를 회수한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "거절 이의·재심사",
+    "lane": "공단 심사부",
+    "stage": "G3 자격·타당성심사",
+    "type": "gateway",
+    "status": "loop",
+    "progress": 0,
+    "actor": "공단 심사부",
+    "action": "재심사",
+    "condition": "소득 요건 변동·거절 이의 사유",
+    "output_documents": [
+     "재심사 결과"
+    ],
+    "deadline": "이의 접수 후",
+    "blocker": "거절에 대한 재심사 회귀 단계",
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "법률구조법 시행령",
+      "article": "구조 재심사(운영 규칙)",
+      "text": "거절·요건 변동 시 재심사를 거쳐 구조 여부를 다시 정한다(공단 내부 운영 기준, 현장 검증 필요)."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "상담·구조 이력 관리(공단 시스템)",
+    "lane": "정보시스템",
+    "stage": "G1 상담·검토",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공단 정보시스템",
+    "action": "이력 관리",
+    "input_documents": [
+     "상담 결과",
+     "구조 결정서"
+    ],
+    "output_documents": [
+     "상담·구조 이력"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "법률구조법",
+      "article": "제8조",
+      "text": "공단은 상담·구조 업무 수행을 위해 사건 이력을 관리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": "자격 충족"
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": "구조 결정"
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": "사건 종결"
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": "상환 대상"
+   },
+   {
+    "id": "M01",
+    "source": "P02",
+    "target": "S01",
+    "type": "message",
+    "label": "상담 이력 등록"
+   },
+   {
+    "id": "M02",
+    "source": "P06",
+    "target": "P07",
+    "type": "message",
+    "label": "구조 결정 통지"
+   },
+   {
+    "id": "M03",
+    "source": "P08",
+    "target": "P09",
+    "type": "message",
+    "label": "소 제기·변론"
+   },
+   {
+    "id": "L01",
+    "source": "P05",
+    "target": "P13",
+    "type": "loop",
+    "label": "구조 거절 이의"
+   },
+   {
+    "id": "L02",
+    "source": "P13",
+    "target": "P04",
+    "type": "loop",
+    "label": "요건 재심사"
+   }
+  ],
+  "warnings": []
+ }
 }

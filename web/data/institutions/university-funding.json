@@ -6,7 +6,7 @@
  "priority": 43,
  "whyFirst": "평가·협약과 재정지원을 결합한 대표적 고등교육 재정·평가형 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "대학의 교육·연구 여건을 개선하고 국가 인재양성과 지역발전을 지원한다. 국고를 대학에 배분하되 평가·성과관리와 연계해 대학 체질 개선과 구조개혁을 유도한다.",
   "stakeholders": "지원 대상 대학(국·공립·사립), 재학생, 교육부·한국연구재단·한국장학재단, 지방자치단체(지역혁신), 납세자",
@@ -82,5 +82,343 @@
   "일반재정지원 대 특수목적지원 비중과 RISE 체계 전환 현황",
   "사업비 환수·목적외 사용 제재 기준(운영 추정)",
   "지역혁신중심 대학지원(RISE) 지자체 이관 범위"
- ]
+ ],
+ "process": {
+  "institution_name": "대학재정지원 제도",
+  "law_name": "고등교육법",
+  "lanes": [
+   "교육부",
+   "한국연구재단",
+   "대학(총장)",
+   "평가위원회",
+   "지방자치단체",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 기본계획",
+   "G1 공고·신청",
+   "G2 선정평가",
+   "G3 협약·교부",
+   "G4 집행",
+   "G5 성과평가",
+   "G6 정산·사후"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "고등교육재정지원 기본계획 수립",
+    "lane": "교육부",
+    "stage": "G0 기본계획",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부장관",
+    "action": "계획 수립",
+    "output_documents": ["고등교육재정지원 기본계획"],
+    "deadline": "5년 단위 기본계획",
+    "blocker": null,
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "고등교육법",
+      "article": "제7조의2",
+      "text": "국가는 5년 단위 고등교육재정지원계획을 수립한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "사업 기본계획 수립·공고",
+    "lane": "교육부",
+    "stage": "G1 공고·신청",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부장관",
+    "action": "공고",
+    "output_documents": ["사업 기본계획", "사업 공고문"],
+    "confidence": 0.86,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "사업 유형·공모 관련 규정",
+      "text": "일반재정·특수목적 재정지원사업의 기본계획을 수립하고 공고한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "발전계획·사업계획서 제출",
+    "lane": "대학(총장)",
+    "stage": "G1 공고·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "대학(총장)",
+    "receiver": "한국연구재단",
+    "action": "신청",
+    "output_documents": ["대학 발전계획", "사업계획서"],
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "신청·접수 관련 규정",
+      "text": "대학은 발전계획과 사업계획서를 작성하여 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "서면·대면 선정평가",
+    "lane": "평가위원회",
+    "stage": "G2 선정평가",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "선정평가위원회",
+    "action": "선정평가",
+    "output_documents": ["평가결과표", "심사의견"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "선정평가 관련 규정",
+      "text": "서면·대면 평가로 사업계획을 심사한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "지원대학·사업단 선정 판정",
+    "lane": "교육부",
+    "stage": "G2 선정평가",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "교육부장관",
+    "action": "선정 판정",
+    "condition": "평가결과에 따른 선정·탈락",
+    "output_documents": ["선정결과 통보"],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "선정 관련 규정",
+      "text": "평가결과에 따라 지원대학·사업단을 선정한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "협약 체결·사업비 교부",
+    "lane": "한국연구재단",
+    "stage": "G3 협약·교부",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "한국연구재단",
+    "receiver": "대학(총장)",
+    "action": "협약·교부",
+    "output_documents": ["협약서", "교부결정 통지"],
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "고등교육법",
+      "article": "제7조",
+      "text": "국가는 대학에 교육·연구 경비를 보조할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "사업 집행(교육과정·시설·장학 등)",
+    "lane": "대학(총장)",
+    "stage": "G4 집행",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "대학(총장)",
+    "action": "집행",
+    "output_documents": ["집행내역", "사업추진 실적"],
+    "deadline": "협약 사업기간",
+    "blocker": "성과지표 관리·행정부담(운영 추정)",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "사업비 집행 관련 규정",
+      "text": "대학은 협약 목적에 따라 사업비를 집행한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "연차·단계 성과평가",
+    "lane": "평가위원회",
+    "stage": "G5 성과평가",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "성과평가위원회",
+    "action": "성과평가",
+    "input_documents": ["사업추진 실적", "성과보고서"],
+    "output_documents": ["연차·단계 성과평가 결과"],
+    "deadline": "연차·단계별",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "성과평가 관련 규정",
+      "text": "연차·단계별로 사업 성과를 평가한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "계속지원·조정·중단 판단",
+    "lane": "교육부",
+    "stage": "G5 성과평가",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "교육부장관",
+    "action": "판단",
+    "condition": "성과 미흡 시 사업비 조정·계속지원·중단",
+    "output_documents": ["사업비 조정 통보", "계속지원·중단 결정"],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "성과연계 관련 규정",
+      "text": "성과평가 결과에 따라 사업비를 조정하거나 지원을 중단할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "사업비 조정·보완계획 수립",
+    "lane": "대학(총장)",
+    "stage": "G5 성과평가",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "대학(총장)",
+    "action": "보완",
+    "input_documents": ["성과평가 결과", "조정 통보"],
+    "output_documents": ["보완계획서", "조정 사업비 집행계획"],
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "보완·환류 관련 규정",
+      "text": "평가 결과에 따라 보완계획을 수립하고 차년도 사업에 반영한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "종료 후 성과 정산",
+    "lane": "한국연구재단",
+    "stage": "G6 정산·사후",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국연구재단",
+    "action": "정산",
+    "input_documents": ["최종 성과보고서", "집행내역"],
+    "output_documents": ["정산 결과", "최종 성과보고서"],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "정산 관련 규정",
+      "text": "사업 종료 후 사업비를 정산한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "환수·사후관리 판단",
+    "lane": "교육부",
+    "stage": "G6 정산·사후",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "교육부장관",
+    "action": "환수·사후관리",
+    "condition": "부정·목적외 사용 시 환수",
+    "output_documents": ["환수 결정", "사후관리 조치"],
+    "blocker": "목적외 사용·부정 점검 기준(운영 추정)",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "환수·제재 관련 규정",
+      "text": "부정·목적외 사용이 확인되면 사업비를 환수한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "지방비 매칭·지역연계 지원",
+    "lane": "지방자치단체",
+    "stage": "G3 협약·교부",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "지방자치단체",
+    "action": "매칭 지원",
+    "output_documents": ["지방비 매칭 계획", "지역연계 협약"],
+    "blocker": "지자체 예산 확정 전(운영 추정)",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "고등교육법",
+      "article": "제7조",
+      "text": "지방자치단체는 대학 교육·연구 경비를 보조할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "재정지원 통합공시",
+    "lane": "정보시스템",
+    "stage": "G4 집행",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "대학알리미·재정지원 통합공시",
+    "action": "공시",
+    "input_documents": ["집행내역", "성과보고서"],
+    "output_documents": ["공시 자료"],
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "대학 재정지원사업 관리운영에 관한 규정",
+      "article": "정보공시 관련 규정",
+      "text": "집행·성과 정보를 통합공시로 공개한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": null },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": null },
+   { "id": "E08", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P09", "target": "P11", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P11", "target": "P12", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P06", "target": "P13", "type": "message", "label": "지방비 매칭" },
+   { "id": "M02", "source": "P07", "target": "S01", "type": "message", "label": "집행·성과 공시" },
+   { "id": "M03", "source": "P11", "target": "S01", "type": "message", "label": "정산·성과 공시" },
+   { "id": "L01", "source": "P09", "target": "P10", "type": "loop", "label": "성과 미흡·조건부 보완" },
+   { "id": "L02", "source": "P10", "target": "P07", "type": "loop", "label": "차년도 재집행" }
+  ],
+  "warnings": []
+ }
 }

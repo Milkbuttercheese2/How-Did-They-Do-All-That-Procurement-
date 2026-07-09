@@ -6,7 +6,7 @@
  "priority": 75,
  "whyFirst": "헌법상 청원권을 구체화한 대표 참여 제도다. 국민동의청원 등 온라인 확장과 처리결과의 실효성이라는 쟁점이 선명해 제도 지도로 그릴 가치가 크다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "헌법 제26조가 보장한 청원권을 실현한다. 국민이 피해 구제, 법령·제도 개선, 공무원 비위 시정 등을 국가기관에 요구하고, 기관이 성실히 수리·심사해 결과를 통지하도록 해 국민의 국정 참여를 보장한다.",
   "stakeholders": "청원을 내는 국민(청원인), 청원을 처리하는 청원기관(국가·지방기관, 국회 등), 국민동의청원에 참여하는 동의자, 청원심의회, 청원 대상이 되는 기관·공무원",
@@ -82,5 +82,546 @@
   "국민동의청원 동의 요건·성립률(운영 추정)",
   "온라인청원시스템(청원24) 운영기관·범위 상세",
   "청원 처리결과의 실제 수용률(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "청원 제도",
+  "law_name": "청원법",
+  "lanes": [
+   "청원인(국민)",
+   "동의 국민",
+   "청원기관",
+   "청원심의회",
+   "국회(소관위원회)",
+   "정보시스템(청원24)"
+  ],
+  "stages": [
+   "G0 작성·제출",
+   "G1 접수·공개결정",
+   "G2 국민동의",
+   "G3 회부·심의",
+   "G4 처리·통지",
+   "G5 이의·재청원"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "청원서 작성",
+    "lane": "청원인(국민)",
+    "stage": "G0 작성·제출",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "청원인",
+    "action": "작성",
+    "output_documents": [
+     "청원서(문서·전자문서)"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제9조",
+      "text": "청원은 청원인의 성명·주소와 청원 취지·이유를 적은 문서 또는 전자문서로 한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "제출 경로 구분",
+    "lane": "청원인(국민)",
+    "stage": "G0 작성·제출",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "청원인",
+    "receiver": "청원기관",
+    "action": "제출",
+    "condition": "행정기관·국회·지방의회 등 소관 청원기관 구분",
+    "output_documents": [
+     "청원 접수번호"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제11조",
+      "text": "청원인은 청원사항을 관장하는 청원기관에 청원서를 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "청원24 전자제출·기록",
+    "lane": "정보시스템(청원24)",
+    "stage": "G0 작성·제출",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "온라인청원시스템(청원24)",
+    "action": "전자접수",
+    "input_documents": [
+     "청원서(전자문서)"
+    ],
+    "output_documents": [
+     "접수 기록",
+     "진행상황"
+    ],
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제9조제2항",
+      "text": "전자문서로 하는 청원은 온라인청원시스템을 통하여 제출할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "접수·수리",
+    "lane": "청원기관",
+    "stage": "G1 접수·공개결정",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "청원기관",
+    "action": "접수·수리",
+    "condition": "청원 처리 제외사유 해당 시 반려",
+    "input_documents": [
+     "청원서"
+    ],
+    "output_documents": [
+     "수리 통지",
+     "반려 통지(해당 시)"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제11조·제6조",
+      "text": "청원기관은 청원서를 접수·수리하되, 처리 제외 대상이면 사유를 통지하고 반려한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "공개청원 공개 여부 결정",
+    "lane": "청원기관",
+    "stage": "G1 접수·공개결정",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "청원기관",
+    "action": "공개 결정",
+    "condition": "공개청원의 공개 적합 여부",
+    "output_documents": [
+     "공개 여부 결정"
+    ],
+    "deadline": "접수일부터 15일 이내",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제13조",
+      "text": "공개청원을 접수한 청원기관의 장은 공개 여부를 결정하여 청원인에게 알린다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "국민 동의 모집(공개청원)",
+    "lane": "동의 국민",
+    "stage": "G2 국민동의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "동의 국민",
+    "action": "동의",
+    "output_documents": [
+     "동의 현황"
+    ],
+    "deadline": "공개일부터 30일",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제13조",
+      "text": "공개된 청원은 일정 기간 국민의 의견·동의를 받아 처리에 반영한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "국회 국민동의청원 동의",
+    "lane": "동의 국민",
+    "stage": "G2 국민동의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "동의 국민",
+    "action": "동의",
+    "output_documents": [
+     "동의자 수 집계"
+    ],
+    "deadline": "공개 후 30일 내 5만명",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "국회법",
+      "article": "제123조의2",
+      "text": "국민동의청원은 30일 이내에 10만명(종전 5만명)의 국민 동의를 받아 성립한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "청원요지서 작성·소관위 회부",
+    "lane": "국회(소관위원회)",
+    "stage": "G3 회부·심의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국회 의장",
+    "receiver": "소관 위원회",
+    "action": "회부",
+    "output_documents": [
+     "청원요지서",
+     "회부서"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "국회법",
+      "article": "제124조",
+      "text": "의장은 청원을 접수하면 청원요지서를 작성하여 소관 위원회에 회부한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "청원심의회 심의",
+    "lane": "청원심의회",
+    "stage": "G3 회부·심의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "청원심의회",
+    "action": "심의",
+    "input_documents": [
+     "청원서",
+     "사실조사 자료"
+    ],
+    "output_documents": [
+     "심의 의견"
+    ],
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "청원법 시행령",
+      "article": "청원심의회 구성·심의",
+      "text": "청원기관은 청원심의회를 두어 청원의 수리·처리 방향을 심의하게 한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "청원 검토·사실조사",
+    "lane": "청원기관",
+    "stage": "G3 회부·심의",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "청원기관",
+    "action": "검토·조사",
+    "input_documents": [
+     "심의 의견"
+    ],
+    "output_documents": [
+     "검토 결과"
+    ],
+    "deadline": "처리기간 내",
+    "blocker": "관계기관 협의로 검토가 진행 중이다",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제21조",
+      "text": "청원기관의 장은 청원을 성실·공정하게 심사·처리한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "국회 위원회 심사",
+    "lane": "국회(소관위원회)",
+    "stage": "G3 회부·심의",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 30,
+    "actor": "소관 위원회",
+    "action": "심사",
+    "condition": "본회의 부의·정부 이송·불채택 판단",
+    "output_documents": [
+     "심사보고서"
+    ],
+    "blocker": "회기·위원회 일정으로 청원 심사가 지연되고 있다(운영 추정)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "국회법",
+      "article": "제125조",
+      "text": "위원회는 회부된 청원을 심사하여 그 결과를 의장에게 보고한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "처리결과 통지",
+    "lane": "청원기관",
+    "stage": "G4 처리·통지",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "청원기관",
+    "receiver": "청원인",
+    "action": "결과 통지",
+    "output_documents": [
+     "처리결과 통지서"
+    ],
+    "deadline": "접수일부터 90일 이내(60일 연장 가능)",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제21조",
+      "text": "청원기관의 장은 청원을 접수한 날부터 90일 이내에 처리결과를 청원인에게 통지한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "정부 이송·처리결과 보고",
+    "lane": "국회(소관위원회)",
+    "stage": "G4 처리·통지",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국회",
+    "receiver": "정부",
+    "action": "이송·보고",
+    "output_documents": [
+     "정부 이송 청원",
+     "처리결과 보고서"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "국회법",
+      "article": "제126조",
+      "text": "정부가 처리함이 타당한 청원은 정부에 이송하고, 정부는 처리결과를 국회에 보고한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "이의신청",
+    "lane": "청원인(국민)",
+    "stage": "G5 이의·재청원",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "청원인",
+    "receiver": "청원기관",
+    "action": "이의신청",
+    "condition": "처리결과 불복",
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "처리결과 통지 받은 날부터 30일 이내",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제22조",
+      "text": "청원인은 청원 처리결과에 이의가 있으면 이의신청을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "반복·이중청원 판단",
+    "lane": "청원기관",
+    "stage": "G5 이의·재청원",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "청원기관",
+    "action": "반복 판단",
+    "condition": "동일 내용 반복·이중청원 여부",
+    "output_documents": [
+     "종결 통지"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제16조",
+      "text": "동일 내용의 청원을 둘 이상의 기관에 제출하거나 반복 제출하면 나중 청원은 반려·종결할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "재청원",
+    "lane": "청원인(국민)",
+    "stage": "G5 이의·재청원",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "청원인",
+    "receiver": "청원기관",
+    "action": "재청원",
+    "output_documents": [
+     "재청원서"
+    ],
+    "blocker": "반복청원 제한 회귀 단계",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "청원법",
+      "article": "제11조",
+      "text": "청원인은 새로운 사유를 들어 청원기관에 청원서를 다시 제출할 수 있다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": "행정기관 청원"
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": "공개청원"
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P08",
+    "type": "sequence",
+    "label": "동의기간 종료"
+   },
+   {
+    "id": "E06",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P09",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P11",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": "5만명 성립"
+   },
+   {
+    "id": "E10",
+    "source": "P07",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P10",
+    "target": "P12",
+    "type": "sequence",
+    "label": "정부 이송"
+   },
+   {
+    "id": "E12",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": "이의 기각"
+   },
+   {
+    "id": "M01",
+    "source": "P01",
+    "target": "S01",
+    "type": "message",
+    "label": "청원24 전자제출"
+   },
+   {
+    "id": "M02",
+    "source": "P02",
+    "target": "P06",
+    "type": "message",
+    "label": "국회 국민동의청원"
+   },
+   {
+    "id": "M03",
+    "source": "P05",
+    "target": "S01",
+    "type": "message",
+    "label": "동의 현황 공개"
+   },
+   {
+    "id": "M04",
+    "source": "P12",
+    "target": "P11",
+    "type": "message",
+    "label": "정부 처리결과 회신"
+   },
+   {
+    "id": "L01",
+    "source": "P14",
+    "target": "P15",
+    "type": "loop",
+    "label": "재청원 요건 검토"
+   },
+   {
+    "id": "L02",
+    "source": "P15",
+    "target": "P03",
+    "type": "loop",
+    "label": "재청원 재접수"
+   }
+  ],
+  "warnings": []
+ }
 }

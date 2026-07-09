@@ -6,7 +6,7 @@
  "priority": 55,
  "whyFirst": "국민이 매일 먹는 식품의 안전을 지키는 관문이다. 업종별 허가·등록·신고 구분과 공유주방·온라인 등 신유형 규제 공백이 실무 쟁점이라 지도로 그릴 가치가 크다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "국민이 먹는 식품의 안전을 확보한다. 위험도가 높은 업종은 허가·등록, 낮은 업종은 신고로 진입을 관리하고, 시설·위생·표시 기준을 지키게 해 위해식품을 차단하는 것이 목적이다.",
   "stakeholders": "식품 제조·판매·조리 영업자, 소비자·국민, 식품의약품안전처, 시·군·구청, 건강기능식품·수입식품 업체, 위생감시원",
@@ -87,5 +87,497 @@
   "신유형 영업(공유주방·온라인) 규제 적용 실무(운영 추정)",
   "수거검사·행정처분 지역별 편차(운영 추정)",
   "HACCP 의무적용 대상 확대 일정"
- ]
+ ],
+ "process": {
+  "institution_name": "식품안전 인허가 제도",
+  "law_name": "식품위생법",
+  "lanes": [
+   "영업자/신청자",
+   "시·군·구청",
+   "지방식품의약품안전청",
+   "위생감시원",
+   "식품의약품안전처",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 유형확인",
+   "G1 요건구비",
+   "G2 신청·현장확인",
+   "G3 허가·수리",
+   "G4 HACCP 인증",
+   "G5 지도·수거검사",
+   "G6 처분·회수"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "인허가 유형 확인",
+    "lane": "영업자/신청자",
+    "stage": "G0 유형확인",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "영업자",
+    "action": "유형 확인",
+    "condition": "제조·가공 등록 / 식품접객 신고 / 허가 대상",
+    "output_documents": [
+     "업종 판정표"
+    ],
+    "deadline": "내부 목표 7일",
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제37조",
+      "text": "업종별로 허가·등록·신고 대상 여부를 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "시설·위생교육·건강진단 구비",
+    "lane": "영업자/신청자",
+    "stage": "G1 요건구비",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "영업자",
+    "action": "요건 구비",
+    "output_documents": [
+     "시설도면",
+     "위생교육 수료증",
+     "건강진단서"
+    ],
+    "deadline": "내부 목표 30일",
+    "blocker": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제36조·제41조",
+      "text": "시설기준을 갖추고 위생교육 이수와 건강진단을 받는다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "허가·등록·신고 신청",
+    "lane": "영업자/신청자",
+    "stage": "G2 신청·현장확인",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "영업자",
+    "receiver": "시·군·구청",
+    "action": "신청",
+    "output_documents": [
+     "영업허가·등록·신고 신청서"
+    ],
+    "deadline": "즉시 접수",
+    "blocker": null,
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제37조",
+      "text": "관할 행정청에 허가·등록·신고를 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "시설기준 현장 확인",
+    "lane": "시·군·구청",
+    "stage": "G2 신청·현장확인",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "시·군·구청",
+    "action": "현장 확인",
+    "input_documents": [
+     "영업허가·등록·신고 신청서",
+     "시설도면"
+    ],
+    "output_documents": [
+     "현장확인 조서"
+    ],
+    "deadline": "운영 목표 처리기한 (현장 검증 필요)",
+    "blocker": "시설기준 일부 보완 확인 중",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제36조·제37조",
+      "text": "시설기준 적합 여부를 현장에서 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "영업허가증·등록증 발급·신고 수리",
+    "lane": "시·군·구청",
+    "stage": "G3 허가·수리",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구청",
+    "action": "발급·수리",
+    "condition": "시설기준 적합 여부",
+    "output_documents": [
+     "영업허가증",
+     "등록증",
+     "신고 수리증"
+    ],
+    "blocker": null,
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제37조",
+      "text": "기준에 적합하면 허가증·등록증을 발급하거나 신고를 수리한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "품목제조보고",
+    "lane": "영업자/신청자",
+    "stage": "G3 허가·수리",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "영업자",
+    "receiver": "시·군·구청",
+    "action": "품목제조보고",
+    "output_documents": [
+     "품목제조보고서"
+    ],
+    "blocker": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "식품위생법 시행규칙",
+      "article": "품목제조보고 관련 조문",
+      "text": "제조·가공 품목을 생산 전 관할 행정청에 보고한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "HACCP 인증 심사",
+    "lane": "식품의약품안전처",
+    "stage": "G4 HACCP 인증",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "식품의약품안전처",
+    "action": "인증 심사",
+    "input_documents": [
+     "HACCP 관리계획"
+    ],
+    "output_documents": [
+     "심사보고서"
+    ],
+    "blocker": null,
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제48조",
+      "text": "식품안전관리인증기준(HACCP) 적용을 심사한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "HACCP 인증 판정",
+    "lane": "식품의약품안전처",
+    "stage": "G4 HACCP 인증",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "식품의약품안전처",
+    "action": "인증 판정",
+    "condition": "인증기준 충족 여부, 보완 필요성",
+    "output_documents": [
+     "인증서",
+     "보완요청서"
+    ],
+    "blocker": null,
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제48조",
+      "text": "인증기준 충족 시 HACCP 인증서를 발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "영업 개시·준수사항 이행",
+    "lane": "영업자/신청자",
+    "stage": "G5 지도·수거검사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "영업자",
+    "action": "준수사항 이행",
+    "output_documents": [
+     "위생관리 기록",
+     "표시기준 이행"
+    ],
+    "blocker": null,
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제44조",
+      "text": "영업자는 준수사항과 표시기준을 이행한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "정기·수시 지도점검",
+    "lane": "위생감시원",
+    "stage": "G5 지도·수거검사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "위생감시원",
+    "action": "지도점검",
+    "output_documents": [
+     "점검조서"
+    ],
+    "blocker": null,
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제22조",
+      "text": "관계 공무원은 영업소에 출입해 지도점검한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "수거·검사",
+    "lane": "지방식품의약품안전청",
+    "stage": "G5 지도·수거검사",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "지방식품의약품안전청",
+    "action": "수거·검사",
+    "output_documents": [
+     "수거증",
+     "검사성적서"
+    ],
+    "blocker": "수거검사·처분 기준의 지역 간 편차 (현장 검증 필요)",
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제22조·제31조",
+      "text": "시료를 수거해 위해 여부를 검사한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "위반 판정·행정처분",
+    "lane": "시·군·구청",
+    "stage": "G6 처분·회수",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구청",
+    "action": "처분 판단",
+    "condition": "시정명령 / 영업정지 / 허가취소 / 과징금",
+    "output_documents": [
+     "행정처분서"
+    ],
+    "blocker": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제75조",
+      "text": "위반 시 시정명령·영업정지·허가취소 등을 명한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "회수·폐기",
+    "lane": "영업자/신청자",
+    "stage": "G6 처분·회수",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "영업자",
+    "action": "회수·폐기",
+    "input_documents": [
+     "행정처분서",
+     "회수명령"
+    ],
+    "output_documents": [
+     "회수·폐기 결과보고"
+    ],
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제45조·제72조",
+      "text": "위해식품을 회수·폐기하고 결과를 보고한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "통합식품안전정보망 등록·공개",
+    "lane": "정보시스템",
+    "stage": "G3 허가·수리",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "통합식품안전정보망",
+    "action": "등록·공개",
+    "input_documents": [
+     "영업허가증",
+     "등록증"
+    ],
+    "output_documents": [
+     "공개 영업정보"
+    ],
+    "blocker": null,
+    "confidence": 0.73,
+    "legal_basis": [
+     {
+      "law": "식품위생법",
+      "article": "제37조",
+      "text": "허가·등록·신고 사항을 정보망에 등록·공개한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": "인증 완료"
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P05",
+    "target": "S01",
+    "type": "message",
+    "label": "허가사항 공개"
+   },
+   {
+    "id": "M02",
+    "source": "P11",
+    "target": "P12",
+    "type": "message",
+    "label": "부적합 통보"
+   },
+   {
+    "id": "M03",
+    "source": "P04",
+    "target": "P05",
+    "type": "message",
+    "label": "적합 확인"
+   },
+   {
+    "id": "L01",
+    "source": "P12",
+    "target": "P13",
+    "type": "loop",
+    "label": "회수·폐기 명령"
+   },
+   {
+    "id": "L02",
+    "source": "P13",
+    "target": "P10",
+    "type": "loop",
+    "label": "재점검 회귀"
+   }
+  ],
+  "warnings": []
+ }
 }

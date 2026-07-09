@@ -6,7 +6,7 @@
  "priority": 31,
  "whyFirst": "업무상 재해 인정-보상-재활로 이어지는 사회보험의 권리구제 흐름을 담기 좋다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "업무상 재해로 인한 근로자의 부상·질병·장해·사망을 신속·공정하게 보상한다. 사업주의 과실을 따지지 않는 무과실 책임으로 근로자를 두텁게 보호하고, 재해로 인한 사업주의 배상 부담을 사회적으로 분산한다.",
   "stakeholders": "업무상 재해를 입은 근로자·유족, 사업주, 노무제공자(특고·플랫폼 종사자), 고용노동부, 근로복지공단, 산재 의료기관, 업무상질병판정위원회",
@@ -87,5 +87,347 @@
   "노무제공자(특고·플랫폼) 적용 직종·전속성 요건 현행 기준",
   "업무상 질병 판정 소요기간과 승인율(운영 추정)",
   "소규모 사업장 미가입·산재 은폐 규모(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "산업재해보상보험",
+  "law_name": "산업재해보상보험법",
+  "lanes": [
+   "재해근로자·유족",
+   "사업주",
+   "근로복지공단",
+   "산재 의료기관",
+   "업무상질병판정위원회",
+   "산재보험 심사·재심사위원회"
+  ],
+  "stages": [
+   "G0 보험관계·보험료",
+   "G1 재해발생·신청",
+   "G2 재해조사",
+   "G3 업무상재해 판정",
+   "G4 급여결정·지급",
+   "G5 장해·재활",
+   "G6 심사·재심사"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "보험관계 성립·보험료 부과",
+    "lane": "근로복지공단",
+    "stage": "G0 보험관계·보험료",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "근로복지공단",
+    "action": "당연 적용 사업 보험관계 성립·업종별 요율 부과",
+    "output_documents": ["보험관계 성립 신고", "보험료 부과 내역"],
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "고용보험 및 산업재해보상보험의 보험료징수 등에 관한 법률",
+      "article": "제5조, 제13조",
+      "text": "근로자를 사용하는 사업은 당연 적용되어 보험관계가 성립하고 보험료가 부과된다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "산재보험료 납부",
+    "lane": "사업주",
+    "stage": "G0 보험관계·보험료",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "사업주",
+    "receiver": "근로복지공단",
+    "action": "산재보험료 전액 납부",
+    "output_documents": ["납부 확인"],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "고용보험 및 산업재해보상보험의 보험료징수 등에 관한 법률",
+      "article": "제16조의2",
+      "text": "산재보험료는 사업주가 전액 부담한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "업무상 사고·질병 발생",
+    "lane": "재해근로자·유족",
+    "stage": "G1 재해발생·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "재해근로자",
+    "action": "업무 수행 중 사고·질병 발생",
+    "output_documents": ["재해 사실"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제37조",
+      "text": "업무상 사유에 따른 부상·질병·장해·사망을 업무상 재해로 본다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "요양급여 등 신청",
+    "lane": "재해근로자·유족",
+    "stage": "G1 재해발생·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "재해근로자·유족",
+    "receiver": "근로복지공단",
+    "action": "요양급여 등 급여 신청",
+    "output_documents": ["요양급여 신청서"],
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제40조, 제41조",
+      "text": "재해근로자는 요양급여 등을 공단에 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "진료·소견서 발급",
+    "lane": "산재 의료기관",
+    "stage": "G1 재해발생·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "산재보험 의료기관",
+    "receiver": "근로복지공단",
+    "action": "진료·의무기록·소견서 발급",
+    "output_documents": ["의무기록", "소견서"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제40조, 제43조",
+      "text": "산재보험 의료기관이 요양을 담당하고 관련 소견을 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "재해조사",
+    "lane": "근로복지공단",
+    "stage": "G2 재해조사",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "근로복지공단",
+    "action": "업무 관련성·재해경위 조사",
+    "input_documents": ["요양급여 신청서", "의무기록"],
+    "output_documents": ["재해조사 복명서"],
+    "blocker": "업무 관련성 조사 진행 중",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제37조",
+      "text": "공단은 업무상 재해 인정기준에 따라 재해경위와 업무 관련성을 조사한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "업무상 질병 심의",
+    "lane": "업무상질병판정위원회",
+    "stage": "G3 업무상재해 판정",
+    "type": "task",
+    "status": "risk",
+    "progress": 35,
+    "actor": "업무상질병판정위원회",
+    "action": "업무상 질병 인과관계 심의",
+    "input_documents": ["재해조사 복명서", "의학 소견"],
+    "output_documents": ["질병판정위 심의 결과"],
+    "blocker": "인과관계 입증 곤란·판정 지연 빈발(운영 추정)",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제38조",
+      "text": "업무상 질병의 인정 여부는 업무상질병판정위원회의 심의를 거친다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "업무상 재해 여부 판정",
+    "lane": "근로복지공단",
+    "stage": "G3 업무상재해 판정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "근로복지공단",
+    "action": "승인·불승인 결정",
+    "condition": "업무상 재해 인정 여부(승인/불승인)",
+    "output_documents": ["승인·불승인 결정 통지"],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제37조",
+      "text": "조사·심의 결과에 따라 업무상 재해 여부를 결정한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "요양·휴업급여 지급",
+    "lane": "근로복지공단",
+    "stage": "G4 급여결정·지급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "근로복지공단",
+    "receiver": "재해근로자·의료기관",
+    "action": "요양급여·휴업급여 지급",
+    "input_documents": ["승인 결정 통지"],
+    "output_documents": ["요양급여 지급", "휴업급여 지급 내역"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제40조, 제52조",
+      "text": "요양급여는 의료기관에, 휴업급여는 평균임금의 70%를 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "장해등급 판정·장해급여",
+    "lane": "근로복지공단",
+    "stage": "G5 장해·재활",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "근로복지공단",
+    "action": "치유 후 장해등급 판정·장해급여 결정",
+    "condition": "치유 후 장해 잔존 및 등급",
+    "output_documents": ["장해등급 결정", "장해급여(연금·일시금)"],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제57조",
+      "text": "치유 후 장해가 남으면 장해등급에 따라 연금 또는 일시금으로 장해급여를 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "유족급여·장례비 지급",
+    "lane": "근로복지공단",
+    "stage": "G4 급여결정·지급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "근로복지공단",
+    "receiver": "유족",
+    "action": "사망 시 유족급여·장례비 지급",
+    "input_documents": ["승인 결정 통지"],
+    "output_documents": ["유족급여 지급", "장례비 지급 내역"],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제62조, 제71조",
+      "text": "업무상 사망 시 유족급여와 장례비를 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "직업재활 지원",
+    "lane": "근로복지공단",
+    "stage": "G5 장해·재활",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "근로복지공단",
+    "receiver": "재해근로자",
+    "action": "직업재활급여·직장복귀 지원",
+    "output_documents": ["직업재활 지원 내역"],
+    "blocker": "치료 후 직업복귀·재활 지원이 충분치 않음(운영 추정)",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제72조",
+      "text": "장해급여자 등에게 직업재활급여로 직장복귀를 지원한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "심사청구·재심사청구",
+    "lane": "산재보험 심사·재심사위원회",
+    "stage": "G6 심사·재심사",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "산재보험심사위원회·산업재해보상보험재심사위원회",
+    "receiver": "청구인",
+    "action": "불승인·등급 불복 심사청구·재심사청구 처리",
+    "input_documents": ["심사청구서"],
+    "output_documents": ["심사 결정", "재결"],
+    "blocker": "불승인·장해등급 불복 시 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "산업재해보상보험법",
+      "article": "제103조, 제106조",
+      "text": "보험급여 결정에 불복하면 심사청구를, 그 결정에 불복하면 재심사청구를 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "업종별 요율·기금 관리",
+    "lane": "근로복지공단",
+    "stage": "G0 보험관계·보험료",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "고용노동부·근로복지공단",
+    "action": "업종별 요율 산정·산재보험기금 관리",
+    "input_documents": ["재해율 통계", "급여 지출"],
+    "output_documents": ["업종별 요율", "기금 운용 내역"],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "고용보험 및 산업재해보상보험의 보험료징수 등에 관한 법률",
+      "article": "제14조",
+      "text": "산재보험료율은 업종별 재해율 등을 고려해 정하며 기금으로 급여를 충당한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": "가입 유지" },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": "업무상질병 의뢰" },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": "심의 결과" },
+   { "id": "E08", "source": "P08", "target": "P09", "type": "sequence", "label": "승인" },
+   { "id": "E09", "source": "P09", "target": "P10", "type": "sequence", "label": "치유·장해" },
+   { "id": "E10", "source": "P08", "target": "P11", "type": "sequence", "label": "사망 승인" },
+   { "id": "E11", "source": "P10", "target": "P12", "type": "sequence", "label": null },
+   { "id": "E12", "source": "P02", "target": "P14", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P05", "target": "P06", "type": "message", "label": "의무기록·소견서" },
+   { "id": "M02", "source": "P07", "target": "P08", "type": "message", "label": "판정위 심의서" },
+   { "id": "M03", "source": "P09", "target": "P14", "type": "message", "label": "급여 지출 반영" },
+   { "id": "L01", "source": "P08", "target": "P13", "type": "loop", "label": "불승인 불복" },
+   { "id": "L02", "source": "P13", "target": "P08", "type": "loop", "label": "재심사·재결정" }
+  ],
+  "warnings": []
+ }
 }

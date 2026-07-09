@@ -6,7 +6,7 @@
  "priority": 95,
  "whyFirst": "국민이 위급할 때 가장 먼저 부르는 공공서비스이자, 국가직 전환으로 재정·인력 구조가 재편된 제도다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "화재·재난·재해와 그 밖의 위급상황에서 국민의 생명·신체·재산을 보호한다. 119 신고 접수부터 출동·현장 대응까지 신속한 소방활동으로 피해를 줄이고, 구조·구급 역량을 확보한다.",
   "stakeholders": "신고자·요구조자·응급환자, 화재 등 재난 피해자, 소방청·시·도 소방본부·소방서, 소방공무원(현장대원), 병원 등 응급의료기관",
@@ -94,5 +94,585 @@
   "119구조·구급법상 비응급 이송 거절 근거 조문",
   "연간 비응급·허위 신고 비율(운영 통계)",
   "구급 이송 병원 선정 지연·재이송 실태(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "소방과 119 신고 제도",
+  "law_name": "소방기본법",
+  "lanes": [
+   "신고자·요구조자",
+   "119종합상황실",
+   "출동대(소방서)",
+   "구급대",
+   "긴급구조통제단/유관기관",
+   "응급의료기관",
+   "상황실시스템"
+  ],
+  "stages": [
+   "G0 신고접수",
+   "G1 출동지령",
+   "G2 현장활동",
+   "G3 구급이송",
+   "G4 공조·통제단",
+   "G5 화재조사",
+   "G6 예방환류"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "119 신고 접수",
+    "lane": "119종합상황실",
+    "stage": "G0 신고접수",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "119종합상황실",
+    "output_documents": [
+     "신고 접수기록"
+    ],
+    "deadline": "즉시",
+    "confidence": 0.88,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제4조",
+      "text": "119종합상황실을 설치·운영하여 신고를 접수한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "위치확인·긴급도 판단",
+    "lane": "119종합상황실",
+    "stage": "G0 신고접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "119종합상황실",
+    "output_documents": [
+     "위치정보",
+     "긴급도 판단"
+    ],
+    "deadline": "접수 즉시",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제4조",
+      "text": "119종합상황실은 상황 관리와 정보 수집·분석을 수행한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "대응단계 분류(1~3단계)",
+    "lane": "119종합상황실",
+    "stage": "G1 출동지령",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "119종합상황실",
+    "condition": "1단계/2단계/3단계",
+    "output_documents": [
+     "대응단계 결정"
+    ],
+    "deadline": "판단 즉시",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제16조",
+      "text": "화재 등 위급상황의 규모에 따라 소방활동을 편성한다."
+     },
+     {
+      "law": "119구조·구급에 관한 법률",
+      "article": "제8조",
+      "text": "위급상황의 신고 접수에 따라 구조·구급대를 출동시킨다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "출동 지령",
+    "lane": "119종합상황실",
+    "stage": "G1 출동지령",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "119종합상황실",
+    "receiver": "출동대(소방서)",
+    "output_documents": [
+     "출동 지령서"
+    ],
+    "deadline": "분류 즉시",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제16조",
+      "text": "관할 소방서에 소방차·구조·구급대 출동을 지령한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "소방차 우선통행·현장 도착",
+    "lane": "출동대(소방서)",
+    "stage": "G2 현장활동",
+    "type": "task",
+    "status": "risk",
+    "progress": 75,
+    "actor": "현장 소방대",
+    "output_documents": [
+     "현장 도착 보고"
+    ],
+    "deadline": "골든타임 내",
+    "blocker": "불법주정차·좁은 도로로 현장 도착 지연",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제21조",
+      "text": "소방자동차는 화재 진압 등을 위하여 우선 통행할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "화재진압·인명구조",
+    "lane": "출동대(소방서)",
+    "stage": "G2 현장활동",
+    "type": "task",
+    "status": "current",
+    "progress": 55,
+    "actor": "현장 소방대",
+    "output_documents": [
+     "화재진압 활동일지",
+     "인명구조 기록"
+    ],
+    "deadline": "현장 활동 중",
+    "blocker": "추가 요구조자 수색 진행",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제16조",
+      "text": "소방대는 화재를 진압하고 인명을 구조한다."
+     },
+     {
+      "law": "119구조·구급에 관한 법률",
+      "article": "제13조",
+      "text": "구조대는 위급상황에서 인명 구조 활동을 한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "소방활동구역 설정·강제처분",
+    "lane": "출동대(소방서)",
+    "stage": "G2 현장활동",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "현장 지휘관",
+    "condition": "구역 설정/강제처분",
+    "output_documents": [
+     "소방활동구역 설정",
+     "강제처분 기록"
+    ],
+    "deadline": "필요 시",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제23조",
+      "text": "소방활동구역을 정하여 관계인 외 출입을 제한할 수 있다."
+     },
+     {
+      "law": "소방기본법",
+      "article": "제25조",
+      "text": "화재 진압 등을 위하여 강제처분을 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "응급처치·구급",
+    "lane": "구급대",
+    "stage": "G3 구급이송",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "구급대원",
+    "output_documents": [
+     "구급활동일지"
+    ],
+    "deadline": "현장 즉시",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "119구조·구급에 관한 법률",
+      "article": "제13조",
+      "text": "구급대는 응급환자에게 응급처치를 한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "이송병원 선정",
+    "lane": "구급대",
+    "stage": "G3 구급이송",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "구급대원",
+    "condition": "이송/현장처치 종결",
+    "output_documents": [
+     "이송병원 선정기록"
+    ],
+    "deadline": "이송 전",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "119구조·구급에 관한 법률",
+      "article": "제13조",
+      "text": "응급환자를 적절한 의료기관으로 이송한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "병원 이송·인계",
+    "lane": "응급의료기관",
+    "stage": "G3 구급이송",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "응급의료기관",
+    "output_documents": [
+     "이송기록",
+     "환자 인계서"
+    ],
+    "deadline": "이송 완료 시",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "응급의료에 관한 법률",
+      "article": "응급환자 이송·인계",
+      "text": "응급환자를 이송받아 응급의료를 제공한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "긴급구조통제단 가동",
+    "lane": "긴급구조통제단/유관기관",
+    "stage": "G4 공조·통제단",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "긴급구조통제단",
+    "condition": "통제단 가동/미가동",
+    "output_documents": [
+     "통제단 가동 결정"
+    ],
+    "deadline": "대형 재난 시",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "재난 및 안전관리 기본법",
+      "article": "긴급구조통제단",
+      "text": "대형 재난 시 지역·중앙 긴급구조통제단을 운영한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "유관기관 공조",
+    "lane": "긴급구조통제단/유관기관",
+    "stage": "G4 공조·통제단",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "긴급구조통제단",
+    "output_documents": [
+     "공조 요청",
+     "합동 대응기록"
+    ],
+    "deadline": "통제단 가동 시",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "재난 및 안전관리 기본법",
+      "article": "긴급구조 공조",
+      "text": "긴급구조기관과 지원기관이 협력하여 대응한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "화재조사 실시",
+    "lane": "출동대(소방서)",
+    "stage": "G5 화재조사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "화재조사관",
+    "output_documents": [
+     "화재조사 자료"
+    ],
+    "deadline": "상황 종료 후",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "소방의 화재조사에 관한 법률",
+      "article": "제5조",
+      "text": "소방관서장은 화재 발생 시 화재조사를 실시한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "화재원인·피해 조사보고",
+    "lane": "출동대(소방서)",
+    "stage": "G5 화재조사",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "화재조사관",
+    "output_documents": [
+     "화재조사 보고서"
+    ],
+    "deadline": "조사 종료 후",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "소방의 화재조사에 관한 법률",
+      "article": "제5조",
+      "text": "화재 원인과 피해 상황을 조사하여 보고한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "예방·안전점검 환류",
+    "lane": "출동대(소방서)",
+    "stage": "G6 예방환류",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "소방서",
+    "output_documents": [
+     "안전점검 계획",
+     "예방 개선안"
+    ],
+    "deadline": "조사 결과 반영",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제1조",
+      "text": "화재를 예방·경계하여 국민의 생명·재산을 보호한다."
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "재발방지 제도개선",
+    "lane": "119종합상황실",
+    "stage": "G6 예방환류",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "소방청·소방서",
+    "output_documents": [
+     "제도개선 과제",
+     "대응기준 개정안"
+    ],
+    "deadline": "환류 검토 후",
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제1조",
+      "text": "소방활동 개선으로 재난 대응체계를 강화한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "상황실 시스템 출동·이송 기록",
+    "lane": "상황실시스템",
+    "stage": "G2 현장활동",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "119종합상황실 시스템",
+    "input_documents": [
+     "출동 지령서"
+    ],
+    "output_documents": [
+     "출동 기록",
+     "이송 연계 자료"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "소방기본법",
+      "article": "제4조",
+      "text": "119종합상황실 정보시스템으로 출동·상황 정보를 관리한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P06",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P06",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P07",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E14",
+    "source": "P14",
+    "target": "P15",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E15",
+    "source": "P15",
+    "target": "P16",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P04",
+    "target": "P05",
+    "type": "message",
+    "label": "출동 지령"
+   },
+   {
+    "id": "M02",
+    "source": "P09",
+    "target": "P10",
+    "type": "message",
+    "label": "이송 요청"
+   },
+   {
+    "id": "M03",
+    "source": "P06",
+    "target": "S01",
+    "type": "message",
+    "label": "현장활동 기록"
+   },
+   {
+    "id": "M04",
+    "source": "P03",
+    "target": "P11",
+    "type": "message",
+    "label": "대응단계 격상"
+   },
+   {
+    "id": "L01",
+    "source": "P16",
+    "target": "P02",
+    "type": "loop",
+    "label": "상황실 대응기준 개선"
+   },
+   {
+    "id": "L02",
+    "source": "P15",
+    "target": "P06",
+    "type": "loop",
+    "label": "현장활동 개선 환류"
+   }
+  ],
+  "warnings": []
+ }
 }

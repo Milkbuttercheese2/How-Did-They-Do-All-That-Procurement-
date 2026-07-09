@@ -6,7 +6,7 @@
  "priority": 35,
  "whyFirst": "보편지급-현금급여-재정효율 논쟁을 가장 단순한 형태로 보여주기 좋다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "아동 양육에 드는 비용을 사회가 분담해 아동의 기본적 권리와 복지를 보장한다. 소득을 따지지 않는 보편지급으로 낙인 없이 양육 부담을 덜고, 저출생 대응 정책의 기본 축을 이룬다.",
   "stakeholders": "8세 미만 아동과 보호자, 보건복지부, 시·군·구 및 읍·면·동, 재정을 부담하는 국가·지방자치단체, 부모급여 등 유사 현금급여 수급 가구",
@@ -70,6 +70,508 @@
   "지급연령 확대·2세 미만 추가지급 등 최신 개정 반영 여부",
   "지급액·지급연령 현행 기준과 관련 조문번호",
   "부모급여·양육수당과의 중복 수급 관계 현행 처리",
-  "지급 대상 아동 수와 예산 규모(운영 추정)"
- ]
+  "지급 대상 아동 수와 예산 규모(운영 추정)",
+  "해외 장기체류·전출입 아동의 자격 정지·관리 실태(현장 검증 필요)"
+ ],
+ "process": {
+  "institution_name": "아동수당 제도",
+  "law_name": "아동수당법",
+  "lanes": [
+   "보호자(신청인)",
+   "온라인 창구(복지로·정부24)",
+   "읍면동(접수·상담)",
+   "시군구(자격확인·지급결정)",
+   "사회보장정보원(행복e음)",
+   "보건복지부(기준·재정)"
+  ],
+  "stages": [
+   "G0 기준·재정",
+   "G1 출생·신청",
+   "G2 자격 확인",
+   "G3 지급 결정",
+   "G4 계좌 지급",
+   "G5 변동 관리",
+   "G6 이의신청"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "지급기준·국고보조금 관리",
+    "lane": "보건복지부(기준·재정)",
+    "stage": "G0 기준·재정",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "보건복지부장관",
+    "action": "지급기준 관리·재정 배분",
+    "output_documents": [
+     "아동수당 지급기준",
+     "국고보조 지침"
+    ],
+    "deadline": "연간 예산·지침 시달",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제3조·제4조",
+      "text": "국가와 지방자치단체는 아동수당 지급에 필요한 재원을 마련하며, 8세 미만 아동에게 매월 10만원을 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "출생신고·전입신고(행복출산 원스톱)",
+    "lane": "보호자(신청인)",
+    "stage": "G1 출생·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "보호자",
+    "receiver": "읍면동",
+    "action": "출생·전입 신고와 원스톱 신청",
+    "output_documents": [
+     "출생신고서",
+     "행복출산 원스톱 신청서"
+    ],
+    "deadline": "출생 후 상시",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제5조",
+      "text": "보호자는 아동수당의 지급을 신청할 수 있으며, 출생신고와 함께 행복출산 원스톱서비스로 일괄 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "아동수당 지급 신청서 접수",
+    "lane": "읍면동(접수·상담)",
+    "stage": "G1 출생·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "읍·면·동 주민센터",
+    "receiver": "시군구",
+    "action": "신청 접수·이송",
+    "input_documents": [
+     "아동수당 신청서"
+    ],
+    "output_documents": [
+     "접수증",
+     "자격확인 요청 자료"
+    ],
+    "deadline": "신청 당일 접수",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제5조",
+      "text": "신청을 받은 읍·면·동은 신청서를 접수하고 보장기관인 시·군·구에 이송한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "온라인 신청 접수(복지로·정부24)",
+    "lane": "온라인 창구(복지로·정부24)",
+    "stage": "G1 출생·신청",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "복지로·정부24",
+    "receiver": "시군구",
+    "action": "온라인 신청 접수·연계",
+    "output_documents": [
+     "온라인 신청 접수내역"
+    ],
+    "deadline": "24시간 접수",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "아동수당법 시행규칙",
+      "article": "신청 서식·방법",
+      "text": "아동수당 신청은 복지로·정부24 등 정보시스템을 통한 온라인 신청으로도 할 수 있다.(조문번호 현장 검증 필요)"
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "아동·보호자 자격 전산 확인(연령·국적·주민등록)",
+    "lane": "사회보장정보원(행복e음)",
+    "stage": "G2 자격 확인",
+    "type": "system",
+    "status": "current",
+    "progress": 55,
+    "actor": "사회보장정보원(행복e음)",
+    "action": "자격 요건 전산 대사",
+    "input_documents": [
+     "자격확인 요청 자료"
+    ],
+    "output_documents": [
+     "연령·주민등록 확인결과"
+    ],
+    "deadline": "지급 결정 기한 내",
+    "blocker": "연령·국적·주민등록 전산 대사 진행 중(소득·재산 조사는 없음)",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제8조",
+      "text": "보장기관은 지급 자격 확인에 필요한 연령·주민등록 등 자료를 조사·확인하며, 보편지급이므로 소득·재산 조사는 하지 않는다.(조문번호 현장 검증 필요)"
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "지급요건 판정(8세 미만·중복급여)",
+    "lane": "시군구(자격확인·지급결정)",
+    "stage": "G2 자격 확인",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "action": "지급요건 판정",
+    "condition": "8세 미만·국내 거주 여부 확인, 소득·재산 조사 없이 지급(보편지급), 부모급여 등 중복지급 여부만 점검",
+    "input_documents": [
+     "연령·주민등록 확인결과"
+    ],
+    "output_documents": [
+     "지급요건 판정결과"
+    ],
+    "deadline": "지급 결정 기한 내",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제4조",
+      "text": "8세 미만 아동에게 소득·재산과 무관하게 매월 10만원을 지급하며, 부모급여 등과의 중복 여부를 확인한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "지급 결정",
+    "lane": "시군구(자격확인·지급결정)",
+    "stage": "G3 지급 결정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시장·군수·구청장",
+    "action": "지급 결정",
+    "condition": "지급요건 충족 여부",
+    "input_documents": [
+     "지급요건 판정결과"
+    ],
+    "output_documents": [
+     "아동수당 지급 결정 내용"
+    ],
+    "deadline": "신청일부터 30일 이내",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제6조",
+      "text": "보장기관은 신청 내용을 확인하여 아동수당 지급 여부와 지급액을 결정한다.(조문번호 현장 검증 필요)"
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "지급 결정 통지",
+    "lane": "시군구(자격확인·지급결정)",
+    "stage": "G3 지급 결정",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "receiver": "보호자",
+    "action": "결정 통지",
+    "output_documents": [
+     "지급 결정 통지서",
+     "이의신청 방법 안내"
+    ],
+    "deadline": "결정 후 지체 없이",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제6조",
+      "text": "보장기관은 지급 결정 내용을 신청인에게 통지한다.(조문번호 현장 검증 필요)"
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "매월 계좌 지급(월 10만원)",
+    "lane": "시군구(자격확인·지급결정)",
+    "stage": "G4 계좌 지급",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "receiver": "보호자",
+    "action": "아동수당 계좌 지급",
+    "output_documents": [
+     "아동수당 계좌입금 내역"
+    ],
+    "deadline": "매월 정기 지급",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제4조·제6조",
+      "text": "결정된 아동수당은 매월 정해진 날 보호자 계좌로 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "전출입·자격 변동 관리",
+    "lane": "시군구(자격확인·지급결정)",
+    "stage": "G5 변동 관리",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "시·군·구·사회보장정보원",
+    "action": "자격 변동 확인",
+    "output_documents": [
+     "자격 변동 확인결과",
+     "관할 이관 통보"
+    ],
+    "deadline": "변동 발생 시 수시",
+    "blocker": "전출입·자격 변동 확인 시 지급요건 재판정 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제8조",
+      "text": "보장기관은 수급 아동의 전출입·자격 요건 변동을 확인하여 지급을 조정한다.(조문번호 현장 검증 필요)"
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "지급 종료·정지(8세 도달·해외 장기체류)",
+    "lane": "시군구(자격확인·지급결정)",
+    "stage": "G5 변동 관리",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "시·군·구",
+    "action": "지급 종료·정지 판정",
+    "condition": "8세 도달·해외 장기체류·주소불명 등 수급자격 소멸·정지 사유 해당 여부",
+    "output_documents": [
+     "지급 종료·정지 통지"
+    ],
+    "deadline": "사유 발생 시",
+    "blocker": "해외 장기체류·주소불명 아동의 자격 관리 부담으로 지급 정지·종료 판단이 지연될 수 있다(현장 검증 필요)",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제7조",
+      "text": "8세 도달, 국외 장기체류 등 사유가 있으면 수급자격이 소멸·정지되어 지급을 종료·정지한다.(조문번호 현장 검증 필요)"
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "부정수급 환수",
+    "lane": "시군구(자격확인·지급결정)",
+    "stage": "G5 변동 관리",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구",
+    "receiver": "보호자",
+    "action": "부정수급 환수",
+    "output_documents": [
+     "환수 결정·고지"
+    ],
+    "deadline": "부정수급 확인 시",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제10조",
+      "text": "거짓이나 부정한 방법으로 아동수당을 받은 경우 그 전부 또는 일부를 환수한다.(조문번호 현장 검증 필요)"
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "이의신청",
+    "lane": "보호자(신청인)",
+    "stage": "G6 이의신청",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "보호자",
+    "receiver": "시·군·구·시·도지사",
+    "action": "이의신청",
+    "input_documents": [
+     "지급 결정 통지서"
+    ],
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "결정 통지받은 날부터 90일 이내",
+    "blocker": "지급 결정 불복 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제11조",
+      "text": "지급 결정에 이의가 있는 보호자는 이의신청을 할 수 있다.(조문번호·기한 현장 검증 필요)"
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "이의신청 심사·재결정",
+    "lane": "시군구(자격확인·지급결정)",
+    "stage": "G6 이의신청",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "시·군·구·시·도지사",
+    "action": "이의신청 심사·처분",
+    "condition": "이의신청 인용 여부(인용 시 지급 결정 시정 회귀)",
+    "input_documents": [
+     "이의신청서"
+    ],
+    "output_documents": [
+     "이의신청 처리결과 통지"
+    ],
+    "deadline": "이의신청 받은 날부터 법정기한 내",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "아동수당법",
+      "article": "제11조",
+      "text": "보장기관은 이의신청을 심사하여 지급 결정을 변경하거나 유지하는 처분을 한다.(조문번호 현장 검증 필요)"
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": "요건 충족"
+   },
+   {
+    "id": "E06",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": "지급 결정"
+   },
+   {
+    "id": "E07",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P02",
+    "target": "P04",
+    "type": "message",
+    "label": "온라인 신청 연계(복지로·정부24)"
+   },
+   {
+    "id": "M02",
+    "source": "P04",
+    "target": "P05",
+    "type": "message",
+    "label": "온라인 신청 자격조회 연계"
+   },
+   {
+    "id": "M03",
+    "source": "P08",
+    "target": "P13",
+    "type": "message",
+    "label": "이의신청 안내"
+   },
+   {
+    "id": "M04",
+    "source": "P11",
+    "target": "P12",
+    "type": "message",
+    "label": "자격상실·부정수급 환수 의뢰"
+   },
+   {
+    "id": "L01",
+    "source": "P10",
+    "target": "P06",
+    "type": "loop",
+    "label": "전출입·자격 변동 재판정"
+   },
+   {
+    "id": "L02",
+    "source": "P13",
+    "target": "P07",
+    "type": "loop",
+    "label": "이의신청 재결정 회귀"
+   }
+  ],
+  "warnings": [
+   "아동수당법 신청·결정·환수·이의신청 조문번호는 현행 법령으로 재확인 필요",
+   "보편지급 제도로 소득·재산 조사 단계는 두지 않음(P05·P06에 반영)"
+  ]
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 49,
  "whyFirst": "혁신과 규제 충돌의 최전선 제도다. '우선허용·사후규제' 원칙과 부처별 창구 분산 문제가 규제개혁 논쟁의 핵심이라 지도로 그릴 가치가 크다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "낡은 규제로 신제품·서비스 출시가 막히는 문제를 푼다. 안전성을 검증하며 시험하도록 허용하고 그 결과로 규제를 정비한다. '우선허용·사후규제' 원칙으로 혁신과 안전을 함께 도모하는 것이 목적이다.",
   "stakeholders": "신기술 사업자·스타트업, 소관 부처(산업부·과기정통부·금융위·중기부 등), 규제특례심의위원회, 규제소관 부처, 소비자·이용자, 전문기관(신청 접수·실증 지원)",
@@ -92,5 +92,527 @@
   "실증→법령정비 전환율과 소요기간(운영 추정)",
   "부처별 심의위 처리기간·인용률(운영 추정)",
   "책임보험·안전조건 실무 부담"
- ]
+ ],
+ "process": {
+  "institution_name": "규제샌드박스",
+  "law_name": "산업융합 촉진법 등 규제특례법",
+  "lanes": [
+   "신기술 사업자·스타트업",
+   "전문기관(KIAT 등)",
+   "소관 부처(산업부·과기정통부 등)",
+   "규제소관 부처",
+   "규제특례심의위원회",
+   "국무조정실",
+   "정보시스템(sandbox.go.kr)"
+  ],
+  "stages": [
+   "G0 신속확인",
+   "G1 특례신청",
+   "G2 관계부처검토",
+   "G3 심의·의결",
+   "G4 특례부여",
+   "G5 실증·모니터링",
+   "G6 법령정비·전환"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "규제 신속확인 신청",
+    "lane": "신기술 사업자·스타트업",
+    "stage": "G0 신속확인",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "신기술 사업자·스타트업",
+    "receiver": "전문기관(KIAT 등)",
+    "action": "신속확인 신청",
+    "output_documents": [
+     "규제 신속확인 신청서"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의2",
+      "text": "규제 존재·적용 여부를 신속히 확인해 줄 것을 신청한다."
+     },
+     {
+      "law": "정보통신 진흥 및 융합 활성화 등에 관한 특별법",
+      "article": "제36조",
+      "text": "신규 정보통신융합 기술·서비스의 신속처리를 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "통합플랫폼 접수(sandbox.go.kr)",
+    "lane": "정보시스템(sandbox.go.kr)",
+    "stage": "G0 신속확인",
+    "type": "system",
+    "status": "done",
+    "progress": 100,
+    "actor": "규제샌드박스 통합플랫폼",
+    "action": "전자 접수·관리",
+    "input_documents": [
+     "규제 신속확인 신청서"
+    ],
+    "output_documents": [
+     "접수번호",
+     "처리 이력"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의2",
+      "text": "신청·처리를 규제샌드박스 통합플랫폼으로 관리한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "규제 존재·적용 여부 회신(30일)",
+    "lane": "규제소관 부처",
+    "stage": "G0 신속확인",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "규제소관 부처",
+    "receiver": "신기술 사업자·스타트업",
+    "action": "회신",
+    "condition": "규제 없음/불명확/실증·임시허가 필요 판단",
+    "output_documents": [
+     "신속확인 회신"
+    ],
+    "deadline": "신청 후 30일 이내 회신",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의2",
+      "text": "관계 행정기관은 30일 이내에 규제 여부를 회신한다."
+     },
+     {
+      "law": "정보통신 진흥 및 융합 활성화 등에 관한 특별법",
+      "article": "제36조",
+      "text": "신속처리 신청에 대해 정해진 기간 내 회신한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "실증특례·임시허가 신청",
+    "lane": "신기술 사업자·스타트업",
+    "stage": "G1 특례신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "신기술 사업자·스타트업",
+    "receiver": "전문기관(KIAT 등)",
+    "action": "특례 신청",
+    "output_documents": [
+     "실증특례 신청서",
+     "임시허가 신청서",
+     "사업계획"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3, 제10조의5",
+      "text": "실증을 위한 규제특례 또는 임시허가를 신청한다."
+     },
+     {
+      "law": "정보통신 진흥 및 융합 활성화 등에 관한 특별법",
+      "article": "제37조, 제38조의2",
+      "text": "임시허가 또는 실증을 위한 규제특례를 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "전문기관 접수·검토 지원",
+    "lane": "전문기관(KIAT 등)",
+    "stage": "G1 특례신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "전문기관(KIAT 등)",
+    "action": "접수·검토 지원",
+    "input_documents": [
+     "실증특례·임시허가 신청서"
+    ],
+    "output_documents": [
+     "접수 확인",
+     "검토 지원 자료"
+    ],
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3",
+      "text": "전문기관은 신청을 접수하고 실증 검토를 지원한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "관계부처 검토·안전성 조건 협의",
+    "lane": "규제소관 부처",
+    "stage": "G2 관계부처검토",
+    "type": "task",
+    "status": "current",
+    "progress": 45,
+    "actor": "규제소관 부처",
+    "action": "검토·조건 협의",
+    "output_documents": [
+     "부처 검토의견",
+     "안전성 조건(안)"
+    ],
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3",
+      "text": "규제소관 부처는 특례 부여의 타당성과 안전성 조건을 검토·협의한다."
+     },
+     {
+      "law": "행정규제기본법",
+      "article": "제5조의2",
+      "text": "우선허용·사후규제 원칙에 따라 검토한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "부처 간 이견 조율",
+    "lane": "국무조정실",
+    "stage": "G2 관계부처검토",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국무조정실",
+    "action": "이견 조율",
+    "output_documents": [
+     "조정 결과"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "행정규제기본법",
+      "article": "제5조의2",
+      "text": "부처 간 규제 이견을 조율해 우선허용 원칙을 관철한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "규제특례심의위원회 심의·의결",
+    "lane": "규제특례심의위원회",
+    "stage": "G3 심의·의결",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 20,
+    "actor": "규제특례심의위원회",
+    "action": "심의·의결",
+    "condition": "실증특례·임시허가 부여 여부, 기간·조건 결정",
+    "output_documents": [
+     "심의 결과",
+     "의결서"
+    ],
+    "blocker": "안전성 우려·기존 업계 반대로 심의가 지연될 수 있음(운영 추정)",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3",
+      "text": "규제특례심의위원회가 실증특례·임시허가를 심의·의결한다."
+     },
+     {
+      "law": "정보통신 진흥 및 융합 활성화 등에 관한 특별법",
+      "article": "제37조",
+      "text": "임시허가·실증특례 부여를 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "심의 보완·재상정",
+    "lane": "신기술 사업자·스타트업",
+    "stage": "G3 심의·의결",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "신기술 사업자·스타트업",
+    "receiver": "규제특례심의위원회",
+    "action": "보완·재상정",
+    "input_documents": [
+     "보완요구서"
+    ],
+    "output_documents": [
+     "보완 사업계획"
+    ],
+    "blocker": "조건부 회귀 단계(심의 보완요구 시)",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "행정절차법",
+      "article": "제17조",
+      "text": "흠결 보완 요구와 보완 제출 절차를 따른다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "특례 부여(기간·조건·책임보험)",
+    "lane": "소관 부처(산업부·과기정통부 등)",
+    "stage": "G4 특례부여",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소관 부처 장관",
+    "receiver": "신기술 사업자·스타트업",
+    "action": "특례 부여·통지",
+    "output_documents": [
+     "실증특례·임시허가 지정서",
+     "특례 조건",
+     "책임보험 부과"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3, 제10조의5",
+      "text": "기간·조건·책임보험을 정해 실증특례 또는 임시허가를 부여한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "실증 수행·안전관리",
+    "lane": "신기술 사업자·스타트업",
+    "stage": "G5 실증·모니터링",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "신기술 사업자·스타트업",
+    "action": "실증·안전관리",
+    "output_documents": [
+     "실증 수행 기록",
+     "안전관리 내역"
+    ],
+    "blocker": "실증 조건·책임보험 부담이 스타트업에 과도할 수 있음(운영 추정)",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3",
+      "text": "부여된 조건에 따라 실증을 수행하고 안전을 관리한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "중간점검·조건 이행 모니터링",
+    "lane": "전문기관(KIAT 등)",
+    "stage": "G5 실증·모니터링",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "전문기관(KIAT 등)",
+    "action": "중간점검",
+    "output_documents": [
+     "중간점검 결과",
+     "조건 이행 보고"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3",
+      "text": "실증 조건 이행과 안전 상황을 점검·관리한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "특례기간 만료·연장 판단",
+    "lane": "규제특례심의위원회",
+    "stage": "G6 법령정비·전환",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "규제특례심의위원회",
+    "action": "만료·연장 판단",
+    "condition": "특례기간 만료 시 연장·재심의 또는 법령정비 전환",
+    "output_documents": [
+     "만료·연장 결정"
+    ],
+    "blocker": "특례기간 종료 후 법령정비가 늦어 사업 지속에 공백 발생 위험(운영 추정)",
+    "confidence": 0.73,
+    "legal_basis": [
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3",
+      "text": "실증특례의 유효기간과 연장 여부를 정한다."
+     },
+     {
+      "law": "정보통신 진흥 및 융합 활성화 등에 관한 특별법",
+      "article": "제38조의2",
+      "text": "실증특례 기간과 연장에 관한 사항을 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "법령정비·정식 허가 전환",
+    "lane": "규제소관 부처",
+    "stage": "G6 법령정비·전환",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "규제소관 부처",
+    "action": "법령정비·전환",
+    "output_documents": [
+     "법령정비 계획",
+     "정식 허가 전환"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "행정규제기본법",
+      "article": "제5조의2",
+      "text": "우선허용·사후규제 원칙에 따라 실증 결과를 반영해 규제를 정비한다."
+     },
+     {
+      "law": "산업융합 촉진법",
+      "article": "제10조의3",
+      "text": "실증 결과를 토대로 관련 법령을 정비하고 정식 제도로 전환한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": "실증·임시허가 필요"
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P09",
+    "type": "sequence",
+    "label": "특례 부여 의결"
+   },
+   {
+    "id": "E08",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E11",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": "법령정비 전환"
+   },
+   {
+    "id": "E12",
+    "source": "P08",
+    "target": "P05",
+    "type": "sequence",
+    "label": "보완 후 재검토"
+   },
+   {
+    "id": "M01",
+    "source": "P01",
+    "target": "S01",
+    "type": "message",
+    "label": "통합플랫폼 접수"
+   },
+   {
+    "id": "M02",
+    "source": "P05",
+    "target": "P07",
+    "type": "message",
+    "label": "검토의견 상정"
+   },
+   {
+    "id": "M03",
+    "source": "P11",
+    "target": "P12",
+    "type": "message",
+    "label": "중간점검 결과"
+   },
+   {
+    "id": "L01",
+    "source": "P07",
+    "target": "P08",
+    "type": "loop",
+    "label": "심의 보완요구"
+   },
+   {
+    "id": "L02",
+    "source": "P12",
+    "target": "P07",
+    "type": "loop",
+    "label": "기간 연장·재심의"
+   }
+  ],
+  "warnings": []
+ }
 }

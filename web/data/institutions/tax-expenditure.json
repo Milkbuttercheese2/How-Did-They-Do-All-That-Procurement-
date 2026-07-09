@@ -6,7 +6,7 @@
  "priority": 27,
  "whyFirst": "재정지출과 짝을 이루는 '조세지출'의 관리 틀이다. 감면의 규모·일몰·평가를 다루는 기준 제도가 된다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "비과세·감면·공제 등으로 세금을 줄여 특정 활동을 지원한다. 예산 지출 대신 세금을 통한 재정지원, 곧 '조세지출'을 관리한다.",
   "stakeholders": "감면 수혜자(기업·근로자·자영업자 등), 기획재정부(총괄), 각 부처(감면 건의), 국회(입법), 국민(세수 감소 부담), KDI 등 평가기관",
@@ -85,5 +85,537 @@
   "국세감면율 법정한도 준수 현황",
   "심층평가 결과의 연장·폐지 반영률",
   "연도별 조세지출 총규모 최신치"
- ]
+ ],
+ "process": {
+  "institution_name": "조세특례 제도",
+  "law_name": "조세특례제한법",
+  "lanes": [
+   "각 중앙행정기관",
+   "기획재정부",
+   "KDI 등 평가기관",
+   "국무회의",
+   "국회",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 기본계획",
+   "G1 감면 건의",
+   "G2 전문평가(예타·심층)",
+   "G3 기재부 심사·조정",
+   "G4 세법개정·국회",
+   "G5 조세지출예산서",
+   "G6 일몰·사후관리"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "조세특례 기본계획 수립",
+    "lane": "기획재정부",
+    "stage": "G0 기본계획",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획재정부",
+    "action": "기본계획 수립",
+    "output_documents": [
+     "조세특례 기본계획(안)"
+    ],
+    "deadline": "매년 3월 31일까지 국무회의 심의",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "기획재정부장관은 조세특례 기본계획을 수립한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "기본계획 국무회의 심의·통보",
+    "lane": "국무회의",
+    "stage": "G0 기본계획",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "국무회의",
+    "receiver": "각 중앙행정기관",
+    "action": "심의·통보",
+    "condition": "조세특례 기본방향·정비계획 확정 여부",
+    "output_documents": [
+     "확정 기본계획"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "기본계획은 국무회의 심의를 거쳐 각 부처에 통보한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "부처 조세감면 건의",
+    "lane": "각 중앙행정기관",
+    "stage": "G1 감면 건의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "각 중앙행정기관",
+    "receiver": "기획재정부",
+    "action": "감면 건의",
+    "output_documents": [
+     "조세감면 건의서"
+    ],
+    "deadline": "매년 4월 30일까지",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "각 부처는 소관 조세감면의 신설·연장 등을 기획재정부에 건의한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "신규·연장 감면 요구 접수",
+    "lane": "기획재정부",
+    "stage": "G1 감면 건의",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "기획재정부",
+    "action": "요구 접수",
+    "input_documents": [
+     "조세감면 건의서"
+    ],
+    "output_documents": [
+     "감면 요구 목록"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "기획재정부장관은 부처 건의를 취합하여 검토한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "예비타당성조사 대상 판정(연 300억↑)",
+    "lane": "기획재정부",
+    "stage": "G2 전문평가(예타·심층)",
+    "type": "gateway",
+    "status": "current",
+    "progress": 45,
+    "actor": "기획재정부",
+    "action": "예타 대상 판정",
+    "condition": "연간 조세지출 300억원 이상 신규 감면은 예비타당성조사 대상",
+    "input_documents": [
+     "감면 요구 목록"
+    ],
+    "output_documents": [
+     "예타 대상 판정 결과"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "연간 일정 규모 이상의 신규 조세특례는 예비타당성조사를 실시한다."
+     },
+     {
+      "law": "기획재정부 조세특례 평가 운용지침",
+      "article": "예비타당성조사 대상 기준",
+      "text": "예타 대상 규모와 절차를 지침으로 정한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "조세특례 예타·심층평가 수행",
+    "lane": "KDI 등 평가기관",
+    "stage": "G2 전문평가(예타·심층)",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "KDI 등 평가기관",
+    "receiver": "기획재정부",
+    "action": "전문평가",
+    "output_documents": [
+     "예비타당성조사 보고서",
+     "심층평가 보고서"
+    ],
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "기획재정부 조세특례 평가 운용지침",
+      "article": "예타·심층평가 기준",
+      "text": "전문 평가기관이 조세특례의 타당성과 효과를 분석한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "평가 결과 검토",
+    "lane": "기획재정부",
+    "stage": "G2 전문평가(예타·심층)",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기획재정부",
+    "action": "결과 검토",
+    "condition": "평가 결과의 반영·보완 필요 여부",
+    "input_documents": [
+     "예비타당성조사 보고서",
+     "심층평가 보고서"
+    ],
+    "output_documents": [
+     "평가 반영 방향"
+    ],
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "평가 결과를 조세특례 신설·연장 판단에 반영한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "기재부 검토·조정",
+    "lane": "기획재정부",
+    "stage": "G3 기재부 심사·조정",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "기획재정부",
+    "action": "검토·조정",
+    "output_documents": [
+     "조세특례 조정안"
+    ],
+    "blocker": "일몰 도래 특례가 관성적으로 연장되고 폐지가 어렵다(운영 추정)",
+    "confidence": 0.74,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "기획재정부장관은 감면 신설·연장·폐지를 종합 검토·조정한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "세법개정안(조특법) 반영",
+    "lane": "기획재정부",
+    "stage": "G4 세법개정·국회",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기획재정부",
+    "action": "개정안 반영",
+    "input_documents": [
+     "조세특례 조정안"
+    ],
+    "output_documents": [
+     "세법개정안(조특법)"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "개별 감면조항",
+      "text": "정부는 조세특례를 세법개정안에 반영하여 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "국회 심의·의결",
+    "lane": "국회",
+    "stage": "G4 세법개정·국회",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국회",
+    "action": "심의·의결",
+    "condition": "조특법 개정으로 신설·연장·폐지 확정 여부",
+    "input_documents": [
+     "세법개정안(조특법)"
+    ],
+    "output_documents": [
+     "조특법 개정 결과"
+    ],
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "개정 절차",
+      "text": "조세특례는 국회의 조세특례제한법 개정으로 확정된다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "조세지출예산서 작성·첨부",
+    "lane": "기획재정부",
+    "stage": "G5 조세지출예산서",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기획재정부",
+    "action": "예산서 작성",
+    "output_documents": [
+     "조세지출예산서"
+    ],
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조의2",
+      "text": "기획재정부장관은 조세지출예산서를 작성한다."
+     },
+     {
+      "law": "국가재정법",
+      "article": "제34조",
+      "text": "조세지출예산서를 예산안 첨부서류로 포함한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "예산안 국회 제출",
+    "lane": "기획재정부",
+    "stage": "G5 조세지출예산서",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "기획재정부",
+    "receiver": "국회",
+    "action": "예산안 제출",
+    "input_documents": [
+     "조세지출예산서"
+    ],
+    "output_documents": [
+     "예산안 첨부 조세지출예산서"
+    ],
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제34조",
+      "text": "정부는 조세지출예산서를 예산안과 함께 국회에 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "일몰 도래 특례 심층평가",
+    "lane": "KDI 등 평가기관",
+    "stage": "G6 일몰·사후관리",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "KDI 등 평가기관",
+    "action": "일몰 심층평가",
+    "condition": "일몰 도래 특례의 효과·존치 필요성 평가 결과",
+    "output_documents": [
+     "일몰 심층평가 결과"
+    ],
+    "blocker": "감면의 귀착·실효성 검증이 곤란해 기득권화된다(운영 추정)",
+    "confidence": 0.73,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "일몰이 도래하는 조세특례는 심층평가를 거쳐 존치 여부를 판단한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "연장·폐지 결정",
+    "lane": "기획재정부",
+    "stage": "G6 일몰·사후관리",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "기획재정부",
+    "action": "연장·폐지 결정",
+    "input_documents": [
+     "일몰 심층평가 결과"
+    ],
+    "output_documents": [
+     "연장·폐지 결정"
+    ],
+    "confidence": 0.75,
+    "legal_basis": [
+     {
+      "law": "조세특례제한법",
+      "article": "제142조",
+      "text": "심층평가 결과에 따라 조세특례의 연장 또는 폐지를 결정한다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "국세감면 실적·조세지출 공개",
+    "lane": "정보시스템",
+    "stage": "G5 조세지출예산서",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "재정정보 공개시스템",
+    "action": "실적 공개",
+    "input_documents": [
+     "조세지출예산서",
+     "국세감면 실적 보고"
+    ],
+    "output_documents": [
+     "공개 게시자료"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "국가재정법",
+      "article": "제9조",
+      "text": "재정정보 공표 원칙에 따라 조세지출 규모를 공개한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": "예타 대상 해당"
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P07",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E09",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": "개정 확정"
+   },
+   {
+    "id": "E11",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E12",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E13",
+    "source": "P13",
+    "target": "P14",
+    "type": "sequence",
+    "label": "일몰 평가 결과"
+   },
+   {
+    "id": "M01",
+    "source": "P02",
+    "target": "P03",
+    "type": "message",
+    "label": "기본계획 통보"
+   },
+   {
+    "id": "M02",
+    "source": "P06",
+    "target": "P07",
+    "type": "message",
+    "label": "평가보고서 제출"
+   },
+   {
+    "id": "M03",
+    "source": "P12",
+    "target": "S01",
+    "type": "message",
+    "label": "조세지출 공개"
+   },
+   {
+    "id": "L01",
+    "source": "P14",
+    "target": "P08",
+    "type": "loop",
+    "label": "연장 반영 재검토 회귀"
+   },
+   {
+    "id": "L02",
+    "source": "P07",
+    "target": "P06",
+    "type": "loop",
+    "label": "평가 보완 요구"
+   }
+  ],
+  "warnings": []
+ }
 }

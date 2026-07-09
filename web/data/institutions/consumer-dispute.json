@@ -6,7 +6,7 @@
  "priority": 52,
  "whyFirst": "소액·다수 소비자 피해를 소송 없이 푸는 대표 창구다. 조정의 낮은 구속력과 처리기간, 신유형 분쟁 미비가 실제 쟁점이라 제도 지도로 그릴 가치가 크다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "소액·다수인 소비자 피해를 법원 소송 없이 빠르고 저렴하게 구제한다. 소비자와 사업자의 합의를 유도하고, 조정으로 분쟁을 종결해 소비자 권익을 보호하는 것이 목적이다.",
   "stakeholders": "피해 소비자(신청인), 사업자(피신청인), 한국소비자원, 소비자분쟁조정위원회, 소비자단체, 지자체 소비생활센터",
@@ -87,5 +87,540 @@
   "조정 결정 수락률·사업자 이행률(운영 추정)",
   "30일 조정기간 준수율·연장 사유(운영 추정)",
   "집단분쟁조정 처리 실태"
- ]
+ ],
+ "process": {
+  "institution_name": "소비자분쟁조정 제도",
+  "law_name": "소비자기본법",
+  "lanes": [
+   "소비자(신청인)",
+   "사업자(피신청인)",
+   "한국소비자원",
+   "소비자분쟁조정위원회",
+   "법원(후속)",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 상담·신청",
+   "G1 피해구제(합의권고)",
+   "G2 조정 회부",
+   "G3 조정 심의",
+   "G4 조정 결정",
+   "G5 수락·효력",
+   "G6 불성립·후속"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "소비자 상담(1372)",
+    "lane": "소비자(신청인)",
+    "stage": "G0 상담·신청",
+    "type": "notice",
+    "status": "done",
+    "progress": 100,
+    "actor": "소비자",
+    "receiver": "한국소비자원",
+    "action": "상담",
+    "output_documents": [
+     "상담 접수내역"
+    ],
+    "deadline": "상시",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제55조",
+      "text": "소비자는 피해구제를 소비자원 등에 신청할 수 있으며, 1372 상담을 거쳐 접수된다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "피해구제 신청",
+    "lane": "소비자(신청인)",
+    "stage": "G0 상담·신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "소비자",
+    "receiver": "한국소비자원",
+    "action": "피해구제 신청",
+    "output_documents": [
+     "피해구제 신청서",
+     "증빙자료"
+    ],
+    "deadline": "피해 인지 후",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제55조",
+      "text": "소비자는 물품·용역으로 입은 피해의 구제를 한국소비자원에 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "소비자원 사실조사",
+    "lane": "한국소비자원",
+    "stage": "G1 피해구제(합의권고)",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "한국소비자원",
+    "action": "사실조사",
+    "input_documents": [
+     "피해구제 신청서",
+     "증빙자료"
+    ],
+    "output_documents": [
+     "사실조사서"
+    ],
+    "deadline": "합의권고 처리기간 내",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제55조·제57조",
+      "text": "소비자원은 피해구제 신청 사건의 사실을 조사한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "합의권고(30일 내)",
+    "lane": "한국소비자원",
+    "stage": "G1 피해구제(합의권고)",
+    "type": "gateway",
+    "status": "current",
+    "progress": 50,
+    "actor": "한국소비자원",
+    "receiver": "사업자(피신청인)",
+    "action": "합의권고",
+    "condition": "당사자 간 합의 성립·불성립 여부",
+    "input_documents": [
+     "사실조사서"
+    ],
+    "output_documents": [
+     "합의권고안"
+    ],
+    "deadline": "피해구제 신청 후 30일 이내",
+    "blocker": "합의권고 수락 여부를 사업자와 조율 중",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제57조·제58조",
+      "text": "소비자원장은 사건의 합의를 권고할 수 있고, 원칙적으로 30일 이내에 처리한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "합의 성립·종결",
+    "lane": "사업자(피신청인)",
+    "stage": "G1 피해구제(합의권고)",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "사업자·소비자",
+    "action": "합의 이행",
+    "input_documents": [
+     "합의권고안"
+    ],
+    "output_documents": [
+     "합의서",
+     "배상·환급 내역"
+    ],
+    "deadline": "합의 시",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제57조",
+      "text": "당사자가 합의권고를 수락하면 사건은 합의로 종결된다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "분쟁조정위원회 회부",
+    "lane": "한국소비자원",
+    "stage": "G2 조정 회부",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "한국소비자원",
+    "receiver": "소비자분쟁조정위원회",
+    "action": "조정 회부",
+    "input_documents": [
+     "사실조사서",
+     "합의 불성립 기록"
+    ],
+    "output_documents": [
+     "조정신청서"
+    ],
+    "deadline": "합의 불성립 시",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제65조",
+      "text": "합의가 이루어지지 아니하면 사건을 소비자분쟁조정위원회에 조정을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "위원회 조사·심의",
+    "lane": "소비자분쟁조정위원회",
+    "stage": "G3 조정 심의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소비자분쟁조정위원회",
+    "action": "조사·심의",
+    "input_documents": [
+     "조정신청서",
+     "사실조사서"
+    ],
+    "output_documents": [
+     "심의자료"
+    ],
+    "deadline": "조정기간 내",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제65조",
+      "text": "위원회는 분쟁조정을 위해 사실을 조사하고 사건을 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "추가조사·보완",
+    "lane": "한국소비자원",
+    "stage": "G3 조정 심의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "한국소비자원·위원회",
+    "action": "보완조사",
+    "input_documents": [
+     "보완요청"
+    ],
+    "output_documents": [
+     "추가 사실조사서"
+    ],
+    "deadline": "위원회가 정한 기간",
+    "blocker": "자료 보완 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제65조",
+      "text": "위원회는 심의에 필요한 경우 추가 자료·사실조사를 요구할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "조정 결정(30일 내)",
+    "lane": "소비자분쟁조정위원회",
+    "stage": "G4 조정 결정",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "소비자분쟁조정위원회",
+    "action": "조정 결정",
+    "condition": "배상·환급 등 조정안 결정",
+    "input_documents": [
+     "심의자료"
+    ],
+    "output_documents": [
+     "조정결정서"
+    ],
+    "deadline": "조정신청 받은 날부터 30일 이내(부득이 시 연장)",
+    "blocker": "신청 폭증으로 30일 조정기간을 넘기는 경우가 많다(운영 추정)",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제66조",
+      "text": "위원회는 조정신청을 받은 날부터 30일 이내에 조정을 마쳐야 하며 부득이한 경우 연장할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "조정안 통지·수락 여부 확인",
+    "lane": "소비자분쟁조정위원회",
+    "stage": "G4 조정 결정",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소비자분쟁조정위원회",
+    "receiver": "소비자·사업자",
+    "action": "조정안 통지",
+    "input_documents": [
+     "조정결정서"
+    ],
+    "output_documents": [
+     "조정안 통지서",
+     "수락 여부 회신"
+    ],
+    "deadline": "통지받은 날부터 15일 이내 수락 의사표시",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제67조",
+      "text": "당사자는 조정 통지를 받은 날부터 15일 이내에 수락 여부를 통보하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "양측 수락→재판상 화해 효력",
+    "lane": "소비자(신청인)",
+    "stage": "G5 수락·효력",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소비자·사업자",
+    "action": "조정 수락·이행",
+    "input_documents": [
+     "조정안 통지서"
+    ],
+    "output_documents": [
+     "수락서",
+     "이행 확인"
+    ],
+    "deadline": "수락 후 이행기한",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제67조제4항",
+      "text": "당사자가 조정을 수락하면 그 조정은 재판상 화해와 동일한 효력을 가진다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "불수락→조정 불성립",
+    "lane": "사업자(피신청인)",
+    "stage": "G5 수락·효력",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "사업자",
+    "action": "불수락",
+    "condition": "일방·양방 불수락 시 조정 불성립",
+    "input_documents": [
+     "조정안 통지서"
+    ],
+    "output_documents": [
+     "불성립 통지"
+    ],
+    "deadline": "수락기간 도과 시",
+    "blocker": "사업자가 거부하면 조정 결정에 이행력이 없어 무력하다",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제67조",
+      "text": "당사자가 조정안을 수락하지 아니하면 조정은 성립되지 아니한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "소송 등 이행",
+    "lane": "법원(후속)",
+    "stage": "G6 불성립·후속",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소비자·법원",
+    "action": "민사소송",
+    "input_documents": [
+     "불성립 통지"
+    ],
+    "output_documents": [
+     "소장",
+     "판결"
+    ],
+    "deadline": "불성립 후",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제67조",
+      "text": "조정이 성립되지 아니하면 당사자는 소송 등으로 분쟁을 해결할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "집단분쟁조정(특례)",
+    "lane": "소비자분쟁조정위원회",
+    "stage": "G3 조정 심의",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소비자분쟁조정위원회",
+    "action": "집단분쟁조정",
+    "input_documents": [
+     "집단분쟁조정 의뢰·신청"
+    ],
+    "output_documents": [
+     "집단분쟁조정 결정서",
+     "보상계획서"
+    ],
+    "deadline": "공고·조정 특례기간",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제68조",
+      "text": "다수 소비자에게 같은 유형의 피해가 발생하면 집단분쟁조정을 의뢰·신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "행복드림·상담 데이터",
+    "lane": "정보시스템",
+    "stage": "G0 상담·신청",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소비자원 상담·피해구제 시스템(1372·행복드림)",
+    "action": "접수·데이터 축적",
+    "input_documents": [
+     "상담·신청 데이터"
+    ],
+    "output_documents": [
+     "피해구제 통계"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "소비자기본법",
+      "article": "제16조·제55조",
+      "text": "상담·피해구제 정보는 소비자정보 제공·정책 자료로 축적·활용된다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P06",
+    "type": "sequence",
+    "label": "합의 불성립"
+   },
+   {
+    "id": "E05",
+    "source": "P06",
+    "target": "P07",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P07",
+    "target": "P09",
+    "type": "sequence",
+    "label": "심의 종결"
+   },
+   {
+    "id": "E07",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": "양측 수락"
+   },
+   {
+    "id": "E09",
+    "source": "P12",
+    "target": "P13",
+    "type": "sequence",
+    "label": "불성립 후 소송"
+   },
+   {
+    "id": "M01",
+    "source": "P02",
+    "target": "S01",
+    "type": "message",
+    "label": "상담·신청 데이터"
+   },
+   {
+    "id": "M02",
+    "source": "P04",
+    "target": "P05",
+    "type": "message",
+    "label": "합의 성립"
+   },
+   {
+    "id": "M03",
+    "source": "P07",
+    "target": "P14",
+    "type": "message",
+    "label": "집단분쟁조정 개시"
+   },
+   {
+    "id": "M04",
+    "source": "P10",
+    "target": "P12",
+    "type": "message",
+    "label": "사업자 불수락"
+   },
+   {
+    "id": "L01",
+    "source": "P07",
+    "target": "P08",
+    "type": "loop",
+    "label": "추가조사 필요"
+   },
+   {
+    "id": "L02",
+    "source": "P08",
+    "target": "P07",
+    "type": "loop",
+    "label": "보완 후 재심의"
+   }
+  ],
+  "warnings": []
+ }
 }

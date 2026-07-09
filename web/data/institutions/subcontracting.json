@@ -6,7 +6,7 @@
  "priority": 51,
  "whyFirst": "원·하청 간 힘의 불균형을 다루는 대표 제도다. 대금 미지급·후려치기·보복 우려 등 실제 논쟁이 뚜렷해 시장규제의 작동 방식을 보여주기 좋다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "원청-하청 간 힘의 불균형에서 오는 대금 미지급·후려치기·부당한 요구를 규제한다. 중소 수급사업자를 보호하고 공정한 하도급 거래질서를 세우는 것이 목적이다.",
   "stakeholders": "원사업자(대기업·중견), 수급사업자(중소 하청), 재하도급업체, 공정거래위원회, 발주자, 근로자(대금 연쇄)",
@@ -87,5 +87,544 @@
   "대금지급 법정기한(60일)·지연이자 실무",
   "신고 후 보복·거래단절 실태(운영 추정)",
   "납품대금 연동제 적용 범위·이행률(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "하도급 규제 제도",
+  "law_name": "하도급거래 공정화에 관한 법률",
+  "lanes": [
+   "원사업자",
+   "수급사업자(하청)",
+   "발주자",
+   "공정거래위원회(사무처)",
+   "하도급분쟁조정협의회",
+   "위원회 회의",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 계약·서면",
+   "G1 이행·대금",
+   "G2 위반·신고",
+   "G3 조사·조정",
+   "G4 심의·의결",
+   "G5 제재·벌점",
+   "G6 이행·후속"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "하도급계약 체결·서면 발급",
+    "lane": "원사업자",
+    "stage": "G0 계약·서면",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "원사업자",
+    "receiver": "수급사업자(하청)",
+    "action": "계약·서면 발급",
+    "output_documents": [
+     "하도급계약서",
+     "발주서"
+    ],
+    "deadline": "위탁 시 서면 발급",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제3조",
+      "text": "원사업자는 하도급 위탁 시 대금·목적물 등을 적은 서면을 수급사업자에게 발급하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "목적물 수령·검사",
+    "lane": "원사업자",
+    "stage": "G1 이행·대금",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "원사업자",
+    "action": "수령·검사",
+    "input_documents": [
+     "목적물"
+    ],
+    "output_documents": [
+     "검수·수령 확인서"
+    ],
+    "deadline": "수령일부터 10일 이내 검사 통지",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제9조",
+      "text": "원사업자는 목적물을 수령하면 검사하고 그 결과를 수급사업자에게 통지하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "하도급대금 지급(60일 내)",
+    "lane": "원사업자",
+    "stage": "G1 이행·대금",
+    "type": "gateway",
+    "status": "done",
+    "progress": 100,
+    "actor": "원사업자",
+    "receiver": "수급사업자(하청)",
+    "action": "대금 지급",
+    "condition": "수령일부터 60일 이내 지급 여부",
+    "output_documents": [
+     "대금지급 내역",
+     "지연이자(초과 시)"
+    ],
+    "deadline": "목적물 수령일부터 60일 이내",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제13조",
+      "text": "원사업자는 목적물 수령일부터 60일 이내에 하도급대금을 지급하고 초과 시 지연이자를 지급하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "위반 발생(미지급·감액·기술탈취)",
+    "lane": "원사업자",
+    "stage": "G2 위반·신고",
+    "type": "notice",
+    "status": "risk",
+    "progress": 0,
+    "actor": "원사업자",
+    "action": "위반행위",
+    "output_documents": [
+     "미지급·감액 내역"
+    ],
+    "deadline": "지급기한 경과 시",
+    "blocker": "대금 미지급·감액과 기술자료 탈취의 입증이 어렵다(운영 추정)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제4조·제11조·제12조의3",
+      "text": "부당한 대금 결정·감액, 기술자료 제공 요구·유용 등은 금지된다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "수급사업자 신고(익명제보 포함)",
+    "lane": "수급사업자(하청)",
+    "stage": "G2 위반·신고",
+    "type": "task",
+    "status": "risk",
+    "progress": 20,
+    "actor": "수급사업자",
+    "receiver": "공정거래위원회(사무처)",
+    "action": "신고·제보",
+    "output_documents": [
+     "위반 신고서",
+     "증빙자료"
+    ],
+    "deadline": "거래 종료 후 3년 이내",
+    "blocker": "거래단절 우려로 신고를 꺼리고 익명제보 후 보복 위험이 있다(운영 추정)",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제22조·제19조",
+      "text": "위반행위는 신고할 수 있으며, 원사업자는 신고를 이유로 한 보복조치를 하여서는 아니 된다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "서면실태조사·직권조사 착수",
+    "lane": "공정거래위원회(사무처)",
+    "stage": "G2 위반·신고",
+    "type": "task",
+    "status": "current",
+    "progress": 45,
+    "actor": "공정위 사무처",
+    "action": "조사 착수",
+    "input_documents": [
+     "위반 신고서",
+     "서면실태조사 자료"
+    ],
+    "output_documents": [
+     "사건 심사착수 보고"
+    ],
+    "deadline": "접수 후 지체 없이",
+    "blocker": "다단계 하도급으로 하위 단계 사실관계 확인이 지연",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제22조의2",
+      "text": "공정위는 공정한 하도급거래질서 확립을 위해 서면실태조사를 실시할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "하도급 분쟁조정",
+    "lane": "하도급분쟁조정협의회",
+    "stage": "G3 조사·조정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "하도급분쟁조정협의회",
+    "action": "분쟁조정",
+    "condition": "조정 성립·불성립 판단",
+    "input_documents": [
+     "조정신청서"
+    ],
+    "output_documents": [
+     "조정조서",
+     "조정 불성립 통지"
+    ],
+    "deadline": "신청 후 60일 이내",
+    "confidence": 0.81,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제24조",
+      "text": "한국공정거래조정원 하도급분쟁조정협의회는 하도급거래 분쟁을 조정한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "조사(자료제출·현장조사)",
+    "lane": "공정거래위원회(사무처)",
+    "stage": "G3 조사·조정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위 사무처",
+    "receiver": "원사업자",
+    "action": "조사·자료수집",
+    "output_documents": [
+     "조사 조서",
+     "심사보고서"
+    ],
+    "deadline": "사건별 조사기간",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제27조",
+      "text": "공정위는 하도급법 위반행위 조사를 위해 자료제출 요구와 현장조사를 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "위원회 심의·의결",
+    "lane": "위원회 회의",
+    "stage": "G4 심의·의결",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정거래위원회",
+    "action": "심의·의결",
+    "condition": "위반 인정·시정조치·과징금 여부",
+    "input_documents": [
+     "심사보고서",
+     "피심인 의견서"
+    ],
+    "output_documents": [
+     "의결서"
+    ],
+    "deadline": "심의기일",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제25조",
+      "text": "공정위는 하도급법 위반 원사업자에게 시정조치를 명할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "시정명령·과징금 부과",
+    "lane": "공정거래위원회(사무처)",
+    "stage": "G5 제재·벌점",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위 사무처",
+    "receiver": "원사업자",
+    "action": "시정명령·과징금",
+    "input_documents": [
+     "의결서"
+    ],
+    "output_documents": [
+     "시정명령",
+     "과징금 납부고지서"
+    ],
+    "deadline": "의결 후 지체 없이",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제25조·제25조의3",
+      "text": "공정위는 시정조치와 함께 하도급대금의 2배 이내에서 과징금을 부과할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "벌점 부과·누적 관리",
+    "lane": "공정거래위원회(사무처)",
+    "stage": "G5 제재·벌점",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위 사무처",
+    "action": "벌점 부과",
+    "condition": "누산 벌점 기준(입찰참가제한·영업정지 요청 임계치) 초과 여부",
+    "input_documents": [
+     "시정명령",
+     "과징금 내역"
+    ],
+    "output_documents": [
+     "벌점 부과 기록",
+     "누산점수표"
+    ],
+    "deadline": "처분 확정 시",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제26조",
+      "text": "공정위는 시정조치·과징금 등에 벌점을 부과하고 누산점수에 따라 제재를 요청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "입찰참가제한·영업정지 요청",
+    "lane": "공정거래위원회(사무처)",
+    "stage": "G5 제재·벌점",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위 사무처",
+    "receiver": "발주자",
+    "action": "제재 요청",
+    "input_documents": [
+     "누산점수표"
+    ],
+    "output_documents": [
+     "입찰참가제한 요청",
+     "영업정지 요청"
+    ],
+    "deadline": "누산 벌점 초과 시",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제26조제2항",
+      "text": "누산 벌점이 기준을 초과하면 관계 행정기관에 입찰참가자격 제한·영업정지를 요청한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "발주자 직접지급",
+    "lane": "발주자",
+    "stage": "G6 이행·후속",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "발주자",
+    "receiver": "수급사업자(하청)",
+    "action": "직접지급",
+    "input_documents": [
+     "직접지급 요청"
+    ],
+    "output_documents": [
+     "직접지급 내역"
+    ],
+    "deadline": "직접지급 사유 발생 시",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제14조",
+      "text": "원사업자의 지급 정지·파산 등 사유가 있으면 발주자는 하도급대금을 수급사업자에게 직접 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "시정 이행 점검·재발방지",
+    "lane": "공정거래위원회(사무처)",
+    "stage": "G6 이행·후속",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "공정위 사무처",
+    "action": "이행 점검",
+    "input_documents": [
+     "시정명령"
+    ],
+    "output_documents": [
+     "이행결과 보고"
+    ],
+    "deadline": "시정명령상 이행기한",
+    "blocker": "미지급 반복·재발 시 재조사가 필요하다(운영 추정)",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제25조",
+      "text": "공정위는 시정조치 이행 여부를 점검하고 미이행 시 추가 조치를 할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "하도급 서면실태조사 시스템",
+    "lane": "정보시스템",
+    "stage": "G2 위반·신고",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "공정위 하도급 실태조사시스템",
+    "action": "자료축적·조회",
+    "input_documents": [
+     "서면실태조사 응답"
+    ],
+    "output_documents": [
+     "실태조사 데이터"
+    ],
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "하도급법",
+      "article": "제22조의2",
+      "text": "서면실태조사 결과는 하도급거래 감시·정책 자료로 축적·활용된다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": "지급기한 경과"
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P08",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E07",
+    "source": "P08",
+    "target": "P09",
+    "type": "sequence",
+    "label": "조사 종결"
+   },
+   {
+    "id": "E08",
+    "source": "P09",
+    "target": "P10",
+    "type": "sequence",
+    "label": "위반 인정"
+   },
+   {
+    "id": "E09",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": "벌점 누적"
+   },
+   {
+    "id": "E11",
+    "source": "P10",
+    "target": "P14",
+    "type": "sequence",
+    "label": "이행 점검"
+   },
+   {
+    "id": "M01",
+    "source": "P06",
+    "target": "S01",
+    "type": "message",
+    "label": "실태조사 자료"
+   },
+   {
+    "id": "M02",
+    "source": "P05",
+    "target": "P07",
+    "type": "message",
+    "label": "분쟁조정 신청"
+   },
+   {
+    "id": "M03",
+    "source": "P03",
+    "target": "P13",
+    "type": "message",
+    "label": "직접지급 요건 충족"
+   },
+   {
+    "id": "L01",
+    "source": "P07",
+    "target": "P09",
+    "type": "loop",
+    "label": "조정 불성립→심의"
+   },
+   {
+    "id": "L02",
+    "source": "P14",
+    "target": "P04",
+    "type": "loop",
+    "label": "재발 시 재조사"
+   }
+  ],
+  "warnings": []
+ }
 }

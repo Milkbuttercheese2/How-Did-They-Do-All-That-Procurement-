@@ -6,7 +6,7 @@
  "priority": 34,
  "whyFirst": "인정조사-등급판정-재가·시설 급여로 이어지는 돌봄 사회보험의 골격을 담기 좋다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "고령이나 노인성 질병으로 혼자 생활하기 어려운 노인의 돌봄을 사회가 분담한다. 가족에게 집중되던 요양 부담을 완화하고, 재가·시설 서비스로 노후의 건강과 생활 안정을 지원한다. 건강보험과 별도로 운영되는 사회보험이다.",
   "stakeholders": "65세 이상 노인과 65세 미만 노인성 질병 대상자, 가족(수발자), 보건복지부, 국민건강보험공단, 장기요양등급판정위원회, 장기요양기관, 요양보호사, 건강보험 가입자(보험료 부담)",
@@ -87,5 +87,480 @@
   "등급판정 점수기준·재가/시설 본인부담률 현행 수치",
   "장기요양보험료율 현행 기준",
   "요양보호사 인력·서비스 대기 실태(운영 추정)"
- ]
+ ],
+ "process": {
+  "institution_name": "노인장기요양보험 제도",
+  "law_name": "노인장기요양보험법",
+  "lanes": [
+   "신청자(노인·가족)",
+   "국민건강보험공단",
+   "의료기관",
+   "장기요양등급판정위원회",
+   "장기요양기관",
+   "시장·군수·구청장(기관 지정)",
+   "보건복지부(기준 고시)"
+  ],
+  "stages": [
+   "G0 기준 고시",
+   "G1 인정 신청",
+   "G2 인정조사·소견서",
+   "G3 등급판정",
+   "G4 인정서·이용계약",
+   "G5 급여 이용·비용",
+   "G6 갱신·이의"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "보험료율·수가·등급판정기준 고시",
+    "lane": "보건복지부(기준 고시)",
+    "stage": "G0 기준 고시",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "보건복지부장관",
+    "action": "심의·고시",
+    "output_documents": [
+     "등급판정기준 고시",
+     "급여비용 수가"
+    ],
+    "deadline": "매년 고시(연도별 적용)",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제9조·제39조",
+      "text": "보건복지부장관은 장기요양보험료율·급여비용 수가·등급판정기준을 정하여 고시한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "장기요양인정 신청",
+    "lane": "신청자(노인·가족)",
+    "stage": "G1 인정 신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "65세 이상 또는 노인성 질병 대상자·가족",
+    "receiver": "국민건강보험공단",
+    "action": "인정 신청",
+    "output_documents": [
+     "장기요양인정 신청서"
+    ],
+    "deadline": "상시 신청",
+    "confidence": 0.85,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제13조",
+      "text": "장기요양인정을 받으려는 자는 공단에 장기요양인정을 신청한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "신청 접수",
+    "lane": "국민건강보험공단",
+    "stage": "G1 인정 신청",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "국민건강보험공단",
+    "action": "접수",
+    "input_documents": [
+     "장기요양인정 신청서"
+    ],
+    "output_documents": [
+     "접수증"
+    ],
+    "deadline": "신청 당일 접수",
+    "confidence": 0.84,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제13조·제14조",
+      "text": "공단은 신청을 접수하고 소속 직원으로 하여금 인정조사를 하게 한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "방문 인정조사(심신상태)",
+    "lane": "국민건강보험공단",
+    "stage": "G2 인정조사·소견서",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "공단 조사원",
+    "action": "방문 인정조사",
+    "output_documents": [
+     "인정조사표"
+    ],
+    "deadline": "조사기간 내 완료",
+    "blocker": "방문 인정조사 일정 조율로 조사가 지연될 수 있다(운영 추정)",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제14조",
+      "text": "공단은 소속 직원으로 하여금 신청인의 심신상태 등을 조사하게 한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "의사소견서 제출",
+    "lane": "의료기관",
+    "stage": "G2 인정조사·소견서",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "의사·신청인",
+    "receiver": "국민건강보험공단",
+    "action": "소견서 제출",
+    "output_documents": [
+     "의사소견서"
+    ],
+    "deadline": "등급판정 전 제출",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제13조제2항",
+      "text": "신청인은 신청서에 의사소견서를 첨부하여 제출하여야 한다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "인정조사표·장기요양인정점수 산정",
+    "lane": "국민건강보험공단",
+    "stage": "G2 인정조사·소견서",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민건강보험공단",
+    "action": "인정점수 산정",
+    "condition": "인정조사 결과·소견서 기반 장기요양인정점수 구간",
+    "input_documents": [
+     "인정조사표",
+     "의사소견서"
+    ],
+    "output_documents": [
+     "장기요양인정점수"
+    ],
+    "deadline": "위원회 회부 전",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제15조제1항",
+      "text": "공단은 조사 결과와 의사소견서를 바탕으로 인정점수를 산정하여 등급판정위원회에 제출한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "등급판정위원회 심의·등급판정",
+    "lane": "장기요양등급판정위원회",
+    "stage": "G3 등급판정",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "장기요양등급판정위원회",
+    "action": "등급판정",
+    "condition": "1~5등급·인지지원등급 판정(인정점수 기준)",
+    "input_documents": [
+     "장기요양인정점수"
+    ],
+    "output_documents": [
+     "등급판정 결과"
+    ],
+    "deadline": "신청일부터 30일 이내(연장 가능)",
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제15조제2항",
+      "text": "등급판정위원회는 심신상태와 인정점수에 따라 장기요양등급을 판정한다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "장기요양인정서·표준이용계획서 발급",
+    "lane": "국민건강보험공단",
+    "stage": "G4 인정서·이용계약",
+    "type": "notice",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민건강보험공단",
+    "receiver": "수급자",
+    "action": "인정서 발급·통지",
+    "output_documents": [
+     "장기요양인정서",
+     "표준장기요양이용계획서"
+    ],
+    "deadline": "등급판정 후 발급",
+    "confidence": 0.83,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제17조",
+      "text": "공단은 등급 판정 시 장기요양인정서와 표준장기요양이용계획서를 발급한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "장기요양기관 이용 계약",
+    "lane": "장기요양기관",
+    "stage": "G4 인정서·이용계약",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "수급자·장기요양기관",
+    "action": "이용 계약",
+    "input_documents": [
+     "장기요양인정서",
+     "표준장기요양이용계획서"
+    ],
+    "output_documents": [
+     "이용 계약서"
+    ],
+    "deadline": "이용 개시 전",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제23조·제27조",
+      "text": "수급자는 지정 장기요양기관과 계약하여 급여를 이용한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "재가·시설급여 제공",
+    "lane": "장기요양기관",
+    "stage": "G5 급여 이용·비용",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "요양보호사·장기요양기관",
+    "action": "급여 제공",
+    "output_documents": [
+     "급여 제공기록"
+    ],
+    "deadline": "이용계획 범위 내",
+    "blocker": "요양보호사 부족·낮은 처우로 서비스 질 편차가 크다",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제23조",
+      "text": "장기요양급여는 방문요양 등 재가급여와 시설급여로 제공한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "특별현금급여 지급",
+    "lane": "국민건강보험공단",
+    "stage": "G5 급여 이용·비용",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민건강보험공단",
+    "receiver": "수급자",
+    "action": "특별현금급여 지급",
+    "output_documents": [
+     "가족요양비 등 지급내역"
+    ],
+    "deadline": "요건 충족 시 지급",
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제23조·제24조",
+      "text": "도서·벽지 등 부득이한 경우 특별현금급여(가족요양비 등)를 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "급여비용 청구·지급",
+    "lane": "국민건강보험공단",
+    "stage": "G5 급여 이용·비용",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민건강보험공단·장기요양기관",
+    "action": "청구·지급",
+    "input_documents": [
+     "급여 제공기록"
+    ],
+    "output_documents": [
+     "급여비용 청구·지급 내역"
+    ],
+    "deadline": "제공 후 정산",
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제38조",
+      "text": "장기요양기관은 급여비용을 공단에 청구하고 공단이 이를 지급한다."
+     }
+    ]
+   },
+   {
+    "id": "P13",
+    "name": "본인일부부담금 납부",
+    "lane": "신청자(노인·가족)",
+    "stage": "G5 급여 이용·비용",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "수급자",
+    "action": "본인부담금 납부",
+    "output_documents": [
+     "본인부담금 납부내역"
+    ],
+    "deadline": "이용 시 납부",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제40조",
+      "text": "수급자는 재가 15%·시설 20% 등 본인일부부담금을 부담하되 기초수급자는 면제·감경한다."
+     }
+    ]
+   },
+   {
+    "id": "P14",
+    "name": "장기요양기관 지정·관리",
+    "lane": "시장·군수·구청장(기관 지정)",
+    "stage": "G5 급여 이용·비용",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "시장·군수·구청장",
+    "action": "기관 지정·관리·감독",
+    "output_documents": [
+     "지정·행정처분 결과"
+    ],
+    "deadline": "상시 관리",
+    "blocker": "부정청구·급여비용 관리 부담이 크다(운영 추정)",
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제31조·제37조",
+      "text": "시·군·구는 장기요양기관을 지정하고 관리·감독하며 위반 시 지정취소 등 행정처분을 한다."
+     }
+    ]
+   },
+   {
+    "id": "P15",
+    "name": "갱신·등급변경 신청",
+    "lane": "신청자(노인·가족)",
+    "stage": "G6 갱신·이의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "수급자·가족",
+    "receiver": "국민건강보험공단",
+    "action": "갱신·등급변경 신청",
+    "output_documents": [
+     "갱신·변경 신청서"
+    ],
+    "deadline": "유효기간 만료 전",
+    "blocker": "유효기간 만료 시 인정조사·등급판정 회귀 단계",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제20조·제21조",
+      "text": "장기요양인정 유효기간이 만료되면 갱신 신청하며 심신상태 변화 시 등급변경을 신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P16",
+    "name": "이의신청·심사청구",
+    "lane": "신청자(노인·가족)",
+    "stage": "G6 갱신·이의",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "수급자·신청자",
+    "receiver": "국민건강보험공단",
+    "action": "이의신청",
+    "input_documents": [
+     "장기요양인정서"
+    ],
+    "output_documents": [
+     "이의신청서"
+    ],
+    "deadline": "결정 통지받은 날부터 90일 이내",
+    "blocker": "등급판정 불복 회귀 단계",
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제55조",
+      "text": "장기요양인정·등급 등에 이의가 있으면 90일 이내에 공단에 이의신청할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P17",
+    "name": "이의신청 심사·재결정",
+    "lane": "장기요양등급판정위원회",
+    "stage": "G6 갱신·이의",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "국민건강보험공단(장기요양심사위원회)",
+    "action": "이의신청 심사·처분",
+    "condition": "이의신청 인용 여부(인용 시 등급 재판정 회귀)",
+    "input_documents": [
+     "이의신청서"
+    ],
+    "output_documents": [
+     "이의신청 결정 통지"
+    ],
+    "deadline": "이의신청 심사 후 통지",
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "노인장기요양보험법",
+      "article": "제55조",
+      "text": "공단은 이의신청을 심사하여 그 결과를 신청인에게 통지한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   { "id": "E01", "source": "P01", "target": "P02", "type": "sequence", "label": null },
+   { "id": "E02", "source": "P02", "target": "P03", "type": "sequence", "label": null },
+   { "id": "E03", "source": "P03", "target": "P04", "type": "sequence", "label": null },
+   { "id": "E04", "source": "P04", "target": "P05", "type": "sequence", "label": null },
+   { "id": "E05", "source": "P05", "target": "P06", "type": "sequence", "label": null },
+   { "id": "E06", "source": "P06", "target": "P07", "type": "sequence", "label": "인정점수 회부" },
+   { "id": "E07", "source": "P07", "target": "P08", "type": "sequence", "label": "등급 판정" },
+   { "id": "E08", "source": "P08", "target": "P09", "type": "sequence", "label": null },
+   { "id": "E09", "source": "P09", "target": "P10", "type": "sequence", "label": null },
+   { "id": "E10", "source": "P10", "target": "P12", "type": "sequence", "label": null },
+   { "id": "E11", "source": "P12", "target": "P13", "type": "sequence", "label": null },
+   { "id": "E12", "source": "P13", "target": "P15", "type": "sequence", "label": null },
+   { "id": "E13", "source": "P16", "target": "P17", "type": "sequence", "label": null },
+   { "id": "M01", "source": "P07", "target": "P11", "type": "message", "label": "재가·시설 이용 곤란 시 특별현금급여" },
+   { "id": "M02", "source": "P10", "target": "P14", "type": "message", "label": "기관 관리·감독 대상" },
+   { "id": "M03", "source": "P08", "target": "P16", "type": "message", "label": "등급판정 불복 시 이의신청" },
+   { "id": "L01", "source": "P15", "target": "P06", "type": "loop", "label": "갱신 재판정 회귀" },
+   { "id": "L02", "source": "P16", "target": "P07", "type": "loop", "label": "이의신청 재심의 회귀" }
+  ],
+  "warnings": []
+ }
 }

@@ -6,7 +6,7 @@
  "priority": 54,
  "whyFirst": "표현의 자유와 사회적 보호가 충돌하는 최전선이다. 심의(민간)와 제재 명령(방통위)의 분리, 접속차단의 법적 성격 논쟁이 뚜렷해 지도로 그릴 가치가 크다.",
  "asOfDate": "2026-07-09",
- "status": "canvas",
+ "status": "full",
  "canvas": {
   "purpose": "방송의 공정성·공공성을 보장하고 인터넷의 불법·유해정보 유통을 막는다. 표현의 자유와 사회적 보호 사이에서 사후 내용심의로 균형을 잡는 것이 목적이다.",
   "stakeholders": "방송사·인터넷사업자·이용자, 방송통신심의위원회, 방송통신위원회(제재 명령), 시청자·피해자(민원인), 표현의 자유 주체",
@@ -87,5 +87,467 @@
   "심의~제재 명령 처리기간(운영 추정)",
   "통신 시정요구(접속차단) 건수·불복 실태(운영 추정)",
   "방송·통신 소위 심의기준 적용 편차"
- ]
+ ],
+ "process": {
+  "institution_name": "방송통신심의 제도",
+  "law_name": "방송통신위원회의 설치 및 운영에 관한 법률",
+  "lanes": [
+   "민원인/이용자",
+   "심의위 사무처",
+   "심의 소위원회",
+   "심의위 전체회의",
+   "방송통신위원회",
+   "사업자",
+   "정보시스템"
+  ],
+  "stages": [
+   "G0 인지·접수",
+   "G1 사무처 검토",
+   "G2 소위 심의",
+   "G3 의견진술",
+   "G4 전체회의 의결",
+   "G5 제재·시정",
+   "G6 이행·불복"
+  ],
+  "nodes": [
+   {
+    "id": "P01",
+    "name": "민원 접수·모니터링",
+    "lane": "민원인/이용자",
+    "stage": "G0 인지·접수",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "민원인/모니터요원",
+    "action": "심의 대상 인지",
+    "output_documents": [
+     "민원서",
+     "모니터링 자료"
+    ],
+    "deadline": "상시",
+    "blocker": null,
+    "confidence": 0.82,
+    "legal_basis": [
+     {
+      "law": "방송통신위원회의 설치 및 운영에 관한 법률",
+      "article": "제21조",
+      "text": "심의위원회는 민원·모니터링을 통해 심의 대상을 인지한다."
+     }
+    ]
+   },
+   {
+    "id": "P02",
+    "name": "사무처 검토·안건 작성",
+    "lane": "심의위 사무처",
+    "stage": "G1 사무처 검토",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "사무처",
+    "action": "안건 작성",
+    "input_documents": [
+     "민원서",
+     "모니터링 자료"
+    ],
+    "output_documents": [
+     "심의안건",
+     "검토보고서"
+    ],
+    "deadline": "내부 목표 14일",
+    "blocker": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "방송통신위원회의 설치 및 운영에 관한 법률",
+      "article": "제21조",
+      "text": "사무처가 심의안건과 검토보고서를 준비한다."
+     }
+    ]
+   },
+   {
+    "id": "P03",
+    "name": "소위원회 상정",
+    "lane": "심의위 사무처",
+    "stage": "G1 사무처 검토",
+    "type": "task",
+    "status": "done",
+    "progress": 100,
+    "actor": "사무처",
+    "receiver": "심의 소위원회",
+    "action": "상정",
+    "output_documents": [
+     "상정 안건"
+    ],
+    "deadline": "회의 일정",
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "방송통신위원회의 설치 및 운영에 관한 법률",
+      "article": "제21조",
+      "text": "안건을 방송·통신 소위원회에 상정한다."
+     }
+    ]
+   },
+   {
+    "id": "P04",
+    "name": "소위 심의",
+    "lane": "심의 소위원회",
+    "stage": "G2 소위 심의",
+    "type": "task",
+    "status": "current",
+    "progress": 50,
+    "actor": "방송·통신 소위원회",
+    "action": "내용 심의",
+    "input_documents": [
+     "심의안건",
+     "검토보고서"
+    ],
+    "output_documents": [
+     "소위 심의결과"
+    ],
+    "deadline": "심의 물량 급증 시 지연 (현장 검증 필요)",
+    "blocker": "심의 대기물량 적체",
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "방송심의에 관한 규정·정보통신에 관한 심의규정",
+      "article": "내용심의 세부기준",
+      "text": "방송·통신 내용의 공공성·유해성을 심의한다."
+     }
+    ]
+   },
+   {
+    "id": "P05",
+    "name": "의견진술 청취",
+    "lane": "심의 소위원회",
+    "stage": "G3 의견진술",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "소위원회",
+    "receiver": "사업자",
+    "action": "의견진술 청취",
+    "output_documents": [
+     "의견진술 조서"
+    ],
+    "blocker": null,
+    "confidence": 0.76,
+    "legal_basis": [
+     {
+      "law": "방송통신위원회의 설치 및 운영에 관한 법률",
+      "article": "제25조",
+      "text": "제재조치에 앞서 당사자의 의견진술 기회를 준다."
+     }
+    ]
+   },
+   {
+    "id": "P06",
+    "name": "전체회의 의결",
+    "lane": "심의위 전체회의",
+    "stage": "G4 전체회의 의결",
+    "type": "gateway",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "심의위 전체회의",
+    "action": "의결",
+    "condition": "문제없음 / 행정지도 / 제재·시정요구",
+    "output_documents": [
+     "심의의결서"
+    ],
+    "blocker": null,
+    "confidence": 0.78,
+    "legal_basis": [
+     {
+      "law": "방송통신위원회의 설치 및 운영에 관한 법률",
+      "article": "제21조·제25조",
+      "text": "전체회의가 문제없음·행정지도·제재·시정요구를 의결한다."
+     }
+    ]
+   },
+   {
+    "id": "P07",
+    "name": "재심 요청·재검토",
+    "lane": "사업자",
+    "stage": "G4 전체회의 의결",
+    "type": "task",
+    "status": "loop",
+    "progress": 0,
+    "actor": "사업자",
+    "action": "재심 청구",
+    "input_documents": [
+     "심의의결서"
+    ],
+    "output_documents": [
+     "재심 청구서"
+    ],
+    "blocker": "조건부 회귀 단계",
+    "confidence": 0.7,
+    "legal_basis": [
+     {
+      "law": "방송심의에 관한 규정·정보통신에 관한 심의규정",
+      "article": "재심 관련 규정",
+      "text": "당사자는 의결에 대해 재심을 청구할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "P08",
+    "name": "방송 제재조치 명령 요청",
+    "lane": "심의위 전체회의",
+    "stage": "G5 제재·시정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "심의위",
+    "receiver": "방송통신위원회",
+    "action": "명령 요청",
+    "output_documents": [
+     "제재조치 요청서"
+    ],
+    "blocker": null,
+    "confidence": 0.79,
+    "legal_basis": [
+     {
+      "law": "방송법",
+      "article": "제100조",
+      "text": "방송 제재는 방송통신위원회에 제재조치 명령을 요청한다."
+     }
+    ]
+   },
+   {
+    "id": "P09",
+    "name": "방통위 제재조치 명령",
+    "lane": "방송통신위원회",
+    "stage": "G5 제재·시정",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "방송통신위원회",
+    "action": "제재조치 명령",
+    "output_documents": [
+     "제재조치 명령서",
+     "과징금 부과처분"
+    ],
+    "blocker": null,
+    "confidence": 0.8,
+    "legal_basis": [
+     {
+      "law": "방송법",
+      "article": "제100조",
+      "text": "방통위는 정정·사과·과징금 등 제재조치를 명령한다."
+     }
+    ]
+   },
+   {
+    "id": "P10",
+    "name": "통신 시정요구(삭제·접속차단)",
+    "lane": "심의위 전체회의",
+    "stage": "G5 제재·시정",
+    "type": "task",
+    "status": "risk",
+    "progress": 0,
+    "actor": "심의위",
+    "receiver": "사업자",
+    "action": "시정요구",
+    "output_documents": [
+     "시정요구서"
+    ],
+    "blocker": "접속차단의 법적 성격·표현의 자유 논쟁 (현장 검증 필요)",
+    "confidence": 0.68,
+    "legal_basis": [
+     {
+      "law": "정보통신망 이용촉진 및 정보보호 등에 관한 법률",
+      "article": "제44조의7",
+      "text": "불법정보에 대해 삭제·접속차단 등 시정을 요구한다."
+     }
+    ]
+   },
+   {
+    "id": "P11",
+    "name": "사업자 이행",
+    "lane": "사업자",
+    "stage": "G6 이행·불복",
+    "type": "task",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "방송사·정보통신서비스제공자",
+    "action": "이행",
+    "input_documents": [
+     "제재조치 명령서",
+     "시정요구서"
+    ],
+    "output_documents": [
+     "이행결과"
+    ],
+    "blocker": null,
+    "confidence": 0.77,
+    "legal_basis": [
+     {
+      "law": "방송법",
+      "article": "제100조",
+      "text": "사업자는 제재조치·시정요구를 이행한다."
+     }
+    ]
+   },
+   {
+    "id": "P12",
+    "name": "불복·행정소송",
+    "lane": "사업자",
+    "stage": "G6 이행·불복",
+    "type": "gateway",
+    "status": "risk",
+    "progress": 0,
+    "actor": "사업자",
+    "action": "불복 제기",
+    "condition": "제재·접속차단 불복 여부",
+    "output_documents": [
+     "행정심판·소송 청구"
+    ],
+    "blocker": "불복수단·처분성 다툼 (현장 검증 필요)",
+    "confidence": 0.66,
+    "legal_basis": [
+     {
+      "law": "행정소송법",
+      "article": "제12조·제19조",
+      "text": "처분에 불복하는 자는 행정심판·행정소송을 제기할 수 있다."
+     }
+    ]
+   },
+   {
+    "id": "S01",
+    "name": "심의의결 공개",
+    "lane": "정보시스템",
+    "stage": "G4 전체회의 의결",
+    "type": "system",
+    "status": "waiting",
+    "progress": 0,
+    "actor": "심의정보시스템",
+    "action": "의결 공개",
+    "input_documents": [
+     "심의의결서"
+    ],
+    "output_documents": [
+     "공개 의결자료"
+    ],
+    "blocker": null,
+    "confidence": 0.72,
+    "legal_basis": [
+     {
+      "law": "방송통신위원회의 설치 및 운영에 관한 법률",
+      "article": "제21조",
+      "text": "심의 의결 내용을 시스템에 기록·공개한다."
+     }
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "E01",
+    "source": "P01",
+    "target": "P02",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E02",
+    "source": "P02",
+    "target": "P03",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E03",
+    "source": "P03",
+    "target": "P04",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E04",
+    "source": "P04",
+    "target": "P05",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E05",
+    "source": "P05",
+    "target": "P06",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E06",
+    "source": "P06",
+    "target": "P08",
+    "type": "sequence",
+    "label": "방송"
+   },
+   {
+    "id": "E07",
+    "source": "P09",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E08",
+    "source": "P06",
+    "target": "P10",
+    "type": "sequence",
+    "label": "통신"
+   },
+   {
+    "id": "E09",
+    "source": "P10",
+    "target": "P11",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "E10",
+    "source": "P11",
+    "target": "P12",
+    "type": "sequence",
+    "label": null
+   },
+   {
+    "id": "M01",
+    "source": "P06",
+    "target": "S01",
+    "type": "message",
+    "label": "의결 공개"
+   },
+   {
+    "id": "M02",
+    "source": "P08",
+    "target": "P09",
+    "type": "message",
+    "label": "제재조치 명령 요청"
+   },
+   {
+    "id": "M03",
+    "source": "P05",
+    "target": "P06",
+    "type": "message",
+    "label": "의견진술 결과"
+   },
+   {
+    "id": "L01",
+    "source": "P06",
+    "target": "P07",
+    "type": "loop",
+    "label": "재심 청구"
+   },
+   {
+    "id": "L02",
+    "source": "P07",
+    "target": "P04",
+    "type": "loop",
+    "label": "재검토 회귀"
+   }
+  ],
+  "warnings": []
+ }
 }
