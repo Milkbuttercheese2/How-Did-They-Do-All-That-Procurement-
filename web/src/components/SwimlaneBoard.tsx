@@ -548,8 +548,8 @@ function Legend() {
   ] as const;
 
   const edgeItems = [
-    { color: "#bdcbc4", dash: "", label: "순서 흐름" },
-    { color: "#0f9f72", dash: "6 4", label: "정보 전달" },
+    { color: "#55685e", dash: "", label: "순서 흐름" },
+    { color: "#0d8a63", dash: "6 4", label: "정보 전달" },
     { color: "#9333ea", dash: "4 3", label: "회귀 루프" },
   ];
 
@@ -670,10 +670,11 @@ function buildEdgePaths(
 }
 
 // ── Edge color / style helpers ────────────────────────────────────────────────
+// 화살표 시인성: 옅은 회녹색(#bdcbc4)은 격자 위에서 묻힌다 — 진한 색 + 굵은 선
 function edgeColor(type: string) {
   if (type === "loop")    return "#9333ea";
-  if (type === "message") return "#0f9f72";
-  return "#bdcbc4";
+  if (type === "message") return "#0d8a63";
+  return "#55685e";
 }
 function edgeDash(type: string) {
   if (type === "message") return "6 4";
@@ -681,7 +682,7 @@ function edgeDash(type: string) {
   return undefined;
 }
 function edgeWidth(highlighted: boolean, type: string) {
-  return highlighted ? 2.2 : type === "loop" ? 1.8 : 1.5;
+  return highlighted ? 2.8 : type === "loop" ? 2.2 : 2;
 }
 
 // ── Main SwimlaneBoard ────────────────────────────────────────────────────────
@@ -800,20 +801,20 @@ export default function SwimlaneBoard({ process }: { process: ProcessModel }) {
                 {/* sequence arrowhead */}
                 <marker
                   id="sw-arr-seq"
-                  markerWidth={8} markerHeight={8}
-                  refX={6} refY={3}
+                  markerWidth={10} markerHeight={10}
+                  refX={7} refY={3.5}
                   orient="auto"
                 >
-                  <path d="M0,0 L0,6 L8,3 z" fill="#bdcbc4" />
+                  <path d="M0,0 L0,7 L9,3.5 z" fill="#55685e" />
                 </marker>
                 {/* message arrowhead */}
                 <marker
                   id="sw-arr-msg"
-                  markerWidth={8} markerHeight={8}
-                  refX={6} refY={3}
+                  markerWidth={10} markerHeight={10}
+                  refX={7} refY={3.5}
                   orient="auto"
                 >
-                  <path d="M0,0 L0,6 L8,3 z" fill="#0f9f72" />
+                  <path d="M0,0 L0,7 L9,3.5 z" fill="#0d8a63" />
                 </marker>
                 {/* loop arrowhead */}
                 <marker
@@ -861,7 +862,7 @@ export default function SwimlaneBoard({ process }: { process: ProcessModel }) {
                   <g
                     key={edge.id}
                     style={{ transition: "opacity 120ms ease" }}
-                    opacity={isDimmed ? 0.12 : isHovered ? 1 : 0.55}
+                    opacity={isDimmed ? 0.12 : isHovered ? 1 : 0.9}
                   >
                     <path
                       d={path}
