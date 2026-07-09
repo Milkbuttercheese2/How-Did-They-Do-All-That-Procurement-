@@ -12,7 +12,7 @@ import type { ProcessModel, ProcessNode, ProcessEdge } from "@/lib/types";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const LANE_W = 88;
-const STAGE_W = 152; // 카드 밀도: 한 화면에 더 많은 게이트가 들어오도록 축소
+const STAGE_W = 160; // 작은 카드(132px) + 넉넉한 칸 여백의 균형
 
 // 카드용 법조항 축약: 첫 근거의 첫 조문만, 괄호 설명 제거. "환경영향평가법 제24조 외 2"
 function compactLegal(
@@ -1033,12 +1033,13 @@ export default function SwimlaneBoard({ process }: { process: ProcessModel }) {
                       background: isEmpty
                         ? isEven ? "#fafbfa" : "#f7f9f8"
                         : "transparent",
-                      padding: isEmpty ? 0 : "8px 8px",
+                      // 카드는 작게, 칸 사이 여백은 넉넉하게 — 밀도와 호흡의 균형
+                      padding: isEmpty ? 0 : "14px 12px",
                       display: "flex",
                       flexDirection: "column",
-                      gap: 6,
+                      gap: 12,
                       alignItems: "flex-start",
-                      minHeight: 64,
+                      minHeight: 72,
                       position: "relative",
                     }}
                   >
