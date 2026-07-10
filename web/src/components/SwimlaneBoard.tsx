@@ -392,6 +392,7 @@ function MobileProcessFlow({
   const { lanes, stages, nodes } = process;
   const [laneFilter, setLaneFilter] = useState("all");
   const stageRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const filterChangeRef = useRef(false);
   const visibleNodes =
     laneFilter === "all"
       ? nodes
@@ -399,6 +400,7 @@ function MobileProcessFlow({
   const visibleStages = stages.filter((stage) =>
     visibleNodes.some((node) => node.stage === stage)
   );
+  const firstVisibleStage = visibleStages[0];
 
   const scrollToStage = useCallback((stage: string) => {
     const target = stageRefs.current.get(stage);
@@ -411,6 +413,15 @@ function MobileProcessFlow({
       behavior: reducedMotion ? "auto" : "smooth",
     });
   }, []);
+
+  useEffect(() => {
+    if (!filterChangeRef.current || !firstVisibleStage) return;
+    filterChangeRef.current = false;
+    stageRefs.current.get(firstVisibleStage)?.scrollIntoView({
+      block: "start",
+      behavior: "auto",
+    });
+  }, [firstVisibleStage, laneFilter]);
 
   return (
     <div className="mobile-process-flow">
@@ -425,7 +436,10 @@ function MobileProcessFlow({
           <select
             aria-label="행위자 필터"
             value={laneFilter}
-            onChange={(event) => setLaneFilter(event.target.value)}
+            onChange={(event) => {
+              filterChangeRef.current = true;
+              setLaneFilter(event.target.value);
+            }}
           >
             <option value="all">전체 행위자</option>
             {lanes.map((lane) => (
