@@ -483,16 +483,22 @@ function LegalChip({
 // ── Center — Process Board or Stepper ─────────────────────────────────────────
 
 function InstitutionCenter({ institution }: { institution: Institution }) {
+  const fullProcess = institution.status === "full" ? institution.process : undefined;
+
   return (
-    <section id="process" className="model-process-section" style={{ padding: "40px 24px" }}>
+    <section
+      id="process"
+      className={`model-process-section${fullProcess ? " model-process-section-full" : ""}`}
+      style={{ padding: "40px 24px" }}
+    >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        {institution.status === "full" && institution.process ? (
+        {fullProcess ? (
           <FullProcessSection
-            process={institution.process}
+            process={fullProcess}
             verification={institution.verification}
             slug={institution.slug}
             laneGroups={buildProcessLaneGroups(
-              institution.process.lanes,
+              fullProcess.lanes,
               institution.slug,
             )}
           />

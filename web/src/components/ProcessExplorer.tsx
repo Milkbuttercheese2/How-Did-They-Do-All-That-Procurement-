@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type {
   ProcessLaneGroup,
@@ -32,21 +33,8 @@ export default function ProcessExplorer({
   const [layout, setLayout] = useState<ProcessLayout>(() =>
     searchParams.get("layout") === "landscape" ? "landscape" : "portrait"
   );
-  const [isMobile, setIsMobile] = useState(false);
   const initialNodeId = searchParams.get("node") ?? undefined;
   const imageHref = `${BASE_PATH}/exports/process-maps/${slug}.png`;
-
-  useEffect(() => {
-    const query = window.matchMedia("(max-width: 900px)");
-    const updateMobileState = () => setIsMobile(query.matches);
-
-    updateMobileState();
-    query.addEventListener("change", updateMobileState);
-    return () => query.removeEventListener("change", updateMobileState);
-  }, []);
-
-  const effectiveMode = isMobile ? "full" : mode;
-  const effectiveLayout = isMobile ? "portrait" : layout;
 
   function selectMode(nextMode: ProcessMode) {
     setMode(nextMode);
@@ -132,15 +120,38 @@ export default function ProcessExplorer({
         </p>
       </div>
 
-      <ProcessBoard
-        process={process}
-        verification={verification}
-        compact={effectiveMode === "summary"}
-        layout={effectiveLayout}
-        laneGroups={laneGroups}
-        initialNodeId={initialNodeId}
-        onNodeChange={handleNodeChange}
-      />
+      <div className="process-mobile-poster">
+        <a
+          className="process-mobile-poster-link"
+          href={imageHref}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${process.institution_name ?? "제도"} 1800×2400 세로형 업무구조도 원본 열기`}
+          onClick={() => trackEvent("process_image_open", { slug })}
+        >
+          <Image
+            className="process-mobile-poster-image"
+            src={imageHref}
+            alt={`${process.institution_name ?? "제도"} 1800×2400 세로형 업무구조도`}
+            width={1800}
+            height={2400}
+            sizes="(max-width: 900px) 100vw, 1px"
+            loading="eager"
+          />
+        </a>
+      </div>
+
+      <div className="process-desktop-board">
+        <ProcessBoard
+          process={process}
+          verification={verification}
+          compact={mode === "summary"}
+          layout={layout}
+          laneGroups={laneGroups}
+          initialNodeId={initialNodeId}
+          onNodeChange={handleNodeChange}
+        />
+      </div>
     </div>
   );
 }
