@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildProcessLaneGroups } from "../src/lib/process-layout.mjs";
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WEB_DIR = path.dirname(SCRIPT_DIR);
@@ -219,6 +220,20 @@ for (const { file, data: institution } of institutions) {
   if (!process) {
     fail(scope, "process가 없습니다");
     continue;
+  }
+
+  const portraitGroups = buildProcessLaneGroups(process.lanes, institution.slug);
+  const groupedLanes = portraitGroups.flatMap((group) => group.lanes ?? []);
+  if (portraitGroups.length !== Math.min(4, process.lanes.length)) {
+    fail(scope, `세로형 레이아웃 묶음 수가 올바르지 않습니다 (${portraitGroups.length})`);
+  }
+  if (JSON.stringify(groupedLanes) !== JSON.stringify(process.lanes)) {
+    fail(scope, "세로형 레이아웃의 행위자 레인 순서·구성이 원본과 다릅니다");
+  }
+  for (const group of portraitGroups) {
+    if (!group.id?.trim() || !group.title?.trim() || !group.accent?.trim()) {
+      fail(scope, "세로형 레이아웃 묶음의 id·title·accent가 누락됐습니다");
+    }
   }
 
   const lanes = new Set(process.lanes ?? []);

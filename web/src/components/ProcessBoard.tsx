@@ -5,6 +5,7 @@ import type {
   ProcessModel,
   ProcessNode,
   ProcessEdge,
+  ProcessLaneGroup,
   SourceVerification,
 } from "@/lib/types";
 import { getNodeVerification } from "@/lib/process-verification";
@@ -13,12 +14,15 @@ import {
   ProcessVerificationSummaryBar,
   VerificationMark,
 } from "./ProcessVerification";
+import PortraitProcessBoard from "./PortraitProcessBoard";
 import SwimlaneBoard from "./SwimlaneBoard";
 
 interface ProcessBoardProps {
   process: ProcessModel;
   verification?: SourceVerification;
   compact?: boolean;
+  layout?: "portrait" | "landscape";
+  laneGroups?: ProcessLaneGroup[];
   initialNodeId?: string;
   onNodeChange?: (nodeId: string | null) => void;
 }
@@ -873,6 +877,8 @@ export default function ProcessBoard({
   process,
   verification,
   compact = false,
+  layout = "portrait",
+  laneGroups,
   initialNodeId,
   onNodeChange,
 }: ProcessBoardProps) {
@@ -891,8 +897,19 @@ export default function ProcessBoard({
     onNodeChange?.(null);
   }, [onNodeChange]);
 
-  // Full board: delegate to the BPMN swimlane board
+  // Full board: portrait is the default; landscape remains available as a detail view.
   if (!compact) {
+    if (layout === "portrait") {
+      return (
+        <PortraitProcessBoard
+          process={process}
+          verification={verification}
+          laneGroups={laneGroups}
+          initialNodeId={initialNodeId}
+          onNodeChange={onNodeChange}
+        />
+      );
+    }
     return (
       <SwimlaneBoard
         process={process}

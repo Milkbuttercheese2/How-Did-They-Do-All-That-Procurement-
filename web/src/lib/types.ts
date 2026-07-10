@@ -127,6 +127,13 @@ export interface ProcessEdge {
   label?: string | null;
 }
 
+export interface ProcessLaneGroup {
+  id: string;
+  title: string;
+  lanes: string[];
+  accent: string;
+}
+
 export interface ProcessModel {
   institution_name?: string;
   law_name?: string;

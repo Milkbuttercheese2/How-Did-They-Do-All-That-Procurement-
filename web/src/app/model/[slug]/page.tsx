@@ -7,7 +7,8 @@ import {
   getInstitution,
   getInstitutionSummaries,
 } from "@/lib/data";
-import type { Institution } from "@/lib/types";
+import { buildProcessLaneGroups } from "@/lib/process-layout.mjs";
+import type { Institution, ProcessLaneGroup } from "@/lib/types";
 import DetailTools from "@/components/DetailTools";
 import ProcessExplorer from "@/components/ProcessExplorer";
 
@@ -490,6 +491,10 @@ function InstitutionCenter({ institution }: { institution: Institution }) {
             process={institution.process}
             verification={institution.verification}
             slug={institution.slug}
+            laneGroups={buildProcessLaneGroups(
+              institution.process.lanes,
+              institution.slug,
+            )}
           />
         ) : (
           <CanvasStepperSection institution={institution} />
@@ -503,10 +508,12 @@ function FullProcessSection({
   process,
   verification,
   slug,
+  laneGroups,
 }: {
   process: NonNullable<Institution["process"]>;
   verification?: Institution["verification"];
   slug: string;
+  laneGroups?: ProcessLaneGroup[];
 }) {
   return (
     <div>
@@ -553,6 +560,7 @@ function FullProcessSection({
             process={process}
             verification={verification}
             slug={slug}
+            laneGroups={laneGroups}
           />
         </Suspense>
       </div>

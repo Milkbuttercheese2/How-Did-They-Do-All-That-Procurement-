@@ -18,6 +18,7 @@
 /out/
 /public/data/catalog-search.json
 /public/data/catalog-compare.json
+/public/exports/process-maps/
 /freshness-summary.md
 
 # production

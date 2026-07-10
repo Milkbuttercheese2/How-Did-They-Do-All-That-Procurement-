@@ -54,7 +54,7 @@ const SS: Record<string, { bg: string; border: string; dot: string; label: strin
 function ss(status: string) { return SS[status] ?? SS.waiting; }
 
 // ── Stage status helper ───────────────────────────────────────────────────────
-function stageStatus(stage: string, nodes: ProcessNode[]): string {
+export function stageStatus(stage: string, nodes: ProcessNode[]): string {
   const sn = nodes.filter((n) => n.stage === stage);
   if (!sn.length) return "waiting";
   if (sn.some((n) => n.status === "current")) return "current";
@@ -221,7 +221,7 @@ function MobileSwimlaneStageNav({
 }
 
 // ── Compact Node Card ─────────────────────────────────────────────────────────
-function SwimlaneNodeCard({
+export function SwimlaneNodeCard({
   node,
   verification,
   onClick,
@@ -414,7 +414,7 @@ function SwimlaneNodeCard({
 }
 
 // ── Mobile process flow ──────────────────────────────────────────────────────
-function MobileProcessFlow({
+export function MobileProcessFlow({
   process,
   verification,
   onNodeClick,
@@ -603,7 +603,7 @@ function MobileProcessNode({
 }
 
 // ── Node Drawer ───────────────────────────────────────────────────────────────
-function NodeDrawer({
+export function NodeDrawer({
   node,
   edges,
   verification,
@@ -872,7 +872,7 @@ function DrawerSection({ title, children }: { title: string; children: React.Rea
 }
 
 // ── Legend ────────────────────────────────────────────────────────────────────
-function Legend() {
+export function Legend() {
   const items = [
     { status: "done", label: "선행 단계" },
     { status: "current", label: "핵심 단계" },
