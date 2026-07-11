@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-10",
-  "total": 354,
-  "linked": 325,
+  "generatedAt": "2026-07-11",
+  "total": 353,
+  "linked": 324,
   "unresolved": 29,
   "entries": [
     {
@@ -3159,20 +3159,6 @@
         "promulgatedOn": "2026-06-09",
         "effectiveOn": "2026-06-09",
         "officialUrl": "https://law.go.kr/법령/재외동포기본법"
-      }
-    },
-    {
-      "key": "법률\u0000재한외국인 처우 기본법",
-      "source": {
-        "law": "재한외국인 처우 기본법",
-        "kind": "법률",
-        "sourceType": "statute",
-        "officialName": "재한외국인 처우 기본법",
-        "lawId": "010445",
-        "mst": "268701",
-        "promulgatedOn": "2025-01-31",
-        "effectiveOn": "2025-01-31",
-        "officialUrl": "https://law.go.kr/법령/재한외국인처우기본법"
       }
     },
     {

@@ -3,13 +3,13 @@
   "total": 452,
   "institutions": 101,
   "byDomain": {
-    "기관·권한": 24,
-    "문서·증빙": 7,
+    "기관·권한": 25,
+    "문서·증빙": 8,
     "실무 관행": 127,
-    "운영 사실": 179,
-    "재정·비용": 26,
-    "정보시스템": 21,
-    "처리기간": 68
+    "운영 사실": 176,
+    "재정·비용": 24,
+    "정보시스템": 20,
+    "처리기간": 72
   },
   "entries": [
     {
@@ -4671,7 +4671,7 @@
       "slug": "immigration-control",
       "institutionName": "출입국관리",
       "category": "외교·국방·치안·생활 기반",
-      "item": "출입국관리법상 보호(제51조·제63조) 조문 및 헌법불합치 후속 개정 상태",
+      "item": "2026년 K-ETA 한시 면제 국가·연령·신분별 적용 범위",
       "domain": "운영 사실",
       "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
       "status": "open"
@@ -4682,9 +4682,9 @@
       "slug": "immigration-control",
       "institutionName": "출입국관리",
       "category": "외교·국방·치안·생활 기반",
-      "item": "강제퇴거 비용 부담 주체의 실제 운영",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "item": "사증·체류자격별 첨부서류와 재외공관·관할관서 평균 처리기간",
+      "domain": "처리기간",
+      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
       "status": "open"
     },
     {
@@ -4693,9 +4693,9 @@
       "slug": "immigration-control",
       "institutionName": "출입국관리",
       "category": "외교·국방·치안·생활 기반",
-      "item": "체류자격 별표(시행령) 최신 개정 내용",
-      "domain": "운영 사실",
-      "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
+      "item": "외국인보호위원회 보호 심사·기간연장·일시해제 처리 통계",
+      "domain": "처리기간",
+      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
       "status": "open"
     },
     {
@@ -4704,7 +4704,7 @@
       "slug": "immigration-control",
       "institutionName": "출입국관리",
       "category": "외교·국방·치안·생활 기반",
-      "item": "미등록 체류자 규모와 단속·자진출국 통계(운영 통계)",
+      "item": "출국권고·출국명령·강제퇴거명령·통고처분의 연도별 운영 통계",
       "domain": "실무 관행",
       "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
       "status": "open"
@@ -4715,9 +4715,9 @@
       "slug": "immigration-control",
       "institutionName": "출입국관리",
       "category": "외교·국방·치안·생활 기반",
-      "item": "출입국·이민관리청 설립 추진 경과",
-      "domain": "운영 사실",
-      "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
+      "item": "입국불허·강제퇴거 송환비용의 실제 부담·국고지원 기준",
+      "domain": "재정·비용",
+      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
       "status": "open"
     },
     {
@@ -4726,9 +4726,9 @@
       "slug": "refugee-status",
       "institutionName": "난민심사",
       "category": "외교·국방·치안·생활 기반",
-      "item": "난민법 제40조 생계비 지원 조문·예산 운영 실태",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "item": "연도별 국내·출입국항 난민 신청, 회부·불회부, 인정·인도적 체류 통계",
+      "domain": "운영 사실",
+      "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
       "status": "open"
     },
     {
@@ -4737,9 +4737,9 @@
       "slug": "refugee-status",
       "institutionName": "난민심사",
       "category": "외교·국방·치안·생활 기반",
-      "item": "연도별 난민 신청·인정·인도적체류 통계와 인정률",
-      "domain": "운영 사실",
-      "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
+      "item": "1차·이의신청 평균 및 중앙값 처리기간과 법정기간 연장 비율",
+      "domain": "처리기간",
+      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
       "status": "open"
     },
     {
@@ -4748,9 +4748,9 @@
       "slug": "refugee-status",
       "institutionName": "난민심사",
       "category": "외교·국방·치안·생활 기반",
-      "item": "심사·이의신청·행정소송 평균 처리기간(운영 통계)",
-      "domain": "처리기간",
-      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
+      "item": "통역 품질·면접 녹음녹화·조서 정정·자료 열람권의 실제 운영",
+      "domain": "문서·증빙",
+      "suggestedEvidence": "현행 서식·업무편람 또는 공식 안내",
       "status": "open"
     },
     {
@@ -4759,9 +4759,9 @@
       "slug": "refugee-status",
       "institutionName": "난민심사",
       "category": "외교·국방·치안·생활 기반",
-      "item": "인도적체류자 처우 규정의 실제 운영",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "item": "생계비·주거·의료 지원 신청 대비 선정률과 지원기간",
+      "domain": "처리기간",
+      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
       "status": "open"
     },
     {
@@ -4770,7 +4770,7 @@
       "slug": "refugee-status",
       "institutionName": "난민심사",
       "category": "외교·국방·치안·생활 기반",
-      "item": "출입국항 신청 회부율(운영 통계)",
+      "item": "불회부·불인정 처분에 대한 행정소송 및 집행정지 운영 통계",
       "domain": "실무 관행",
       "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
       "status": "open"
@@ -4836,9 +4836,9 @@
       "slug": "foreigner-registration",
       "institutionName": "외국인등록",
       "category": "외교·국방·치안·생활 기반",
-      "item": "외국인등록증 활용 조문(출입국관리법 제88조의2) 최신 확인",
-      "domain": "운영 사실",
-      "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
+      "item": "출입국관서별 방문예약 의무·현장접수·전자민원 가능 범위",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
       "status": "open"
     },
     {
@@ -4847,9 +4847,9 @@
       "slug": "foreigner-registration",
       "institutionName": "외국인등록",
       "category": "외교·국방·치안·생활 기반",
-      "item": "외국인등록·재발급 수수료와 신고의무 위반 제재 수준",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "item": "체류자격별 외국인등록 첨부서류 최신 목록",
+      "domain": "운영 사실",
+      "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
       "status": "open"
     },
     {
@@ -4858,9 +4858,9 @@
       "slug": "foreigner-registration",
       "institutionName": "외국인등록",
       "category": "외교·국방·치안·생활 기반",
-      "item": "하이코리아 예약 대기기간(운영 추정)",
-      "domain": "처리기간",
-      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
+      "item": "모바일외국인등록증 발급 대상과 실제 이용 가능 기관",
+      "domain": "기관·권한",
+      "suggestedEvidence": "직제·사무분장 또는 담당기관 확인",
       "status": "open"
     },
     {
@@ -4869,9 +4869,9 @@
       "slug": "foreigner-registration",
       "institutionName": "외국인등록",
       "category": "외교·국방·치안·생활 기반",
-      "item": "모바일 외국인등록증 도입 추진 경과",
-      "domain": "운영 사실",
-      "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
+      "item": "등록사항·체류지 지연신고 제재의 실제 적용 기준",
+      "domain": "처리기간",
+      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
       "status": "open"
     },
     {
@@ -4880,9 +4880,9 @@
       "slug": "foreigner-registration",
       "institutionName": "외국인등록",
       "category": "외교·국방·치안·생활 기반",
-      "item": "지자체·공공기관 외국인 정보 연계 범위(운영 추정)",
-      "domain": "정보시스템",
-      "suggestedEvidence": "공식 시스템 매뉴얼 또는 운영기관 확인",
+      "item": "외국인등록 신청부터 등록증 수령까지 관서별 처리기간",
+      "domain": "처리기간",
+      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
       "status": "open"
     },
     {
