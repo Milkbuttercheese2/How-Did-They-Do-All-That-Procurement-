@@ -505,9 +505,9 @@
  },
  "verification": {
   "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "법적 근거 5건 중 국가계약법·시행령·시행규칙·공사계약일반조건 4건은 law-cache 원문 및 목차와 WebSearch로 조문 번호를 교차 확인했다. 계약예규 일반조건류(공사·물품·용역) 제3·4조 계약문서 조항은 law-cache 원문과 직접 대조했다. 국가계약법 본법·시행령·시행규칙은 캐시가 조문 목차만 담고 있어 본문 수치는 WebSearch로 확인했다. 전자조달의 이용 및 촉진에 관한 법률 제9조, 공사입찰유의서 제19조는 WebSearch로만 확인해 원문 식별자를 연결하지 못했다. 계약보증금 100분의 10, 계약서 생략 3천만원, 계약체결 10일 기한 수치는 개정 가능성이 있어 LAW_OC 기계 대조로 재확인이 필요하다.",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 5건 중 공식 원문 5건을 연결했다. 캔버스와 절차 노드의 명시 조문 30건 가운데 28건의 조문 번호 존재를 확인했고, 0건은 불일치, 2건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "국가계약법 본법·시행령·시행규칙 캐시 파일은 조문 목차만 담고 본문이 없어 조문 번호는 목차로, 본문·수치는 WebSearch로 확인했다.",
    "2026년 정부조직 개편에 따라 현행 원문 부처 표기는 재정경제부장관이며 본문에서는 기획재정부장관(재정경제부장관)으로 병기했다."
@@ -555,33 +555,28 @@
     "adminRuleSerial": "2100000276690",
     "promulgatedOn": "2026-04-01",
     "officialUrl": "https://law.go.kr/행정규칙/(계약예규)공사계약일반조건"
-   }
-  ],
-  "unresolved": [
+   },
    {
     "law": "전자조달의 이용 및 촉진에 관한 법률",
     "kind": "법률",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "제9조(전자계약서의 작성 및 계약의 성립)는 law-cache 목차와 WebSearch로 확인했으나 이번 세션에서 국가법령정보센터 접근 불가로 원문 식별자(lawId·mst)를 미연결했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·식별자를 확정한다."
-   },
-   {
-    "law": "(계약예규) 공사입찰유의서",
-    "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "낙찰통지 후 10일 이내 계약체결·미체결 시 낙찰취소(제19조)는 WebSearch로만 확인했고 이번 세션에서 원문 식별자를 미연결했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·식별자를 확정한다."
+    "sourceType": "statute",
+    "officialName": "전자조달의 이용 및 촉진에 관한 법률",
+    "lawId": "011778",
+    "mst": "277153",
+    "promulgatedOn": "2025-10-01",
+    "effectiveOn": "2026-01-02",
+    "officialUrl": "https://law.go.kr/법령/전자조달의이용및촉진에관한법률"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "WebSearch 교차 확인 및 law-cache(계약예규 일반조건 원문·법령 목차) 대조 — 조문 번호 존재 확인, 본문 수치는 검색 기반",
-   "citationEntries": 19,
-   "explicitCitationEntries": 19,
-   "articleReferences": 19,
-   "verifiedReferences": 16,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 24,
+   "explicitCitationEntries": 24,
+   "articleReferences": 30,
+   "verifiedReferences": 28,
    "missingReferences": 0,
-   "uncheckableReferences": 3
+   "uncheckableReferences": 2
   }
  }
 }

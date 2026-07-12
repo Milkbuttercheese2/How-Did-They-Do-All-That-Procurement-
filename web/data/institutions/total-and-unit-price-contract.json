@@ -464,10 +464,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "법 제22조(단가계약) 조문 문언은 law-cache 목차와 WebSearch(casenote·조달청·easylaw)로 교차 확인했고, 단가계약 계약보증금(매회 최대량×100분의10)·장기물품제조계약·선금 발주금액 기준은 law-cache 원문(물품구매(제조)계약일반조건 제7조③·제8조②·제3조·제12조, 정부 입찰·계약 집행기준 제34조)과 대조했다. 시행령 제39·42·50·55·58·69조와 법 제8조의2·14·15조는 law-cache 목차로 조문 실존만 확인하고 본문 기계 대조는 통합 시점의 LAW_OC 대조로 미룬다. 총액계약 원칙과 단가 입찰·납품요구 실무는 조달청 규정·운영사항으로 fieldVerification 처리했다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 4건 중 공식 원문 4건을 연결했다. 캔버스와 절차 노드의 명시 조문 33건 가운데 33건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "부처 표기: 현행 원문은 재정경제부장관/재정경제부령(2026 정부조직 개편)이나 기존 파일 관례에 따라 기획재정부장관(재정경제부장관) 병기.",
    "대가 지급기한 등 수치는 시행령 제58조 본문 원문 미독으로 본문에 단정 기재하지 않고 '시행령이 정한 기한'으로 서술."
@@ -516,16 +516,15 @@
     "officialUrl": "https://law.go.kr/행정규칙/(계약예규)정부입찰·계약집행기준"
    }
   ],
-  "unresolved": [],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 원문 대조 및 WebSearch 교차 확인 — 국가법령정보센터 LAW_OC 기계 대조 미실시",
-   "citationEntries": 17,
-   "explicitCitationEntries": 17,
-   "articleReferences": 17,
-   "verifiedReferences": 7,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 21,
+   "explicitCitationEntries": 21,
+   "articleReferences": 33,
+   "verifiedReferences": 33,
    "missingReferences": 0,
-   "uncheckableReferences": 10
+   "uncheckableReferences": 0
   }
  }
 }

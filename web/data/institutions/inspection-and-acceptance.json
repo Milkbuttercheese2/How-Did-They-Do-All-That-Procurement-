@@ -532,10 +532,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "법적 근거 5건 중 4건(국가계약법, 시행령, 물품구매(제조)계약일반조건, 공사계약일반조건)은 law-cache 원문 사본(조문 제명·계약예규 전문)과 대조했고, WebSearch로 조문 본문 수치(검사 14일·검사조서 생략 3천만원·겸직 예외 3억원·대가지급 5일·하자검사 연2회)를 교차 확인했다. 용역계약일반조건은 registry 미등록으로 원문 식별자 미연결(unresolved). 조문 번호 존재는 캐시 목차로 확인했으나 국가법령정보센터 기계 대조는 통합 시점에 수행 예정이다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 5건 중 공식 원문 5건을 연결했다. 캔버스와 절차 노드의 명시 조문 39건 가운데 39건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "검사 14일 기한은 재난·경제위기 정부 고시 시 7일로 단축될 수 있다(각 계약예규 검사 조항).",
    "시행령 제58조 대가지급 5일 수치는 WebSearch 근거이며 계약예규(물품 제22조제2항) 5일과 병기했다. 원문 기계 대조로 확정 필요.",
@@ -583,26 +583,27 @@
     "adminRuleSerial": "2100000276690",
     "promulgatedOn": "2026-04-01",
     "officialUrl": "https://law.go.kr/행정규칙/(계약예규)공사계약일반조건"
-   }
-  ],
-  "unresolved": [
+   },
    {
     "law": "(계약예규) 용역계약일반조건",
     "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "이번 세션에서 국가법령정보센터 접근 불가로 원문 식별자(adminRuleId·serial) 미연결. law-cache 전문 사본으로 제20조(검사)·제21조(인수) 문언은 확인했으나 registry 미등록이다.",
-    "nextStep": "LAW_OC 기계 대조로 (계약예규) 용역계약일반조건의 공식 제명·행정규칙 식별자를 확정해 sources로 승격."
+    "sourceType": "admin-rule",
+    "officialName": "(계약예규) 용역계약일반조건",
+    "adminRuleId": "27949",
+    "adminRuleSerial": "2100000276694",
+    "promulgatedOn": "2026-04-01",
+    "officialUrl": "https://law.go.kr/행정규칙/(계약예규)용역계약일반조건"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 원문 사본(조문 제명·계약예규 전문) 대조 + WebSearch 교차 확인 — 국가법령정보센터 기계 대조 미실시",
-   "citationEntries": 22,
-   "explicitCitationEntries": 22,
-   "articleReferences": 22,
-   "verifiedReferences": 19,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 27,
+   "explicitCitationEntries": 27,
+   "articleReferences": 39,
+   "verifiedReferences": 39,
    "missingReferences": 0,
-   "uncheckableReferences": 3
+   "uncheckableReferences": 0
   }
  }
 }

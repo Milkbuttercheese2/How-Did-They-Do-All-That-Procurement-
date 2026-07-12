@@ -32,7 +32,7 @@
     "kind": "고시·지침"
    },
    {
-    "law": "용역계약일반조건",
+    "law": "(계약예규) 용역계약일반조건",
     "articles": "제29조(계약상대자의 책임있는 사유로 인한 계약의 해제 또는 해지), 제30조(사정변경에 의한 계약의 해제 또는 해지), 제31조(계약상대자에 의한 계약의 해제 또는 해지)",
     "kind": "고시·지침"
    }
@@ -516,10 +516,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "법적 근거 5건 중 국가계약법·시행령·공사계약일반조건·물품구매(제조)계약일반조건 4건을 공식 출처 식별자로 연결하고, 용역계약일반조건 1건은 식별자 미확보로 unresolved 처리했다. 공사·물품계약일반조건의 해제·해지 조문(공사 제8·44·45·46·48조, 물품 제26·27조)은 law-cache 원문에서 직접 대조했고, 시행령 제75·51·76조와 법 제12·27조는 law-cache 조문 색인(제목)으로 존재를 확인하고 항·호 세부 문언은 WebSearch로 보조 확인해 조문 3건을 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 5건 중 공식 원문 5건을 연결했다. 캔버스와 절차 노드의 명시 조문 37건 가운데 37건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "시행령 제75·51·76조, 법 제12·27조의 항·호 세부 문언은 law-cache 전문 미보유로 LAW_OC 기계 대조가 필요하다.",
    "계약보증금 국고귀속 시 지체상금 병과 여부·상계 범위는 실무 해설 수준으로만 확인해 본문에 단정하지 않았다."
@@ -566,26 +566,27 @@
     "adminRuleSerial": "2100000276692",
     "promulgatedOn": "2026-04-01",
     "officialUrl": "https://law.go.kr/행정규칙/(계약예규)물품구매(제조)계약일반조건"
-   }
-  ],
-  "unresolved": [
+   },
    {
-    "law": "용역계약일반조건",
+    "law": "(계약예규) 용역계약일반조건",
     "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "law-cache에 원문 사본은 있으나 legal-source-registry·알려진 출처 목록에 공식 제명·식별자가 미등재되어 이번 세션에서 국가법령정보센터 원문 식별자를 연결하지 못했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명(계약예규 여부 포함)과 adminRuleId·adminRuleSerial을 확정한다."
+    "sourceType": "admin-rule",
+    "officialName": "(계약예규) 용역계약일반조건",
+    "adminRuleId": "27949",
+    "adminRuleSerial": "2100000276694",
+    "promulgatedOn": "2026-04-01",
+    "officialUrl": "https://law.go.kr/행정규칙/(계약예규)용역계약일반조건"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 원문 대조(공사·물품계약일반조건) + 공개 웹 검색 교차 확인(시행령·법 조문 색인). 국가법령정보센터 원문 기계 대조는 미실시.",
-   "citationEntries": 19,
-   "explicitCitationEntries": 19,
-   "articleReferences": 19,
-   "verifiedReferences": 16,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 24,
+   "explicitCitationEntries": 24,
+   "articleReferences": 37,
+   "verifiedReferences": 37,
    "missingReferences": 0,
-   "uncheckableReferences": 3
+   "uncheckableReferences": 0
   }
  }
 }

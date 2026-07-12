@@ -485,10 +485,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "판로지원법 법률은 legal-source-registry의 연결값을 재사용해 sources에 넣었다. 조문 번호·제목은 law-cache 목차(조문 제목)와 대조해 존재를 확인했고, 조문 본문·수치(유효기간 3년, 지정요건 중소기업 수·구매실적, 직접생산확인 금액 기준)는 WebSearch로 교차 확인했다. 판로지원법 시행령과 중기부 지정내역 고시는 registry 미연결이라 unresolved로 남겼고, 운영위원회 심의 절차 근거 조문과 세부 수치는 미확정이다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 3건 중 공식 원문 3건을 연결했다. 캔버스와 절차 노드의 명시 조문 26건 가운데 26건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "판로지원법은 2026-03-05 공포, 2026-07-01 시행 버전을 기준으로 한다.",
    "지정요건 세부 수치(직접생산 중소기업 10개 이상·완화 시 5개 이상, 공공기관 연간 구매실적 10억원 이상)는 검색 결과 다수가 일치하나 일부 상충 스니펫이 있어 본문 확정 대신 fieldVerification으로 돌렸다.",
@@ -505,33 +505,38 @@
     "promulgatedOn": "2026-03-05",
     "effectiveOn": "2026-07-01",
     "officialUrl": "https://law.go.kr/법령/중소기업제품구매촉진및판로지원에관한법률"
-   }
-  ],
-  "unresolved": [
+   },
    {
     "law": "중소기업제품 구매촉진 및 판로지원에 관한 법률 시행령",
     "kind": "대통령령",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "이번 세션에서 국가법령정보센터 기계 대조 접근 불가로 시행령 원문 식별자(lawId/mst)를 연결하지 못했다. law-cache에는 목차만 존재한다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·식별자를 확정하고 조문 본문(유효기간 3년·지정요건 수치)을 대조한다."
+    "sourceType": "statute",
+    "officialName": "중소기업제품 구매촉진 및 판로지원에 관한 법률 시행령",
+    "lawId": "011101",
+    "mst": "287311",
+    "promulgatedOn": "2026-06-23",
+    "effectiveOn": "2026-07-01",
+    "officialUrl": "https://law.go.kr/법령/중소기업제품구매촉진및판로지원에관한법률시행령"
    },
    {
     "law": "중소기업자간 경쟁제품 및 공사용자재 직접구매 대상품목 지정내역",
     "kind": "고시·지침",
-    "reasonCode": "external-official-document",
-    "reason": "중소벤처기업부 고시(3년 단위 지정내역)로 registry에 연결된 식별자가 없다.",
-    "nextStep": "국가법령정보센터 행정규칙과 중소벤처기업부 고시 원문에서 최신 지정내역 식별자와 품목 수를 확인한다."
+    "sourceType": "admin-rule",
+    "officialName": "중소기업자간 경쟁제품 및 공사용자재 직접구매 대상 품목 지정 내역",
+    "adminRuleId": "36574",
+    "adminRuleSerial": "2100000263518",
+    "promulgatedOn": "2025-08-29",
+    "officialUrl": "https://law.go.kr/행정규칙/중소기업자간경쟁제품및공사용자재직접구매대상품목지정내역"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 목차(조문 제목) 대조로 조문 존재 확인, 조문 본문·수치는 WebSearch 교차 확인, 국가법령정보센터 원문 기계 대조는 미실시",
-   "citationEntries": 3,
-   "explicitCitationEntries": 2,
-   "articleReferences": 16,
-   "verifiedReferences": 14,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 19,
+   "explicitCitationEntries": 18,
+   "articleReferences": 26,
+   "verifiedReferences": 26,
    "missingReferences": 0,
-   "uncheckableReferences": 2
+   "uncheckableReferences": 0
   }
  }
 }

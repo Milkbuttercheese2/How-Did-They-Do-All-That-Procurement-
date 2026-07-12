@@ -502,15 +502,37 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "법적 근거 5건 중 국가계약법 시행규칙과 입찰참가자격등록규정 2건은 승인된 식별자 목록으로 연결했고, 전자조달법·같은 법 시행령·전자입찰특별유의서 3건은 law-cache 원문 사본은 확보했으나 승인 식별자 목록·registry 미등재로 unresolved(title-needs-confirmation)로 남겼다. 캔버스·절차 노드의 명시 조문 38건 가운데 32건은 캐시 원문·검색으로 조문 존재를 교차 확인했고, 전자조달법 제7·11·17조 관련 6건은 본문 대조가 되지 않아 uncheckable로 분류했다. 지문보안토큰 폐지·신원확인 입찰 전환 등 운영 사실은 조달청 공지·FAQ로 확인했다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 5건 중 공식 원문 5건을 연결했다. 캔버스와 절차 노드의 명시 조문 38건 가운데 38건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "지문보안토큰 사용의무는 2024-01-01부터 폐지되고 2024-06 차세대 나라장터 개통으로 스마트폰 기반 신원확인 입찰(간편인증·금융인증서·모바일신분증·나라장터 앱)로 전환되었다. 법정 수치가 아닌 조달청 고시·공지 기준이다.",
    "전자입찰서 제출 임시 허용 48시간은 전자입찰특별유의서 제8조제4항의 토·일·공휴일 제외 기준이며, 통합 시점 LAW_OC 기계 대조로 재확인이 필요하다."
   ],
   "sources": [
+   {
+    "law": "전자조달의 이용 및 촉진에 관한 법률",
+    "kind": "법률",
+    "sourceType": "statute",
+    "officialName": "전자조달의 이용 및 촉진에 관한 법률",
+    "lawId": "011778",
+    "mst": "277153",
+    "promulgatedOn": "2025-10-01",
+    "effectiveOn": "2026-01-02",
+    "officialUrl": "https://law.go.kr/법령/전자조달의이용및촉진에관한법률"
+   },
+   {
+    "law": "전자조달의 이용 및 촉진에 관한 법률 시행령",
+    "kind": "대통령령",
+    "sourceType": "statute",
+    "officialName": "전자조달의 이용 및 촉진에 관한 법률 시행령",
+    "lawId": "011912",
+    "mst": "280885",
+    "promulgatedOn": "2025-12-30",
+    "effectiveOn": "2026-01-02",
+    "officialUrl": "https://law.go.kr/법령/전자조달의이용및촉진에관한법률시행령"
+   },
    {
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행규칙",
     "kind": "부령",
@@ -523,6 +545,16 @@
     "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률시행규칙"
    },
    {
+    "law": "국가종합전자조달시스템 전자입찰특별유의서",
+    "kind": "고시·지침",
+    "sourceType": "admin-rule",
+    "officialName": "국가종합전자조달시스템 전자입찰특별유의서",
+    "adminRuleId": "34265",
+    "adminRuleSerial": "2100000250182",
+    "promulgatedOn": "2024-12-03",
+    "officialUrl": "https://law.go.kr/행정규칙/국가종합전자조달시스템전자입찰특별유의서"
+   },
+   {
     "law": "국가종합전자조달시스템 입찰참가자격등록규정",
     "kind": "고시·지침",
     "sourceType": "admin-rule",
@@ -533,38 +565,15 @@
     "officialUrl": "https://law.go.kr/행정규칙/국가종합전자조달시스템입찰참가자격등록규정"
    }
   ],
-  "unresolved": [
-   {
-    "law": "전자조달의 이용 및 촉진에 관한 법률",
-    "kind": "법률",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "law-cache 원문 사본(목차·조문 존재)은 확보했으나 이번 세션에서 국가법령정보센터 접근 불가로 승인 식별자 목록·registry에 원문 식별자가 미연결이다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·법령 식별자(lawId·mst)를 확정한다."
-   },
-   {
-    "law": "전자조달의 이용 및 촉진에 관한 법률 시행령",
-    "kind": "대통령령",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "law-cache 원문 사본은 확보했으나 이번 세션에서 국가법령정보센터 접근 불가로 승인 식별자 목록·registry에 원문 식별자가 미연결이다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·법령 식별자(lawId·mst)를 확정한다."
-   },
-   {
-    "law": "국가종합전자조달시스템 전자입찰특별유의서",
-    "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "law-cache 원문 사본은 확보했으나 이번 세션에서 국가법령정보센터 접근 불가로 승인 식별자 목록·registry에 행정규칙 식별자가 미연결이다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·행정규칙 식별자(adminRuleId·serial)를 확정한다."
-   }
-  ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 원문 사본 대조 및 공개 웹 검색 교차 확인(LAW_OC 기계 대조 미실시)",
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
    "citationEntries": 28,
    "explicitCitationEntries": 28,
    "articleReferences": 38,
-   "verifiedReferences": 32,
+   "verifiedReferences": 38,
    "missingReferences": 0,
-   "uncheckableReferences": 6
+   "uncheckableReferences": 0
   }
  }
 }

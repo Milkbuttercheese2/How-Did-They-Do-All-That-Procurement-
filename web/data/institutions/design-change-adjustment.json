@@ -523,10 +523,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "법적 근거 4건 중 국가계약법·시행령·시행규칙·공사계약일반조건을 확인했다. 공사계약일반조건 제19조~제21조는 law-cache 원문 전문에서 직접 인용해 수치(협의 불성립 100분의 50, 신기술 절감액 100분의 30, 저가낙찰 100분의 86·증액 100분의 10, 조정 30일, 준공대가 수령 전 청구)를 대조했다. 국가계약법 제19조·시행령 제65조·제91조는 law-cache 제명(TOC)과 WebSearch로 조문 존재·본문 요지를 교차 확인했다. 시행규칙 제74조의2는 제명만 확인하고 본문 세부는 자동 검증 불가로 남겼다. 조문 번호 존재의 기계 대조와 인용 문구의 해석·적용 타당성은 통합 세션의 LAW_OC 검증 대상이다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 4건 중 공식 원문 4건을 연결했다. 캔버스와 절차 노드의 명시 조문 32건 가운데 32건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "국가계약법령 현행 원문의 부처 표기는 재정경제부장관이며, 본문은 기획재정부장관(재정경제부장관) 병기 관례를 따랐다.",
    "시행규칙 제74조의2 세부 산정식은 원문 기계 대조 시 재확인이 필요하다."
@@ -577,14 +577,14 @@
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 원문 대조(공사계약일반조건 전문) 및 공개 웹 검색 교차 확인 — 조문 번호 존재의 LAW_OC 기계 대조는 통합 세션에서 실시 예정",
-   "citationEntries": 15,
-   "explicitCitationEntries": 15,
-   "articleReferences": 15,
-   "verifiedReferences": 13,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 23,
+   "explicitCitationEntries": 23,
+   "articleReferences": 32,
+   "verifiedReferences": 32,
    "missingReferences": 0,
-   "uncheckableReferences": 2
+   "uncheckableReferences": 0
   }
  }
 }

@@ -528,10 +528,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "법적 근거 5건 중 국가계약법·시행령·시행규칙·공사계약일반조건 4건은 law-cache 원문 대조와 WebSearch 교차 확인을 마쳤고, 용역계약일반조건 1건은 법령출처 레지스트리 미등재로 원문 식별자를 연결하지 못해 unresolved로 남겼다. 하자담보책임기간(1년~10년)·하자보수보증금률(2~5%)·정기검사(연 2회) 수치는 WebSearch로 교차 확인했다. 시행규칙 별표1 세부 공종별 기간 표는 자동 검증 불가로 남겼다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 5건 중 공식 원문 5건을 연결했다. 캔버스와 절차 노드의 명시 조문 36건 가운데 36건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "2026년 정부조직 개편으로 현행 원문의 위임 부처 표기는 재정경제부이며, 기존 파일 관례에 따라 기획재정부장관(재정경제부장관)으로 병기했다.",
    "하자보수보증금률·하자담보책임기간의 세부 수치는 개정 가능성이 있어 계약서 기재값이 우선한다."
@@ -579,26 +579,27 @@
     "adminRuleSerial": "2100000276690",
     "promulgatedOn": "2026-04-01",
     "officialUrl": "https://law.go.kr/행정규칙/(계약예규)공사계약일반조건"
-   }
-  ],
-  "unresolved": [
+   },
    {
     "law": "(계약예규) 용역계약일반조건",
     "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "law-cache 원문(제58조·제59조)은 확인했으나 법령출처 레지스트리에 식별자가 등재되어 있지 않아 이번 세션에서 국가법령정보센터 원문 식별자를 연결하지 못했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·행정규칙 식별자를 확정한다."
+    "sourceType": "admin-rule",
+    "officialName": "(계약예규) 용역계약일반조건",
+    "adminRuleId": "27949",
+    "adminRuleSerial": "2100000276694",
+    "promulgatedOn": "2026-04-01",
+    "officialUrl": "https://law.go.kr/행정규칙/(계약예규)용역계약일반조건"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 원문 대조(공사계약일반조건·용역계약일반조건) 및 WebSearch 교차 확인 — 국가법령정보센터 조문 기계 대조는 통합 시점에 수행 예정",
-   "citationEntries": 5,
-   "explicitCitationEntries": 5,
-   "articleReferences": 19,
-   "verifiedReferences": 16,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 24,
+   "explicitCitationEntries": 24,
+   "articleReferences": 36,
+   "verifiedReferences": 36,
    "missingReferences": 0,
-   "uncheckableReferences": 3
+   "uncheckableReferences": 0
   }
  }
 }
