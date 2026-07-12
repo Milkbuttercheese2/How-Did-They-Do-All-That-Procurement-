@@ -605,10 +605,10 @@
   "articleVerification": {
    "checkedAt": "2026-07-12",
    "method": "국가법령정보센터 원문 캐시 대조(조달사업법·시행령 목차, 물품구매(제조)계약일반조건 본문) 및 WebSearch 교차 — LAW_OC 기계 대조 미실시",
-   "citationEntries": 18,
-   "explicitCitationEntries": 10,
-   "articleReferences": 18,
-   "verifiedReferences": 10,
+   "citationEntries": 17,
+   "explicitCitationEntries": 9,
+   "articleReferences": 17,
+   "verifiedReferences": 9,
    "missingReferences": 0,
    "uncheckableReferences": 8
   }
