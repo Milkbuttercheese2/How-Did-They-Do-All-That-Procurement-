@@ -543,6 +543,17 @@
     "officialUrl": "https://law.go.kr/법령/조달사업에관한법률"
    },
    {
+    "law": "중소기업제품 구매촉진 및 판로지원에 관한 법률",
+    "kind": "법률",
+    "sourceType": "statute",
+    "officialName": "중소기업제품 구매촉진 및 판로지원에 관한 법률",
+    "lawId": "010998",
+    "mst": "284097",
+    "promulgatedOn": "2026-03-05",
+    "effectiveOn": "2026-07-01",
+    "officialUrl": "https://law.go.kr/법령/중소기업제품구매촉진및판로지원에관한법률"
+   },
+   {
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행규칙",
     "kind": "부령",
     "sourceType": "statute",
@@ -562,17 +573,6 @@
     "adminRuleSerial": "2100000233208",
     "promulgatedOn": "2023-12-15",
     "officialUrl": "https://law.go.kr/행정규칙/조달청제조물품직접생산확인기준"
-   },
-   {
-    "law": "중소기업제품 구매촉진 및 판로지원에 관한 법률",
-    "kind": "법률",
-    "sourceType": "statute",
-    "officialName": "중소기업제품 구매촉진 및 판로지원에 관한 법률",
-    "lawId": "010998",
-    "mst": "284097",
-    "promulgatedOn": "2026-03-05",
-    "effectiveOn": "2026-07-01",
-    "officialUrl": "https://law.go.kr/법령/중소기업제품구매촉진및판로지원에관한법률"
    },
    {
     "law": "국가종합전자조달시스템 입찰참가자격등록규정",

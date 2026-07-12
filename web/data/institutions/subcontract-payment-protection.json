@@ -523,16 +523,6 @@
     "officialUrl": "https://law.go.kr/법령/하도급거래공정화에관한법률"
    },
    {
-    "law": "(계약예규) 공사계약일반조건",
-    "kind": "고시·지침",
-    "sourceType": "admin-rule",
-    "officialName": "(계약예규) 공사계약일반조건",
-    "adminRuleId": "27874",
-    "adminRuleSerial": "2100000276690",
-    "promulgatedOn": "2026-04-01",
-    "officialUrl": "https://law.go.kr/행정규칙/(계약예규)공사계약일반조건"
-   },
-   {
     "law": "건설산업기본법",
     "kind": "법률",
     "sourceType": "statute",
@@ -553,6 +543,16 @@
     "promulgatedOn": "2025-10-01",
     "effectiveOn": "2026-01-02",
     "officialUrl": "https://law.go.kr/법령/전자조달의이용및촉진에관한법률"
+   },
+   {
+    "law": "(계약예규) 공사계약일반조건",
+    "kind": "고시·지침",
+    "sourceType": "admin-rule",
+    "officialName": "(계약예규) 공사계약일반조건",
+    "adminRuleId": "27874",
+    "adminRuleSerial": "2100000276690",
+    "promulgatedOn": "2026-04-01",
+    "officialUrl": "https://law.go.kr/행정규칙/(계약예규)공사계약일반조건"
    }
   ],
   "articleVerification": {

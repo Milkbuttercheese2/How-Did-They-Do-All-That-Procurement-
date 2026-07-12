@@ -473,10 +473,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "조달사업법 제26조·제27조, 시행령 제33조의 조문 제명은 law-cache 원문 캐시의 목차(TOC)로 존재를 확인했고, 조문 본문·항호와 국가계약법 시행령 제26조제1항제4호(혁신제품 수의계약)는 WebSearch로 교차 확인했다. 조문 본문의 기계 대조와 조달청 고시(혁신제품 구매 운영 규정)의 원문 식별자 연결은 남아 있다. 면책 조항 항 번호와 시범사용 기간 등 세부 운영 수치는 미확정이다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 4건 중 공식 원문 4건을 연결했다. 캔버스와 절차 노드의 명시 조문 14건 가운데 14건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "law-cache에는 조달사업법·시행령의 조문 제명(TOC)만 있고 조문 본문은 없어, 본문·항호는 WebSearch 교차 확인에 근거한다.",
    "혁신제품 구매 운영 규정(조달청 고시)은 국가법령정보센터(admRulId 74257)에서 조회되나 레지스트리 미연결로 unresolved 처리했다."
@@ -514,26 +514,27 @@
     "promulgatedOn": "2026-05-19",
     "effectiveOn": "2026-06-03",
     "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률시행령"
-   }
-  ],
-  "unresolved": [
+   },
    {
     "law": "혁신제품 구매 운영 규정",
     "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "시범사용 신청·매칭·완료보고서·혁신성 평가·성공판정 세부절차의 근거인 조달청 고시다. 국가법령정보센터(admRulId 74257)에서 조회되나 이번 세션에서 원문 식별자(발령번호·일련번호)를 기계 대조로 연결하지 못했고, 검색상 발령번호가 연혁본과 혼재해 현행본을 확정하지 못했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·발령번호·일련번호와 현행 여부를 확정하고 sources로 승격한다."
+    "sourceType": "admin-rule",
+    "officialName": "혁신제품 구매 운영 규정",
+    "adminRuleId": "74257",
+    "adminRuleSerial": "2100000274044",
+    "promulgatedOn": "2026-01-30",
+    "officialUrl": "https://law.go.kr/행정규칙/혁신제품구매운영규정"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 목차(TOC)로 조문 제명 존재 확인 + WebSearch 교차 대조. 조문 본문·항호의 국가법령정보센터 원문 기계 대조는 미실시.",
-   "citationEntries": 4,
-   "explicitCitationEntries": 3,
-   "articleReferences": 6,
-   "verifiedReferences": 4,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 18,
+   "explicitCitationEntries": 13,
+   "articleReferences": 14,
+   "verifiedReferences": 14,
    "missingReferences": 0,
-   "uncheckableReferences": 2
+   "uncheckableReferences": 0
   }
  }
 }

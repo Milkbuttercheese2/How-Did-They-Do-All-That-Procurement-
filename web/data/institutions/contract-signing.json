@@ -525,6 +525,17 @@
     "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률"
    },
    {
+    "law": "전자조달의 이용 및 촉진에 관한 법률",
+    "kind": "법률",
+    "sourceType": "statute",
+    "officialName": "전자조달의 이용 및 촉진에 관한 법률",
+    "lawId": "011778",
+    "mst": "277153",
+    "promulgatedOn": "2025-10-01",
+    "effectiveOn": "2026-01-02",
+    "officialUrl": "https://law.go.kr/법령/전자조달의이용및촉진에관한법률"
+   },
+   {
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
     "kind": "대통령령",
     "sourceType": "statute",
@@ -555,17 +566,6 @@
     "adminRuleSerial": "2100000276690",
     "promulgatedOn": "2026-04-01",
     "officialUrl": "https://law.go.kr/행정규칙/(계약예규)공사계약일반조건"
-   },
-   {
-    "law": "전자조달의 이용 및 촉진에 관한 법률",
-    "kind": "법률",
-    "sourceType": "statute",
-    "officialName": "전자조달의 이용 및 촉진에 관한 법률",
-    "lawId": "011778",
-    "mst": "277153",
-    "promulgatedOn": "2025-10-01",
-    "effectiveOn": "2026-01-02",
-    "officialUrl": "https://law.go.kr/법령/전자조달의이용및촉진에관한법률"
    }
   ],
   "articleVerification": {

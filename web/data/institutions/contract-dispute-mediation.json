@@ -99,9 +99,9 @@
  ],
  "verification": {
   "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "국가계약법 제28조의2·제29조·제30조·제31조와 시행령 제111조~제114조의 조문 번호·제명은 law-cache 목차(TOC)로 존재를 확인했다. 조정 청구 기한(20일), 심사·조정 완료 기한(50일+50일), 조정안 재판상 화해 효력(15일), 위원회 구성(위원장 포함 15명 이내), 계약절차 중지 명령, 소위원회·제척기피회피는 WebSearch로 교차 확인했다. 다만 캐시에 조문 본문이 없어 시행령 제112조·제113조·제114조·제111조의6 본문은 원문 기계 대조를 하지 못했다. 국제입찰 대상 고시금액의 구체 수치는 외부 고시로 원문 식별자를 미확보했다.",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 3건 중 공식 원문 2건을 연결했다. 캔버스와 절차 노드의 명시 조문 27건 가운데 27건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "law-cache의 국가계약법·시행령 파일은 조문 목차만 포함하고 본문이 없어, 조문 내용·수치는 WebSearch 교차 확인에 의존했다.",
    "조정 청구 기한을 현행 20일에서 30일로 확대하는 개선이 추진 중이라는 보도가 있으나 시행 여부가 확인되지 않아 본문은 현행 20일을 기재했다.",
@@ -135,20 +135,20 @@
    {
     "law": "국가를 당사자로 하는 계약에 관한 법률 등의 기획재정부장관이 정하는 고시금액",
     "kind": "고시·지침",
-    "reasonCode": "external-official-document",
-    "reason": "조정 대상인 국제입찰 정부조달계약의 최소 금액을 정하는 기획재정부 고시로, 이번 세션에서 국가법령정보센터 접근 불가로 원문 식별자를 미연결했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·식별자를 확정하고 공사·물품·용역별 고시금액 수치를 확인한다."
+    "reasonCode": "title-needs-confirmation",
+    "reason": "행정규칙·법령 정확 일치 없음",
+    "nextStep": "소관 기관의 공식 제명을 확인한 뒤 국가법령정보센터에서 다시 조회해야 한다."
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 목차(TOC) 조문 존재 확인 + WebSearch 교차 대조(시행령 제112·113·114·111의6 본문은 원문 기계 대조 미실시)",
-   "citationEntries": 17,
-   "explicitCitationEntries": 17,
-   "articleReferences": 17,
-   "verifiedReferences": 12,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 20,
+   "explicitCitationEntries": 19,
+   "articleReferences": 27,
+   "verifiedReferences": 27,
    "missingReferences": 0,
-   "uncheckableReferences": 5
+   "uncheckableReferences": 0
   }
  },
  "process": {

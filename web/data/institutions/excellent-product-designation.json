@@ -532,16 +532,6 @@
     "officialUrl": "https://law.go.kr/법령/조달사업에관한법률시행령"
    },
    {
-    "law": "우수조달물품 지정관리 규정",
-    "kind": "고시·지침",
-    "sourceType": "admin-rule",
-    "officialName": "우수조달물품 지정·관리 규정",
-    "adminRuleId": "33169",
-    "adminRuleSerial": "2100000278224",
-    "promulgatedOn": "2026-04-23",
-    "officialUrl": "https://law.go.kr/행정규칙/우수조달물품지정·관리규정"
-   },
-   {
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
     "kind": "대통령령",
     "sourceType": "statute",
@@ -551,6 +541,16 @@
     "promulgatedOn": "2026-05-19",
     "effectiveOn": "2026-06-03",
     "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률시행령"
+   },
+   {
+    "law": "우수조달물품 지정관리 규정",
+    "kind": "고시·지침",
+    "sourceType": "admin-rule",
+    "officialName": "우수조달물품 지정·관리 규정",
+    "adminRuleId": "33169",
+    "adminRuleSerial": "2100000278224",
+    "promulgatedOn": "2026-04-23",
+    "officialUrl": "https://law.go.kr/행정규칙/우수조달물품지정·관리규정"
    }
   ],
   "articleVerification": {

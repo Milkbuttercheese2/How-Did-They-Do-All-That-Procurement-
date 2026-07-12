@@ -533,17 +533,6 @@
     "officialUrl": "https://law.go.kr/법령/조달사업에관한법률"
    },
    {
-    "law": "조달사업에 관한 법률 시행령",
-    "kind": "대통령령",
-    "sourceType": "statute",
-    "officialName": "조달사업에 관한 법률 시행령",
-    "lawId": "004862",
-    "mst": "280891",
-    "promulgatedOn": "2025-12-30",
-    "effectiveOn": "2026-01-02",
-    "officialUrl": "https://law.go.kr/법령/조달사업에관한법률시행령"
-   },
-   {
     "law": "국가를 당사자로 하는 계약에 관한 법률",
     "kind": "법률",
     "sourceType": "statute",
@@ -553,6 +542,17 @@
     "promulgatedOn": "2026-03-10",
     "effectiveOn": "2026-06-11",
     "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률"
+   },
+   {
+    "law": "조달사업에 관한 법률 시행령",
+    "kind": "대통령령",
+    "sourceType": "statute",
+    "officialName": "조달사업에 관한 법률 시행령",
+    "lawId": "004862",
+    "mst": "280891",
+    "promulgatedOn": "2025-12-30",
+    "effectiveOn": "2026-01-02",
+    "officialUrl": "https://law.go.kr/법령/조달사업에관한법률시행령"
    },
    {
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",

@@ -454,10 +454,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "국가계약법 제27조의2·제27조의3과 시행령 제76조의2~제76조의4의 조문 실존을 law-cache 목차와 WebSearch로 교차 확인했다. 과징금 비율(100분의 10·100분의 30), 국세 체납처분 징수, 심의위원회 심의 요건은 검색과 기존 검증본(debarment.json)으로 확인했다. 시행령 제76조의3·제76조의4의 구체적 납부기한·분할납부 요건, 심의위원회 위원 구성, 과징금부과 세부기준 고시의 제명·식별자는 원문 미확보로 남았다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 4건 중 공식 원문 4건을 연결했다. 캔버스와 절차 노드의 명시 조문 19건 가운데 19건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "과징금 비율·징수 방식은 이번 세션에서 검색으로만 확인했으며 통합 시 LAW_OC 기계 대조로 재확인이 필요하다.",
    "과징금부과 세부기준 고시는 법제처 행정규칙으로 존재하나 정확한 제명·발령번호를 확정하지 못해 unresolved로 둔다."
@@ -495,26 +495,27 @@
     "promulgatedOn": "2022-01-11",
     "effectiveOn": "2023-03-24",
     "officialUrl": "https://law.go.kr/법령/행정절차법"
-   }
-  ],
-  "unresolved": [
+   },
    {
     "law": "과징금부과 세부기준 등에 관한 고시",
     "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "이번 세션에서 국가법령정보센터 접근 불가로 고시의 정확한 제명·발령번호·조문 원문 식별자를 미연결했다. WebSearch로 law.go.kr 행정규칙 존재만 확인했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·발령번호·식별자 확정 후 sources로 승격"
+    "sourceType": "admin-rule",
+    "officialName": "과징금부과 세부기준 등에 관한 고시",
+    "adminRuleId": "27230",
+    "adminRuleSerial": "2100000278442",
+    "promulgatedOn": "2026-04-30",
+    "officialUrl": "https://law.go.kr/행정규칙/과징금부과세부기준등에관한고시"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 목차 대조 및 공개 웹 검색(WebSearch) 교차 확인 — 시행령 제76조의3·제76조의4 본문은 원문 미확보로 uncheckable 분류",
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
    "citationEntries": 16,
    "explicitCitationEntries": 15,
    "articleReferences": 19,
-   "verifiedReferences": 14,
+   "verifiedReferences": 19,
    "missingReferences": 0,
-   "uncheckableReferences": 5
+   "uncheckableReferences": 0
   }
  }
 }

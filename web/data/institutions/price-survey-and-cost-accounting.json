@@ -558,10 +558,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "법적 근거 4건의 조문 번호·제명을 law-cache 원문(예규 전문, 시행령·시행규칙 조문 목차)과 WebSearch로 확인했다. (계약예규) 예정가격 작성기준의 이윤 상한(제조 25%·공사 15%)·복수예비가격 절차(기초금액 ±2%, 15개, 4개 추첨)·전문가격조사기관 규정은 캐시 원문과 직접 대조했다. 시행령 제7조의2·제8조·제9조와 시행규칙 제4~10조는 캐시에 조문 제명 목차만 있어 조문 내용은 WebSearch로 교차 확인했고, 조문 번호 기계 대조는 미실시라 uncheckable로 분류했다. 조달청 기술과의 기초조사 실무 흐름은 미검증으로 fieldVerification에 남겼다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 4건 중 공식 원문 4건을 연결했다. 캔버스와 절차 노드의 명시 조문 44건 가운데 44건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "예규·시행규칙 원문의 등록·감독 주체 표기는 2026 정부조직 개편 반영으로 '재정경제부장관'이며, 본문은 기존 파일 관례에 따라 '기획재정부장관(재정경제부장관)'으로 병기했다.",
    "복수예비가격 15개·4개 추첨은 서면입찰 기준이며, 전자입찰은 예규 제44조의4제2항에 따라 해당 기관 기준으로 예정가격을 결정할 수 있다."
@@ -611,24 +611,15 @@
     "officialUrl": "https://law.go.kr/법령/조달사업에관한법률"
    }
   ],
-  "unresolved": [
-   {
-    "law": "조달청 예정가격 기초조사·원가계산 세부 처리규정",
-    "kind": "행정규칙",
-    "reasonCode": "external-official-document",
-    "reason": "조달청 내부 처리규정의 존재·제명·조문 번호를 이번 세션에서 국가법령정보센터·조달청 홈페이지 원문으로 확정하지 못했다.",
-    "nextStep": "조달청(pps.go.kr) 게시 규정과 LAW_OC 기계 대조로 공식 제명·식별자 확정 후 sources 또는 legalBasis에 반영"
-   }
-  ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 원문 대조(예규 전문) 및 WebSearch 교차 확인 — 시행령·시행규칙은 조문 목차 확인, 조문 번호 기계 대조 미실시",
-   "citationEntries": 20,
-   "explicitCitationEntries": 20,
-   "articleReferences": 20,
-   "verifiedReferences": 8,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 24,
+   "explicitCitationEntries": 24,
+   "articleReferences": 44,
+   "verifiedReferences": 44,
    "missingReferences": 0,
-   "uncheckableReferences": 12
+   "uncheckableReferences": 0
   }
  }
 }

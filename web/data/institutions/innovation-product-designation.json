@@ -460,10 +460,10 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "조달사업법·시행령·시행규칙과 국가계약법·시행령의 조문 제명은 law-cache 원문 사본(목차·시행규칙 전문)으로 확인했고, 혁신제품 지정 항·수치(구매면책, 지정취소, 지정기간 3년, 수의계약 제26조제1항제5호)는 WebSearch로 교차 확인했다. 혁신제품 구매 운영 규정(조달청 고시)의 세부 절차·기한은 원문 식별자를 연결하지 못해 unresolved로 남겼다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 6건 중 공식 원문 6건을 연결했다. 캔버스와 절차 노드의 명시 조문 24건 가운데 24건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "조달사업법·시행령 캐시는 목차(조문 제명)만 보유하여 조문 본문 대조는 통합 시점 LAW_OC 기계 대조로 승격한다.",
    "국가계약법 시행령 제26조제1항제5호의 정확한 호 위치는 검색 근거만 확보했다."
@@ -523,26 +523,27 @@
     "promulgatedOn": "2026-05-19",
     "effectiveOn": "2026-06-03",
     "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률시행령"
-   }
-  ],
-  "unresolved": [
+   },
    {
     "law": "혁신제품 구매 운영 규정",
     "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "혁신제품 지정 신청·심사·시범구매의 세부 절차·기한 근거인 조달청 고시로, 국가법령정보센터에 행정규칙(admRulId 74257)으로 등재되어 있으나 이번 세션에서 국가법령정보센터 접근 불가로 원문 식별자(adminRuleId/adminRuleSerial)를 연결하지 못했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·발령번호·식별자를 확정하고 현행 여부 확인 후 sources로 승격한다."
+    "sourceType": "admin-rule",
+    "officialName": "혁신제품 구매 운영 규정",
+    "adminRuleId": "74257",
+    "adminRuleSerial": "2100000274044",
+    "promulgatedOn": "2026-01-30",
+    "officialUrl": "https://law.go.kr/행정규칙/혁신제품구매운영규정"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "law-cache 원문 사본(조문 제명·시행규칙 전문) 대조 및 공개 웹 검색 교차 확인 — LAW_OC 기계 대조 미실시",
-   "citationEntries": 12,
-   "explicitCitationEntries": 10,
-   "articleReferences": 18,
-   "verifiedReferences": 13,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 24,
+   "explicitCitationEntries": 20,
+   "articleReferences": 24,
+   "verifiedReferences": 24,
    "missingReferences": 0,
-   "uncheckableReferences": 5
+   "uncheckableReferences": 0
   }
  }
 }

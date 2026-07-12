@@ -527,6 +527,17 @@
     "officialUrl": "https://law.go.kr/법령/조달사업에관한법률"
    },
    {
+    "law": "국가를 당사자로 하는 계약에 관한 법률",
+    "kind": "법률",
+    "sourceType": "statute",
+    "officialName": "국가를 당사자로 하는 계약에 관한 법률",
+    "lawId": "000695",
+    "mst": "283877",
+    "promulgatedOn": "2026-03-10",
+    "effectiveOn": "2026-06-11",
+    "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률"
+   },
+   {
     "law": "조달사업에 관한 법률 시행령",
     "kind": "대통령령",
     "sourceType": "statute",
@@ -547,17 +558,6 @@
     "promulgatedOn": "2026-01-02",
     "effectiveOn": "2026-01-02",
     "officialUrl": "https://law.go.kr/법령/조달사업에관한법률시행규칙"
-   },
-   {
-    "law": "국가를 당사자로 하는 계약에 관한 법률",
-    "kind": "법률",
-    "sourceType": "statute",
-    "officialName": "국가를 당사자로 하는 계약에 관한 법률",
-    "lawId": "000695",
-    "mst": "283877",
-    "promulgatedOn": "2026-03-10",
-    "effectiveOn": "2026-06-11",
-    "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률"
    },
    {
     "law": "조달청 시설공사 계약업무 처리규정",

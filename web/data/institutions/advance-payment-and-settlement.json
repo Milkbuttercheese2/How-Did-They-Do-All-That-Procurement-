@@ -516,17 +516,6 @@
     "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률"
    },
    {
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "kind": "대통령령",
-    "sourceType": "statute",
-    "officialName": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "lawId": "002652",
-    "mst": "285893",
-    "promulgatedOn": "2026-05-19",
-    "effectiveOn": "2026-06-03",
-    "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률시행령"
-   },
-   {
     "law": "국고금 관리법",
     "kind": "법률",
     "sourceType": "statute",
@@ -536,6 +525,17 @@
     "promulgatedOn": "2025-10-01",
     "effectiveOn": "2026-01-02",
     "officialUrl": "https://law.go.kr/법령/국고금관리법"
+   },
+   {
+    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
+    "kind": "대통령령",
+    "sourceType": "statute",
+    "officialName": "국가를 당사자로 하는 계약에 관한 법률 시행령",
+    "lawId": "002652",
+    "mst": "285893",
+    "promulgatedOn": "2026-05-19",
+    "effectiveOn": "2026-06-03",
+    "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률시행령"
    },
    {
     "law": "국고금 관리법 시행령",

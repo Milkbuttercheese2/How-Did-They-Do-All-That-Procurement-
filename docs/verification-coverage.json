@@ -1,10 +1,10 @@
 {
   "generatedAt": "2026-07-13",
-  "institutions": 33,
-  "sourceLinked": 33,
-  "needsReview": 0,
-  "linkedSources": 140,
-  "unresolvedReferences": 0,
+  "institutions": 44,
+  "sourceLinked": 42,
+  "needsReview": 2,
+  "linkedSources": 190,
+  "unresolvedReferences": 2,
   "coverage": [
     {
       "priority": 1,
@@ -17,222 +17,6 @@
     },
     {
       "priority": 2,
-      "slug": "excellent-product-designation",
-      "name": "우수조달물품 지정",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 3,
-      "slug": "contract-method-decision",
-      "name": "계약방법 결정",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 4,
-      "slug": "procurement-request",
-      "name": "조달요청(중앙조달)",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 5,
-      "slug": "estimated-price",
-      "name": "예정가격 작성",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 6,
-      "slug": "bid-announcement",
-      "name": "입찰공고",
-      "status": "source-linked",
-      "total": 3,
-      "linked": 3,
-      "unresolved": 0
-    },
-    {
-      "priority": 7,
-      "slug": "general-competitive-bidding",
-      "name": "일반경쟁입찰",
-      "status": "source-linked",
-      "total": 6,
-      "linked": 6,
-      "unresolved": 0
-    },
-    {
-      "priority": 8,
-      "slug": "restricted-competitive-bidding",
-      "name": "제한경쟁입찰",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 9,
-      "slug": "designated-competitive-bidding",
-      "name": "지명경쟁입찰",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 10,
-      "slug": "negotiated-contract",
-      "name": "수의계약(소액수의·견적 제출)",
-      "status": "source-linked",
-      "total": 2,
-      "linked": 2,
-      "unresolved": 0
-    },
-    {
-      "priority": 11,
-      "slug": "bid-and-contract-bonds",
-      "name": "입찰보증금과 계약보증금",
-      "status": "source-linked",
-      "total": 3,
-      "linked": 3,
-      "unresolved": 0
-    },
-    {
-      "priority": 12,
-      "slug": "pre-qualification",
-      "name": "입찰참가자격 사전심사(PQ)",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 13,
-      "slug": "qualification-screening",
-      "name": "적격심사낙찰제",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 14,
-      "slug": "comprehensive-evaluation-award",
-      "name": "종합심사낙찰제",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 15,
-      "slug": "contract-by-negotiation",
-      "name": "협상에 의한 계약",
-      "status": "source-linked",
-      "total": 3,
-      "linked": 3,
-      "unresolved": 0
-    },
-    {
-      "priority": 16,
-      "slug": "advance-payment-and-settlement",
-      "name": "선금과 대가 지급",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 17,
-      "slug": "price-fluctuation-adjustment",
-      "name": "물가변동으로 인한 계약금액 조정",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 18,
-      "slug": "liquidated-damages",
-      "name": "지체상금",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 19,
-      "slug": "multiple-award-schedule",
-      "name": "다수공급자계약(MAS)",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 20,
-      "slug": "debarment",
-      "name": "부정당업자 입찰참가자격 제한",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 70,
-      "slug": "third-party-unit-price-contract",
-      "name": "제3자를 위한 단가계약",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 71,
-      "slug": "total-and-unit-price-contract",
-      "name": "총액계약과 단가계약",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 76,
-      "slug": "defect-warranty",
-      "name": "하자보수와 하자담보책임",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 77,
-      "slug": "e-bidding-identity",
-      "name": "전자입찰과 본인확인(인증서·지문보안토큰)",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 78,
-      "slug": "subcontract-payment-protection",
-      "name": "하도급 관리와 하도급대금 직접지급",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 80,
       "slug": "direct-production-confirmation",
       "name": "직접생산확인",
       "status": "source-linked",
@@ -241,7 +25,7 @@
       "unresolved": 0
     },
     {
-      "priority": 81,
+      "priority": 3,
       "slug": "sme-competitive-products",
       "name": "중소기업자간 경쟁제품 지정",
       "status": "source-linked",
@@ -250,9 +34,342 @@
       "unresolved": 0
     },
     {
-      "priority": 82,
+      "priority": 4,
+      "slug": "excellent-product-designation",
+      "name": "우수조달물품 지정",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 5,
+      "slug": "contract-method-decision",
+      "name": "계약방법 결정",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 6,
+      "slug": "procurement-request",
+      "name": "조달요청(중앙조달)",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 7,
+      "slug": "estimated-price",
+      "name": "예정가격 작성",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 8,
+      "slug": "total-and-unit-price-contract",
+      "name": "총액계약과 단가계약",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 9,
       "slug": "long-term-continuing-contract",
       "name": "장기계속계약과 계속비계약",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 10,
+      "slug": "bid-announcement",
+      "name": "입찰공고",
+      "status": "source-linked",
+      "total": 3,
+      "linked": 3,
+      "unresolved": 0
+    },
+    {
+      "priority": 11,
+      "slug": "general-competitive-bidding",
+      "name": "일반경쟁입찰",
+      "status": "source-linked",
+      "total": 6,
+      "linked": 6,
+      "unresolved": 0
+    },
+    {
+      "priority": 12,
+      "slug": "restricted-competitive-bidding",
+      "name": "제한경쟁입찰",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 13,
+      "slug": "designated-competitive-bidding",
+      "name": "지명경쟁입찰",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 14,
+      "slug": "negotiated-contract",
+      "name": "수의계약(소액수의·견적 제출)",
+      "status": "source-linked",
+      "total": 2,
+      "linked": 2,
+      "unresolved": 0
+    },
+    {
+      "priority": 15,
+      "slug": "bid-and-contract-bonds",
+      "name": "입찰보증금과 계약보증금",
+      "status": "source-linked",
+      "total": 3,
+      "linked": 3,
+      "unresolved": 0
+    },
+    {
+      "priority": 16,
+      "slug": "joint-contracting",
+      "name": "공동수급체 구성(공동계약)",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 17,
+      "slug": "rebidding-and-failed-bids",
+      "name": "재입찰·재공고와 유찰 처리",
+      "status": "source-linked",
+      "total": 3,
+      "linked": 3,
+      "unresolved": 0
+    },
+    {
+      "priority": 18,
+      "slug": "e-bidding-identity",
+      "name": "전자입찰과 본인확인(인증서·지문보안토큰)",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 19,
+      "slug": "pre-qualification",
+      "name": "입찰참가자격 사전심사(PQ)",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 20,
+      "slug": "qualification-screening",
+      "name": "적격심사낙찰제",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 21,
+      "slug": "comprehensive-evaluation-award",
+      "name": "종합심사낙찰제",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 22,
+      "slug": "contract-by-negotiation",
+      "name": "협상에 의한 계약",
+      "status": "source-linked",
+      "total": 3,
+      "linked": 3,
+      "unresolved": 0
+    },
+    {
+      "priority": 23,
+      "slug": "multiple-award-schedule",
+      "name": "다수공급자계약(MAS)",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 24,
+      "slug": "third-party-unit-price-contract",
+      "name": "제3자를 위한 단가계약",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 25,
+      "slug": "advance-payment-and-settlement",
+      "name": "선금과 대가 지급",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 26,
+      "slug": "inspection-and-acceptance",
+      "name": "검사와 검수",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 27,
+      "slug": "price-fluctuation-adjustment",
+      "name": "물가변동으로 인한 계약금액 조정",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 28,
+      "slug": "design-change-adjustment",
+      "name": "설계변경으로 인한 계약금액 조정",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 29,
+      "slug": "liquidated-damages",
+      "name": "지체상금",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 30,
+      "slug": "defect-warranty",
+      "name": "하자보수와 하자담보책임",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 31,
+      "slug": "contract-termination",
+      "name": "계약의 해제·해지",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 32,
+      "slug": "subcontract-payment-protection",
+      "name": "하도급 관리와 하도급대금 직접지급",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 33,
+      "slug": "debarment",
+      "name": "부정당업자 입찰참가자격 제한",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 72,
+      "slug": "facility-construction-procurement",
+      "name": "시설공사 조달(수요기관 대행 발주)",
+      "status": "source-linked",
+      "total": 8,
+      "linked": 8,
+      "unresolved": 0
+    },
+    {
+      "priority": 73,
+      "slug": "price-survey-and-cost-accounting",
+      "name": "조달청 가격조사와 원가계산",
+      "status": "source-linked",
+      "total": 4,
+      "linked": 4,
+      "unresolved": 0
+    },
+    {
+      "priority": 79,
+      "slug": "quality-inspection-management",
+      "name": "조달물자 품질관리(품질점검·전문기관검사)",
+      "status": "source-linked",
+      "total": 7,
+      "linked": 7,
+      "unresolved": 0
+    },
+    {
+      "priority": 83,
+      "slug": "shopping-mall-purchase",
+      "name": "종합쇼핑몰 구매",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 84,
+      "slug": "bid-protest",
+      "name": "입찰·낙찰 이의신청",
+      "status": "needs-review",
+      "total": 3,
+      "linked": 2,
+      "unresolved": 1
+    },
+    {
+      "priority": 85,
+      "slug": "contract-dispute-mediation",
+      "name": "국가계약분쟁조정위원회 조정",
+      "status": "needs-review",
+      "total": 3,
+      "linked": 2,
+      "unresolved": 1
+    },
+    {
+      "priority": 86,
+      "slug": "innovation-product-designation",
+      "name": "혁신제품 지정(혁신조달)",
+      "status": "source-linked",
+      "total": 6,
+      "linked": 6,
+      "unresolved": 0
+    },
+    {
+      "priority": 87,
+      "slug": "innovation-trial-purchase",
+      "name": "혁신제품 시범구매",
       "status": "source-linked",
       "total": 4,
       "linked": 4,
@@ -268,36 +385,18 @@
       "unresolved": 0
     },
     {
-      "priority": 91,
-      "slug": "inspection-and-acceptance",
-      "name": "검사와 검수",
+      "priority": 96,
+      "slug": "bid-opening-award-notice",
+      "name": "개찰과 낙찰자 결정 통보",
       "status": "source-linked",
       "total": 5,
       "linked": 5,
       "unresolved": 0
     },
     {
-      "priority": 92,
-      "slug": "design-change-adjustment",
-      "name": "설계변경으로 인한 계약금액 조정",
-      "status": "source-linked",
-      "total": 4,
-      "linked": 4,
-      "unresolved": 0
-    },
-    {
-      "priority": 93,
-      "slug": "contract-termination",
-      "name": "계약의 해제·해지",
-      "status": "source-linked",
-      "total": 5,
-      "linked": 5,
-      "unresolved": 0
-    },
-    {
-      "priority": 94,
-      "slug": "joint-contracting",
-      "name": "공동수급체 구성(공동계약)",
+      "priority": 97,
+      "slug": "penalty-surcharge",
+      "name": "제재를 갈음하는 과징금",
       "status": "source-linked",
       "total": 4,
       "linked": 4,
