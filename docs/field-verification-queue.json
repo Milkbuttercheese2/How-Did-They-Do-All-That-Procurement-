@@ -1,13 +1,13 @@
 {
   "sourceAsOfDate": "2026-07-12",
-  "total": 69,
-  "institutions": 14,
+  "total": 49,
+  "institutions": 10,
   "byDomain": {
-    "문서·증빙": 6,
-    "실무 관행": 34,
-    "재정·비용": 14,
-    "정보시스템": 3,
-    "처리기간": 12
+    "문서·증빙": 4,
+    "실무 관행": 22,
+    "재정·비용": 11,
+    "정보시스템": 2,
+    "처리기간": 10
   },
   "entries": [
     {
@@ -121,63 +121,8 @@
       "status": "open"
     },
     {
-      "id": "procurement-request-FV01",
-      "priority": 3,
-      "slug": "procurement-request",
-      "institutionName": "조달요청(중앙조달)",
-      "category": "발주",
-      "item": "조달사업법 시행령의 계약체결 요청 기준(금액) 조문 번호와 현행 금액 수치(운영 확인)",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
-      "status": "open"
-    },
-    {
-      "id": "procurement-request-FV02",
-      "priority": 3,
-      "slug": "procurement-request",
-      "institutionName": "조달요청(중앙조달)",
-      "category": "발주",
-      "item": "조달수수료 징수·감면의 시행령 조문 번호와 조달청 고시 현행 요율(운영 확인)",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
-      "status": "open"
-    },
-    {
-      "id": "procurement-request-FV03",
-      "priority": 3,
-      "slug": "procurement-request",
-      "institutionName": "조달요청(중앙조달)",
-      "category": "발주",
-      "item": "공사 집행계획 매년 1월 20일 제출의 시행규칙 조문 번호와 서식(운영 확인)",
-      "domain": "문서·증빙",
-      "suggestedEvidence": "현행 서식·업무편람 또는 공식 안내",
-      "status": "open"
-    },
-    {
-      "id": "procurement-request-FV04",
-      "priority": 3,
-      "slug": "procurement-request",
-      "institutionName": "조달요청(중앙조달)",
-      "category": "발주",
-      "item": "시설공사 계약요청 첨부서류 목록과 기술검토·선람 처리 절차의 조달청 내부규정 근거(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "procurement-request-FV05",
-      "priority": 3,
-      "slug": "procurement-request",
-      "institutionName": "조달요청(중앙조달)",
-      "category": "발주",
-      "item": "나라장터 조달요청서 접수·게재 공개 화면 흐름과 전자계약 단계(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
       "id": "contract-method-decision-FV01",
-      "priority": 4,
+      "priority": 3,
       "slug": "contract-method-decision",
       "institutionName": "계약방법 결정",
       "category": "발주",
@@ -188,7 +133,7 @@
     },
     {
       "id": "contract-method-decision-FV02",
-      "priority": 4,
+      "priority": 3,
       "slug": "contract-method-decision",
       "institutionName": "계약방법 결정",
       "category": "발주",
@@ -199,7 +144,7 @@
     },
     {
       "id": "contract-method-decision-FV03",
-      "priority": 4,
+      "priority": 3,
       "slug": "contract-method-decision",
       "institutionName": "계약방법 결정",
       "category": "발주",
@@ -210,7 +155,7 @@
     },
     {
       "id": "contract-method-decision-FV04",
-      "priority": 4,
+      "priority": 3,
       "slug": "contract-method-decision",
       "institutionName": "계약방법 결정",
       "category": "발주",
@@ -221,11 +166,66 @@
     },
     {
       "id": "contract-method-decision-FV05",
-      "priority": 4,
+      "priority": 3,
       "slug": "contract-method-decision",
       "institutionName": "계약방법 결정",
       "category": "발주",
       "item": "입찰참가자격 사전심사(PQ) 공사 30일 전 공고 등 세부 시기 운영(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
+      "id": "procurement-request-FV01",
+      "priority": 4,
+      "slug": "procurement-request",
+      "institutionName": "조달요청(중앙조달)",
+      "category": "발주",
+      "item": "조달사업법 시행령의 계약체결 요청 기준(금액) 조문 번호와 현행 금액 수치(운영 확인)",
+      "domain": "재정·비용",
+      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "status": "open"
+    },
+    {
+      "id": "procurement-request-FV02",
+      "priority": 4,
+      "slug": "procurement-request",
+      "institutionName": "조달요청(중앙조달)",
+      "category": "발주",
+      "item": "조달수수료 징수·감면의 시행령 조문 번호와 조달청 고시 현행 요율(운영 확인)",
+      "domain": "재정·비용",
+      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "status": "open"
+    },
+    {
+      "id": "procurement-request-FV03",
+      "priority": 4,
+      "slug": "procurement-request",
+      "institutionName": "조달요청(중앙조달)",
+      "category": "발주",
+      "item": "공사 집행계획 매년 1월 20일 제출의 시행규칙 조문 번호와 서식(운영 확인)",
+      "domain": "문서·증빙",
+      "suggestedEvidence": "현행 서식·업무편람 또는 공식 안내",
+      "status": "open"
+    },
+    {
+      "id": "procurement-request-FV04",
+      "priority": 4,
+      "slug": "procurement-request",
+      "institutionName": "조달요청(중앙조달)",
+      "category": "발주",
+      "item": "시설공사 계약요청 첨부서류 목록과 기술검토·선람 처리 절차의 조달청 내부규정 근거(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
+      "id": "procurement-request-FV05",
+      "priority": 4,
+      "slug": "procurement-request",
+      "institutionName": "조달요청(중앙조달)",
+      "category": "발주",
+      "item": "나라장터 조달요청서 접수·게재 공개 화면 흐름과 전자계약 단계(운영 확인)",
       "domain": "실무 관행",
       "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
       "status": "open"
@@ -330,74 +330,8 @@
       "status": "open"
     },
     {
-      "id": "multiple-award-schedule-FV01",
-      "priority": 7,
-      "slug": "multiple-award-schedule",
-      "institutionName": "다수공급자계약(MAS)",
-      "category": "계약·이행",
-      "item": "적격성평가 통과점수 70점(신규 추가품명 최초계약 65점)과 평가항목별 배점 구성(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "multiple-award-schedule-FV02",
-      "priority": 7,
-      "slug": "multiple-award-schedule",
-      "institutionName": "다수공급자계약(MAS)",
-      "category": "계약·이행",
-      "item": "가격협상 협상기준가격 산정방식(가중평균가격·최빈가격 중 낮은 가격 기준)(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "multiple-award-schedule-FV03",
-      "priority": 7,
-      "slug": "multiple-award-schedule",
-      "institutionName": "다수공급자계약(MAS)",
-      "category": "계약·이행",
-      "item": "2단계경쟁 자동선정(동일 세부품명 계약상대자 15인 이상 시 무작위 10인 추천) 시스템 흐름(운영 확인)",
-      "domain": "정보시스템",
-      "suggestedEvidence": "공식 시스템 매뉴얼 또는 운영기관 확인",
-      "status": "open"
-    },
-    {
-      "id": "multiple-award-schedule-FV04",
-      "priority": 7,
-      "slug": "multiple-award-schedule",
-      "institutionName": "다수공급자계약(MAS)",
-      "category": "계약·이행",
-      "item": "제안요청/제안공고 구분(1회 납품요구 5억원 기준)과 예산범위 내 대상자 선정 관행(운영 확인)",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
-      "status": "open"
-    },
-    {
-      "id": "multiple-award-schedule-FV05",
-      "priority": 7,
-      "slug": "multiple-award-schedule",
-      "institutionName": "다수공급자계약(MAS)",
-      "category": "계약·이행",
-      "item": "계약금액 조정 요건(계약체결 후 90일 경과·거래가격 3% 이상 변동)의 실제 적용과 인하 수시 처리(운영 확인)",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
-      "status": "open"
-    },
-    {
-      "id": "multiple-award-schedule-FV06",
-      "priority": 7,
-      "slug": "multiple-award-schedule",
-      "institutionName": "다수공급자계약(MAS)",
-      "category": "계약·이행",
-      "item": "조달사업법 시행령상 다수공급자계약 조문의 정확한 항·호(원문 미대조)(운영 추정)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
       "id": "advance-payment-and-settlement-FV01",
-      "priority": 8,
+      "priority": 7,
       "slug": "advance-payment-and-settlement",
       "institutionName": "선금과 대가 지급",
       "category": "계약·이행",
@@ -408,7 +342,7 @@
     },
     {
       "id": "advance-payment-and-settlement-FV02",
-      "priority": 8,
+      "priority": 7,
       "slug": "advance-payment-and-settlement",
       "institutionName": "선금과 대가 지급",
       "category": "계약·이행",
@@ -419,7 +353,7 @@
     },
     {
       "id": "advance-payment-and-settlement-FV03",
-      "priority": 8,
+      "priority": 7,
       "slug": "advance-payment-and-settlement",
       "institutionName": "선금과 대가 지급",
       "category": "계약·이행",
@@ -430,7 +364,7 @@
     },
     {
       "id": "advance-payment-and-settlement-FV04",
-      "priority": 8,
+      "priority": 7,
       "slug": "advance-payment-and-settlement",
       "institutionName": "선금과 대가 지급",
       "category": "계약·이행",
@@ -441,7 +375,7 @@
     },
     {
       "id": "advance-payment-and-settlement-FV05",
-      "priority": 8,
+      "priority": 7,
       "slug": "advance-payment-and-settlement",
       "institutionName": "선금과 대가 지급",
       "category": "계약·이행",
@@ -452,7 +386,7 @@
     },
     {
       "id": "price-fluctuation-adjustment-FV01",
-      "priority": 9,
+      "priority": 8,
       "slug": "price-fluctuation-adjustment",
       "institutionName": "물가변동으로 인한 계약금액 조정",
       "category": "계약·이행",
@@ -463,7 +397,7 @@
     },
     {
       "id": "price-fluctuation-adjustment-FV02",
-      "priority": 9,
+      "priority": 8,
       "slug": "price-fluctuation-adjustment",
       "institutionName": "물가변동으로 인한 계약금액 조정",
       "category": "계약·이행",
@@ -474,7 +408,7 @@
     },
     {
       "id": "price-fluctuation-adjustment-FV03",
-      "priority": 9,
+      "priority": 8,
       "slug": "price-fluctuation-adjustment",
       "institutionName": "물가변동으로 인한 계약금액 조정",
       "category": "계약·이행",
@@ -485,7 +419,7 @@
     },
     {
       "id": "price-fluctuation-adjustment-FV04",
-      "priority": 9,
+      "priority": 8,
       "slug": "price-fluctuation-adjustment",
       "institutionName": "물가변동으로 인한 계약금액 조정",
       "category": "계약·이행",
@@ -496,11 +430,77 @@
     },
     {
       "id": "price-fluctuation-adjustment-FV05",
-      "priority": 9,
+      "priority": 8,
       "slug": "price-fluctuation-adjustment",
       "institutionName": "물가변동으로 인한 계약금액 조정",
       "category": "계약·이행",
       "item": "계약예규(정부 입찰·계약 집행기준 제13장, 공사계약일반조건 제22조)의 현행 조문 번호와 세부 산식(원문 대조 필요)(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
+      "id": "multiple-award-schedule-FV01",
+      "priority": 9,
+      "slug": "multiple-award-schedule",
+      "institutionName": "다수공급자계약(MAS)",
+      "category": "계약·이행",
+      "item": "적격성평가 통과점수 70점(신규 추가품명 최초계약 65점)과 평가항목별 배점 구성(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
+      "id": "multiple-award-schedule-FV02",
+      "priority": 9,
+      "slug": "multiple-award-schedule",
+      "institutionName": "다수공급자계약(MAS)",
+      "category": "계약·이행",
+      "item": "가격협상 협상기준가격 산정방식(가중평균가격·최빈가격 중 낮은 가격 기준)(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
+      "id": "multiple-award-schedule-FV03",
+      "priority": 9,
+      "slug": "multiple-award-schedule",
+      "institutionName": "다수공급자계약(MAS)",
+      "category": "계약·이행",
+      "item": "2단계경쟁 자동선정(동일 세부품명 계약상대자 15인 이상 시 무작위 10인 추천) 시스템 흐름(운영 확인)",
+      "domain": "정보시스템",
+      "suggestedEvidence": "공식 시스템 매뉴얼 또는 운영기관 확인",
+      "status": "open"
+    },
+    {
+      "id": "multiple-award-schedule-FV04",
+      "priority": 9,
+      "slug": "multiple-award-schedule",
+      "institutionName": "다수공급자계약(MAS)",
+      "category": "계약·이행",
+      "item": "제안요청/제안공고 구분(1회 납품요구 5억원 기준)과 예산범위 내 대상자 선정 관행(운영 확인)",
+      "domain": "재정·비용",
+      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "status": "open"
+    },
+    {
+      "id": "multiple-award-schedule-FV05",
+      "priority": 9,
+      "slug": "multiple-award-schedule",
+      "institutionName": "다수공급자계약(MAS)",
+      "category": "계약·이행",
+      "item": "계약금액 조정 요건(계약체결 후 90일 경과·거래가격 3% 이상 변동)의 실제 적용과 인하 수시 처리(운영 확인)",
+      "domain": "재정·비용",
+      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "status": "open"
+    },
+    {
+      "id": "multiple-award-schedule-FV06",
+      "priority": 9,
+      "slug": "multiple-award-schedule",
+      "institutionName": "다수공급자계약(MAS)",
+      "category": "계약·이행",
+      "item": "조달사업법 시행령상 다수공급자계약 조문의 정확한 항·호(원문 미대조)(운영 추정)",
       "domain": "실무 관행",
       "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
       "status": "open"
@@ -547,226 +547,6 @@
       "item": "집행정지 인용 시 나라장터 게재 반영까지 걸리는 실제 시간(운영 확인)",
       "domain": "실무 관행",
       "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "general-competitive-bidding-FV01",
-      "priority": 11,
-      "slug": "general-competitive-bidding",
-      "institutionName": "일반경쟁입찰",
-      "category": "기타",
-      "item": "예정가격 작성·비치의 근거 조문 번호와 작성 생략 기준(국가 시행령 조문 확정 필요)(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "general-competitive-bidding-FV02",
-      "priority": 11,
-      "slug": "general-competitive-bidding",
-      "institutionName": "일반경쟁입찰",
-      "category": "기타",
-      "item": "개찰·낙찰선언 절차의 국가계약법 시행령 조문 번호 확정(지방계약법과 혼재)(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "general-competitive-bidding-FV03",
-      "priority": 11,
-      "slug": "general-competitive-bidding",
-      "institutionName": "일반경쟁입찰",
-      "category": "기타",
-      "item": "낙찰 하한율·적격심사 세부기준(계약예규 소관, 업종별 상이)(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "general-competitive-bidding-FV04",
-      "priority": 11,
-      "slug": "general-competitive-bidding",
-      "institutionName": "일반경쟁입찰",
-      "category": "기타",
-      "item": "나라장터 전자입찰 참가자격 등록·입찰서 제출 화면 흐름(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "general-competitive-bidding-FV05",
-      "priority": 11,
-      "slug": "general-competitive-bidding",
-      "institutionName": "일반경쟁입찰",
-      "category": "기타",
-      "item": "공사입찰 공고기간 구간별 기준과 PQ 대상 공사 금액 기준(운영 확인)",
-      "domain": "처리기간",
-      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
-      "status": "open"
-    },
-    {
-      "id": "restricted-competitive-bidding-FV01",
-      "priority": 12,
-      "slug": "restricted-competitive-bidding",
-      "institutionName": "제한경쟁입찰",
-      "category": "기타",
-      "item": "실적·시공능력 제한 배수 기준의 시행규칙 제24조·제25조 세부 조항 귀속(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "restricted-competitive-bidding-FV02",
-      "priority": 12,
-      "slug": "restricted-competitive-bidding",
-      "institutionName": "제한경쟁입찰",
-      "category": "기타",
-      "item": "지역제한 적용 고시금액의 현행 금액 수준과 대상 공사 범위(운영 확인)",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
-      "status": "open"
-    },
-    {
-      "id": "restricted-competitive-bidding-FV03",
-      "priority": 12,
-      "slug": "restricted-competitive-bidding",
-      "institutionName": "제한경쟁입찰",
-      "category": "기타",
-      "item": "나라장터 성질별·규모별 제한기준 사전공고와 유자격자 등록 화면 흐름(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "restricted-competitive-bidding-FV04",
-      "priority": 12,
-      "slug": "restricted-competitive-bidding",
-      "institutionName": "제한경쟁입찰",
-      "category": "기타",
-      "item": "입찰공고 제한사항 명시 의무의 시행령 제21조 세부 항 번호(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "restricted-competitive-bidding-FV05",
-      "priority": 12,
-      "slug": "restricted-competitive-bidding",
-      "institutionName": "제한경쟁입찰",
-      "category": "기타",
-      "item": "재공고입찰 실무 운영과 수의계약 전환 연계(운영 추정)",
-      "domain": "정보시스템",
-      "suggestedEvidence": "공식 시스템 매뉴얼 또는 운영기관 확인",
-      "status": "open"
-    },
-    {
-      "id": "designated-competitive-bidding-FV01",
-      "priority": 13,
-      "slug": "designated-competitive-bidding",
-      "institutionName": "지명경쟁입찰",
-      "category": "기타",
-      "item": "시행규칙 제27조 공사 지명기준(시공능력·특수기술·특수공법)의 세부 조·항 귀속(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "designated-competitive-bidding-FV02",
-      "priority": 13,
-      "slug": "designated-competitive-bidding",
-      "institutionName": "지명경쟁입찰",
-      "category": "기타",
-      "item": "지명통지 방법·통지서 서식의 재정경제부령(기획재정부령) 세부 규정(운영 확인)",
-      "domain": "문서·증빙",
-      "suggestedEvidence": "현행 서식·업무편람 또는 공식 안내",
-      "status": "open"
-    },
-    {
-      "id": "designated-competitive-bidding-FV03",
-      "priority": 13,
-      "slug": "designated-competitive-bidding",
-      "institutionName": "지명경쟁입찰",
-      "category": "기타",
-      "item": "감사원 통지의 근거 조항(영 제23조제2항)과 통지 서류·구비 항목(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "designated-competitive-bidding-FV04",
-      "priority": 13,
-      "slug": "designated-competitive-bidding",
-      "institutionName": "지명경쟁입찰",
-      "category": "기타",
-      "item": "지명경쟁 소액 금액 기준(4억·2억·1.6억·1억·5천만원)의 현행 개정 반영 여부(운영 확인)",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
-      "status": "open"
-    },
-    {
-      "id": "designated-competitive-bidding-FV05",
-      "priority": 13,
-      "slug": "designated-competitive-bidding",
-      "institutionName": "지명경쟁입찰",
-      "category": "기타",
-      "item": "나라장터 지명통지·입찰참가 확인 화면 흐름과 개찰 처리(운영 추정)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "bid-announcement-FV01",
-      "priority": 14,
-      "slug": "bid-announcement",
-      "institutionName": "입찰공고",
-      "category": "기타",
-      "item": "나라장터 입찰공고 게시·열람 화면 흐름과 공고 노출 위치(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "bid-announcement-FV02",
-      "priority": 14,
-      "slug": "bid-announcement",
-      "institutionName": "입찰공고",
-      "category": "기타",
-      "item": "공사 규모별·현장설명·PQ별 공고 시기의 시행령 제35조 항·호 세부 배치(운영 확인)",
-      "domain": "실무 관행",
-      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
-      "status": "open"
-    },
-    {
-      "id": "bid-announcement-FV03",
-      "priority": 14,
-      "slug": "bid-announcement",
-      "institutionName": "입찰공고",
-      "category": "기타",
-      "item": "입찰공고 명시사항(영 제36조 각 호)의 호 번호 배치와 공고문 표준 서식(운영 확인)",
-      "domain": "문서·증빙",
-      "suggestedEvidence": "현행 서식·업무편람 또는 공식 안내",
-      "status": "open"
-    },
-    {
-      "id": "bid-announcement-FV04",
-      "priority": 14,
-      "slug": "bid-announcement",
-      "institutionName": "입찰공고",
-      "category": "기타",
-      "item": "정정공고 발령 실무 기준과 남은 기간 + 5일 산정 관행(운영 확인)",
-      "domain": "처리기간",
-      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
-      "status": "open"
-    },
-    {
-      "id": "bid-announcement-FV05",
-      "priority": 14,
-      "slug": "bid-announcement",
-      "institutionName": "입찰공고",
-      "category": "기타",
-      "item": "단축 공고(재공고·예산 조기집행·긴급 재해예방) 사유별 5일 적용 실무(운영 추정)",
-      "domain": "재정·비용",
-      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
       "status": "open"
     }
   ]
