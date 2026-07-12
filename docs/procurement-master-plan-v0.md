@@ -115,6 +115,7 @@
 - 제도 간 여정 연결: `등록 → 입찰 → 계약 → 이행 → 대금`을 잇는 여정 뷰
 - 금액 기준 조견표(수의계약 한도, 보증금률 등) 자동 생성 페이지
 - 국가 vs 지방 계약 비교 뷰
+- 법제처 확장 데이터(법령해석례·판례·행정심판례·위원회 결정문) 연계 — 계획은 `procurement-lawdata-extension-v0.md`, 시범 적용은 2단계 파일럿 제작 중 2~3개 제도에서 시작
 
 ## 6. 오류 방지 원칙 (요약)
 
@@ -149,5 +150,6 @@
 - 제도 후보 목록: `docs/procurement-topic-map-v0.md`
 - 한 장 템플릿: `docs/procurement-one-page-template-v0.md`
 - 법령 검증 계획: `docs/procurement-verification-plan-v0.md`
+- 법제처 확장 데이터 연계: `docs/procurement-lawdata-extension-v0.md`
 - 데이터 계약(승계): `docs/data-contract.md`
 - 운영(승계): `docs/operations.md`
