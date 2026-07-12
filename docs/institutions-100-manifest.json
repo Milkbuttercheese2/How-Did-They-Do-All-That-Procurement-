@@ -15,16 +15,16 @@
  },
  {
   "priority": 3,
-  "slug": "procurement-request",
-  "name": "조달요청(중앙조달)",
-  "type": "요청·대행형",
+  "slug": "contract-method-decision",
+  "name": "계약방법 결정",
+  "type": "의사결정형",
   "category": "발주"
  },
  {
   "priority": 4,
-  "slug": "contract-method-decision",
-  "name": "계약방법 결정",
-  "type": "의사결정형",
+  "slug": "procurement-request",
+  "name": "조달요청(중앙조달)",
+  "type": "요청·대행형",
   "category": "발주"
  },
  {
@@ -43,23 +43,23 @@
  },
  {
   "priority": 7,
-  "slug": "multiple-award-schedule",
-  "name": "다수공급자계약(MAS)",
-  "type": "계약방법형",
-  "category": "계약·이행"
- },
- {
-  "priority": 8,
   "slug": "advance-payment-and-settlement",
   "name": "선금과 대가 지급",
   "type": "대금지급형",
   "category": "계약·이행"
  },
  {
-  "priority": 9,
+  "priority": 8,
   "slug": "price-fluctuation-adjustment",
   "name": "물가변동으로 인한 계약금액 조정",
   "type": "계약관리형",
+  "category": "계약·이행"
+ },
+ {
+  "priority": 9,
+  "slug": "multiple-award-schedule",
+  "name": "다수공급자계약(MAS)",
+  "type": "계약방법형",
   "category": "계약·이행"
  },
  {
