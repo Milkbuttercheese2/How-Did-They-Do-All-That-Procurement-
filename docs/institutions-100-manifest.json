@@ -3,29 +3,29 @@
   "priority": 1,
   "slug": "bidder-registration",
   "name": "조달업체 등록(입찰참가자격 등록)",
-  "type": "등록",
-  "category": "등록"
+  "type": "등록·자격",
+  "category": "등록·자격"
  },
  {
   "priority": 2,
   "slug": "direct-production-confirmation",
   "name": "직접생산확인",
-  "type": "등록",
-  "category": "등록"
+  "type": "등록·자격",
+  "category": "등록·자격"
  },
  {
   "priority": 3,
   "slug": "sme-competitive-products",
   "name": "중소기업자간 경쟁제품 지정",
-  "type": "등록",
-  "category": "등록"
+  "type": "지정·판로",
+  "category": "지정·판로"
  },
  {
   "priority": 4,
   "slug": "excellent-product-designation",
   "name": "우수조달물품 지정",
-  "type": "등록",
-  "category": "등록"
+  "type": "지정·판로",
+  "category": "지정·판로"
  },
  {
   "priority": 5,
@@ -36,29 +36,29 @@
  },
  {
   "priority": 6,
-  "slug": "total-and-unit-price-contract",
-  "name": "총액계약과 단가계약",
-  "type": "발주",
-  "category": "발주"
- },
- {
-  "priority": 7,
-  "slug": "long-term-continuing-contract",
-  "name": "장기계속계약과 계속비계약",
-  "type": "발주",
-  "category": "발주"
- },
- {
-  "priority": 8,
   "slug": "procurement-request",
   "name": "조달요청(중앙조달)",
   "type": "발주",
   "category": "발주"
  },
  {
-  "priority": 9,
+  "priority": 7,
   "slug": "estimated-price",
   "name": "예정가격 작성",
+  "type": "발주",
+  "category": "발주"
+ },
+ {
+  "priority": 8,
+  "slug": "total-and-unit-price-contract",
+  "name": "총액계약과 단가계약",
+  "type": "발주",
+  "category": "발주"
+ },
+ {
+  "priority": 9,
+  "slug": "long-term-continuing-contract",
+  "name": "장기계속계약과 계속비계약",
   "type": "발주",
   "category": "발주"
  },
@@ -99,8 +99,8 @@
  },
  {
   "priority": 15,
-  "slug": "e-bidding-identity",
-  "name": "전자입찰과 본인확인(인증서·지문보안토큰)",
+  "slug": "bid-and-contract-bonds",
+  "name": "입찰보증금과 계약보증금",
   "type": "입찰",
   "category": "입찰"
  },
@@ -113,15 +113,15 @@
  },
  {
   "priority": 17,
-  "slug": "bid-and-contract-bonds",
-  "name": "입찰보증금과 계약보증금",
+  "slug": "rebidding-and-failed-bids",
+  "name": "재입찰·재공고와 유찰 처리",
   "type": "입찰",
   "category": "입찰"
  },
  {
   "priority": 18,
-  "slug": "rebidding-and-failed-bids",
-  "name": "재입찰·재공고와 유찰 처리",
+  "slug": "e-bidding-identity",
+  "name": "전자입찰과 본인확인(인증서·지문보안토큰)",
   "type": "입찰",
   "category": "입찰"
  },
@@ -157,71 +157,71 @@
   "priority": 23,
   "slug": "multiple-award-schedule",
   "name": "다수공급자계약(MAS)",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "type": "계약 체결",
+  "category": "계약 체결"
  },
  {
   "priority": 24,
   "slug": "third-party-unit-price-contract",
   "name": "제3자를 위한 단가계약",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "type": "계약 체결",
+  "category": "계약 체결"
  },
  {
   "priority": 25,
   "slug": "advance-payment-and-settlement",
   "name": "선금과 대가 지급",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "type": "이행·대금",
+  "category": "이행·대금"
  },
  {
   "priority": 26,
-  "slug": "subcontract-payment-protection",
-  "name": "하도급 관리와 하도급대금 직접지급",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "slug": "inspection-and-acceptance",
+  "name": "검사와 검수",
+  "type": "이행·대금",
+  "category": "이행·대금"
  },
  {
   "priority": 27,
   "slug": "price-fluctuation-adjustment",
   "name": "물가변동으로 인한 계약금액 조정",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "type": "이행·대금",
+  "category": "이행·대금"
  },
  {
   "priority": 28,
   "slug": "design-change-adjustment",
   "name": "설계변경으로 인한 계약금액 조정",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "type": "이행·대금",
+  "category": "이행·대금"
  },
  {
   "priority": 29,
-  "slug": "inspection-and-acceptance",
-  "name": "검사와 검수",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "slug": "liquidated-damages",
+  "name": "지체상금",
+  "type": "이행·대금",
+  "category": "이행·대금"
  },
  {
   "priority": 30,
-  "slug": "liquidated-damages",
-  "name": "지체상금",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "slug": "defect-warranty",
+  "name": "하자보수와 하자담보책임",
+  "type": "이행·대금",
+  "category": "이행·대금"
  },
  {
   "priority": 31,
-  "slug": "defect-warranty",
-  "name": "하자보수와 하자담보책임",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "slug": "contract-termination",
+  "name": "계약의 해제·해지",
+  "type": "이행·대금",
+  "category": "이행·대금"
  },
  {
   "priority": 32,
-  "slug": "contract-termination",
-  "name": "계약의 해제·해지",
-  "type": "계약·이행",
-  "category": "계약·이행"
+  "slug": "subcontract-payment-protection",
+  "name": "하도급 관리와 하도급대금 직접지급",
+  "type": "이행·대금",
+  "category": "이행·대금"
  },
  {
   "priority": 33,
