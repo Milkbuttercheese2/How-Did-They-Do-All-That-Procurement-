@@ -1,9 +1,9 @@
 {
   "generatedAt": "2026-07-13",
-  "institutions": 48,
-  "sourceLinked": 45,
+  "institutions": 50,
+  "sourceLinked": 47,
   "needsReview": 3,
-  "linkedSources": 204,
+  "linkedSources": 213,
   "unresolvedReferences": 3,
   "coverage": [
     {
@@ -236,8 +236,8 @@
       "slug": "inspection-and-acceptance",
       "name": "검사와 검수",
       "status": "source-linked",
-      "total": 5,
-      "linked": 5,
+      "total": 6,
+      "linked": 6,
       "unresolved": 0
     },
     {
@@ -316,6 +316,24 @@
       "priority": 61,
       "slug": "severely-disabled-products",
       "name": "중증장애인생산품 우선구매",
+      "status": "source-linked",
+      "total": 5,
+      "linked": 5,
+      "unresolved": 0
+    },
+    {
+      "priority": 62,
+      "slug": "women-owned-business-purchase",
+      "name": "여성기업제품 구매촉진",
+      "status": "source-linked",
+      "total": 3,
+      "linked": 3,
+      "unresolved": 0
+    },
+    {
+      "priority": 63,
+      "slug": "disabled-business-purchase",
+      "name": "장애인기업제품 구매촉진",
       "status": "source-linked",
       "total": 5,
       "linked": 5,

@@ -450,16 +450,27 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "장애인기업활동 촉진법(제2조·제9조의2·제18조의2), 시행령 제7조의2(구매목표 100분의 1), 국가계약법 시행령 제26조제1항제5호(수의계약 특례), 판로지원법 제5조제1항을 웹 검색으로 교차 확인했다. law-cache의 장애인기업활동 촉진법 사본은 목차(총 30개 조문)만 담고 조문 본문·수치는 없어, 조문 본문·비율·금액은 검색 스니펫으로만 확인했다. 장애인기업활동 촉진법·시행령·장애인기업 확인 요령은 알려진 출처·레지스트리에 없어 unresolved로 두었고, 원문 식별자 연결과 조문 실존은 LAW_OC 기계 대조로 재확인해야 한다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 5건 중 공식 원문 5건을 연결했다. 캔버스와 절차 노드의 명시 조문 18건 가운데 18건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "우선구매 비율 1%는 장애인기업활동 촉진법 시행령 제7조의2로 검색 확인했으나 시행령 원문 대조 전이다.",
    "국가계약법 시행령 제26조제1항제5호의 세부 목 번호와 수의계약 금액구간(2천만원 초과 1억원 이하)은 실무 자료·법제처 해석 기반으로, 현행 조문 대조가 필요하다.",
    "장애인기업제품 구매촉진(장애인기업활동 촉진법)은 중증장애인생산품 우선구매(별도 특별법)와 다른 제도다."
   ],
   "sources": [
+   {
+    "law": "장애인기업활동 촉진법",
+    "kind": "법률",
+    "sourceType": "statute",
+    "officialName": "장애인기업활동 촉진법",
+    "lawId": "010011",
+    "mst": "280145",
+    "promulgatedOn": "2025-12-02",
+    "effectiveOn": "2026-06-03",
+    "officialUrl": "https://law.go.kr/법령/장애인기업활동촉진법"
+   },
    {
     "law": "중소기업제품 구매촉진 및 판로지원에 관한 법률",
     "kind": "법률",
@@ -472,6 +483,17 @@
     "officialUrl": "https://law.go.kr/법령/중소기업제품구매촉진및판로지원에관한법률"
    },
    {
+    "law": "장애인기업활동 촉진법 시행령",
+    "kind": "대통령령",
+    "sourceType": "statute",
+    "officialName": "장애인기업활동 촉진법 시행령",
+    "lawId": "010055",
+    "mst": "279877",
+    "promulgatedOn": "2025-11-25",
+    "effectiveOn": "2025-11-28",
+    "officialUrl": "https://law.go.kr/법령/장애인기업활동촉진법시행령"
+   },
+   {
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
     "kind": "대통령령",
     "sourceType": "statute",
@@ -481,40 +503,27 @@
     "promulgatedOn": "2026-05-19",
     "effectiveOn": "2026-06-03",
     "officialUrl": "https://law.go.kr/법령/국가를당사자로하는계약에관한법률시행령"
-   }
-  ],
-  "unresolved": [
-   {
-    "law": "장애인기업활동 촉진법",
-    "kind": "법률",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "이번 세션에서 국가법령정보센터 접근 불가로 원문 식별자를 연결하지 못했다. law-cache 사본은 목차만 있어 제9조의2·제18조의2 등 조문 본문은 검색으로만 확인했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·식별자(lawId/mst)와 인용 조문 실존을 확정한다."
-   },
-   {
-    "law": "장애인기업활동 촉진법 시행령",
-    "kind": "대통령령",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "레지스트리·알려진 출처에 없고 원문 사본도 없어 식별자를 미연결했다. 우선구매 비율(제7조의2, 100분의 1)은 검색으로만 확인했다.",
-    "nextStep": "LAW_OC 기계 대조로 시행령 식별자와 제7조의2 비율 조문을 확정한다."
    },
    {
     "law": "장애인기업 확인 요령",
     "kind": "고시·지침",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "중소벤처기업부 행정규칙으로 레지스트리에 없고 원문 식별자를 미확보했다. 확인서 유효기간(2년) 등 세부기준은 안내 자료 기반이다.",
-    "nextStep": "국가법령정보센터에서 행정규칙 식별자(adminRuleId/serial)와 확인서 유효기간 조항을 확정한다."
+    "sourceType": "admin-rule",
+    "officialName": "장애인기업 확인 요령",
+    "adminRuleId": "29564",
+    "adminRuleSerial": "2100000268770",
+    "promulgatedOn": "2025-11-28",
+    "officialUrl": "https://law.go.kr/행정규칙/장애인기업확인요령"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "공개 웹 검색 스니펫 교차 확인 — 국가법령정보센터 원문 기계 대조 미실시(needs-review)",
-   "citationEntries": 12,
-   "explicitCitationEntries": 12,
-   "articleReferences": 12,
-   "verifiedReferences": 9,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 17,
+   "explicitCitationEntries": 16,
+   "articleReferences": 18,
+   "verifiedReferences": 18,
    "missingReferences": 0,
-   "uncheckableReferences": 3
+   "uncheckableReferences": 0
   }
  }
 }

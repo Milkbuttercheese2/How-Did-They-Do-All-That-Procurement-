@@ -469,15 +469,26 @@
   "warnings": []
  },
  "verification": {
-  "status": "needs-review",
-  "verifiedAt": "2026-07-12",
-  "method": "공개 웹 검색(WebSearch) 교차 대조 — 국가법령정보센터 원문 기계 대조(LAW_OC) 미실시",
-  "scope": "여성기업지원에 관한 법률·시행령은 law-cache에 목차(조번호·제목)만 있어 조문 제목은 원문 대조로 확정하고, 구매목표 비율(물품·용역 5%, 공사 3%)·확인서 유효기간 3년·제한기간 등 수치는 WebSearch로 교차 확인했다. 여성기업지원법·시행령의 공식 원문 식별자는 registry에 없어 미연결(unresolved)이고, 판로지원법은 registry 식별자를 연결했다. 조문 번호 존재의 기계 대조와 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
+  "status": "article-verified",
+  "verifiedAt": "2026-07-13",
+  "method": "국가법령정보센터 Open API (Korean Law MCP CLI) 출처·조문 대조",
+  "scope": "법적 근거 3건 중 공식 원문 3건을 연결했다. 캔버스와 절차 노드의 명시 조문 26건 가운데 26건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "여성기업 확인 신청 창구(SMPP)·확인기관 조사 흐름, 구매실적 통보 기한(실무상 1월 31일)은 실무·판로지원법 준용 사항으로 fieldVerification에 등재했다.",
    "여성기업확인요령(중소벤처기업부 행정규칙)은 원문 식별자 미연결로 legalBasis에 포함하지 않았다."
   ],
   "sources": [
+   {
+    "law": "여성기업지원에 관한 법률",
+    "kind": "법률",
+    "sourceType": "statute",
+    "officialName": "여성기업지원에 관한 법률",
+    "lawId": "001993",
+    "mst": "255889",
+    "promulgatedOn": "2023-10-31",
+    "effectiveOn": "2024-05-01",
+    "officialUrl": "https://law.go.kr/법령/여성기업지원에관한법률"
+   },
    {
     "law": "중소기업제품 구매촉진 및 판로지원에 관한 법률",
     "kind": "법률",
@@ -488,33 +499,28 @@
     "promulgatedOn": "2026-03-05",
     "effectiveOn": "2026-07-01",
     "officialUrl": "https://law.go.kr/법령/중소기업제품구매촉진및판로지원에관한법률"
-   }
-  ],
-  "unresolved": [
-   {
-    "law": "여성기업지원에 관한 법률",
-    "kind": "법률",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "law-cache에 목차만 있고 legal-source-registry에 식별자가 없어, 이번 세션에서 국가법령정보센터 접근 불가로 원문 식별자를 미연결했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·lawId·mst를 확정하고 제9조·제20조의2·제20조의3 조문 존재를 재확인한다."
    },
    {
     "law": "여성기업지원에 관한 법률 시행령",
     "kind": "대통령령",
-    "reasonCode": "title-needs-confirmation",
-    "reason": "law-cache에 목차만 있고 legal-source-registry에 식별자가 없어, 이번 세션에서 국가법령정보센터 접근 불가로 원문 식별자를 미연결했다.",
-    "nextStep": "LAW_OC 기계 대조로 공식 제명·lawId·mst를 확정하고 제7조(5%·3% 비율)·제16조·제17조 조문 존재와 수치를 재확인한다."
+    "sourceType": "statute",
+    "officialName": "여성기업지원에 관한 법률 시행령",
+    "lawId": "004178",
+    "mst": "262701",
+    "promulgatedOn": "2024-05-14",
+    "effectiveOn": "2024-05-14",
+    "officialUrl": "https://law.go.kr/법령/여성기업지원에관한법률시행령"
    }
   ],
   "articleVerification": {
-   "checkedAt": "2026-07-12",
-   "method": "WebSearch 교차 확인 및 law-cache 목차 대조(조문 제목 확정) — 원문 전문 기계 대조 미실시",
-   "citationEntries": 3,
-   "explicitCitationEntries": 3,
-   "articleReferences": 10,
-   "verifiedReferences": 6,
+   "checkedAt": "2026-07-13",
+   "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+   "citationEntries": 19,
+   "explicitCitationEntries": 19,
+   "articleReferences": 26,
+   "verifiedReferences": 26,
    "missingReferences": 0,
-   "uncheckableReferences": 4
+   "uncheckableReferences": 0
   }
  }
 }
