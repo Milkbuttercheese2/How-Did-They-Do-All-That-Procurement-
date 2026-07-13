@@ -56,10 +56,6 @@
   "category": "발주"
  },
  {
-  "slug": "multi-agency-joint-contract",
-  "category": "발주"
- },
- {
   "slug": "bid-announcement",
   "category": "공고"
  },
@@ -120,15 +116,7 @@
   "category": "계약 체결"
  },
  {
-  "slug": "contract-performance-guarantee",
-  "category": "계약 체결"
- },
- {
   "slug": "multiple-award-schedule",
-  "category": "계약 체결"
- },
- {
-  "slug": "mas-two-stage-competition",
   "category": "계약 체결"
  },
  {
@@ -157,10 +145,6 @@
  },
  {
   "slug": "design-change-adjustment",
-  "category": "이행·대금"
- },
- {
-  "slug": "other-contract-modification",
   "category": "이행·대금"
  },
  {
