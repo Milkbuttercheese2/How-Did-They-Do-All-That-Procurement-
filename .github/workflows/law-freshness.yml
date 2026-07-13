@@ -29,11 +29,20 @@ jobs:
       - run: npm ci
       - run: npm install --global korean-law-mcp@4.7.1
       - name: Report OC source
+        env:
+          RAW_SECRET: ${{ secrets.LAW_OC }}
+          RAW_VAR: ${{ vars.LAW_OC }}
         run: |
-          if [ -n "${{ secrets.LAW_OC }}" ]; then
-            echo "Using repository secret LAW_OC."
+          # 값은 출력하지 않고 존재 여부(SET/EMPTY)만 남긴다. 시크릿이 어디에 저장됐는지 진단용.
+          if [ -n "$RAW_SECRET" ]; then
+            echo "secrets.LAW_OC: SET — repository secret 정상 인식"
           else
-            echo "::warning::LAW_OC repository secret가 없어 공용 기본 OC로 실행합니다. 안정적 운영을 위해 Settings > Secrets and variables > Actions에 LAW_OC를 등록하세요."
+            echo "secrets.LAW_OC: EMPTY — repository secret 미인식(공용 기본 OC로 대체됨, 실검증 실패 가능)"
+          fi
+          if [ -n "$RAW_VAR" ]; then
+            echo "::warning::vars.LAW_OC: SET — 값이 'Variables' 탭에 저장돼 있습니다. 워크플로는 Secrets를 읽으므로 'Secrets' 탭으로 옮겨야 동작합니다."
+          else
+            echo "vars.LAW_OC: EMPTY"
           fi
       - id: freshness
         run: npm run check:freshness
