@@ -1,6 +1,6 @@
 # 계약의 해제·해지 — 조사 워크시트 (2026-07-12)
 
-대상 slug: contract-termination / name: 계약의 해제·해지 / type: 계약·이행 / priority: 93
+대상 slug: contract-termination / name: 계약의 해제·해지 / type: 이행·대금 / priority: 31 (docs/institutions-100-manifest.json 기준)
 근거 우선순위: law-cache 원문 대조(1순위) → WebSearch(캐시 미보유 원문 보조 확인).
 
 ## 인용한 조문과 증거
@@ -41,5 +41,22 @@
 
 ## sources / unresolved 분류
 
-- sources(연결): 국가계약법(법률), 국가계약법 시행령(대통령령), (계약예규) 공사계약일반조건, (계약예규) 물품구매(제조)계약일반조건 — registry/known-source 목록 존재.
-- unresolved(title-needs-confirmation): 용역계약일반조건 — law-cache 원문은 있으나 legal-source-registry·known-source 식별자 미등재.
+- sources(연결): 국가계약법(법률), 국가계약법 시행령(대통령령), (계약예규) 공사계약일반조건, (계약예규) 물품구매(제조)계약일반조건, (계약예규) 용역계약일반조건 — 모두 web/data/legal-source-registry.json/known-source 목록에 식별자 존재.
+- unresolved: 없음. canvas.legalBasis 5개 법령 전부 sources에 연결됨.
+- 정정 경위: 최초 워크시트는 용역계약일반조건을 registry 미등재로 보아 unresolved(title-needs-confirmation) 처리 계획했으나, legal-source-registry.json(adminRuleId 27949, serial 2100000276694)에 등재돼 있어 sources 연결이 맞다. JSON은 처음부터 registry 값을 sources에 올바르게 사용했다.
+
+## 수정 이력 (2026-07-13 검증 심사 반영)
+
+| # | 지적(verdict) | 조치 | 근거 |
+|---|---|---|---|
+| 1 | P13 시행령 제76조제1항 인용 refuted (제1항은 부정당업자 정의, 1개월~2년 제한기간은 후속 항) | legal_basis를 법률→시행령→예규 순으로 재배열. 시행령 인용을 '제76조제1항'→'제76조'(조 수준)로 낮추고 text에서 항 확정 서술 제거(세부 항·호는 시행령·기재부령으로 정한다로 완화). 제한기간(1개월~2년) 근거는 law-cache 원문이 확인되는 공사계약일반조건 제49조제1항으로 이전 | WebSearch(law.go.kr·LBOX 등) 재확인: 시행령 제76조 제1항=부정당업자 정의(각 호), 제한기간은 제3항 및 기재부령. law-cache 공사계약일반조건.md 제49조제1항 원문 대조 |
+| 2 | verification 블록 schema-error (status article-verified, 항·호 미대조인데 verified 37/37) | status→needs-review, verifiedAt/checkedAt→2026-07-12, method→가이드 지정 문구(WebSearch 교차 대조, LAW_OC 미실시). 법·시행령 항·호 인용 6건(P01·P07 시행령 제75조제1항, P11 법 제12조제3항·시행령 제51조제1항, P13 법 제27조제1항·시행령 제76조)을 uncheckableReferences로 재분류. scope에 '조문 번호는 목차 확인, 항·호 문언은 LAW_OC 대기' 명시 | 가이드 1·3절. law-cache 법.md(62행)·시행령.md(171행)이 조문 목차만 수록함을 재확인 |
+| 3 | P10 action이 제44조제5항·제6항 내용을 합쳐 서술하면서 제5항만 인용(wording) | legal_basis에 공사계약일반조건 제44조제6항(선금잔액·기성 미지급액 상계, 하도급 직불 예외 단서) 추가 | law-cache 공사계약일반조건.md 제44조제5·6항 원문 대조 |
+| 4 | P11 괄호 '(상계 불가)' 과잉 단정, 근거로 제8조제1항만 인용(wording) | 괄호를 '(원칙적으로 기성부분 미지급액과 상계 불가, 보증금 면제 시 예외)'로 완화하고 legal_basis에 제8조제4항(상계 불가 원칙+면제 시 예외 단서) 추가 | law-cache 공사계약일반조건.md 제8조제4항 원문 대조 |
+| 5 | 워크시트 헤더(priority 93/type 계약·이행) 및 용역계약일반조건 unresolved 분류 오류(wording) | 헤더를 manifest 값(priority 31, type 이행·대금)으로 정정. 용역계약일반조건을 registry 등재·sources 연결로 갱신, unresolved 없음으로 정정 | docs/institutions-100-manifest.json, web/data/legal-source-registry.json(73~82행) |
+
+### 집계 재계산 (수정 후)
+- articleReferences 37→40 (P10 +1, P11 +1, P13 +1: 제44조제6항·제8조제4항·제49조제1항 추가)
+- citationEntries 24→27, explicitCitationEntries 24→27 (동일 3건 증가)
+- verifiedReferences 37→34, uncheckableReferences 0→6, missingReferences 0 유지 (34+0+6=40)
+- 계약예규(공사·물품·용역) 인용은 law-cache 원문 대조로 verified 유지, 법·시행령 항·호 6건만 uncheckable.
