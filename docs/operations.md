@@ -100,15 +100,18 @@ npm run build
 - 행정규칙은 반드시 **현행([현행] 표시·발령일) 확인** (10조). 실제 사례: 「물품 다수공급자계약 2단계경쟁 업무처리기준」은 2023-07-01 폐지되어 「물품 다수공급자계약 업무처리규정」 제49조로 통합됨 — 폐지 규범 인용을 이 규칙으로 잡아냈다.
 
 ### 3.2 도구 (이 환경에서 검증된 실행 방법)
-- 환경 필수 조건: 네트워크 allowlist에 `law.go.kr`, `www.law.go.kr`, `pps.go.kr` (가능하면 `open.law.go.kr`도), 그리고 `LAW_OC` 인증키.
+- 환경 필수 조건: 네트워크 allowlist에 `law.go.kr`, `www.law.go.kr`, `pps.go.kr`, 그리고 `LAW_OC` 인증키(**절대 커밋 금지, 환경변수로만**).
+- 법령정보 도구는 `korean-law-mcp` 패키지(npm) 하나로, **두 가지 모드**를 쓴다:
+  - **MCP 서버 모드 (레포에 등록됨, 콘텐츠 작성용)**: 루트 `.mcp.json`에 `korean-law` 서버로 등록되어 있다. Claude 세션(및 작성 에이전트)이 `search_law`·`get_law_text`·`get_batch_articles`·`search_admin_rule`·`get_admin_rule` 도구로 **법제처 현행 원문을 직접 조회**한다. 작성 단계에서 조문 원문에 근거해 초안을 쓰게 하는 것이 목적(웹 검색 스니펫 의존을 줄임). `.mcp.json`은 `LAW_OC`를 `${LAW_OC}` 환경변수로 참조하므로 키가 코드에 남지 않는다.
+  - **CLI 모드 (기계 검증·원문 추출용, 결정적)**: 스크립트가 CLI를 직접 실행해 조문 실존을 정규식 대조하고 원문을 추출한다. 최종 검증 게이트와 화면 표시 원문은 이 결정적 경로가 담당한다(AI 개입 없음).
 - 기계 검증 (리포 파이프라인, `web/`에서 실행):
   ```bash
-  export LAW_OC=<인증키> NODE_USE_ENV_PROXY=1 \
-         KOREAN_LAW_CLI=<korean-law-mcp cli.js 경로>
-  npm run sync:sources -- --write     # 법령·행정규칙 공식 식별자(lawId/MST/일련번호) 연결
-  npm run verify:articles -- --write  # 전 제도 조문 실존 기계 대조 → article-verified 승격
+  export LAW_OC=<인증키> NODE_USE_ENV_PROXY=1   # CA는 NODE_EXTRA_CA_CERTS(환경 제공) 상속
+  npm run sync:sources -- --write         # 법령·행정규칙 공식 식별자(lawId/MST/일련번호) 연결
+  npm run verify:articles -- --write      # 전 제도 조문 실존 기계 대조 → article-verified 승격
+  node scripts/populate-article-texts.mjs # 인용 조문 현행 원문을 verification.articleTexts에 추출·저장(팝업 원문)
   ```
-  - `korean-law-mcp` 패키지(npm)의 CLI를 쓴다. 이 CLI는 `open.law.go.kr`을 호출하므로, 그 서브도메인이 차단된 환경에서는 CLI 사본의 `build/lib/law-url-config.js`에서 호스트를 `www.law.go.kr`로 패치해 사용한다(이번 세션에서 사용한 방법). node fetch가 프록시를 타려면 `NODE_USE_ENV_PROXY=1` 필수.
+  - **호스트 패치는 더 이상 불필요**: `korean-law-mcp@4.7.2`는 이미 `www.law.go.kr`을 호출한다(구버전은 `open.law.go.kr`을 써서 호스트 패치가 필요했으나 현재 버전은 불필요). `NODE_USE_ENV_PROXY=1`만 있으면 전역 설치본(`korean-law`/`korean-law-mcp`)이 프록시 환경에서 그대로 동작한다. 스크립트는 `KOREAN_LAW_CLI`로 CLI 경로를 지정하며 미지정 시 전역 `korean-law`를 쓰도록 유지한다.
   - 세션 내 실행이 불가능한 환경이면 GitHub Actions 러너 우회: `.github/workflows/law-verify.yml`을 `workflow_dispatch`로 실행 (mode=write, sync_sources, fetch_cache 입력 지원). 리포 시크릿 `LAW_OC` 우선.
 - **원문 캐시**: `sources/law-cache/`에 법령·계약예규·조달청 고시 전문 사본(33종+). 갱신: `node scripts/fetch-law-cache.mjs` (대상 목록: `sources/law-cache/law-list.json`). 주의: CLI 응답이 50,000자에서 잘리므로 대형 예규는 DRF API 직접 호출(`lawService.do?target=admrul&ID=<일련번호>&type=JSON`)로 전문을 받는다.
 - 식별자 재사용: `web/data/legal-source-registry.json` — sources 블록에 넣을 공식 식별자는 여기서 복사한다. 명칭은 반드시 공식 제명(예: `(계약예규) 적격심사기준`)을 쓴다. 통칭이나 괄호 주석이 붙은 이름은 sync가 매칭하지 못한다.
