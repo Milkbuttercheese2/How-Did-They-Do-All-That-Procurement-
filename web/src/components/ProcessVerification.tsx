@@ -167,7 +167,7 @@ export function ArticleLinkButtons({ result }: { result: NodeVerificationResult 
 // 조 인용이면 조 원문, 항 인용이면 populate가 항 단위로 추출한 그 항의 원문만.
 // 라벨 채번: 법령 약칭 + 조(항) + (조문 제목). 원문 미수록이면 요약으로 대체하지 않고 안내만.
 export function ArticleBasisRows({ result }: { result: NodeVerificationResult }) {
-  if (result.bases.length === 0) return <p>명시 조문 확인 필요</p>;
+  if (result.bases.length === 0) return <p className="article-basis-empty">명시 조문 확인 필요</p>;
   return (
     <div className="article-basis-rows">
       {result.bases.map(({ basis, sources, sourceText, articleTitle }, index) => {
