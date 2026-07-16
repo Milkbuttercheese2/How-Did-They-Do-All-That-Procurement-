@@ -56,3 +56,19 @@
 3. [should-fix / wording] P04·P09 legal_basis 제26조제1항 요지에 원문에 없는 의무 서술("판단과 근거를 갖추어야 한다"), 축약 서술("긴급 사유 등에 해당하는 계약을 수의계약으로 체결한다")이 섞여 대조 불일치 후보였다. → 둘 다 영 제26조제1항 원문("법 제7조제1항 단서에 따라… 천재지변, 감염병 예방 및 확산 방지, 긴급복구가 필요한 수해 등 비상재해 등 경쟁에 부칠 여유가 없거나 경쟁에 부쳐서는 계약의 목적을 달성하기 곤란하다고 판단되는 경우") 표현으로 교체. 사유서 작성·판단근거 구비 등 실무 관행은 P04 blocker 및 fieldVerification #3(사유서 서식·증빙 보존·결재 시점)에 그대로 유지(요지에는 원문 표현만).
 
 - 위 3건은 모두 legal_basis.text(요지) 문구 수정으로, 인용 조문(article)·인용 항목 수에는 변화가 없다. 따라서 verification.articleVerification 집계(citationEntries 15 = explicit 15, articleReferences 15 = verified 14 + missing 0 + uncheckable 1)와 sources/unresolved 커버리지는 그대로 유효(불변)하며 needs-review 통과 조건(uncheckable ≥ 1)도 충족.
+
+## 수정 이력 (2026-07-16, 2차 검증 심사 반영)
+
+검증 심사자 지적 5건 반영. 근거 원문은 negotiated-contract.json articleTexts(기계 대조 완료본) 재대조 + WebSearch 재확인.
+
+1. [must-fix / refuted] canvas.authorities[1] 기획재정부장관 role: "견적서 제출 기준·입찰공고 시기·정보공개 대상 등 세부 사항을 **시행령으로 정함**(영 제30조·제35조·제92조의2 위임)"은 상하위 규범 혼동이었다. 기계 대조 완료본상 영 제30조제2항 단서는 "…재정경제부령으로 정하는 경우", 제92조의2제1항은 "…재정경제부령으로 정하는 사항"으로 **위임 층위가 부령(시행규칙)**이다(시행령=대통령령이므로 장관이 '시행령으로 정함'은 오류). 영 제35조는 부령 위임 근거가 확인되지 않고 제4항이 공고기간 단축을 직접 규정하므로 위임 근거 괄호에서 제외. → role을 "전자 견적서 제출 예외·계약관련 정보공개 세부 사항을 부령(시행규칙)으로 정함(영 제30조제2항·제92조의2제1항의 재정경제부령 위임). (계약예규) 정부 입찰·계약 집행기준 등 계약 집행기준을 정한다"로 수정. 계약예규 소관 권한은 지적 2번에 따라 이 항목으로 이관.
+
+2. [must-fix / refuted] canvas.authorities[2] 조달청장 role: "정부 입찰·계약 집행기준 등 조달 실무기준 운용"은 소관 오류. WebSearch(law.go.kr admRulId=34470, moef.go.kr) 재확인 결과 '(계약예규) 정부 입찰·계약 집행기준'은 **기획재정부계약예규**(기획재정부 소관)로 조달청 소관이 아니며, 파일 legalBasis도 '(계약예규)'로 표기해 내부 모순이었다. → 조달청장 role에서 집행기준 운용을 삭제하고 "나라장터(전자조달시스템) 관리·운용, 긴급 견적 안내공고·계약 정보 공개 창구 제공"으로 한정. 집행기준 운용은 기재부장관 항목(지적 1)으로 이동.
+
+3. [should-fix / wording] verification.articleVerification 집계가 프로세스 노드 15건만 세어 canvas 3항목·조문 7건이 누락되었고 scope 문구('15건 가운데 14건')와도 어긋났다. 배치 관례(negotiated-contract: citationEntries 17=프로세스 15+캔버스 2, articleReferences 20=프로세스 15+캔버스 조문 5)에 맞춰 재집계: **citationEntries 18**(프로세스 legal_basis 15 + 캔버스 legalBasis 3), explicitCitationEntries 18, **articleReferences 22**(프로세스 15 + 캔버스 조문 7: 법 제7조/영 제26·30·35·92의2/예규 제7·7의2), verifiedReferences 20, missingReferences 0, **uncheckableReferences 2**(시행령 제35조가 캔버스·P03 두 곳에서 참조되며 전문 미확보). scope도 '22건 가운데 20건, 시행령 제35조 참조 2건은 전문 미확보'로 정정. needs-review 통과 조건(uncheckable ≥ 1)은 uncheckable 2로 충족. 산식 22=20+0+2 성립.
+
+4. [should-fix / wording] fieldVerification[0] '(영 제35조 위임 사항)'은 제35조제4항이 공고기간 단축을 직접 규정(하위 규범 위임 아님)하므로 표현 부정확이었다. WebSearch(easylaw/law.go.kr)로 제35조제4항의 직접 규정 성격 재확인. → '긴급 입찰공고 공고기간 단축(영 제35조제4항)의 실제 운영(운영 확인)'으로 수정. 5일 등 수치는 전문 미확보로 본문 확정 기재 계속 보류. verification.notes의 '제35조 위임' 표기도 '제35조제4항'으로 동반 정정.
+
+5. [should-fix / wording] canvas.applicability와 P09.legal_basis[1].text에서 원문 '긴급복구가 필요한 **수해 등** 비상재해'의 '수해 등'이 탈락(영 제26조제1항제1호가목 기계 대조 완료본 대조, P02·P04는 원문 유지 중이라 파일 내 불일치)했다. → 두 곳 모두 '긴급복구가 필요한 수해 등 비상재해'로 원문 복원.
+
+- 지적 1·2는 authorities role(화면 표시) 수정으로 legalBasis·sources·조문 인용 항목에는 영향 없음. 지적 3은 articleVerification 집계값만 재산정(조문 참조 자체는 불변). 지적 4·5는 fieldVerification·applicability·요지 문구 수정으로 인용 조문(article) 불변. 따라서 sources 3건/unresolved 0건 커버리지(canvas legalBasis 3법령 전부 sources 등재)는 그대로 유효.
