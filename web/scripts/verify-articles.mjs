@@ -347,9 +347,16 @@ for (const { file, data: institution } of institutions) {
   const verifiedReferences = institutionOccurrences.filter((item) => item.result.status === "verified").length;
   const missingReferences = institutionOccurrences.filter((item) => item.result.status === "missing").length;
   const uncheckableReferences = institutionOccurrences.filter((item) => item.result.status === "uncheckable").length;
-  const sourceUnresolved = institution.verification.unresolved?.length ?? 0;
+  const unresolvedList = institution.verification.unresolved ?? [];
+  const sourceUnresolved = unresolvedList.length;
+  // 규칙 9(c): 법제처에 등록되지 않은 소관부처 공식문서(external-official-document)는
+  // 정당한 출처로 인정한다. 그 사유만 남은 미해결은 승격을 막지 않는다(검색으로 미등록을
+  // 확정한 뒤에만 이 reasonCode를 쓴다). 그 밖의 사유(title-needs-confirmation 등)는 차단 유지.
+  const blockingUnresolved = unresolvedList.filter(
+    (item) => item.reasonCode !== "external-official-document",
+  ).length;
   const status =
-    sourceUnresolved === 0 && missingReferences === 0 && uncheckableReferences === 0
+    blockingUnresolved === 0 && missingReferences === 0 && uncheckableReferences === 0
       ? "article-verified"
       : "needs-review";
 
