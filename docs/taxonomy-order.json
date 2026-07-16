@@ -20,6 +20,10 @@
   "category": "지정·판로"
  },
  {
+  "slug": "performance-certification-product",
+  "category": "지정·판로"
+ },
+ {
   "slug": "excellent-product-designation",
   "category": "지정·판로"
  },
@@ -41,6 +45,10 @@
  },
  {
   "slug": "disabled-business-purchase",
+  "category": "지정·판로"
+ },
+ {
+  "slug": "social-enterprise-preference",
   "category": "지정·판로"
  },
  {
@@ -68,6 +76,14 @@
   "category": "발주"
  },
  {
+  "slug": "stockpile-goods",
+  "category": "발주"
+ },
+ {
+  "slug": "emergency-disaster-procurement",
+  "category": "발주"
+ },
+ {
   "slug": "long-term-continuing-contract",
   "category": "발주"
  },
@@ -89,6 +105,10 @@
  },
  {
   "slug": "designated-competitive-bidding",
+  "category": "입찰"
+ },
+ {
+  "slug": "international-bidding",
   "category": "입찰"
  },
  {
@@ -209,6 +229,10 @@
  },
  {
   "slug": "debarment",
+  "category": "사후관리·제재"
+ },
+ {
+  "slug": "procurement-contract-disclosure",
   "category": "사후관리·제재"
  }
 ]
