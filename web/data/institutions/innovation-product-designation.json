@@ -463,7 +463,7 @@
   "status": "article-verified",
   "verifiedAt": "2026-07-16",
   "method": "국가법령정보센터 Open API 조문 대조",
-  "scope": "법적 근거 6건 중 공식 원문 6건을 연결했다. 캔버스와 절차 노드의 명시 조문 24건 가운데 24건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
+  "scope": "법적 근거 6건 중 공식 원문 6건을 연결했다. 캔버스와 절차 노드의 명시 조문 29건 가운데 29건의 조문 번호 존재를 확인했고, 0건은 불일치, 0건은 자동 검증 불가로 분류했다. 인용 문구의 해석·적용 타당성은 검증 범위에 포함하지 않는다.",
   "notes": [
    "조달사업법·시행령 캐시는 목차(조문 제명)만 보유하여 조문 본문 대조는 통합 시점 법제처 현행 원문 대조로 승격한다.",
    "국가계약법 시행령 제26조제1항제5호의 정확한 호 위치는 검색 근거만 확보했다."
@@ -539,9 +539,9 @@
    "checkedAt": "2026-07-16",
    "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
    "citationEntries": 24,
-   "explicitCitationEntries": 20,
-   "articleReferences": 24,
-   "verifiedReferences": 24,
+   "explicitCitationEntries": 23,
+   "articleReferences": 29,
+   "verifiedReferences": 29,
    "missingReferences": 0,
    "uncheckableReferences": 0
   },

@@ -1,25 +1,41 @@
 {
   "generatedAt": "2026-07-16",
-  "institutions": 53,
-  "articleVerified": 53,
-  "needsReview": 0,
-  "citationEntries": 1134,
-  "explicitCitationEntries": 1090,
-  "articleReferences": 1460,
-  "verifiedReferences": 1460,
+  "institutions": 59,
+  "articleVerified": 58,
+  "needsReview": 1,
+  "citationEntries": 1246,
+  "explicitCitationEntries": 1199,
+  "articleReferences": 1597,
+  "verifiedReferences": 1596,
   "missingReferences": 0,
-  "uncheckableReferences": 0,
-  "unresolvedSources": 0,
+  "uncheckableReferences": 1,
+  "unresolvedSources": 3,
   "unresolvedByReason": {
     "local-scope": 0,
     "institution-scope": 0,
     "internal-rule": 0,
-    "external-official-document": 0,
+    "external-official-document": 3,
     "title-needs-confirmation": 0
   },
-  "checkedSources": 46,
-  "checkedUniqueArticles": 426,
-  "issues": [],
+  "checkedSources": 49,
+  "checkedUniqueArticles": 457,
+  "issues": [
+    {
+      "status": "uncheckable",
+      "law": "국가를 당사자로 하는 계약에 관한 법률",
+      "article": "제11조",
+      "reason": "제도별 공식 출처 목록에서 법령을 찾지 못함",
+      "occurrences": 1,
+      "locations": [
+        {
+          "slug": "procurement-contract-disclosure",
+          "context": "process",
+          "nodeId": "P03",
+          "articleText": "제11조"
+        }
+      ]
+    }
+  ],
   "coverage": [
     {
       "priority": 1,
@@ -127,9 +143,9 @@
       "checkedAt": "2026-07-16",
       "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
       "citationEntries": 24,
-      "explicitCitationEntries": 20,
-      "articleReferences": 24,
-      "verifiedReferences": 24,
+      "explicitCitationEntries": 23,
+      "articleReferences": 29,
+      "verifiedReferences": 29,
       "missingReferences": 0,
       "uncheckableReferences": 0
     },
@@ -866,6 +882,108 @@
       "explicitCitationEntries": 24,
       "articleReferences": 26,
       "verifiedReferences": 26,
+      "missingReferences": 0,
+      "uncheckableReferences": 0
+    },
+    {
+      "priority": 66,
+      "slug": "international-bidding",
+      "name": "국제입찰(WTO 정부조달협정)",
+      "status": "article-verified",
+      "sourceUnresolved": 1,
+      "unresolvedReasonCodes": [
+        "external-official-document"
+      ],
+      "checkedAt": "2026-07-16",
+      "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+      "citationEntries": 13,
+      "explicitCitationEntries": 11,
+      "articleReferences": 14,
+      "verifiedReferences": 14,
+      "missingReferences": 0,
+      "uncheckableReferences": 0
+    },
+    {
+      "priority": 67,
+      "slug": "social-enterprise-preference",
+      "name": "사회적기업제품 우대구매",
+      "status": "article-verified",
+      "sourceUnresolved": 1,
+      "unresolvedReasonCodes": [
+        "external-official-document"
+      ],
+      "checkedAt": "2026-07-16",
+      "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+      "citationEntries": 20,
+      "explicitCitationEntries": 19,
+      "articleReferences": 22,
+      "verifiedReferences": 22,
+      "missingReferences": 0,
+      "uncheckableReferences": 0
+    },
+    {
+      "priority": 69,
+      "slug": "procurement-contract-disclosure",
+      "name": "계약정보 공개",
+      "status": "needs-review",
+      "sourceUnresolved": 0,
+      "unresolvedReasonCodes": [],
+      "checkedAt": "2026-07-16",
+      "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+      "citationEntries": 16,
+      "explicitCitationEntries": 16,
+      "articleReferences": 18,
+      "verifiedReferences": 17,
+      "missingReferences": 0,
+      "uncheckableReferences": 1
+    },
+    {
+      "priority": 70,
+      "slug": "performance-certification-product",
+      "name": "성능인증제품 우선구매",
+      "status": "article-verified",
+      "sourceUnresolved": 0,
+      "unresolvedReasonCodes": [],
+      "checkedAt": "2026-07-16",
+      "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+      "citationEntries": 23,
+      "explicitCitationEntries": 21,
+      "articleReferences": 26,
+      "verifiedReferences": 26,
+      "missingReferences": 0,
+      "uncheckableReferences": 0
+    },
+    {
+      "priority": 71,
+      "slug": "stockpile-goods",
+      "name": "비축물자",
+      "status": "article-verified",
+      "sourceUnresolved": 1,
+      "unresolvedReasonCodes": [
+        "external-official-document"
+      ],
+      "checkedAt": "2026-07-16",
+      "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+      "citationEntries": 22,
+      "explicitCitationEntries": 21,
+      "articleReferences": 30,
+      "verifiedReferences": 30,
+      "missingReferences": 0,
+      "uncheckableReferences": 0
+    },
+    {
+      "priority": 72,
+      "slug": "emergency-disaster-procurement",
+      "name": "재난·긴급 수의계약",
+      "status": "article-verified",
+      "sourceUnresolved": 0,
+      "unresolvedReasonCodes": [],
+      "checkedAt": "2026-07-16",
+      "method": "현행 법령 조문 일괄조회 및 행정규칙 전문조회",
+      "citationEntries": 18,
+      "explicitCitationEntries": 18,
+      "articleReferences": 22,
+      "verifiedReferences": 22,
       "missingReferences": 0,
       "uncheckableReferences": 0
     }

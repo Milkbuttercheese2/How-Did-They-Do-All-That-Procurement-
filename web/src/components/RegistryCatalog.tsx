@@ -28,6 +28,7 @@ const CATALOG_ASSET_BASE = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/data`;
 const CATEGORY_COLORS: Record<string, string> = {
   "등록·자격": "#0ea5e9",
   "지정·판로": "#10b981",
+  "공공물자·비축": "#475569",
   "발주": "#ca8a04",
   "공고": "#f97316",
   "입찰": "#6366f1",
