@@ -1,14 +1,14 @@
 {
   "generatedAt": "2026-07-16",
   "institutions": 59,
-  "articleVerified": 58,
-  "needsReview": 1,
+  "articleVerified": 59,
+  "needsReview": 0,
   "citationEntries": 1246,
   "explicitCitationEntries": 1199,
   "articleReferences": 1597,
-  "verifiedReferences": 1596,
+  "verifiedReferences": 1597,
   "missingReferences": 0,
-  "uncheckableReferences": 1,
+  "uncheckableReferences": 0,
   "unresolvedSources": 3,
   "unresolvedByReason": {
     "local-scope": 0,
@@ -19,23 +19,7 @@
   },
   "checkedSources": 49,
   "checkedUniqueArticles": 457,
-  "issues": [
-    {
-      "status": "uncheckable",
-      "law": "국가를 당사자로 하는 계약에 관한 법률",
-      "article": "제11조",
-      "reason": "제도별 공식 출처 목록에서 법령을 찾지 못함",
-      "occurrences": 1,
-      "locations": [
-        {
-          "slug": "procurement-contract-disclosure",
-          "context": "process",
-          "nodeId": "P03",
-          "articleText": "제11조"
-        }
-      ]
-    }
-  ],
+  "issues": [],
   "coverage": [
     {
       "priority": 1,
@@ -925,7 +909,7 @@
       "priority": 69,
       "slug": "procurement-contract-disclosure",
       "name": "계약정보 공개",
-      "status": "needs-review",
+      "status": "article-verified",
       "sourceUnresolved": 0,
       "unresolvedReasonCodes": [],
       "checkedAt": "2026-07-16",
@@ -933,9 +917,9 @@
       "citationEntries": 16,
       "explicitCitationEntries": 16,
       "articleReferences": 18,
-      "verifiedReferences": 17,
+      "verifiedReferences": 18,
       "missingReferences": 0,
-      "uncheckableReferences": 1
+      "uncheckableReferences": 0
     },
     {
       "priority": 70,
