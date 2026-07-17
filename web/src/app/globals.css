@@ -3922,10 +3922,11 @@ body:has(.og-card-page) > main {
     padding: 0 0 32px !important;
   }
 
+  /* 축 통일(운영자 지시, 2026-07-17): 모바일도 PC와 동일하게
+     행=행위자·열=게이트 보드를 쓴다(가로 스크롤 + 행위자 열 틀고정).
+     전치형 세로 보드(.process-mobile-board)는 사용하지 않는다. */
   .process-section-heading,
-  .process-section-notice,
-  .process-mode-bar,
-  .process-desktop-board {
+  .process-section-notice {
     display: none;
   }
 
@@ -4543,7 +4544,8 @@ body:has(.og-card-page) > main {
   }
 
   .process-mobile-board {
-    display: block;
+    /* 축 통일: PC 보드(행=행위자·열=게이트)를 모바일에도 사용 — 전치 보드 비활성 */
+    display: none;
   }
 
   .process-mobile-board .portrait-process-desktop-view {
