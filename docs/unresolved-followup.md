@@ -27,3 +27,11 @@
 - wf_425e29fc-812 그룹2(bidder-registration·price-survey·government-furnished·quality-inspection·price-fluctuation·bid-protest)
 - wf_0e753137-34a 그룹1(invalid-bids·design-change·performance-certification·shopping-mall·excellent-product·procurement-contract-disclosure)
 - 완료 그룹들의 Fable 검증(verify) 단계도 한도로 대부분 미실행 — 재개 시 검증 단계부터 캐시 재생됨.
+
+## 2026-07-17 — 신규 3종 조문 원문 미수록(배포 보류)
+
+기타 계약내용의 변경·계약심의위원회·개산계약 3종은 **콘텐츠·출처는 검증 통과**(Fable 적대검증 pass, sources 전건 연결, unresolved 0)했으나, 시행령·법률 조문 **원문(articleTexts)**을 이 세션에서 확보하지 못해 needs-review로 _pending 보류했다.
+- 원인: 이 세션 법제처 API 조문 본문조회가 전 조문 NOT_FOUND, 지능형 검색은 긴 조문을 절단, law-cache는 예규만 전문(법률·시행령·시행규칙은 목차만). **콘텐츠 결함이 아니라 도구 장애.**
+- 이미 확보분: 예규 원문 15건 전건 수록 완료(law-cache 추출), 개산계약 시행령 제70조제1항 확보, 계약심의위 시행령 제94조 요지를 확인 원문 기준 의무형("설치·운영해야 한다")으로 교정.
+- 미확보: 기타변경(법 제19조·영 제66조·규칙 제74조의3), 계약심의위(영 제94조 각 항·호·법 제7조제1항), 개산계약(영 제70조제2·3항·제73조 전항·법 제23조).
+- 다음 조치: **API 복구 세션에서** `populate-article-texts.mjs`(KOREAN_LAW_CLI) 또는 지능형 검색 완전본으로 위 조문 원문을 채우고, uncheckable=0 확인 후 article-verified 승격→manifest 재편입→배포. 파일은 web/data/_pending/에 예규 원문·교정 반영된 상태로 보존.
