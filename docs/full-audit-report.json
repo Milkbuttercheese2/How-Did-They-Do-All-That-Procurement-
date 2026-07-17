@@ -1,65 +1,17 @@
 {
  "checkedAt": "2026-07-17",
- "citations": 1124,
+ "citations": 1127,
  "summary": {
   "deletedArticle": 0,
-  "contentMismatch": 7,
-  "noSourceText": 138,
+  "contentMismatch": 1,
+  "noSourceText": 148,
   "descriptiveCitation": 0,
   "legalBasisOrder": 0,
-  "emptyBasis": 11
+  "emptyBasis": 10
  },
  "findings": {
   "deletedArticle": [],
   "contentMismatch": [
-   {
-    "slug": "multiple-award-schedule",
-    "node": "P02",
-    "law": "물품 다수공급자계약 업무처리규정",
-    "article": "제8조제1항",
-    "score": 0.106,
-    "claim": "계약담당공무원은 다수공급자계약에 참가하고자 하는 자로 하여금 적격성 평가 신청서·적격성 자기평가 및 심사표·신용평가등급확인서·규격서 등의 서류를 제출하게 하여야 한다."
-   },
-   {
-    "slug": "multiple-award-schedule",
-    "node": "P03",
-    "law": "물품 다수공급자계약 업무처리규정",
-    "article": "제8조제2항",
-    "score": 0.136,
-    "claim": "제출된 서류가 불명확하여 인지할 수 없는 경우에는 기한을 정하여 보완을 요구할 수 있으며, 보완 요구기한까지 서류가 제출되지 않거나 보완되지 않을 경우에는 해당 업체를 적격자로 선"
-   },
-   {
-    "slug": "multiple-award-schedule",
-    "node": "P04",
-    "law": "물품 다수공급자계약 업무처리규정",
-    "article": "제8조제2항",
-    "score": 0.146,
-    "claim": "계약담당공무원은 제출된 서류가 불명확하여 인지할 수 없는 경우에는 기한을 정하여 보완을 요구할 수 있다."
-   },
-   {
-    "slug": "multiple-award-schedule",
-    "node": "P01",
-    "law": "물품 다수공급자계약 업무처리규정",
-    "article": "제6조제1항",
-    "score": 0.178,
-    "claim": "계약담당공무원은 다수공급자계약에 의하여 수요물자를 구매할 경우 나라장터를 이용하여 구매입찰공고를 하여야 한다."
-   },
-   {
-    "slug": "social-enterprise-preference",
-    "node": "P06",
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "article": "제26조제1항",
-    "score": 0.283,
-    "claim": "기획재정부장관이 정하는 요건을 충족하는 사회적기업 등이 생산하는 물품·용역은 경쟁입찰에 부치지 아니하고 수의계약에 의할 수 있다."
-   },
-   {
-    "slug": "social-enterprise-preference",
-    "node": "P05",
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "article": "제26조제1항",
-    "score": 0.367,
-    "claim": "「사회적기업 육성법」에 따른 사회적기업 등 중 기획재정부장관이 정하는 요건을 충족하는 자와 그가 생산하는 물품·용역을 구매하는 경우 등에는 수의계약에 의할 수 있다."
-   },
    {
     "slug": "disabled-business-purchase",
     "node": "P05",
@@ -233,6 +185,24 @@
     "article": "제36조"
    },
    {
+    "slug": "designated-competitive-bidding",
+    "node": "P07",
+    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
+    "article": "제39조제1항"
+   },
+   {
+    "slug": "designated-competitive-bidding",
+    "node": "S02",
+    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
+    "article": "제40조제2항"
+   },
+   {
+    "slug": "designated-competitive-bidding",
+    "node": "P10",
+    "law": "국가를 당사자로 하는 계약에 관한 법률",
+    "article": "제11조제1항"
+   },
+   {
     "slug": "disabled-business-purchase",
     "node": "S01",
     "law": "장애인기업활동 촉진법",
@@ -353,6 +323,18 @@
     "article": "제57조"
    },
    {
+    "slug": "inspection-and-acceptance",
+    "node": "P04",
+    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
+    "article": "제55조제3항"
+   },
+   {
+    "slug": "international-bidding",
+    "node": "P07",
+    "law": "국가를 당사자로 하는 계약에 관한 법률",
+    "article": "제11조"
+   },
+   {
     "slug": "invalid-bids",
     "node": "P07",
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행규칙",
@@ -369,6 +351,18 @@
     "node": "P08",
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행규칙",
     "article": "제75조"
+   },
+   {
+    "slug": "long-term-continuing-contract",
+    "node": "P05",
+    "law": "국가를 당사자로 하는 계약에 관한 법률",
+    "article": "제12조제1항"
+   },
+   {
+    "slug": "long-term-continuing-contract",
+    "node": "P05",
+    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
+    "article": "제50조제3항"
    },
    {
     "slug": "other-contract-change-adjustment",
@@ -785,12 +779,6 @@
     "article": "제11조"
    },
    {
-    "slug": "restricted-competitive-bidding",
-    "node": "S02",
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "article": "제40조제1항"
-   },
-   {
     "slug": "sme-priority-purchase",
     "node": "P01",
     "law": "중소기업제품 구매촉진 및 판로지원에 관한 법률",
@@ -801,6 +789,30 @@
     "node": "P01",
     "law": "중소기업제품 구매촉진 및 판로지원에 관한 법률 시행령",
     "article": "제3조"
+   },
+   {
+    "slug": "social-enterprise-preference",
+    "node": "P05",
+    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
+    "article": "제26조제1항제5호"
+   },
+   {
+    "slug": "social-enterprise-preference",
+    "node": "P06",
+    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
+    "article": "제26조제1항제5호"
+   },
+   {
+    "slug": "social-enterprise-preference",
+    "node": "P07",
+    "law": "국가를 당사자로 하는 계약에 관한 법률",
+    "article": "제14조제1항"
+   },
+   {
+    "slug": "social-enterprise-preference",
+    "node": "P07",
+    "law": "국가를 당사자로 하는 계약에 관한 법률",
+    "article": "제15조제1항"
    },
    {
     "slug": "stockpile-goods",
@@ -915,12 +927,6 @@
     "type": "task"
    },
    {
-    "slug": "designated-competitive-bidding",
-    "node": "P10",
-    "name": "계약 체결",
-    "type": "task"
-   },
-   {
     "slug": "emergency-disaster-procurement",
     "node": "P11",
     "name": "사후 정산·감사 대응",
@@ -930,6 +936,12 @@
     "slug": "estimated-price",
     "node": "C01",
     "name": "투찰 시 예비가격 선택",
+    "type": "task"
+   },
+   {
+    "slug": "international-bidding",
+    "node": "P01",
+    "name": "조달 수요 확정·추정가격 산정",
     "type": "task"
    },
    {
@@ -948,12 +960,6 @@
     "slug": "penalty-surcharge",
     "node": "P12",
     "name": "행정쟁송·집행정지 대응",
-    "type": "task"
-   },
-   {
-    "slug": "social-enterprise-preference",
-    "node": "P07",
-    "name": "납품·검수·대금지급",
     "type": "task"
    },
    {

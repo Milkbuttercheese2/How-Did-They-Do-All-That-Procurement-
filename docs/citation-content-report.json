@@ -1,63 +1,9 @@
 {
  "checkedAt": "2026-07-17",
  "method": "L1 exact(30자+) / L2 char-bigram containment≥0.5 — korean-law-mcp citation-content-matcher 이식(요지vs원문에 맞게 containment 보정)",
- "checked": 986,
- "mismatches": 7,
+ "checked": 989,
+ "mismatches": 1,
  "rows": [
-  {
-   "slug": "multiple-award-schedule",
-   "node": "P02",
-   "law": "물품 다수공급자계약 업무처리규정",
-   "article": "제8조제1항",
-   "score": 0.106,
-   "lcs": 7,
-   "claim": "계약담당공무원은 다수공급자계약에 참가하고자 하는 자로 하여금 적격성 평가 신청서·적격성 자기평가 및 심사표·신용평가등급확인서·규격서 등의 서류를 제출하게 하여야 한다."
-  },
-  {
-   "slug": "multiple-award-schedule",
-   "node": "P03",
-   "law": "물품 다수공급자계약 업무처리규정",
-   "article": "제8조제2항",
-   "score": 0.136,
-   "lcs": 6,
-   "claim": "제출된 서류가 불명확하여 인지할 수 없는 경우에는 기한을 정하여 보완을 요구할 수 있으며, 보완 요구기한까지 서류가 제출되지 않거나 보완되지 않을 경우에는 해당 업체를 적격자로 선정하지 아니할 수 있다."
-  },
-  {
-   "slug": "multiple-award-schedule",
-   "node": "P04",
-   "law": "물품 다수공급자계약 업무처리규정",
-   "article": "제8조제2항",
-   "score": 0.146,
-   "lcs": 6,
-   "claim": "계약담당공무원은 제출된 서류가 불명확하여 인지할 수 없는 경우에는 기한을 정하여 보완을 요구할 수 있다."
-  },
-  {
-   "slug": "multiple-award-schedule",
-   "node": "P01",
-   "law": "물품 다수공급자계약 업무처리규정",
-   "article": "제6조제1항",
-   "score": 0.178,
-   "lcs": 8,
-   "claim": "계약담당공무원은 다수공급자계약에 의하여 수요물자를 구매할 경우 나라장터를 이용하여 구매입찰공고를 하여야 한다."
-  },
-  {
-   "slug": "social-enterprise-preference",
-   "node": "P06",
-   "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-   "article": "제26조제1항",
-   "score": 0.283,
-   "lcs": 12,
-   "claim": "기획재정부장관이 정하는 요건을 충족하는 사회적기업 등이 생산하는 물품·용역은 경쟁입찰에 부치지 아니하고 수의계약에 의할 수 있다."
-  },
-  {
-   "slug": "social-enterprise-preference",
-   "node": "P05",
-   "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-   "article": "제26조제1항",
-   "score": 0.367,
-   "lcs": 12,
-   "claim": "「사회적기업 육성법」에 따른 사회적기업 등 중 기획재정부장관이 정하는 요건을 충족하는 자와 그가 생산하는 물품·용역을 구매하는 경우 등에는 수의계약에 의할 수 있다."
-  },
   {
    "slug": "disabled-business-purchase",
    "node": "P05",
