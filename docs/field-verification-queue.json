@@ -1,14 +1,14 @@
 {
   "sourceAsOfDate": "2026-07-12",
-  "total": 319,
+  "total": 324,
   "institutions": 61,
   "byDomain": {
     "문서·증빙": 26,
-    "실무 관행": 175,
+    "실무 관행": 179,
     "운영 사실": 3,
     "재정·비용": 34,
     "정보시스템": 18,
-    "처리기간": 63
+    "처리기간": 64
   },
   "entries": [
     {
@@ -2190,6 +2190,17 @@
       "status": "open"
     },
     {
+      "id": "comprehensive-evaluation-award-FV07",
+      "priority": 37,
+      "slug": "comprehensive-evaluation-award",
+      "institutionName": "종합심사낙찰제",
+      "category": "심사·평가",
+      "item": "종합심사 결과에 대한 재심사(이의) 절차의 존부·기한은 발주기관 세부심사기준(운영)으로 확인 필요 — 예규 본칙에는 심사서류 보완(제9조)만 규정",
+      "domain": "처리기간",
+      "suggestedEvidence": "처리대장·통계 또는 담당자 인터뷰",
+      "status": "open"
+    },
+    {
       "id": "contract-by-negotiation-FV01",
       "priority": 38,
       "slug": "contract-by-negotiation",
@@ -3147,6 +3158,17 @@
       "status": "open"
     },
     {
+      "id": "subcontract-payment-protection-FV06",
+      "priority": 54,
+      "slug": "subcontract-payment-protection",
+      "institutionName": "하도급 관리와 하도급대금 직접지급",
+      "category": "이행·대금",
+      "item": "하도급계약 체결·변경 시 발주기관 통보 의무의 건설산업기본법 근거 조문(제29조의3 등) 원문 대조(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
       "id": "bid-protest-FV01",
       "priority": 55,
       "slug": "bid-protest",
@@ -3466,6 +3488,28 @@
       "status": "open"
     },
     {
+      "id": "procurement-contract-disclosure-FV06",
+      "priority": 60,
+      "slug": "procurement-contract-disclosure",
+      "institutionName": "계약정보 공개",
+      "category": "사후관리·제재",
+      "item": "P07 공개정보 누락·오류의 정정·보완 절차는 영 제92조의2(공개의무·변경공개)에 명시적 근거가 없어 실무 운영 근거의 확인이 필요하다(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
+      "id": "procurement-contract-disclosure-FV07",
+      "priority": 60,
+      "slug": "procurement-contract-disclosure",
+      "institutionName": "계약정보 공개",
+      "category": "사후관리·제재",
+      "item": "시행규칙 제82조·전자조달의 이용 및 촉진에 관한 법률 제8조 조문 원문과 legal_basis.text 표현의 대조 확인이 필요하다(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
       "id": "stockpile-goods-FV01",
       "priority": 61,
       "slug": "stockpile-goods",
@@ -3516,6 +3560,17 @@
       "institutionName": "비축물자",
       "category": "공공물자·비축",
       "item": "판매가격 구매원가 초과분의 회계 처리와 판매가격 공개(조달청 원자재 판매가격) 화면 흐름(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
+      "id": "stockpile-goods-FV06",
+      "priority": 61,
+      "slug": "stockpile-goods",
+      "institutionName": "비축물자",
+      "category": "공공물자·비축",
+      "item": "비축물자의 정의(법 제2조)와 범위(영 제3조)는 조문 번호·제목만 확인했고 본문 요지의 원문 대조가 남아 있다(운영 확인)",
       "domain": "실무 관행",
       "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
       "status": "open"
