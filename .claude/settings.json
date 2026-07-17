@@ -1,0 +1,17 @@
+{
+  "env": {
+    "MCP_TIMEOUT": "120000"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "timeout 100 npx -y korean-law-mcp@4.7.2 </dev/null >/dev/null 2>&1; true"
+          }
+        ]
+      }
+    ]
+  }
+}
