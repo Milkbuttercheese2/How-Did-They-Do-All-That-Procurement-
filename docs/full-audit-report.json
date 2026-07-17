@@ -1,13 +1,13 @@
 {
  "checkedAt": "2026-07-17",
- "citations": 1129,
+ "citations": 1130,
  "summary": {
   "deletedArticle": 0,
   "contentMismatch": 1,
-  "noSourceText": 140,
+  "noSourceText": 126,
   "descriptiveCitation": 0,
   "legalBasisOrder": 0,
-  "emptyBasis": 10
+  "emptyBasis": 11
  },
  "findings": {
   "deletedArticle": [],
@@ -51,12 +51,6 @@
     "node": "P06",
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
     "article": "제34조"
-   },
-   {
-    "slug": "bid-announcement",
-    "node": "P09",
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "article": "제36조"
    },
    {
     "slug": "bid-opening-award-notice",
@@ -179,24 +173,6 @@
     "article": "제36조"
    },
    {
-    "slug": "designated-competitive-bidding",
-    "node": "P07",
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "article": "제39조제1항"
-   },
-   {
-    "slug": "designated-competitive-bidding",
-    "node": "S02",
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "article": "제40조제2항"
-   },
-   {
-    "slug": "designated-competitive-bidding",
-    "node": "P10",
-    "law": "국가를 당사자로 하는 계약에 관한 법률",
-    "article": "제11조제1항"
-   },
-   {
     "slug": "disabled-business-purchase",
     "node": "S01",
     "law": "장애인기업활동 촉진법",
@@ -293,12 +269,6 @@
     "article": "제10조"
    },
    {
-    "slug": "innovation-product-designation",
-    "node": "P07",
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "article": "제26조제1항제4호"
-   },
-   {
     "slug": "inspection-and-acceptance",
     "node": "P02",
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
@@ -315,12 +285,6 @@
     "node": "P03",
     "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
     "article": "제57조"
-   },
-   {
-    "slug": "inspection-and-acceptance",
-    "node": "P04",
-    "law": "국가를 당사자로 하는 계약에 관한 법률 시행령",
-    "article": "제55조제3항"
    },
    {
     "slug": "international-bidding",
@@ -755,18 +719,6 @@
     "article": "제26조제1항제5호"
    },
    {
-    "slug": "social-enterprise-preference",
-    "node": "P07",
-    "law": "국가를 당사자로 하는 계약에 관한 법률",
-    "article": "제14조제1항"
-   },
-   {
-    "slug": "social-enterprise-preference",
-    "node": "P07",
-    "law": "국가를 당사자로 하는 계약에 관한 법률",
-    "article": "제15조제1항"
-   },
-   {
     "slug": "stockpile-goods",
     "node": "P01",
     "law": "조달사업에 관한 법률",
@@ -777,42 +729,6 @@
     "node": "P01",
     "law": "조달사업에 관한 법률 시행령",
     "article": "제3조"
-   },
-   {
-    "slug": "stockpile-goods",
-    "node": "P02",
-    "law": "조달사업에 관한 법률",
-    "article": "제29조제1항"
-   },
-   {
-    "slug": "stockpile-goods",
-    "node": "P04",
-    "law": "조달사업에 관한 법률",
-    "article": "제29조제2항"
-   },
-   {
-    "slug": "stockpile-goods",
-    "node": "S01",
-    "law": "조달사업에 관한 법률",
-    "article": "제29조제3항"
-   },
-   {
-    "slug": "stockpile-goods",
-    "node": "P07",
-    "law": "조달사업에 관한 법률",
-    "article": "제30조제1항"
-   },
-   {
-    "slug": "stockpile-goods",
-    "node": "P13",
-    "law": "조달사업에 관한 법률",
-    "article": "제29조제4항"
-   },
-   {
-    "slug": "stockpile-goods",
-    "node": "P13",
-    "law": "조달사업에 관한 법률",
-    "article": "제29조제5항"
    },
    {
     "slug": "tech-development-priority-purchase",
@@ -866,6 +782,12 @@
   "descriptiveCitation": [],
   "legalBasisOrder": [],
   "emptyBasis": [
+   {
+    "slug": "bid-announcement",
+    "node": "P09",
+    "name": "업체 공고 열람·입찰 준비",
+    "type": "task"
+   },
    {
     "slug": "contract-deliberation-committee",
     "node": "P10",
