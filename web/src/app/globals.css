@@ -4947,6 +4947,7 @@ body:has(.og-card-page) > main {
   font-weight: 650;
 }
 
+/* 원문 박스는 내용 길이와 무관하게 높이 고정(운영자 지시, 2026-07-17) — 긴 원문은 내부 스크롤 */
 .article-basis-source {
   margin: 6px 0 0;
   padding: 9px 11px;
@@ -4959,14 +4960,22 @@ body:has(.og-card-page) > main {
   color: #2f3b35;
   white-space: pre-wrap;
   word-break: break-word;
-  max-height: 210px;
+  height: 180px;
   overflow-y: auto;
 }
 
 .article-basis-nosource {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 6px 0 0;
+  padding: 9px 11px;
+  border-radius: 8px;
+  background: #f2f7f4;
+  border: 1px solid #dce8e1;
   font-size: 12px;
   color: #7a6524;
+  height: 180px;
 }
 
 .article-basis-empty {
