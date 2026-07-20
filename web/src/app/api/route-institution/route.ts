@@ -181,21 +181,26 @@ async function readKey(name: string): Promise<string | undefined> {
  * 진단용. 어떤 변수 '이름'이 워커에 보이는지만 돌려준다. 값은 절대 내보내지 않는다.
  * 키를 넣었는데 503이 날 때, 이름 오타인지 다른 worker에 넣은 것인지 구분하려는 것.
  */
-async function listEnvKeys(): Promise<string[]> {
-  const names = new Set<string>();
-  for (const k of Object.keys(process.env ?? {})) {
-    if (/API|KEY|TOKEN|SECRET/i.test(k)) names.add(`process.env:${k}`);
-  }
+async function listEnvKeys(): Promise<Record<string, unknown>> {
+  const out: Record<string, unknown> = {};
+
+  const procKeys = Object.keys(process.env ?? {});
+  out.processEnvCount = procKeys.length;
+  // 값은 절대 담지 않는다. 이름만, 그것도 우리가 찾는 것 위주로.
+  out.processEnvMatches = procKeys.filter((k) => /API|KEY|GEMINI|ANTHROPIC/i.test(k));
+
   try {
     const { getCloudflareContext } = await import("@opennextjs/cloudflare");
     const ctx = await getCloudflareContext({ async: true });
-    for (const k of Object.keys(ctx.env ?? {})) {
-      if (/API|KEY|TOKEN|SECRET/i.test(k)) names.add(`env:${k}`);
-    }
-  } catch {
-    names.add("(cloudflare context 없음)");
+    // 바인딩 '이름'은 비밀이 아니다(ASSETS, IMAGES 등 구조적인 것들).
+    // 여기에 ASSETS 같은 게 보이는데 GEMINI_API_KEY만 없다면 → 시크릿 미등록.
+    // 아무것도 안 보이면 → env 객체 자체가 안 넘어오는 것(어댑터/런타임 문제).
+    out.cfBindings = Object.keys(ctx.env ?? {});
+  } catch (error) {
+    out.cfContextError = error instanceof Error ? error.message : String(error);
   }
-  return [...names];
+
+  return out;
 }
 
 export async function POST(request: Request) {
