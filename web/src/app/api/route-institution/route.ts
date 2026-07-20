@@ -209,8 +209,16 @@ const stage2Schema = (keys: string[]) => ({
 
 const STAGE2_RULES = `아래 조문 원문에 **실제로 적힌 내용만** 근거로 답하십시오.
 
+무엇보다 먼저: **질문한 사람이 알고 싶은 것에 답하십시오.**
+조문에 있는 내용을 순서대로 나열하는 것이 아닙니다. 그 사람이 지금 처한 상황에서
+무엇을 해야 하는지, 무엇이 문제가 되는지에 답하고, 그 근거로 조문을 씁니다.
+- "얼마나 되나"를 물으면 계산 방식과 상한부터
+- "어떻게 해야 하나"를 물으면 밟아야 할 절차를 순서대로
+- "가능한가"를 물으면 조문이 정한 요건과, 원문만으로 판단이 안 되는 부분
+질문과 무관한 조문 내용은 아무리 정확해도 넣지 마십시오.
+
 각 문장(claim)은 셋을 함께 냅니다:
-- text: 사용자에게 보일 한 문장. 담당자가 읽고 이해할 수 있는 말로 씁니다.
+- text: 사용자에게 보일 한 문장. 담당자가 읽고 바로 이해할 수 있는 말로 씁니다.
 - quote: 그 문장의 근거가 되는 구절을 **조문 원문에서 글자 그대로** 복사합니다.
   요약하거나 다듬지 마십시오. 원문과 한 글자라도 다르면 그 문장은 버려집니다.
 - article: 그 구절이 있는 조문 키. 목록에 있는 것만 씁니다.
@@ -218,7 +226,7 @@ const STAGE2_RULES = `아래 조문 원문에 **실제로 적힌 내용만** 근
 반드시 지킬 것:
 - 원문에 없는 수치·기한·요건·절차를 쓰지 마십시오. 기억에 있는 조문을 끌어오지 마십시오.
 - 원문으로 뒷받침되지 않는 말은 아예 하지 마십시오(claim에서 빼십시오).
-- 4~6개 claim으로, 사용자의 상황에 답하는 순서로 배열하십시오.
+- 4~6개 claim으로, 질문에 답하는 순서로 배열하십시오.
 - 상황이 모호해 좁힐 수 없으면 needsMoreInfo를 true로 두십시오.`;
 
 // 조문이 "별표 N"을 가리키는데 우리는 별표 본문을 갖고 있지 않다(884건 중 14건).
@@ -254,8 +262,8 @@ interface VerifiedClaim {
 function verifyClaims(
   claims: Array<{ text?: unknown; quote?: unknown; article?: unknown }>,
   articles: ArticleAsset[],
+  byKey = new Map(articles.map((a) => [a.key, a])),
 ) {
-  const byKey = new Map(articles.map((a) => [a.key, a]));
   const kept: VerifiedClaim[] = [];
   const dropped: string[] = [];
 
@@ -306,6 +314,80 @@ interface Provider {
     schema: JsonSchema,
     maxTokens: number,
   ) => Promise<unknown>;
+  /** 2단계용. 본문 조각을 오는 대로 흘려준다. */
+  stream: (
+    system: string,
+    user: string,
+    schema: JsonSchema,
+    maxTokens: number,
+  ) => AsyncIterable<string>;
+}
+
+/**
+ * 자라나는 JSON 문자열에서 완성된 claim 객체만 차례로 꺼낸다.
+ *
+ * 스트리밍의 목적은 "빨리 보여주기"인데, 검증 전 문장을 띄우면 근거 없는 말이
+ * 잠깐 보였다 사라진다 — 이 사이트에서 가장 피해야 할 실패다. 그래서 문자 단위로
+ * 흘리지 않고 claim 하나가 닫히는 순간마다 꺼내서, 서버에서 대조를 통과한 것만
+ * 내보낸다. 사용자가 보는 문장은 전부 이미 검증된 것이다.
+ */
+function makeClaimReader() {
+  let buffer = "";
+  let cursor = -1; // claims 배열 안으로 들어가기 전에는 -1
+
+  return function read(chunk: string): Array<Record<string, unknown>> {
+    buffer += chunk;
+    const out: Array<Record<string, unknown>> = [];
+
+    // 바깥 래퍼({"claims":[ ... ]})를 먼저 지나야 한다. 그러지 않으면 첫 '{'가
+    // 래퍼로 잡혀 배열 전체를 한 덩어리로 건너뛰고, claim이 하나도 안 나온다.
+    if (cursor < 0) {
+      const key = buffer.indexOf('"claims"');
+      if (key < 0) return out;
+      const bracket = buffer.indexOf("[", key);
+      if (bracket < 0) return out;
+      cursor = bracket + 1;
+    }
+
+    for (;;) {
+      const start = buffer.indexOf("{", cursor);
+      if (start < 0) return out;
+      let depth = 0;
+      let inString = false;
+      let escaped = false;
+      let end = -1;
+      for (let i = start; i < buffer.length; i += 1) {
+        const ch = buffer[i];
+        if (escaped) {
+          escaped = false;
+          continue;
+        }
+        if (ch === "\\") {
+          escaped = true;
+          continue;
+        }
+        if (ch === '"') inString = !inString;
+        if (inString) continue;
+        if (ch === "{") depth += 1;
+        else if (ch === "}") {
+          depth -= 1;
+          if (depth === 0) {
+            end = i;
+            break;
+          }
+        }
+      }
+      if (end < 0) return out; // 아직 안 닫혔다 — 다음 조각을 기다린다
+      try {
+        out.push(
+          JSON.parse(buffer.slice(start, end + 1)) as Record<string, unknown>,
+        );
+      } catch {
+        /* 완결처럼 보였으나 깨진 조각 — 버린다 */
+      }
+      cursor = end + 1;
+    }
+  };
 }
 
 function anthropicProvider(
@@ -343,6 +425,27 @@ function anthropicProvider(
       if (message.stop_reason === "refusal") return null;
       const block = message.content.find((b) => b.type === "text");
       return block?.type === "text" ? JSON.parse(block.text) : null;
+    },
+    async *stream(system, user, schema, maxTokens) {
+      const s = client.messages.stream({
+        model,
+        max_tokens: maxTokens,
+        thinking: { type: "disabled" },
+        output_config: {
+          ...(SUPPORTS_EFFORT.test(model) ? { effort: "low" as const } : {}),
+          format: { type: "json_schema", schema },
+        },
+        system,
+        messages: [{ role: "user", content: user }],
+      });
+      for await (const event of s) {
+        if (
+          event.type === "content_block_delta" &&
+          event.delta.type === "text_delta"
+        ) {
+          yield event.delta.text;
+        }
+      }
     },
   };
 }
@@ -382,6 +485,21 @@ function geminiProvider(
         },
       });
       return res.text ? JSON.parse(res.text) : null;
+    },
+    async *stream(system, user, schema, maxTokens) {
+      const res = await client.models.generateContentStream({
+        model,
+        contents: user,
+        config: {
+          systemInstruction: system,
+          responseMimeType: "application/json",
+          responseJsonSchema: schema,
+          maxOutputTokens: maxTokens,
+        },
+      });
+      for await (const chunk of res) {
+        if (chunk.text) yield chunk.text;
+      }
     },
   };
 }
@@ -554,38 +672,64 @@ export async function POST(request: Request) {
       const corpus = articles
         .map((a) => `[${a.key}] ${a.title}\n${a.text}`)
         .join("\n\n");
-      const answered = await provider.json(
-        `${STAGE2_RULES}\n\n조문 원문:\n\n${corpus}`,
-        trimmed,
-        stage2Schema(articles.map((a) => a.key)),
-        2048,
-      );
+      // 별표 본문은 우리가 갖고 있지 않다. 언급되면 내용을 지어내지 말라고 못을 박는다.
+      const mentionsAnnex = /별표\s*\d/.test(corpus);
+      // claim이 하나 닫힐 때마다 대조하고, 통과한 것만 흘려보낸다.
+      // NDJSON — 한 줄에 객체 하나. SSE보다 파싱이 단순하고 프록시 영향이 적다.
+      const encoder = new TextEncoder();
+      const byKey = new Map(articles.map((a) => [a.key, a]));
+      const stream = new ReadableStream({
+        async start(controller) {
+          const send = (obj: unknown) =>
+            controller.enqueue(encoder.encode(`${JSON.stringify(obj)}
+`));
 
-      const rawClaims = Array.isArray(
-        (answered as { claims?: unknown })?.claims,
-      )
-        ? ((answered as { claims: Array<Record<string, unknown>> }).claims)
-        : [];
+          // 제도 카드는 먼저 보낸다 — 본문을 기다리는 동안 볼 것이 생긴다.
+          send({
+            type: "meta",
+            candidates: slugs,
+            asOfDate,
+            provider: provider.name,
+            model: provider.name === "gemini" ? geminiModel : anthropicModel,
+          });
 
-      // 3) 대조 — 인용구가 원문에 없는 문장은 버린다.
-      const { kept, dropped } = verifyClaims(rawClaims, articles);
+          const read = makeClaimReader();
+          let dropped = 0;
+          try {
+            for await (const chunk of provider.stream(
+              `${STAGE2_RULES}${mentionsAnnex ? ANNEX_WARNING : ""}
 
-      return Response.json({
-        claims: kept,
-        candidates: slugs,
-        needsMoreInfo: (answered as { needsMoreInfo?: unknown })?.needsMoreInfo === true,
-        // 몇 개를 걸렀는지 알려준다. 화면에는 "일부 문장은 근거 대조에 실패해
-        // 제외했다"고만 표시하고, 버려진 문장 자체는 내보내지 않는다.
-        droppedCount: dropped.length,
-        // 조문 스냅샷 기준일. 법령정보 MCP가 모든 응답에 조회기준일을 달고
-        // "연혁일 수 있으니 현행을 재확인하라"고 경고하는 것과 같은 취지다.
-        // 밝히지 않으면 개정된 뒤에도 현행처럼 읽힌다.
-        asOfDate,
-        provider: provider.name,
-        model: provider.name === "gemini" ? geminiModel : anthropicModel,
-        ...(Object.keys(providerErrors).length
-          ? { fellBackFrom: providerErrors }
-          : {}),
+조문 원문:
+
+${corpus}`,
+              trimmed,
+              stage2Schema(articles.map((a) => a.key)),
+              2048,
+            )) {
+              for (const raw of read(chunk)) {
+                const { kept, dropped: bad } = verifyClaims([raw], articles, byKey);
+                dropped += bad.length;
+                for (const claim of kept) send({ type: "claim", claim });
+              }
+            }
+          } catch (error) {
+            send({
+              type: "error",
+              detail: (error instanceof Error ? error.message : String(error)).slice(0, 200),
+            });
+          }
+          send({ type: "done", droppedCount: dropped });
+          controller.close();
+        },
+      });
+
+      return new Response(stream, {
+        headers: {
+          "Content-Type": "application/x-ndjson; charset=utf-8",
+          "Cache-Control": "no-store",
+          // 중간 프록시가 모아서 한 번에 보내면 스트리밍이 무의미해진다.
+          "X-Accel-Buffering": "no",
+        },
       });
     } catch (error) {
       lastError = error instanceof Error ? error.message : String(error);

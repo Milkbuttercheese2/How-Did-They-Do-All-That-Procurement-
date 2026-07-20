@@ -45,19 +45,32 @@ interface RouteResponse {
   model?: string;
 }
 
+interface StreamEvent {
+  type: "meta" | "claim" | "done" | "error";
+  candidates?: string[];
+  asOfDate?: string;
+  provider?: string;
+  model?: string;
+  claim?: VerifiedClaim;
+  droppedCount?: number;
+  detail?: string;
+}
+
+interface BotTurn {
+  role: "bot";
+  claims: VerifiedClaim[];
+  slugs: string[];
+  needsMoreInfo: boolean;
+  droppedCount: number;
+  outOfScope: boolean;
+  asOfDate?: string;
+  provider?: string;
+  model?: string;
+}
+
 type Turn =
   | { role: "user"; text: string }
-  | {
-      role: "bot";
-      claims: VerifiedClaim[];
-      slugs: string[];
-      needsMoreInfo: boolean;
-      droppedCount: number;
-      outOfScope: boolean;
-      asOfDate?: string;
-      provider?: string;
-      model?: string;
-    }
+  | BotTurn
   | { role: "error"; text: string };
 
 const MAX_QUERY_LENGTH = 500;
@@ -164,24 +177,81 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
       });
       if (!response.ok) throw new Error(String(response.status));
 
-      const data = (await response.json()) as RouteResponse;
-      // 모르는 slug가 오면 버린다. 없는 제도를 카드로 만들지 않기 위한 방어.
-      const slugs = (data.candidates ?? []).filter((slug) => bySlug(slug));
+      // 범위 밖 등은 스트림이 아니라 그냥 JSON으로 온다.
+      const isStream = response.headers
+        .get("Content-Type")
+        ?.includes("x-ndjson");
+      if (!isStream || !response.body) {
+        const data = (await response.json()) as RouteResponse;
+        setTurns((prev) => [
+          ...prev,
+          {
+            role: "bot",
+            claims: [],
+            slugs: [],
+            needsMoreInfo: false,
+            droppedCount: 0,
+            outOfScope: Boolean(data.outOfScope),
+          },
+        ]);
+        return;
+      }
 
-      setTurns((prev) => [
-        ...prev,
-        {
-          role: "bot",
-          claims: Array.isArray(data.claims) ? data.claims : [],
-          slugs,
-          needsMoreInfo: Boolean(data.needsMoreInfo),
-          droppedCount: data.droppedCount ?? 0,
-          outOfScope: Boolean(data.outOfScope),
-          asOfDate: data.asOfDate,
-          provider: data.provider,
-          model: data.model,
-        },
-      ]);
+      // 빈 답변 칸을 먼저 만들고, 검증을 통과한 문장이 도착하는 대로 채운다.
+      // 서버가 대조한 것만 보내므로 화면에 뜨는 문장은 전부 근거가 확인된 것이다.
+      let index = -1;
+      setTurns((prev) => {
+        index = prev.length;
+        return [
+          ...prev,
+          {
+            role: "bot",
+            claims: [],
+            slugs: [],
+            needsMoreInfo: false,
+            droppedCount: 0,
+            outOfScope: false,
+          },
+        ];
+      });
+
+      const patch = (fn: (t: BotTurn) => BotTurn) =>
+        setTurns((prev) =>
+          prev.map((t, i) => (i === index && t.role === "bot" ? fn(t) : t)),
+        );
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let pending = "";
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        pending += decoder.decode(value, { stream: true });
+        const lines = pending.split("\n");
+        pending = lines.pop() ?? "";
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          let event: StreamEvent;
+          try {
+            event = JSON.parse(line) as StreamEvent;
+          } catch {
+            continue; // 잘린 줄은 다음 조각과 합쳐진다
+          }
+          if (event.type === "meta") {
+            patch((t) => ({
+              ...t,
+              slugs: (event.candidates ?? []).filter((s) => bySlug(s)),
+              asOfDate: event.asOfDate,
+              provider: event.provider,
+              model: event.model,
+            }));
+          } else if (event.type === "claim" && event.claim) {
+            patch((t) => ({ ...t, claims: [...t.claims, event.claim!] }));
+          } else if (event.type === "done") {
+            patch((t) => ({ ...t, droppedCount: event.droppedCount ?? 0 }));
+          }
+        }
+      }
     } catch (error) {
       // 사용자가 직접 취소한 것은 오류가 아니다. 질문만 남기고 조용히 끝낸다.
       const aborted = error instanceof DOMException && error.name === "AbortError";
@@ -292,16 +362,25 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
           )}
         </form>
 
-        {/* 보내기 전에 보여야 의미가 있는 경고다. 답변에 붙이면 이미 전송된 뒤다. */}
-        <p className={styles.privacy}>
-          입력하신 내용은 외부 AI 서비스로 전송됩니다. <b>무료 서비스는 입력·출력이
-          모델 개선에 사용될 수 있으니</b>, 개인정보나 공개되지 않은 조달 건의 구체적
-          정보는 넣지 마세요.
-        </p>
-        <p className={styles.disclaim}>
-          검증된 조문을 근거로 AI가 정리한 안내입니다. 조문 원문은 링크에서 확인하세요
-          — 개별 사건에 대한 법률 자문이나 공식 해석을 대신하지 않습니다.
-        </p>
+        {/* 보내기 전에 보여야 의미가 있는 경고다. 답변에 붙이면 이미 전송된 뒤다.
+            한 문단에 몰아넣으면 안 읽히므로 항목으로 쪼갠다. */}
+        <ul className={styles.notes}>
+          <li>
+            답변은 <b>검증된 조문 원문</b>에서만 나옵니다. 근거가 대조되지 않은 문장은
+            표시하지 않습니다.
+          </li>
+          <li>
+            입력 내용은 <b>외부 AI 서비스로 전송</b>됩니다. 무료 등급은 입력·출력이 모델
+            개선에 쓰일 수 있습니다.
+          </li>
+          <li>
+            개인정보나 <b>공개되지 않은 조달 건의 구체적 정보는 넣지 마세요.</b>
+          </li>
+          <li>
+            법률 자문이나 공식 해석이 아닙니다. 판단 전에 <b>조문 링크에서 원문을
+            확인</b>하세요.
+          </li>
+        </ul>
       </div>
     </>
   );

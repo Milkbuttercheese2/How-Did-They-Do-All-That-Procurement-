@@ -352,13 +352,10 @@
   }
 
   /* 아래쪽 고지가 세 개나 쌓이면 대화 볼 자리가 없어진다. */
-  .privacy,
-  .disclaim {
+  .notes {
     font-size: 10.5px;
     line-height: 1.45;
-  }
-
-  .disclaim {
+    gap: 4px;
     padding-bottom: calc(10px + env(safe-area-inset-bottom));
   }
 
@@ -433,4 +430,34 @@
 
 .privacy b {
   color: var(--color-ink);
+}
+
+/* 안내 항목. 한 문단으로 붙여 놓으면 아무도 안 읽는다. */
+.notes {
+  list-style: none;
+  margin: 0;
+  padding: 10px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.notes li {
+  position: relative;
+  padding-left: 9px;
+}
+
+.notes li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--color-faint);
+}
+
+.notes b {
+  color: var(--color-ink);
+  font-weight: 700;
 }
