@@ -1,6 +1,6 @@
-# 어쩌다 조달 web
+# 그 많던 조달은 어떻게 했을까 web
 
-어쩌다 조달의 Next.js 정적 웹앱이다. 원본은 `data/institutions/`의 JSON과 manifest이며 GitHub Pages용 `out/`을 만든다.
+그 많던 조달은 어떻게 했을까의 Next.js 정적 웹앱이다. 원본은 `data/institutions/`의 JSON과 manifest이며 GitHub Pages용 `out/`을 만든다.
 
 ## 로컬 실행
 

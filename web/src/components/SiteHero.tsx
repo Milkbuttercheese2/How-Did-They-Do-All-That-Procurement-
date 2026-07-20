@@ -14,7 +14,7 @@ export default function SiteHero({
         <header className="law-process-heading">
           <p className="law-process-kicker">
             <span aria-hidden="true" />
-            어쩌다 조달
+            법령에서 업무로
           </p>
           <h1 id="site-hero-title">그 많던 조달은 어떻게 했을까?</h1>
           <p className="law-process-lead">
