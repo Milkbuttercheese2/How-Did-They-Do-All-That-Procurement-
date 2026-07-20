@@ -246,7 +246,19 @@ export async function POST(request: Request) {
 
     if (!result) return Response.json({ error: "empty_response" }, { status: 502 });
     return Response.json(result);
-  } catch {
-    return Response.json({ error: "upstream_failed" }, { status: 502 });
+  } catch (error) {
+    // 어느 provider가 왜 실패했는지 응답으로 알 수 있게 한다. 모델명 오류·권한·
+    // 스키마 거부 등을 구분하려면 메시지가 필요하다. 키는 메시지에 실리지 않는다.
+    const detail = error instanceof Error ? error.message : String(error);
+    return Response.json(
+      {
+        error: "upstream_failed",
+        provider: anthropicKey ? "anthropic" : "gemini",
+        model: anthropicKey ? ANTHROPIC_MODEL : GEMINI_MODEL,
+        detail: detail.slice(0, 400),
+        build: buildStamp,
+      },
+      { status: 502 },
+    );
   }
 }
