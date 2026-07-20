@@ -7,6 +7,13 @@
 		"nodejs_compat",
 		"global_fetch_strictly_public"
 	],
+	// 워커가 사용자와 가까운 엣지(홍콩)에서 돌면서 LLM API가 403/400으로 지역을
+	// 거부했다(Gemini: "User location is not supported", Anthropic: "Request not
+	// allowed"). smart placement는 백엔드 호출이 잦은 워커를 그 백엔드에 가까운
+	// 위치로 옮기므로 이 문제를 완화할 수 있다.
+	"placement": {
+		"mode": "smart"
+	},
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"

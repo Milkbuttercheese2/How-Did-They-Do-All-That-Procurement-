@@ -24,8 +24,10 @@ import buildStamp from "../../../../data/build-stamp.json";
 const MAX_QUERY_LENGTH = 500;
 const MAX_CANDIDATES = 3;
 
-// 비용 전제가 저가 모델 기준이라 환경변수로만 바꾸도록 둔다.
-const ANTHROPIC_MODEL = process.env.CHAT_MODEL ?? "claude-haiku-4-5";
+// 라우팅 품질을 우선해 Sonnet 5를 쓴다. Haiku보다 단가가 약 3배이므로
+// 월 지출 한도(Console에서 설정)를 반드시 함께 걸어둘 것.
+// 비용을 낮추려면 CHAT_MODEL 환경변수로 claude-haiku-4-5 로 내릴 수 있다.
+const ANTHROPIC_MODEL = process.env.CHAT_MODEL ?? "claude-sonnet-5";
 // gemini-3-flash 는 존재하지 않는 ID였다(404 NOT_FOUND). 현재 GA는 3.5/3.1 계열이며
 // 2.0 계열은 2026-06-01 종료됐다. 더 싸게 가려면 gemini-3.1-flash-lite.
 const GEMINI_MODEL = process.env.GEMINI_MODEL ?? "gemini-3.5-flash";
@@ -135,8 +137,14 @@ async function routeWithAnthropic(apiKey: string, query: string) {
     model: ANTHROPIC_MODEL,
     // 응답은 slug 몇 개와 짧은 이유뿐이다. 넉넉히 잡을 이유가 없다.
     max_tokens: 512,
+    // Sonnet 5는 thinking을 생략하면 adaptive로 돈다. 이 작업은 인덱스를 보고
+    // 66개 중 고르는 분류라 추론 단계가 필요 없고, 켜두면 토큰과 지연만 늘어난다.
+    thinking: { type: "disabled" },
+    output_config: {
+      effort: "low",
+      format: { type: "json_schema", schema: OUTPUT_SCHEMA },
+    },
     system: SYSTEM_PROMPT,
-    output_config: { format: { type: "json_schema", schema: OUTPUT_SCHEMA } },
     messages: [{ role: "user", content: query }],
   });
   if (message.stop_reason === "refusal") return { candidates: [], reason: "", needsMoreInfo: false };
