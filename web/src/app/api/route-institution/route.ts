@@ -131,8 +131,14 @@ function normalize(raw: string | undefined) {
   };
 }
 
-async function routeWithAnthropic(apiKey: string, query: string) {
-  const client = new Anthropic({ apiKey });
+async function routeWithAnthropic(apiKey: string, query: string, baseURL?: string) {
+  // baseURL이 있으면 Cloudflare AI Gateway를 경유한다.
+  //
+  // 워커에서 api.anthropic.com 을 직접 부르면 403 "Request not allowed" 가 난다.
+  // 같은 키·같은 코드가 로컬(한국)에서는 정상 동작하므로 키 문제가 아니라 워커가
+  // 실행되는 위치/IP를 Anthropic이 거부하는 것이다. 게이트웨이를 거치면 출발지가
+  // Cloudflare 게이트웨이 인프라가 되어 우회될 수 있다.
+  const client = new Anthropic(baseURL ? { apiKey, baseURL } : { apiKey });
   const message = await client.messages.create({
     model: ANTHROPIC_MODEL,
     // 응답은 slug 몇 개와 짧은 이유뿐이다. 넉넉히 잡을 이유가 없다.
@@ -271,8 +277,9 @@ export async function POST(request: Request) {
 
   try {
     // 둘 다 있으면 Anthropic을 쓴다(최종 목표 provider).
+    const baseURL = await readKey("ANTHROPIC_BASE_URL");
     const result = anthropicKey
-      ? await routeWithAnthropic(anthropicKey as string, trimmed)
+      ? await routeWithAnthropic(anthropicKey as string, trimmed, baseURL)
       : await routeWithGemini(geminiKey as string, trimmed);
 
     if (!result) return Response.json({ error: "empty_response" }, { status: 502 });
@@ -293,6 +300,7 @@ export async function POST(request: Request) {
         provider: anthropicKey ? "anthropic" : "gemini",
         model: anthropicKey ? ANTHROPIC_MODEL : GEMINI_MODEL,
         detail: detail.slice(0, 400),
+        viaGateway: Boolean(await readKey("ANTHROPIC_BASE_URL")),
         availableModels,
         build: buildStamp,
       },
