@@ -22,7 +22,10 @@ export interface ChatIndexEntry {
 export interface VerifiedClaim {
   text: string;
   article: string;
+  articleNo: string;
   law: string;
+  kind?: string;
+  effectiveOn?: string;
   title: string;
   url?: string;
 }
@@ -33,6 +36,8 @@ interface RouteResponse {
   needsMoreInfo: boolean;
   /** 근거 대조에 실패해 버려진 문장 수. 무엇이 빠졌는지는 내보내지 않는다. */
   droppedCount?: number;
+  /** 조문 스냅샷 기준일. 이후 개정은 반영돼 있지 않다. */
+  asOfDate?: string;
   /** 조달 범위 밖 질문. 모델을 부르지 않고 돌려보낸 경우. */
   outOfScope?: boolean;
 }
@@ -46,6 +51,7 @@ type Turn =
       needsMoreInfo: boolean;
       droppedCount: number;
       outOfScope: boolean;
+      asOfDate?: string;
     }
   | { role: "error"; text: string };
 
@@ -166,6 +172,7 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
           needsMoreInfo: Boolean(data.needsMoreInfo),
           droppedCount: data.droppedCount ?? 0,
           outOfScope: Boolean(data.outOfScope),
+          asOfDate: data.asOfDate,
         },
       ]);
     } catch (error) {
@@ -298,6 +305,19 @@ function EmptyState() {
   );
 }
 
+/** 인용 툴팁. "제26조"만으로는 법률인지 시행령인지 알 수 없어 함께 밝힌다. */
+function citeTitle(claim: VerifiedClaim) {
+  return [
+    claim.law,
+    claim.articleNo,
+    claim.title ? `(${claim.title})` : "",
+    claim.kind ? `· ${claim.kind}` : "",
+    claim.effectiveOn ? `· 시행 ${claim.effectiveOn}` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
 function TurnView({
   turn,
   bySlug,
@@ -334,15 +354,24 @@ function TurnView({
               href={claim.url}
               target="_blank"
               rel="noopener noreferrer"
-              title={`${claim.article}${claim.title ? ` (${claim.title})` : ""}`}
+              title={citeTitle(claim)}
             >
-              {claim.article}
+              {claim.articleNo}
             </a>
           ) : (
-            <span className={styles.cite}>{claim.article}</span>
+            <span className={styles.cite} title={citeTitle(claim)}>
+              {claim.articleNo}
+            </span>
           )}
         </p>
       ))}
+
+      {turn.claims.length > 0 && turn.asOfDate ? (
+        <p className={styles.asOf}>
+          조문 기준일 {turn.asOfDate} — 이후 개정분은 반영되어 있지 않습니다.
+          시행 중인 내용인지는 조문 링크에서 확인하세요.
+        </p>
+      ) : null}
 
       {turn.droppedCount > 0 ? (
         <p className={styles.dropped}>
@@ -350,12 +379,6 @@ function TurnView({
         </p>
       ) : null}
 
-      {turn.needsMoreInfo ? (
-        <p className={styles.notice}>
-          상황을 조금 더 알려주시면 좁혀드릴 수 있습니다 — 물품인지 용역인지, 금액대가
-          어느 정도인지 같은 것들이요.
-        </p>
-      ) : null}
 
       {turn.slugs.length > 0 ? (
         <>

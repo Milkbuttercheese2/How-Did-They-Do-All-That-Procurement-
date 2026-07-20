@@ -65,6 +65,15 @@ interface ArticleAsset {
   title: string;
   text: string;
   url?: string;
+  /** 법률 / 대통령령 / 부령 / 행정규칙 — "제26조"만으로는 구분이 안 된다. */
+  kind?: string;
+  effectiveOn?: string;
+  promulgatedOn?: string;
+}
+
+interface ArticleFile {
+  asOfDate?: string;
+  articles: ArticleAsset[];
 }
 
 const ENTRIES = routingIndex as RoutingEntry[];
@@ -122,7 +131,7 @@ const entryText = (e: RoutingEntry) =>
 async function loadArticles(
   slug: string,
   request: Request,
-): Promise<ArticleAsset[]> {
+): Promise<ArticleFile> {
   // Worker에서는 ASSETS 바인딩이 가장 직접적인 경로다.
   try {
     const { getCloudflareContext } = await import("@opennextjs/cloudflare");
@@ -134,18 +143,18 @@ async function loadArticles(
       const res = await assets.fetch(
         new URL(`/articles/${slug}.json`, "https://assets.local"),
       );
-      if (res.ok) return (await res.json()) as ArticleAsset[];
+      if (res.ok) return (await res.json()) as ArticleFile;
     }
   } catch {
     // 로컬 next dev 등 Cloudflare 컨텍스트가 없는 환경 → 아래로 폴백.
   }
   try {
     const res = await fetch(new URL(`/articles/${slug}.json`, request.url));
-    if (res.ok) return (await res.json()) as ArticleAsset[];
+    if (res.ok) return (await res.json()) as ArticleFile;
   } catch {
-    /* 자산을 못 읽으면 근거 없이 답하지 않고 빈 배열을 돌려준다 */
+    /* 자산을 못 읽으면 근거 없이 답하지 않고 빈 목록을 돌려준다 */
   }
-  return [];
+  return { articles: [] };
 }
 
 // ── 스키마 ─────────────────────────────────────────────────────────────────
@@ -203,8 +212,13 @@ const flatten = (s: string) => s.replace(/\s+/g, "");
 
 interface VerifiedClaim {
   text: string;
+  /** 전체 키. "법령명::제N조" */
   article: string;
+  /** 화면 표시용 조문 번호만. "제25조" */
+  articleNo: string;
   law: string;
+  kind?: string;
+  effectiveOn?: string;
   title: string;
   url?: string;
 }
@@ -242,7 +256,12 @@ function verifyClaims(
     kept.push({
       text,
       article: key,
+      // 화면에는 조문 번호만 보인다. 법령명은 길어서 문장 뒤에 붙으면 읽기를
+      // 방해한다 — 법령명·구분·시행일은 링크의 title로 넘긴다.
+      articleNo: article.article || key.split("::")[1] || key,
       law: article.law,
+      kind: article.kind,
+      effectiveOn: article.effectiveOn,
       title: article.title,
       url: article.url,
     });
@@ -473,9 +492,14 @@ export async function POST(request: Request) {
       }
 
       // 2) 근거 답변 — 고른 제도의 검증 조문만 준다.
-      const articles = (
-        await Promise.all(slugs.map((s) => loadArticles(s, request)))
-      ).flat();
+      const files = await Promise.all(slugs.map((s) => loadArticles(s, request)));
+      const articles = files.flatMap((f) => f.articles ?? []);
+      // 여러 제도를 묶으면 기준일이 다를 수 있다. 가장 오래된 것을 밝힌다 —
+      // "언제까지 확인된 조문인가"는 가장 보수적인 값이어야 한다.
+      const asOfDate = files
+        .map((f) => f.asOfDate)
+        .filter((d): d is string => Boolean(d))
+        .sort()[0];
       if (articles.length === 0) {
         // 조문을 못 읽었으면 근거 없이 답하지 않는다.
         return Response.json(
@@ -510,6 +534,10 @@ export async function POST(request: Request) {
         // 몇 개를 걸렀는지 알려준다. 화면에는 "일부 문장은 근거 대조에 실패해
         // 제외했다"고만 표시하고, 버려진 문장 자체는 내보내지 않는다.
         droppedCount: dropped.length,
+        // 조문 스냅샷 기준일. 법령정보 MCP가 모든 응답에 조회기준일을 달고
+        // "연혁일 수 있으니 현행을 재확인하라"고 경고하는 것과 같은 취지다.
+        // 밝히지 않으면 개정된 뒤에도 현행처럼 읽힌다.
+        asOfDate,
         provider: provider.name,
         model: provider.name === "gemini" ? geminiModel : anthropicModel,
         ...(Object.keys(providerErrors).length

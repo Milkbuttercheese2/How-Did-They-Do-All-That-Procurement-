@@ -337,3 +337,14 @@
   color: var(--color-faint);
   font-style: italic;
 }
+
+/* 조문 스냅샷 기준일 고지. 개정 이후에도 현행처럼 읽히는 것을 막는다. */
+.asOf {
+  margin: 0;
+  padding: 8px 10px;
+  border-left: 2px solid var(--color-border-strong);
+  background: var(--color-surface-muted);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
