@@ -155,12 +155,57 @@ async function routeWithGemini(apiKey: string, query: string) {
   return normalize(response.text);
 }
 
+/**
+ * 키를 읽는다.
+ *
+ * Cloudflare Worker에서 시크릿은 process.env가 아니라 요청마다 넘어오는 env 객체에
+ * 담긴다. @opennextjs/cloudflare가 process.env로 옮겨주긴 하지만 항상 보장되지는
+ * 않아, 실제 배포에서 둘 다 비어 보이는 일이 있었다(503 not_configured).
+ * 그래서 process.env → getCloudflareContext().env 순으로 확인한다.
+ */
+async function readKey(name: string): Promise<string | undefined> {
+  const fromProcess = process.env[name];
+  if (fromProcess) return fromProcess;
+  try {
+    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
+    const ctx = await getCloudflareContext({ async: true });
+    const value = (ctx.env as Record<string, unknown>)[name];
+    return typeof value === "string" && value ? value : undefined;
+  } catch {
+    // 로컬 next dev 등 Cloudflare 컨텍스트가 없는 환경.
+    return undefined;
+  }
+}
+
+/**
+ * 진단용. 어떤 변수 '이름'이 워커에 보이는지만 돌려준다. 값은 절대 내보내지 않는다.
+ * 키를 넣었는데 503이 날 때, 이름 오타인지 다른 worker에 넣은 것인지 구분하려는 것.
+ */
+async function listEnvKeys(): Promise<string[]> {
+  const names = new Set<string>();
+  for (const k of Object.keys(process.env ?? {})) {
+    if (/API|KEY|TOKEN|SECRET/i.test(k)) names.add(`process.env:${k}`);
+  }
+  try {
+    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
+    const ctx = await getCloudflareContext({ async: true });
+    for (const k of Object.keys(ctx.env ?? {})) {
+      if (/API|KEY|TOKEN|SECRET/i.test(k)) names.add(`env:${k}`);
+    }
+  } catch {
+    names.add("(cloudflare context 없음)");
+  }
+  return [...names];
+}
+
 export async function POST(request: Request) {
-  const anthropicKey = process.env.ANTHROPIC_API_KEY;
-  const geminiKey = process.env.GEMINI_API_KEY;
+  const anthropicKey = await readKey("ANTHROPIC_API_KEY");
+  const geminiKey = await readKey("GEMINI_API_KEY");
   if (!anthropicKey && !geminiKey) {
     // 키가 없는 배포에서도 화면이 깨지지 않도록 조용히 503.
-    return Response.json({ error: "not_configured" }, { status: 503 });
+    // 어느 쪽도 못 읽었는지 구분할 수 있게 진단 정보를 함께 준다(값은 노출 안 함).
+    const seen = await listEnvKeys();
+    return Response.json({ error: "not_configured", seen }, { status: 503 });
   }
 
   const ip =
@@ -186,7 +231,7 @@ export async function POST(request: Request) {
   try {
     // 둘 다 있으면 Anthropic을 쓴다(최종 목표 provider).
     const result = anthropicKey
-      ? await routeWithAnthropic(anthropicKey, trimmed)
+      ? await routeWithAnthropic(anthropicKey as string, trimmed)
       : await routeWithGemini(geminiKey as string, trimmed);
 
     if (!result) return Response.json({ error: "empty_response" }, { status: 502 });
