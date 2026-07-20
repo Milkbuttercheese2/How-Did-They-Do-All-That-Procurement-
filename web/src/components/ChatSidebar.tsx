@@ -81,6 +81,9 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
   const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const threadEndRef = useRef<HTMLDivElement>(null);
+  // 진행 중인 요청을 취소하기 위한 핸들. 응답이 10초 넘게 걸릴 때가 있어서,
+  // 기다릴지 말지는 사용자가 정하게 한다.
+  const abortRef = useRef<AbortController | null>(null);
 
   const bySlug = useCallback(
     (slug: string) => index.find((entry) => entry.slug === slug),
@@ -105,6 +108,11 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
   // Esc로 닫던 동작은 뺐다. 이 패널은 모달이 아니라 계속 켜두고 쓰는 도구여서,
   // 입력 중 Esc가 눌려 대화가 사라지는 편이 손해가 크다. 닫기는 × 버튼만.
 
+  function cancel() {
+    abortRef.current?.abort();
+    abortRef.current = null;
+  }
+
   async function ask(question: string) {
     const trimmed = question.trim();
     if (!trimmed || pending) return;
@@ -116,10 +124,13 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
     try {
       // 끝의 슬래시는 필수다. next.config의 trailingSlash 때문에 슬래시가 없으면
       // 308로 되돌아오고, POST 본문이 한 번 더 실려 가는 낭비가 생긴다.
+      const controller = new AbortController();
+      abortRef.current = controller;
       const response = await fetch("/api/route-institution/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: trimmed.slice(0, MAX_QUERY_LENGTH) }),
+        signal: controller.signal,
       });
       if (!response.ok) throw new Error(String(response.status));
 
@@ -136,15 +147,20 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
           needsMoreInfo: Boolean(data.needsMoreInfo),
         },
       ]);
-    } catch {
+    } catch (error) {
+      // 사용자가 직접 취소한 것은 오류가 아니다. 질문만 남기고 조용히 끝낸다.
+      const aborted = error instanceof DOMException && error.name === "AbortError";
       setTurns((prev) => [
         ...prev,
-        {
-          role: "error",
-          text: "지금은 제도 찾기를 쓸 수 없습니다. 아래 제도 대장에서 직접 찾아보세요.",
-        },
+        aborted
+          ? { role: "error", text: "질문을 취소했습니다." }
+          : {
+              role: "error",
+              text: "지금은 제도 찾기를 쓸 수 없습니다. 아래 제도 대장에서 직접 찾아보세요.",
+            },
       ]);
     } finally {
+      abortRef.current = null;
       setPending(false);
     }
   }
@@ -194,7 +210,14 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
             <TurnView key={i} turn={turn} bySlug={bySlug} />
           ))}
 
-          {pending ? <p className={styles.pending}>제도를 찾는 중…</p> : null}
+          {pending ? (
+            <p className={styles.pending}>
+              제도를 찾는 중…{" "}
+              <button type="button" className={styles.cancel} onClick={cancel}>
+                취소
+              </button>
+            </p>
+          ) : null}
           <div ref={threadEndRef} />
         </div>
 
@@ -223,9 +246,15 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
               }
             }}
           />
-          <button type="submit" disabled={pending || !draft.trim()}>
-            보내기
-          </button>
+          {pending ? (
+            <button type="button" onClick={cancel}>
+              취소
+            </button>
+          ) : (
+            <button type="submit" disabled={!draft.trim()}>
+              보내기
+            </button>
+          )}
         </form>
 
         <p className={styles.disclaim}>

@@ -35,6 +35,8 @@ const ANTHROPIC_MODEL = process.env.CHAT_MODEL ?? "claude-sonnet-5";
 // gemini-3-flash 는 존재하지 않는 ID였다(404 NOT_FOUND). 현재 GA는 3.5/3.1 계열이며
 // 2.0 계열은 2026-06-01 종료됐다. 더 싸게 가려면 gemini-3.1-flash-lite.
 const GEMINI_MODEL = process.env.GEMINI_MODEL ?? "gemini-3.5-flash";
+// output_config.effort 를 받는 모델. Haiku 계열은 지원하지 않는다(400).
+const SUPPORTS_EFFORT = /^claude-(opus|sonnet|fable|mythos)/;
 
 interface RoutingEntry {
   slug: string;
@@ -188,7 +190,10 @@ async function routeWithAnthropic(
     // 66개 중 고르는 분류라 추론 단계가 필요 없고, 켜두면 토큰과 지연만 늘어난다.
     thinking: { type: "disabled" },
     output_config: {
-      effort: "low",
+      // effort는 모델마다 지원 여부가 다르다. Haiku 4.5에 넣으면 400이 난다
+      // ("This model does not support the effort parameter"). CHAT_MODEL을
+      // haiku로 내리는 순간 전부 실패하므로 지원하는 모델에만 붙인다.
+      ...(SUPPORTS_EFFORT.test(ANTHROPIC_MODEL) ? { effort: "low" as const } : {}),
       format: { type: "json_schema", schema: OUTPUT_SCHEMA },
     },
     system: SYSTEM_PROMPT,

@@ -39,7 +39,6 @@
   background: var(--color-surface);
   border-left: 1px solid var(--color-border);
   /* 본문을 밀지 않고 위에 얹히므로, 떠 있다는 게 보이도록 그림자를 준다. */
-  box-shadow: -12px 0 32px rgb(0 0 0 / 12%);
   box-shadow: -8px 0 28px rgba(17, 23, 20, 0.08);
 }
 
@@ -113,33 +112,6 @@
 .empty b {
   color: var(--color-ink);
   font-weight: 700;
-}
-
-.examples {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.examples button {
-  width: 100%;
-  text-align: left;
-  border: 1px solid var(--color-border);
-  border-radius: 9px;
-  background: var(--color-surface-muted);
-  color: var(--color-muted);
-  padding: 9px 12px;
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.examples button:hover {
-  border-color: var(--color-accent);
-  color: var(--color-ink);
 }
 
 /* 대화 */
@@ -330,4 +302,15 @@
   .panel {
     width: 100vw;
   }
+}
+
+/* 진행 중 표시 옆의 취소. 입력창의 취소 버튼과 함께 어느 쪽에서든 멈출 수 있게 한다. */
+.cancel {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-accent, currentColor);
+  text-decoration: underline;
+  cursor: pointer;
 }
