@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import summaries from "../../data/summaries.json";
 import type {
   FieldVerificationQueue,
   Institution,
@@ -107,7 +108,13 @@ export function toInstitutionSummary(
 }
 
 export function getInstitutionSummaries(): InstitutionSummary[] {
-  return getAllInstitutions().map(toInstitutionSummary);
+  // 디스크를 읽지 않고 빌드 타임 산출물을 쓴다. Cloudflare Worker에는 파일시스템이
+  // 없어 getAllInstitutions()가 빈 배열을 돌려주고, 그러면 제도 목록이 통째로 비어
+  // 보인다(실제로 배포 후 그렇게 됐다).
+  //
+  // 요약본은 scripts/generate-summaries.mjs 가 prebuild 단계에서 만든다.
+  // 그 스크립트의 필드 계산은 아래 toInstitutionSummary()와 같아야 한다.
+  return summaries as InstitutionSummary[];
 }
 
 export function getInstitution(slug: string): Institution | null {
