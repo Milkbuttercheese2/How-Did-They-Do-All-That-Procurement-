@@ -340,12 +340,41 @@ function anthropicProvider(
 }
 
 /**
+ * 프로즈에 섞여 온 JSON을 건져낸다.
+ *
+ * NVIDIA는 response_format json_schema 를 문서상 보장하지 않고, 실제로 추론
+ * 텍스트("The user is asking…")를 그대로 뱉는 경우가 있었다. 코드펜스와 앞뒤
+ * 설명을 걷어내고 첫 JSON 객체를 꺼낸다. 그래도 enum 보장이 없으므로 최종
+ * 안전장치는 slug 필터와 verifyClaims 쪽이다.
+ */
+function extractJson(raw: string): unknown {
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
+  const body = fenced ? fenced[1] : raw;
+  try {
+    return JSON.parse(body.trim());
+  } catch {
+    /* 아래에서 중괄호 범위를 직접 찾는다 */
+  }
+  const start = body.indexOf("{");
+  const end = body.lastIndexOf("}");
+  if (start >= 0 && end > start) {
+    return JSON.parse(body.slice(start, end + 1));
+  }
+  throw new Error(`JSON을 찾지 못함: ${raw.slice(0, 120)}`);
+}
+
+/**
  * NVIDIA NIM (build.nvidia.com). OpenAI 호환이라 SDK 없이 fetch로 붙인다 —
  * 워커 번들이 이미 3 MiB 상한에 가까워 의존성을 늘리지 않는 편이 안전하다.
  *
- * strict: true 를 줘야 enum이 실제로 강제된다. 이게 안 지켜지면 모델이 목록에
- * 없는 slug나 조문 키를 만들어낼 수 있어, 우리 방어의 첫 겹이 사라진다.
- * 그래서 응답을 받은 뒤에도 normalize/verifyClaims에서 한 번 더 거른다.
+ * 실측에서 세 가지가 걸렸고 각각 대응한다:
+ *  - 추론 텍스트를 그대로 뱉음 → chat_template_kwargs.enable_thinking=false
+ *  - 응답이 중간에 끊김("Unterminated string") → 추론을 끈 뒤 max_tokens 여유
+ *  - 503 ResourceExhausted (32/32) → 무료 공용 용량 포화. 우리가 할 수 있는 건
+ *    폴백뿐이라 체인 다음 제공자로 넘어간다.
+ *
+ * strict: true 는 넣되 믿지 않는다. 문서에 보장이 없고 지켜지지 않는 것을 봤다.
+ * enum이 새더라도 slug 필터와 verifyClaims에서 걸러진다.
  */
 function nvidiaProvider(apiKey: string, model: string): Provider {
   return {
@@ -359,8 +388,15 @@ function nvidiaProvider(apiKey: string, model: string): Provider {
         },
         body: JSON.stringify({
           model,
-          max_tokens: maxTokens,
+          // 추론을 껐어도 서식 여유는 준다. 끊긴 JSON은 통째로 버려지므로
+          // 토큰을 아끼려다 응답 전체를 잃는 편이 손해가 크다.
+          max_tokens: maxTokens * 2,
           temperature: 0,
+          // 추론 모델이라 기본값이면 사고 과정을 본문에 그대로 쓴다.
+          chat_template_kwargs: {
+            enable_thinking: false,
+            force_nonempty_content: true,
+          },
           messages: [
             { role: "system", content: system },
             { role: "user", content: user },
@@ -378,7 +414,7 @@ function nvidiaProvider(apiKey: string, model: string): Provider {
         choices?: Array<{ message?: { content?: string } }>;
       };
       const content = data.choices?.[0]?.message?.content;
-      return content ? JSON.parse(content) : null;
+      return content ? extractJson(content) : null;
     },
   };
 }
