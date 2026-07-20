@@ -38,6 +38,8 @@
   flex-direction: column;
   background: var(--color-surface);
   border-left: 1px solid var(--color-border);
+  /* 본문을 밀지 않고 위에 얹히므로, 떠 있다는 게 보이도록 그림자를 준다. */
+  box-shadow: -12px 0 32px rgb(0 0 0 / 12%);
   box-shadow: -8px 0 28px rgba(17, 23, 20, 0.08);
 }
 
