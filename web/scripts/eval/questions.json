@@ -1,0 +1,17 @@
+[
+{"q":"납품기한을 넘겼는데 어떻게 되나요","ok":["liquidated-damages"]},
+{"q":"물품을 받았는데 규격이 다릅니다","ok":["inspection-and-acceptance"]},
+{"q":"낙찰자가 계약을 안 하겠다고 버팁니다","ok":["contract-signing","rebidding-and-failed-bids","bid-and-contract-bonds","bid-opening-and-award"]},
+{"q":"작년에 계약한 공사인데 자재값이 너무 올랐대요","ok":["price-fluctuation-adjustment"]},
+{"q":"공사 중에 설계를 바꿔야 할 것 같습니다","ok":["design-change-adjustment"]},
+{"q":"업체가 하도급 대금을 안 준다고 신고가 들어왔어요","ok":["subcontract-payment-protection"]},
+{"q":"입찰에 참가하려면 뭐부터 등록해야 하나요","ok":["bidder-registration"]},
+{"q":"소액이라 그냥 견적만 받아서 사도 되나요","ok":["negotiated-contract"]},
+{"q":"우리 제품을 혁신제품으로 지정받고 싶습니다","ok":["innovation-product-designation"]},
+{"q":"선금을 주고 싶은데 절차가 어떻게 되나요","ok":["advance-payment-and-settlement"]},
+{"q":"하자가 발견됐는데 업체가 안 고쳐줍니다","ok":["defect-warranty"]},
+{"q":"입찰이 두 번이나 유찰됐습니다","ok":["rebidding-and-failed-bids"]},
+{"q":"업체를 부정당업자로 제재하려면 어떻게 하나요","ok":["debarment"]},
+{"q":"긴급한 재난 상황인데 입찰할 시간이 없습니다","ok":["emergency-disaster-procurement"]},
+{"q":"계약을 해지하고 싶은데 가능한가요","ok":["contract-termination"]}
+]

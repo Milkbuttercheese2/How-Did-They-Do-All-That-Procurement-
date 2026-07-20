@@ -41,8 +41,11 @@ const PREFILTER_FLOOR = 0.12;
 // 너무 짧은 인용구는 아무 데나 걸린다("계약", "제1항"). 대조의 의미가 생기는 하한.
 const MIN_QUOTE_LENGTH = 12;
 
-const ANTHROPIC_MODEL = process.env.CHAT_MODEL ?? "claude-sonnet-5";
-const GEMINI_MODEL = process.env.GEMINI_MODEL ?? "gemini-3.5-flash";
+// 모델명은 요청 시점에 읽는다. Worker에서 환경값은 요청마다 넘어오는 env 객체에
+// 담기므로, 모듈 로드 시 process.env를 읽으면 기본값으로 굳어버린다(시크릿에서
+// 같은 문제를 이미 겪었다).
+const DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5";
+const DEFAULT_GEMINI_MODEL = "gemini-3.5-flash";
 // output_config.effort 를 받는 모델. Haiku 계열은 지원하지 않는다(400).
 const SUPPORTS_EFFORT = /^claude-(opus|sonnet|fable|mythos)/;
 
@@ -264,6 +267,7 @@ interface Provider {
 
 function anthropicProvider(
   apiKey: string,
+  model: string,
   baseURL?: string,
   gatewayToken?: string,
 ): Provider {
@@ -280,12 +284,12 @@ function anthropicProvider(
     name: "anthropic",
     async json(system, user, schema, maxTokens) {
       const message = await client.messages.create({
-        model: ANTHROPIC_MODEL,
+        model,
         max_tokens: maxTokens,
         thinking: { type: "disabled" },
         output_config: {
           // effort는 모델마다 지원 여부가 다르다. Haiku에 넣으면 400.
-          ...(SUPPORTS_EFFORT.test(ANTHROPIC_MODEL)
+          ...(SUPPORTS_EFFORT.test(model)
             ? { effort: "low" as const }
             : {}),
           format: { type: "json_schema", schema },
@@ -302,6 +306,7 @@ function anthropicProvider(
 
 function geminiProvider(
   apiKey: string,
+  model: string,
   baseURL?: string,
   gatewayToken?: string,
 ): Provider {
@@ -324,7 +329,7 @@ function geminiProvider(
     name: "gemini",
     async json(system, user, schema, maxTokens) {
       const res = await client.models.generateContent({
-        model: GEMINI_MODEL,
+        model,
         contents: user,
         config: {
           systemInstruction: system,
@@ -421,10 +426,16 @@ export async function POST(request: Request) {
   const gatewayToken = await readKey("CF_AI_GATEWAY_TOKEN");
 
   // Gemini 무료 티어를 먼저 쓰고, 할당량 소진·오류 시 Claude로 넘어간다.
+  const anthropicModel = (await readKey("CHAT_MODEL")) ?? DEFAULT_ANTHROPIC_MODEL;
+  const geminiModel = (await readKey("GEMINI_MODEL")) ?? DEFAULT_GEMINI_MODEL;
+
   const chain: Provider[] = [];
-  if (geminiKey) chain.push(geminiProvider(geminiKey, geminiBaseURL, gatewayToken));
+  if (geminiKey)
+    chain.push(geminiProvider(geminiKey, geminiModel, geminiBaseURL, gatewayToken));
   if (anthropicKey)
-    chain.push(anthropicProvider(anthropicKey, baseURL, gatewayToken));
+    chain.push(
+      anthropicProvider(anthropicKey, anthropicModel, baseURL, gatewayToken),
+    );
 
   let lastError: string | undefined;
   // 어느 제공자가 왜 밀렸는지 남긴다. 폴백이 조용히 돌면 무료 티어가 안 쓰이는
@@ -500,6 +511,7 @@ export async function POST(request: Request) {
         // 제외했다"고만 표시하고, 버려진 문장 자체는 내보내지 않는다.
         droppedCount: dropped.length,
         provider: provider.name,
+        model: provider.name === "gemini" ? geminiModel : anthropicModel,
         ...(Object.keys(providerErrors).length
           ? { fellBackFrom: providerErrors }
           : {}),
