@@ -17,6 +17,30 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+/**
+ * 조문 본문을 항(①②③…) 단위로 쪼갠다.
+ *
+ * 항 표시가 없는 조(9%)는 통째로 한 덩어리로 둔다. 호(1. 2. 3.)까지 쪼개지 않는
+ * 이유는, 호는 대개 앞 항의 문장을 이어받아 단독으로는 뜻이 통하지 않기 때문이다.
+ */
+function splitClauses(text) {
+  const marks = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮";
+  if (!new RegExp(`[${marks}]`).test(text)) {
+    return [{ label: "", text: text.trim() }];
+  }
+  const out = [];
+  const re = new RegExp(`([${marks}])`, "g");
+  const parts = text.split(re);
+  // split 결과: [머리말, 표시, 본문, 표시, 본문, ...]
+  if (parts[0]?.trim()) out.push({ label: "", text: parts[0].trim() });
+  for (let i = 1; i < parts.length; i += 2) {
+    const idx = marks.indexOf(parts[i]) + 1;
+    const body = (parts[i + 1] ?? "").trim();
+    if (body) out.push({ label: `제${idx}항`, text: body });
+  }
+  return out;
+}
+
 const WEB_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC_DIR = path.join(WEB_DIR, "data", "institutions");
 const OUT_DIR = path.join(WEB_DIR, "public", "articles");
@@ -60,6 +84,10 @@ for (const file of fs.readdirSync(SRC_DIR).filter((f) => f.endsWith(".json"))) {
     out.push({
       key,
       law,
+      // 항 단위로 쪼개 둔다. 검색을 조 전체로 하면 긴 조가 아무 질문에나 걸린다
+      // (실측: 1,881자 제25조가 386자 제75조와 같은 점수를 받았다. 답은 제75조에
+      // 있었다). 항으로 나누면 "지체상금률"을 묻는 질문이 요율이 적힌 항에 걸린다.
+      clauses: splitClauses(String(val?.text ?? "")),
       article: articleNo,
       title: val?.title ?? "",
       text: String(val?.text ?? (typeof val === "string" ? val : "")),

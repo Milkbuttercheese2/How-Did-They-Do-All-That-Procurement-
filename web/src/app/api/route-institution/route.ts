@@ -48,13 +48,16 @@ const PREFILTER_KEEP = 15;
 const PREFILTER_FLOOR = 0.05;
 // 너무 짧은 인용구는 아무 데나 걸린다("계약", "제1항"). 대조의 의미가 생기는 하한.
 const MIN_QUOTE_LENGTH = 12;
-// 2단계에 싣는 조문 수. 제도 3개면 조문이 27~46건까지 나오는데 대부분 질의와
-// 무관하고, 그게 그대로 지연이 된다. 실측(같은 질의):
-//   전체 27건 → 17.5초 / 상위 15건 → 11.5초 (근거 통과는 둘 다 100%)
-// 인용구를 15~40자로 줄이는 방법도 재봤으나 5.5초까지 빨라지는 대신 근거 통과가
-// 3건 중 1건으로 무너졌다 — 짧게 쓰라고 하면 모델이 원문을 그대로 옮기지 않고
-// 다듬는다. 속도를 위해 검증을 포기할 수는 없어서 조문 수만 줄인다.
-const MAX_ARTICLES = 15;
+// 2단계에 싣는 '항' 개수. 조 단위로 싣던 것을 항 단위로 바꿨다.
+//
+// 조 전체로 검색하면 긴 조가 아무 질문에나 걸린다 — 실측에서 "지체상금률이
+// 얼마인가요"에 1,881자 제25조(지체상금 일반)가 386자 제75조(지체상금률, 실제 답)와
+// 같은 점수를 받았다. 긴 글일수록 겹치는 2-gram이 많아서다. 답이 특정 항이나 호에
+// 있는데 관련성이 먼 조가 근거로 딸려오면 동문서답이 된다.
+//
+// 항으로 쪼개면(조 884건 → 검색 단위 1,853개) 요율이 적힌 항이 직접 걸린다.
+// 점수도 Dice로 바꿔 긴 단위에 붙던 이점을 없앴다.
+const MAX_ARTICLES = 18;
 // 이어서 보낼 이전 대화 수. 후속 질문("그럼 얼마나 되나요")이 앞 맥락을 잃지
 // 않게 하는 것이 목적이라 길게 둘 이유가 없다. 길수록 토큰만 늘고, 오래된
 // 화제가 남아 엉뚱한 제도로 끌고 가기도 한다.
@@ -80,6 +83,12 @@ interface RoutingEntry {
   related: string[];
 }
 
+interface Clause {
+  /** "제1항" — 항 표시가 없는 조는 빈 문자열 */
+  label: string;
+  text: string;
+}
+
 interface ArticleAsset {
   key: string;
   law: string;
@@ -91,6 +100,7 @@ interface ArticleAsset {
   kind?: string;
   effectiveOn?: string;
   promulgatedOn?: string;
+  clauses?: Clause[];
 }
 
 interface ArticleFile {
@@ -751,18 +761,28 @@ export async function POST(request: Request) {
       // 2) 근거 답변 — 고른 제도의 검증 조문만 준다.
       const files = await Promise.all(slugs.map((s) => loadArticles(s, request)));
       const allArticles = files.flatMap((f) => f.articles ?? []);
-      // 질의와 겹치는 조문부터 싣는다. 프리필터와 같은 2-gram이라 추가 비용이 없다.
+      // 질의와 가까운 '항'을 고른다. 조가 아니라 항 단위인 이유는 위 MAX_ARTICLES
+      // 주석 참고. 점수는 Dice(2·겹침/(질의+단위))라 긴 단위가 유리하지 않다.
       const queryGrams = bigrams(trimmed);
-      const articles = allArticles
-        .map((a) => {
-          const g = bigrams(`${a.title}${a.text}`);
-          let shared = 0;
-          for (const x of queryGrams) if (g.has(x)) shared += 1;
-          return { a, shared };
-        })
-        .sort((x, y) => y.shared - x.shared)
-        .slice(0, MAX_ARTICLES)
-        .map((x) => x.a);
+      const units = allArticles.flatMap((a) =>
+        (a.clauses?.length ? a.clauses : [{ label: "", text: a.text }]).map(
+          (c) => {
+            const g = bigrams(`${a.title}${c.text}`);
+            let shared = 0;
+            for (const x of queryGrams) if (g.has(x)) shared += 1;
+            return {
+              article: a,
+              clause: c,
+              score: (2 * shared) / (queryGrams.size + g.size || 1),
+            };
+          },
+        ),
+      );
+      const picked2 = units
+        .sort((x, y) => y.score - x.score)
+        .slice(0, MAX_ARTICLES);
+      // 인용구 대조는 조 전체 본문에 대해 한다 — 인용이 항 경계를 걸칠 수 있다.
+      const articles = [...new Set(picked2.map((u) => u.article))];
       // 여러 제도를 묶으면 기준일이 다를 수 있다. 가장 오래된 것을 밝힌다 —
       // "언제까지 확인된 조문인가"는 가장 보수적인 값이어야 한다.
       const asOfDate = files
@@ -811,7 +831,7 @@ export async function POST(request: Request) {
 
 ${corpus}`,
               trimmed,
-              stage2Schema(articles.map((a) => a.key)),
+              stage2Schema([...new Set(picked2.map((u) => u.article.key))]),
               2048,
             )) {
               for (const raw of read(chunk)) {
