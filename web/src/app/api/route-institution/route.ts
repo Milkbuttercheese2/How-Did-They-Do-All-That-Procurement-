@@ -51,6 +51,8 @@ const MIN_QUOTE_LENGTH = 12;
 // 같은 문제를 이미 겪었다).
 const DEFAULT_ANTHROPIC_MODEL = "claude-haiku-4-5";
 const DEFAULT_GEMINI_MODEL = "gemini-3.5-flash";
+const DEFAULT_NVIDIA_MODEL = "nvidia/nemotron-3-ultra-550b-a55b";
+const NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1";
 // output_config.effort 를 받는 모델. Haiku 계열은 지원하지 않는다(400).
 const SUPPORTS_EFFORT = /^claude-(opus|sonnet|fable|mythos)/;
 
@@ -337,6 +339,50 @@ function anthropicProvider(
   };
 }
 
+/**
+ * NVIDIA NIM (build.nvidia.com). OpenAI 호환이라 SDK 없이 fetch로 붙인다 —
+ * 워커 번들이 이미 3 MiB 상한에 가까워 의존성을 늘리지 않는 편이 안전하다.
+ *
+ * strict: true 를 줘야 enum이 실제로 강제된다. 이게 안 지켜지면 모델이 목록에
+ * 없는 slug나 조문 키를 만들어낼 수 있어, 우리 방어의 첫 겹이 사라진다.
+ * 그래서 응답을 받은 뒤에도 normalize/verifyClaims에서 한 번 더 거른다.
+ */
+function nvidiaProvider(apiKey: string, model: string): Provider {
+  return {
+    name: "nvidia",
+    async json(system, user, schema, maxTokens) {
+      const res = await fetch(`${NVIDIA_BASE_URL}/chat/completions`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: maxTokens,
+          temperature: 0,
+          messages: [
+            { role: "system", content: system },
+            { role: "user", content: user },
+          ],
+          response_format: {
+            type: "json_schema",
+            json_schema: { name: "result", schema, strict: true },
+          },
+        }),
+      });
+      if (!res.ok) {
+        throw new Error(`nvidia ${res.status} ${(await res.text()).slice(0, 200)}`);
+      }
+      const data = (await res.json()) as {
+        choices?: Array<{ message?: { content?: string } }>;
+      };
+      const content = data.choices?.[0]?.message?.content;
+      return content ? JSON.parse(content) : null;
+    },
+  };
+}
+
 function geminiProvider(
   apiKey: string,
   model: string,
@@ -417,7 +463,8 @@ async function readKey(name: string): Promise<string | undefined> {
 export async function POST(request: Request) {
   const anthropicKey = await readKey("ANTHROPIC_API_KEY");
   const geminiKey = await readKey("GEMINI_API_KEY");
-  if (!anthropicKey && !geminiKey) {
+  const nvidiaKey = await readKey("NVIDIA_API_KEY");
+  if (!anthropicKey && !geminiKey && !nvidiaKey) {
     return Response.json(
       { error: "not_configured", build: buildStamp },
       { status: 503 },
@@ -461,8 +508,11 @@ export async function POST(request: Request) {
   // Gemini 무료 티어를 먼저 쓰고, 할당량 소진·오류 시 Claude로 넘어간다.
   const anthropicModel = (await readKey("CHAT_MODEL")) ?? DEFAULT_ANTHROPIC_MODEL;
   const geminiModel = (await readKey("GEMINI_MODEL")) ?? DEFAULT_GEMINI_MODEL;
+  const nvidiaModel = (await readKey("NVIDIA_MODEL")) ?? DEFAULT_NVIDIA_MODEL;
 
+  // 무료인 것부터 쓰고, 막히면 유료로 내려간다.
   const chain: Provider[] = [];
+  if (nvidiaKey) chain.push(nvidiaProvider(nvidiaKey, nvidiaModel));
   if (geminiKey)
     chain.push(geminiProvider(geminiKey, geminiModel, geminiBaseURL, gatewayToken));
   if (anthropicKey)
@@ -553,7 +603,12 @@ export async function POST(request: Request) {
         // 밝히지 않으면 개정된 뒤에도 현행처럼 읽힌다.
         asOfDate,
         provider: provider.name,
-        model: provider.name === "gemini" ? geminiModel : anthropicModel,
+        model:
+          provider.name === "nvidia"
+            ? nvidiaModel
+            : provider.name === "gemini"
+              ? geminiModel
+              : anthropicModel,
         ...(Object.keys(providerErrors).length
           ? { fellBackFrom: providerErrors }
           : {}),
