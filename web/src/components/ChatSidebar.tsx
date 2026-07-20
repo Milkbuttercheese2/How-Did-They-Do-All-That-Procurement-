@@ -172,6 +172,20 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
     return pairs.slice(-HISTORY_TURNS);
   }
 
+  /** 대화를 비운다. 이력이 다음 질문의 맥락으로 쓰이므로, 화제를 완전히 바꿀 때
+   *  직전 제도를 끌고 가지 않으려면 이 버튼이 필요하다. */
+  function reset() {
+    cancel();
+    setTurns([]);
+    setDraft("");
+    try {
+      window.sessionStorage.removeItem(TURNS_STORAGE_KEY);
+    } catch {
+      /* 저장소를 못 쓰는 환경 */
+    }
+    inputRef.current?.focus();
+  }
+
   function cancel() {
     abortRef.current?.abort();
     abortRef.current = null;
@@ -325,6 +339,16 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
         <header className={styles.head}>
           <span className={styles.title}>제도 찾기</span>
           <span className={styles.tag}>검증된 {index.length}개에서만 안내</span>
+          {turns.length > 0 ? (
+            <button
+              type="button"
+              className={styles.reset}
+              onClick={reset}
+              title="이전 대화를 지우고 새로 시작합니다"
+            >
+              새 대화
+            </button>
+          ) : null}
           <button
             type="button"
             className={styles.close}
@@ -484,7 +508,12 @@ function TurnView({
           사용자가 직접 확인할 수 있도록 한다. */}
       {turn.claims.map((claim, i) => (
         <p key={i} className={styles.reason}>
-          {claim.text}{" "}
+          {claim.text}
+          {/* 같은 조문이 연달아 나오면 인용을 한 번만 보인다. 문장마다 같은
+              조문번호가 붙으면 읽는 흐름이 끊기고 형식적으로 보인다. */}
+          {turn.claims[i - 1]?.article === claim.article ? null : (
+            <>
+              {" "}
           {claim.url ? (
             <a
               className={styles.cite}
@@ -499,6 +528,8 @@ function TurnView({
             <span className={styles.cite} title={citeTitle(claim)}>
               {claim.articleNo}
             </span>
+          )}
+            </>
           )}
         </p>
       ))}

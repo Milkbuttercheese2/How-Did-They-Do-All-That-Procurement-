@@ -47,13 +47,23 @@ for (const file of fs.readdirSync(SRC_DIR).filter((f) => f.endsWith(".json"))) {
     const bare = law.replace(/^\([^)]*\)\s*/, "");
     const src = sourceByLaw.get(law) ?? sourceByLaw.get(bare);
     if (src?.officialUrl) linked += 1;
+    // 규정 전체가 아니라 해당 조로 바로 보낸다. 사이트의 [조문 확인] 버튼과 같은
+    // 방식이다(ProcessVerification.tsx) — officialUrl 뒤에 /제N조 를 붙이면
+    // 법제처가 그 조로 스크롤해 준다. 항까지는 딥링크가 안 되므로 조까지만.
+    const articleNo = val?.article ?? key.split("::")[1] ?? "";
+    const jo = articleNo.match(/제\s*\d+\s*조(?:의\s*\d+)?/)?.[0]?.replace(/\s+/g, "");
+    const deepable =
+      src?.officialUrl && jo && /law\.go\.kr\/(법령|행정규칙)\//.test(src.officialUrl);
+    const url = deepable
+      ? `${src.officialUrl.replace(/\/+$/, "")}/${jo}`
+      : src?.officialUrl;
     out.push({
       key,
       law,
-      article: val?.article ?? key.split("::")[1] ?? "",
+      article: articleNo,
       title: val?.title ?? "",
       text: String(val?.text ?? (typeof val === "string" ? val : "")),
-      url: src?.officialUrl,
+      url,
       kind: src?.kind,
       effectiveOn: src?.effectiveOn,
       promulgatedOn: src?.promulgatedOn,
