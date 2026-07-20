@@ -314,7 +314,13 @@ export async function POST(request: Request) {
         provider: anthropicKey ? "anthropic" : "gemini",
         model: anthropicKey ? ANTHROPIC_MODEL : GEMINI_MODEL,
         detail: detail.slice(0, 400),
+        // 게이트웨이 설정이 워커에 실제로 도달했는지. 값은 노출하지 않고
+        // 존재 여부와 형태만 싣는다.
         viaGateway: Boolean(await readKey("ANTHROPIC_BASE_URL")),
+        gatewayUrlShape: (await readKey("ANTHROPIC_BASE_URL"))
+          ?.replace(/\/v1\/[^/]+\//, "/v1/<account>/")
+          ?.slice(0, 120),
+        hasGatewayToken: Boolean(await readKey("CF_AI_GATEWAY_TOKEN")),
         availableModels,
         build: buildStamp,
       },
