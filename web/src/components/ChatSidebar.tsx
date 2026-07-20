@@ -40,6 +40,9 @@ interface RouteResponse {
   asOfDate?: string;
   /** 조달 범위 밖 질문. 모델을 부르지 않고 돌려보낸 경우. */
   outOfScope?: boolean;
+  /** 실제로 답한 제공자와 모델. 어디로 데이터가 갔는지 밝히기 위해 표시한다. */
+  provider?: string;
+  model?: string;
 }
 
 type Turn =
@@ -52,6 +55,8 @@ type Turn =
       droppedCount: number;
       outOfScope: boolean;
       asOfDate?: string;
+      provider?: string;
+      model?: string;
     }
   | { role: "error"; text: string };
 
@@ -173,6 +178,8 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
           droppedCount: data.droppedCount ?? 0,
           outOfScope: Boolean(data.outOfScope),
           asOfDate: data.asOfDate,
+          provider: data.provider,
+          model: data.model,
         },
       ]);
     } catch (error) {
@@ -285,8 +292,14 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
           )}
         </form>
 
+        {/* 보내기 전에 보여야 의미가 있는 경고다. 답변에 붙이면 이미 전송된 뒤다. */}
+        <p className={styles.privacy}>
+          입력하신 내용은 외부 AI 서비스로 전송됩니다. <b>무료 서비스는 입력·출력이
+          모델 개선에 사용될 수 있으니</b>, 개인정보나 공개되지 않은 조달 건의 구체적
+          정보는 넣지 마세요.
+        </p>
         <p className={styles.disclaim}>
-          AI가 제도 요약을 근거로 정리한 안내입니다. 조문 원문은 제도 페이지에서 확인하세요
+          검증된 조문을 근거로 AI가 정리한 안내입니다. 조문 원문은 링크에서 확인하세요
           — 개별 사건에 대한 법률 자문이나 공식 해석을 대신하지 않습니다.
         </p>
       </div>
@@ -303,6 +316,24 @@ function EmptyState() {
       </p>
     </div>
   );
+}
+
+/**
+ * 어느 AI가 답했는지 밝힌다. 폴백 구조라 질문마다 달라질 수 있고, 무료 서비스는
+ * 입력이 학습에 쓰일 수 있어 사용자가 알아야 한다. 유료 API(Anthropic)는 약관상
+ * 학습에 쓰지 않으므로 구분해서 적는다.
+ */
+function providerLabel(provider: string, model?: string) {
+  const known: Record<string, { name: string; collects: boolean }> = {
+    gemini: { name: "Google Gemini", collects: true },
+    nvidia: { name: "NVIDIA NIM", collects: true },
+    anthropic: { name: "Anthropic Claude", collects: false },
+  };
+  const info = known[provider] ?? { name: provider, collects: true };
+  const suffix = info.collects
+    ? "무료 등급 — 입력이 모델 개선에 쓰일 수 있음"
+    : "유료 API — 입력을 학습에 쓰지 않음";
+  return `이 답변: ${info.name}${model ? ` (${model})` : ""} · ${suffix}`;
 }
 
 /** 인용 툴팁. "제26조"만으로는 법률인지 시행령인지 알 수 없어 함께 밝힌다. */
@@ -370,6 +401,12 @@ function TurnView({
         <p className={styles.asOf}>
           조문 기준일 {turn.asOfDate} — 이후 개정분은 반영되어 있지 않습니다.
           시행 중인 내용인지는 조문 링크에서 확인하세요.
+        </p>
+      ) : null}
+
+      {turn.provider ? (
+        <p className={styles.provider}>
+          {providerLabel(turn.provider, turn.model)}
         </p>
       ) : null}
 

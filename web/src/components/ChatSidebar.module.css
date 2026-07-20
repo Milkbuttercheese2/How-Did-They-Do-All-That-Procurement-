@@ -348,3 +348,23 @@
   line-height: 1.5;
   color: var(--color-muted);
 }
+
+/* 어느 AI가 답했는지. 폴백 구조라 질문마다 달라질 수 있다. */
+.provider {
+  margin: 0;
+  font-size: 10.5px;
+  color: var(--color-faint);
+}
+
+/* 전송 전 경고. 답변에 붙이면 이미 늦다. */
+.privacy {
+  margin: 0;
+  padding: 8px 14px 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.privacy b {
+  color: var(--color-ink);
+}

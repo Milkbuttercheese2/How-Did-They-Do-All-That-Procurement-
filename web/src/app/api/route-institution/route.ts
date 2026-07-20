@@ -567,15 +567,20 @@ export async function POST(request: Request) {
   const geminiModel = (await readKey("GEMINI_MODEL")) ?? DEFAULT_GEMINI_MODEL;
   const nvidiaModel = (await readKey("NVIDIA_MODEL")) ?? DEFAULT_NVIDIA_MODEL;
 
-  // 무료인 것부터 쓰고, 막히면 유료로 내려간다.
+  // 무료이면서 빠른 것부터. 실측 2단계 지연:
+  //   gemini-3.1-flash-lite  2.1초 (무료)
+  //   claude-haiku-4-5      11.5초 (~35원)
+  //   nemotron-3-ultra      27.5초 (무료)
+  // NVIDIA는 정확도(1순위 13/15)는 준수하나 27.5초라 사용자가 못 기다린다.
+  // 맨 앞에 두면 27초를 버린 뒤에야 다음으로 넘어가므로 맨 뒤로 내린다.
   const chain: Provider[] = [];
-  if (nvidiaKey) chain.push(nvidiaProvider(nvidiaKey, nvidiaModel));
   if (geminiKey)
     chain.push(geminiProvider(geminiKey, geminiModel, geminiBaseURL, gatewayToken));
   if (anthropicKey)
     chain.push(
       anthropicProvider(anthropicKey, anthropicModel, baseURL, gatewayToken),
     );
+  if (nvidiaKey) chain.push(nvidiaProvider(nvidiaKey, nvidiaModel));
 
   let lastError: string | undefined;
   // 어느 제공자가 왜 밀렸는지 남긴다. 폴백이 조용히 돌면 무료 티어가 안 쓰이는
