@@ -8,7 +8,10 @@
 // ANTHROPIC_API_KEY는 서버에서만 읽는다. 브라우저 번들에 들어가지 않는다.
 
 import Anthropic from "@anthropic-ai/sdk";
-import { getAllInstitutions } from "@/lib/data";
+// lib/data를 쓰면 제도 JSON 전체(4.4MB, 조문 원문 884건 포함)가 서버 번들에 들어가
+// Cloudflare Worker 상한(무료 3 MiB)을 넘는다. 라우팅에 필요한 필드만 담은 슬림
+// 인덱스(45KB)를 prebuild 단계에서 만들어 쓴다. → scripts/generate-routing-index.mjs
+import routingIndex from "../../../../data/routing-index.json";
 
 // Cloudflare 어댑터가 런타임을 결정하도록 명시하지 않는다. 라우트 핸들러는
 // 기본적으로 캐시되지 않으므로 별도 설정이 필요 없다.
@@ -20,27 +23,29 @@ const MAX_CANDIDATES = 3;
 // 몇 배로 뛰므로 환경변수로만 바꾸도록 둔다.
 const MODEL = process.env.CHAT_MODEL ?? "claude-haiku-4-5";
 
-/** 라우팅용 인덱스. 제도당 250자 안팎, 66개 합쳐 8천 토큰 수준이라 통째로 넣는다. */
-const INSTITUTIONS = getAllInstitutions();
-const SLUGS = INSTITUTIONS.map((institution) => institution.slug);
+/** 라우팅용 인덱스. 66개 합쳐 8천 토큰 수준이라 프롬프트에 통째로 넣는다. */
+interface RoutingEntry {
+  slug: string;
+  name: string;
+  category: string;
+  oneLiner: string;
+  applicability: string;
+}
 
-const INDEX_TEXT = INSTITUTIONS.map((institution) => {
-  const applicability = institution.canvas?.applicability;
-  const applicabilityText = Array.isArray(applicability)
-    ? applicability.join(" ")
-    : typeof applicability === "string"
-      ? applicability
-      : "";
-  return [
-    `slug: ${institution.slug}`,
-    `이름: ${institution.name}`,
-    `분류: ${institution.category ?? ""}`,
-    `요약: ${institution.oneLiner ?? ""}`,
-    applicabilityText ? `적용대상: ${applicabilityText}` : "",
+const ENTRIES = routingIndex as RoutingEntry[];
+const SLUGS = ENTRIES.map((entry) => entry.slug);
+
+const INDEX_TEXT = ENTRIES.map((entry) =>
+  [
+    `slug: ${entry.slug}`,
+    `이름: ${entry.name}`,
+    `분류: ${entry.category}`,
+    `요약: ${entry.oneLiner}`,
+    entry.applicability ? `적용대상: ${entry.applicability}` : "",
   ]
     .filter(Boolean)
-    .join("\n");
-}).join("\n\n---\n\n");
+    .join("\n"),
+).join("\n\n---\n\n");
 
 const SYSTEM_PROMPT = `당신은 대한민국 공공조달 제도 안내 사이트의 라우터입니다.
 

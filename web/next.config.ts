@@ -13,3 +13,11 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// 로컬 `next dev`에서 Cloudflare 워커 바인딩을 주입한다(어댑터가 추가한 훅).
+// 정적 내보내기 빌드에는 불필요하므로 건너뛴다.
+if (!process.env.STATIC_EXPORT) {
+  void import("@opennextjs/cloudflare").then((m) =>
+    m.initOpenNextCloudflareForDev(),
+  );
+}
