@@ -408,7 +408,7 @@ function nvidiaProvider(apiKey: string, model: string): Provider {
         }),
       });
       if (!res.ok) {
-        throw new Error(`nvidia ${res.status} ${(await res.text()).slice(0, 200)}`);
+        throw new Error(`nvidia ${res.status} ${(await res.text()).slice(0, 600)}`);
       }
       const data = (await res.json()) as {
         choices?: Array<{ message?: { content?: string } }>;
@@ -651,7 +651,10 @@ export async function POST(request: Request) {
       });
     } catch (error) {
       lastError = error instanceof Error ? error.message : String(error);
-      providerErrors[provider.name] = lastError.slice(0, 300);
+      // 잘라내면 정작 필요한 부분이 사라진다. Gemini의 429는 "Quota exceeded for
+      // metric ..." 뒤에 어느 한도인지가 나오는데, 300자에서 끊겨 분당인지
+      // 일일인지 구분을 못 했다.
+      providerErrors[provider.name] = lastError.slice(0, 1200);
       // 다음 제공자로 넘어간다.
     }
   }
