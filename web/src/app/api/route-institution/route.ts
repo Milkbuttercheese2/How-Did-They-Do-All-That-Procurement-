@@ -26,7 +26,9 @@ const MAX_CANDIDATES = 3;
 
 // 비용 전제가 저가 모델 기준이라 환경변수로만 바꾸도록 둔다.
 const ANTHROPIC_MODEL = process.env.CHAT_MODEL ?? "claude-haiku-4-5";
-const GEMINI_MODEL = process.env.GEMINI_MODEL ?? "gemini-3-flash";
+// gemini-3-flash 는 존재하지 않는 ID였다(404 NOT_FOUND). 현재 GA는 3.5/3.1 계열이며
+// 2.0 계열은 2026-06-01 종료됐다. 더 싸게 가려면 gemini-3.1-flash-lite.
+const GEMINI_MODEL = process.env.GEMINI_MODEL ?? "gemini-3.5-flash";
 
 interface RoutingEntry {
   slug: string;
