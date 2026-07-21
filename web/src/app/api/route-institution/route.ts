@@ -312,6 +312,37 @@ const ANNEX_INDEX = annexes as Record<
  * 주고 내용은 링크로 넘긴다. 제목만 있어도 "그 별표가 무엇을 정한 것인지"는
  * 정확히 말할 수 있고, 구체적 수치를 지어내는 것은 계속 막을 수 있다.
  */
+/**
+ * 질의와 가까운 별표를 찾는다.
+ *
+ * 별표 본문(HWP/PDF 표)은 갖고 있지 않아서, 답이 별표 안에 있는 질문은 근거를
+ * 못 만든다 — 실제로 "공사수행능력 신인도평가"가 제도만 뜨고 문장은 0건이었다.
+ * 검증이 제 일을 한 것이지만, 사용자에게는 그냥 답이 없는 화면이다.
+ * 내용을 지어내지 않으면서 도움이 되는 유일한 방법은 "그건 이 별표에 있다"고
+ * 정확히 알려주는 것이다.
+ */
+function matchAnnexes(query: string, articles: ArticleAsset[]) {
+  // 고른 제도의 법령으로 한정하지 않는다. 답이 그 제도에 걸리지 않은 법령의
+  // 별표에 있는 경우가 실제로 있었다 — "공사수행능력 신인도평가"는 적격심사
+  // 제도를 정확히 골랐지만, 평가표는 그 제도에 근거로 걸려 있지 않은
+  // "조달청 시설공사 적격심사 세부기준" 별표에 있었다. 제도 경계로 막으면
+  // 정작 필요한 안내를 못 한다.
+  void articles;
+  const q = bigrams(query);
+  if (q.size === 0) return [];
+  return Object.values(ANNEX_INDEX)
+    .map((a) => {
+      const g = bigrams(`${a.law}${a.title}`);
+      let shared = 0;
+      for (const x of q) if (g.has(x)) shared += 1;
+      return { annex: a, score: (2 * shared) / (q.size + g.size || 1) };
+    })
+    .filter((x) => x.score >= 0.08)
+    .sort((x, y) => y.score - x.score)
+    .slice(0, 3)
+    .map((x) => x.annex);
+}
+
 function annexNote(corpus: string, articles: ArticleAsset[]) {
   const laws = new Set(articles.map((a) => a.law.replace(/^\([^)]*\)\s*/, "")));
   const found: string[] = [];
@@ -828,6 +859,7 @@ export async function POST(request: Request) {
 
           const read = makeClaimReader();
           let dropped = 0;
+          let sent = 0;
           try {
             for await (const chunk of provider.stream(
               `${STAGE2_RULES}${mentionsAnnex ? ANNEX_WARNING : ""}${historyBlock(history)}${annexNote(corpus, articles)}
@@ -842,7 +874,10 @@ ${corpus}`,
               for (const raw of read(chunk)) {
                 const { kept, dropped: bad } = verifyClaims([raw], articles, byKey);
                 dropped += bad.length;
-                for (const claim of kept) send({ type: "claim", claim });
+                for (const claim of kept) {
+                  send({ type: "claim", claim });
+                  sent += 1;
+                }
               }
             }
           } catch (error) {
@@ -851,7 +886,11 @@ ${corpus}`,
               detail: (error instanceof Error ? error.message : String(error)).slice(0, 200),
             });
           }
-          send({ type: "done", droppedCount: dropped });
+          // 근거 있는 문장을 하나도 못 만들었으면, 답이 어디에 있는지라도 알린다.
+          // 별표 본문이 없어서 생기는 공백이 대부분이다.
+          const annexHints =
+            sent === 0 ? matchAnnexes(trimmed, articles) : [];
+          send({ type: "done", droppedCount: dropped, annexes: annexHints });
           controller.close();
         },
       });

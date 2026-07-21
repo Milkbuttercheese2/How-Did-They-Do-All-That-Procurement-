@@ -45,6 +45,13 @@ interface RouteResponse {
   model?: string;
 }
 
+export interface AnnexHint {
+  law: string;
+  annex: string;
+  title: string;
+  url?: string;
+}
+
 interface StreamEvent {
   type: "meta" | "claim" | "done" | "error";
   candidates?: string[];
@@ -53,6 +60,7 @@ interface StreamEvent {
   model?: string;
   claim?: VerifiedClaim;
   droppedCount?: number;
+  annexes?: AnnexHint[];
   detail?: string;
 }
 
@@ -66,6 +74,7 @@ interface BotTurn {
   asOfDate?: string;
   provider?: string;
   model?: string;
+  annexes?: AnnexHint[];
 }
 
 type Turn =
@@ -289,7 +298,11 @@ export default function ChatSidebar({ index }: { index: ChatIndexEntry[] }) {
           } else if (event.type === "claim" && event.claim) {
             patch((t) => ({ ...t, claims: [...t.claims, event.claim!] }));
           } else if (event.type === "done") {
-            patch((t) => ({ ...t, droppedCount: event.droppedCount ?? 0 }));
+            patch((t) => ({
+              ...t,
+              droppedCount: event.droppedCount ?? 0,
+              annexes: event.annexes ?? [],
+            }));
           }
         }
       }
@@ -539,6 +552,37 @@ function TurnView({
           조문 기준일 {turn.asOfDate} — 이후 개정분은 반영되어 있지 않습니다.
           시행 중인 내용인지는 조문 링크에서 확인하세요.
         </p>
+      ) : null}
+
+      {/* 근거 있는 문장을 못 만든 경우. 조문에 없는 내용을 지어내지 않았다는 뜻이라
+          검증은 제대로 돈 것이지만, 사용자에게는 답이 없는 화면이다. 어디에
+          있는지라도 알려준다. */}
+      {turn.claims.length === 0 && !turn.outOfScope && turn.slugs.length > 0 ? (
+        <p className={styles.notice}>
+          {turn.annexes && turn.annexes.length > 0
+            ? "이 내용은 조문이 아니라 별표에 정해져 있습니다. 이 사이트는 별표 본문을 갖고 있지 않아, 아래 원문에서 확인하셔야 합니다."
+            : "검증된 조문에서 이 질문에 답할 근거를 찾지 못했습니다. 아래 제도 페이지에서 직접 확인해 주세요."}
+        </p>
+      ) : null}
+
+      {turn.annexes && turn.annexes.length > 0 ? (
+        <div className={styles.annexBox}>
+          <p className={styles.recLabel}>관련 별표</p>
+          {turn.annexes.map((a) => (
+            <a
+              key={`${a.law}${a.annex}`}
+              className={styles.annexLink}
+              href={a.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <b>
+                {a.law} {a.annex}
+              </b>
+              <span>{a.title}</span>
+            </a>
+          ))}
+        </div>
       ) : null}
 
       {turn.provider ? (
