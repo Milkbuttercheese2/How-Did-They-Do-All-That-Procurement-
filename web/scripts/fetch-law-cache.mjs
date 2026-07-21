@@ -12,7 +12,20 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_DIR = path.dirname(path.dirname(SCRIPT_DIR));
 const CACHE_DIR = path.join(REPO_DIR, "sources", "law-cache");
 const LIST_PATH = path.join(CACHE_DIR, "law-list.json");
-const CLI = process.env.KOREAN_LAW_CLI ?? "korean-law";
+// 전역 설치("korean-law")에만 의존하면 PATH에 없을 때 ENOENT로 죽고, 그 오류가
+// 검증 실패로 기록돼 조문 대조 상태가 통째로 강등된다(2026-07-20 실제 발생).
+// node_modules에 있으면 그걸 쓴다 — devDependencies로 선언돼 있다.
+const LOCAL_CLI = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "node_modules",
+  "korean-law-mcp",
+  "build",
+  "cli.js",
+);
+const CLI =
+  process.env.KOREAN_LAW_CLI ??
+  (fs.existsSync(LOCAL_CLI) ? LOCAL_CLI : "korean-law");
 const CLI_IS_SCRIPT = /\.(?:mjs|cjs|js)$/i.test(CLI);
 
 if (!process.env.LAW_OC?.trim()) {

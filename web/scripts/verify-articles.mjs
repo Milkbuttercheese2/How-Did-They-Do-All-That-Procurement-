@@ -19,7 +19,20 @@ const REPORT_PATH = path.join(REPO_DIR, "docs", "article-verification-coverage.j
 const WRITE = process.argv.includes("--write");
 const CONCURRENCY = Number(process.env.ARTICLE_VERIFY_CONCURRENCY ?? 6);
 const VERIFIED_AT = process.env.ARTICLE_VERIFY_DATE ?? localDate("Asia/Seoul");
-const CLI = process.env.KOREAN_LAW_CLI ?? "korean-law";
+// 전역 설치("korean-law")에만 의존하면 PATH에 없을 때 ENOENT로 죽고, 그 오류가
+// 검증 실패로 기록돼 조문 대조 상태가 통째로 강등된다(2026-07-20 실제 발생).
+// node_modules에 있으면 그걸 쓴다 — devDependencies로 선언돼 있다.
+const LOCAL_CLI = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "node_modules",
+  "korean-law-mcp",
+  "build",
+  "cli.js",
+);
+const CLI =
+  process.env.KOREAN_LAW_CLI ??
+  (fs.existsSync(LOCAL_CLI) ? LOCAL_CLI : "korean-law");
 // Windows에서는 npm 전역 CLI가 .cmd 셔틀이라 execFile로 직접 실행할 수 없다.
 // KOREAN_LAW_CLI에 JS 진입점 경로를 주면 node로 실행한다.
 const CLI_IS_SCRIPT = /\.(?:mjs|cjs|js)$/i.test(CLI);
