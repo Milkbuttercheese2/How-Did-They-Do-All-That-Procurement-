@@ -51,7 +51,8 @@
     "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "wrangler": "^4.112.0"
+    "wrangler": "^4.112.0",
+    "korean-law-mcp": "4.7.5"
   },
   "overrides": {
     "next": {
