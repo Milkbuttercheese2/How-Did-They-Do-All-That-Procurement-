@@ -47,7 +47,24 @@ jobs:
             echo "vars.LAW_OC: EMPTY"
           fi
       - id: freshness
-        run: npm run check:freshness
+        # law.go.kr 이 GitHub 러너(미국)에서 도달 안 되는 경우가 있다
+        # ([EXTERNAL_API_ERROR] fetch failed). 이건 우리 데이터가 낡았다는 뜻이
+        # 아니라 감시 자체를 못 돌린 것이다. 둘을 같은 빨간 X로 보이면 사람이
+        # 곧 무시하게 되고, 실제로 이 워크플로가 오래 방치돼 있었다.
+        run: |
+          set +e
+          OUT=$(npm run check:freshness 2>&1)
+          CODE=$?
+          echo "$OUT"
+          if [ $CODE -ne 0 ]; then
+            if echo "$OUT" | grep -q "EXTERNAL_API_ERROR\|fetch failed\|ETIMEDOUT\|ENOTFOUND"; then
+              echo "::warning::법령 API에 도달하지 못해 현행화 점검을 건너뜁니다(외부 요인). 데이터가 낡았다는 뜻은 아닙니다."
+              echo "네트워크 문제로 점검 불가 — 국내 환경에서 npm run check:freshness 로 확인 필요" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            echo "::error::현행화 점검 실패 — 데이터 확인이 필요합니다."
+            exit $CODE
+          fi
       - name: Create or update freshness issue
         if: steps.freshness.outputs.changed_count != '0'
         env:
