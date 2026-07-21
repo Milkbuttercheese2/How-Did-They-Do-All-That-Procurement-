@@ -415,7 +415,19 @@ const ANNEX_WARNING = `
 
 // ── 대조 ───────────────────────────────────────────────────────────────────
 
-const flatten = (s: string) => s.replace(/\s+/g, "");
+/**
+ * 대조용 정규화.
+ *
+ * 공백뿐 아니라 HTML 태그도 지운다. 별표 본문은 표 마크업(<tr><td>…<br>…)이라,
+ * 모델이 셀 내용을 자연스럽게 인용하면 <br> 하나 때문에 원문과 안 맞는다 —
+ * "담합하면 제한 몇 년"이 별표2를 정확히 찾고도 답을 못 내던 이유가 이것이다.
+ * 태그는 내용이 아니므로 무시해도 대조가 느슨해지지 않는다.
+ */
+const flatten = (s: string) =>
+  s
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, "")
+    .replace(/\s+/g, "");
 
 interface VerifiedClaim {
   text: string;
