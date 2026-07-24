@@ -33,8 +33,16 @@ let failed = 0;
 let truncated = 0;
 
 for (const [key, meta] of Object.entries(index)) {
+  // 별지 서식은 본문을 뽑지 않는다. 빈칸 양식이라 텍스트로 옮기면 표 껍데기만
+  // 남아 근거로도 검색으로도 쓸모가 없다 — 제목과 원본 링크가 전부다.
+  if (meta.kind === "서식") {
+    out[key] = { ...meta };
+    continue;
+  }
   if (!meta.fileUrl) {
-    console.warn(`  ✗ ${key} — 파일 링크 없음`);
+    // 본문은 못 담아도 제목·링크는 남긴다. 어디에 있는지 안내조차 못 하면 안 된다.
+    console.warn(`  ✗ ${key} — 파일 링크 없음(제목·링크만 수록)`);
+    out[key] = { ...meta };
     failed += 1;
     continue;
   }

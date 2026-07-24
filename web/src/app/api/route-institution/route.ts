@@ -25,9 +25,10 @@ import { GoogleGenAI } from "@google/genai";
 import routingIndex from "../../../../data/routing-index.json";
 import buildStamp from "../../../../data/build-stamp.json";
 import { CHAT_ENABLED } from "@/lib/features";
-// 조문이 가리키는 별표의 제목과 원문 링크. 본문(HWP/PDF)은 담지 않는다 —
+// 조문이 가리키는 별표·별지 서식의 제목과 원문 링크. 본문(HWP/PDF)은 담지 않는다 —
 // 표를 텍스트로 옮기면 행·열 관계가 깨져 오히려 틀린 근거가 된다.
 import annexes from "../../../../data/annexes.json";
+import { extractAnnexRefs } from "../../../../scripts/lib/annex-refs.mjs";
 
 const MAX_QUERY_LENGTH = 500;
 const MAX_CANDIDATES = 3;
@@ -342,7 +343,7 @@ const STAGE2_RULES = `아래 조문 원문에 **실제로 적힌 내용만** 근
 
 const ANNEX_INDEX = annexes as Record<
   string,
-  { law: string; annex: string; title: string; url?: string }
+  { law: string; annex: string; kind?: string; label?: string; title: string; url?: string }
 >;
 
 /**
@@ -384,16 +385,20 @@ function matchAnnexes(
     .slice(0, 2);
 }
 
-function annexNote(corpus: string, articles: ArticleAsset[]) {
-  const laws = new Set(articles.map((a) => a.law.replace(/^\([^)]*\)\s*/, "")));
+function annexNote(articles: ArticleAsset[]) {
+  // 조문별로 추출한다 — 말뭉치 전체를 훑으면 조문이 인용한 「타법」 별표가 우리
+  // 법령의 같은 번호 별표(예: 하자담보 조문 속 건산법 별표4 ↔ 시행규칙의 과징금
+  // 별표4)로 오귀속된다. 추출·귀속 로직은 scripts/lib/annex-refs.mjs 한 곳이다.
   const found: string[] = [];
-  for (const hit of new Set(corpus.match(/별표\s*\d+(?:의\d+)?/g) ?? [])) {
-    const no = hit.replace(/\s+/g, "");
-    for (const law of laws) {
-      const entry = ANNEX_INDEX[`${law}::${no}`];
+  const seen = new Set<string>();
+  for (const a of articles) {
+    for (const ref of extractAnnexRefs(a.text, a.law)) {
+      const key = `${ref.law}::${ref.annex}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const entry = ANNEX_INDEX[key];
       if (entry) {
-        found.push(`- ${law} ${no}: ${entry.title}`);
-        break;
+        found.push(`- ${entry.law} ${entry.label ?? entry.annex}: ${entry.title}`);
       }
     }
   }
@@ -401,18 +406,19 @@ function annexNote(corpus: string, articles: ArticleAsset[]) {
   return [
     "",
     "",
-    "[원문이 가리키는 별표]",
+    "[원문이 가리키는 별표·서식]",
     ...found,
-    "별표의 제목까지만 제공됩니다. 그 안에 정해진 구체적 기준·금액·기간·배점은",
-    "주어지지 않았으니 쓰지 마십시오. 어떤 별표에 정해져 있는지만 안내하고,",
+    "별표·서식의 제목까지만 제공됩니다. 그 안에 정해진 구체적 기준·금액·기간·배점은",
+    "주어지지 않았으니 쓰지 마십시오. 어떤 별표·서식에 정해져 있는지만 안내하고,",
     "구체적 내용은 조문 링크에서 확인하라고 하십시오.",
   ].join("\n");
 }
 
 const ANNEX_WARNING = `
-주의: 아래 원문에 "별표 N"이 언급되더라도 그 별표의 내용은 제공되지 않았습니다.
-별표에 정해진 구체적 기준·금액·기간·배점을 쓰지 마십시오. "그 기준은 해당 별표에
-정해져 있으니 조문 링크에서 확인하라"는 취지로만 안내하십시오.`;
+주의: 아래 원문에 "별표 N"이나 "별지 제N호서식"이 언급되더라도 그 내용은 제공되지
+않았습니다. 별표·서식에 정해진 구체적 기준·금액·기간·배점을 쓰지 마십시오. "그
+기준은 해당 별표·서식에 정해져 있으니 조문 링크에서 확인하라"는 취지로만
+안내하십시오.`;
 
 // ── 대조 ───────────────────────────────────────────────────────────────────
 
@@ -927,7 +933,7 @@ export async function POST(request: Request) {
         .map((a) => `[${a.key}] ${a.title}\n${a.text}`)
         .join("\n\n");
       // 별표 본문은 우리가 갖고 있지 않다. 언급되면 내용을 지어내지 말라고 못을 박는다.
-      const mentionsAnnex = /별표\s*\d/.test(corpus);
+      const mentionsAnnex = /별표\s*\d|별지\s*제?\s*\d/.test(corpus);
       // claim이 하나 닫힐 때마다 대조하고, 통과한 것만 흘려보낸다.
       // NDJSON — 한 줄에 객체 하나. SSE보다 파싱이 단순하고 프록시 영향이 적다.
       const encoder = new TextEncoder();
@@ -952,7 +958,7 @@ export async function POST(request: Request) {
           let sent = 0;
           try {
             for await (const chunk of provider.stream(
-              `${STAGE2_RULES}${mentionsAnnex ? ANNEX_WARNING : ""}${historyBlock(history)}${annexNote(corpus, articles)}
+              `${STAGE2_RULES}${mentionsAnnex ? ANNEX_WARNING : ""}${historyBlock(history)}${annexNote(articles)}
 
 조문 원문:
 

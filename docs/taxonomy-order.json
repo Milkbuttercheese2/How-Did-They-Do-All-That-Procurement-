@@ -88,6 +88,10 @@
   "category": "발주"
  },
  {
+  "slug": "software-procurement",
+  "category": "발주"
+ },
+ {
   "slug": "bid-announcement",
   "category": "공고"
  },
@@ -188,6 +192,10 @@
   "category": "이행·대금"
  },
  {
+  "slug": "reinspection-request",
+  "category": "이행·대금"
+ },
+ {
   "slug": "government-furnished-materials",
   "category": "이행·대금"
  },
@@ -237,6 +245,10 @@
  },
  {
   "slug": "procurement-contract-disclosure",
+  "category": "사후관리·제재"
+ },
+ {
+  "slug": "procurement-fees",
   "category": "사후관리·제재"
  },
  {

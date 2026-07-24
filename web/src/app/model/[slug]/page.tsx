@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import {
   getAllSlugs,
   getInstitution,
+  getInstitutionAnnexRefs,
   getInstitutionSummaries,
 } from "@/lib/data";
 import InstitutionDetailView from "@/components/InstitutionDetailView";
@@ -92,6 +93,7 @@ export default async function ModelPage({
         institution={institution}
         institutions={institutions}
         relatedSlugs={relatedSlugs}
+        annexRefs={getInstitutionAnnexRefs(slug)}
       />
     </>
   );
