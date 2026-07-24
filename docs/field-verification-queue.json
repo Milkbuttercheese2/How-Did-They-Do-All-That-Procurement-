@@ -1,13 +1,13 @@
 {
   "sourceAsOfDate": "2026-07-24",
-  "total": 374,
-  "institutions": 67,
+  "total": 378,
+  "institutions": 68,
   "byDomain": {
     "기관·권한": 4,
     "문서·증빙": 31,
-    "실무 관행": 200,
-    "운영 사실": 14,
-    "재정·비용": 38,
+    "실무 관행": 201,
+    "운영 사실": 15,
+    "재정·비용": 40,
     "정보시스템": 21,
     "처리기간": 66
   },
@@ -4122,6 +4122,50 @@
       "institutionName": "검사 이의와 재검사 요청",
       "category": "이행·대금",
       "item": "법률·시행령·계약예규 조문 번호의 자동 대조는 다음 검증 세션에서 확정 예정(원문 재확인)",
+      "domain": "운영 사실",
+      "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
+      "status": "open"
+    },
+    {
+      "id": "procurement-fees-FV01",
+      "priority": 68,
+      "slug": "procurement-fees",
+      "institutionName": "조달수수료",
+      "category": "사후관리·제재",
+      "item": "조달수수료 고시 요율표의 사업별·계약금액 구간별 구체 요율(고시 별표가 이미지로 게시되어 현행 수치 재확인 필요)",
+      "domain": "재정·비용",
+      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "status": "open"
+    },
+    {
+      "id": "procurement-fees-FV02",
+      "priority": 68,
+      "slug": "procurement-fees",
+      "institutionName": "조달수수료",
+      "category": "사후관리·제재",
+      "item": "맞춤형서비스 단위업무별 구성비와 위탁사업 요율 적용 실무(운영 확인)",
+      "domain": "실무 관행",
+      "suggestedEvidence": "복수 실무자 인터뷰와 공개 업무편람",
+      "status": "open"
+    },
+    {
+      "id": "procurement-fees-FV03",
+      "priority": 68,
+      "slug": "procurement-fees",
+      "institutionName": "조달수수료",
+      "category": "사후관리·제재",
+      "item": "조달수수료 면제 등에 관한 지침(조달청 훈령)의 면제·감경 세부 대상과 적용 사례(원문 확인)",
+      "domain": "재정·비용",
+      "suggestedEvidence": "예산서·수수료 고시 또는 결산자료",
+      "status": "open"
+    },
+    {
+      "id": "procurement-fees-FV04",
+      "priority": 68,
+      "slug": "procurement-fees",
+      "institutionName": "조달수수료",
+      "category": "사후관리·제재",
+      "item": "법률·시행령·시행규칙 조문 번호의 자동 대조는 다음 검증 세션에서 확정 예정(원문 재확인)",
       "domain": "운영 사실",
       "suggestedEvidence": "소관기관 공식 문서 또는 담당자 확인",
       "status": "open"

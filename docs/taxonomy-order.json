@@ -244,6 +244,10 @@
   "category": "사후관리·제재"
  },
  {
+  "slug": "procurement-fees",
+  "category": "사후관리·제재"
+ },
+ {
   "slug": "stockpile-goods",
   "category": "공공물자·비축"
  }

@@ -467,5 +467,12 @@
     "name": "검사 이의와 재검사 요청",
     "type": "이행·대금",
     "category": "이행·대금"
+  },
+  {
+    "priority": 68,
+    "slug": "procurement-fees",
+    "name": "조달수수료",
+    "type": "사후관리·제재",
+    "category": "사후관리·제재"
   }
 ]
