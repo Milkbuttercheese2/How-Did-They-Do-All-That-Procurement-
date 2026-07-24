@@ -52,6 +52,10 @@
   "category": "지정·판로"
  },
  {
+  "slug": "venture-nara",
+  "category": "지정·판로"
+ },
+ {
   "slug": "contract-method-decision",
   "category": "발주"
  },
@@ -85,6 +89,10 @@
  },
  {
   "slug": "facility-construction-procurement",
+  "category": "발주"
+ },
+ {
+  "slug": "spec-precommitment-disclosure",
   "category": "발주"
  },
  {
@@ -140,6 +148,10 @@
   "category": "입찰"
  },
  {
+  "slug": "partial-quantity-bidding",
+  "category": "입찰"
+ },
+ {
   "slug": "pre-qualification",
   "category": "심사·평가"
  },
@@ -184,6 +196,14 @@
   "category": "계약 체결"
  },
  {
+  "slug": "commercial-software-mas",
+  "category": "계약 체결"
+ },
+ {
+  "slug": "e-contract-e-document",
+  "category": "계약 체결"
+ },
+ {
   "slug": "advance-payment-and-settlement",
   "category": "이행·대금"
  },
@@ -224,6 +244,10 @@
   "category": "이행·대금"
  },
  {
+  "slug": "product-quality-defect-handling",
+  "category": "이행·대금"
+ },
+ {
   "slug": "bid-protest",
   "category": "분쟁·권리구제"
  },
@@ -245,6 +269,14 @@
  },
  {
   "slug": "procurement-contract-disclosure",
+  "category": "사후관리·제재"
+ },
+ {
+  "slug": "procurement-statistics-disclosure",
+  "category": "사후관리·제재"
+ },
+ {
+  "slug": "unfair-procurement-practice-investigation",
   "category": "사후관리·제재"
  },
  {
