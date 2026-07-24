@@ -460,5 +460,12 @@
     "name": "회계연도 개시 전 계약",
     "type": "발주",
     "category": "발주"
+  },
+  {
+    "priority": 67,
+    "slug": "reinspection-request",
+    "name": "검사 이의와 재검사 요청",
+    "type": "이행·대금",
+    "category": "이행·대금"
   }
 ]
