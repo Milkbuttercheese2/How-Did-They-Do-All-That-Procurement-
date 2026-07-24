@@ -17,6 +17,18 @@ export interface LegalBasis {
   kind: LegalBasisKind;
 }
 
+/** 제도가 실제로 가리키는 별표·별지 서식. 빌드 산출물 data/annex-refs.json 의 항목. */
+export interface AnnexRef {
+  law: string;
+  /** 정규화 키 표기 — "별표3의2", "별지12" */
+  annex: string;
+  kind: "별표" | "서식";
+  /** 화면 표기 — "별표3의2", "별지 제12호서식", "별지 2의 4" */
+  label: string;
+  title: string;
+  url?: string;
+}
+
 export type SourceVerificationStatus =
   | "source-linked"
   | "article-verified"

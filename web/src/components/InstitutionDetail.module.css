@@ -535,6 +535,51 @@
   text-align: right;
 }
 
+/* 근거 행 아래에 붙는 별표·별지 서식 링크. 조문 확인 버튼과 같은 에메랄드 계열로,
+   "원문으로 확인 가능한 것"이라는 신호를 통일한다. */
+.annexChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin-top: 5px;
+}
+
+.annexChips > a,
+.annexChips > span {
+  display: inline-flex;
+  gap: 4px;
+  align-items: baseline;
+  padding: 2px 7px;
+  border: 1px solid #cde7dc;
+  border-radius: 999px;
+  background: #f4faf7;
+  color: #0c7a58 !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.annexChips em {
+  font-style: normal;
+  font-weight: 500;
+  color: #47705f;
+}
+
+.annexChips > span[data-kind] {
+  border-color: #e2e8e5;
+  background: #f7f8f7;
+  color: #5d6b63 !important;
+}
+
+.annexChips > span[data-kind] em {
+  color: #778680;
+}
+
+.annexExtraRow strong {
+  font-weight: 650;
+}
+
 .authorityList {
   display: grid;
   gap: 8px;

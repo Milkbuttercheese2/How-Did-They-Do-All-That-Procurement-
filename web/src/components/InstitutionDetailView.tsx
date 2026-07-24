@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { buildProcessLaneGroups } from "@/lib/process-layout.mjs";
-import type { Institution, InstitutionSummary } from "@/lib/types";
+import type { AnnexRef, Institution, InstitutionSummary } from "@/lib/types";
 import InstitutionSwitcher from "./InstitutionSwitcher";
 import ProcessExplorer from "./ProcessExplorer";
 import styles from "./InstitutionDetail.module.css";
@@ -10,10 +10,12 @@ export default function InstitutionDetailView({
   institution,
   institutions,
   relatedSlugs,
+  annexRefs = [],
 }: {
   institution: Institution;
   institutions: InstitutionSummary[];
   relatedSlugs: Map<string, string>;
+  annexRefs?: AnnexRef[];
 }) {
   const process = institution.process;
   const article = institution.verification?.articleVerification;
@@ -129,6 +131,7 @@ export default function InstitutionDetailView({
       <OnePageCanvas
         institution={institution}
         relatedSlugs={relatedSlugs}
+        annexRefs={annexRefs}
       />
 
       <footer className={styles.disclaimer}>
@@ -141,12 +144,46 @@ export default function InstitutionDetailView({
   );
 }
 
+function AnnexChips({
+  annexes,
+  withLaw = false,
+}: {
+  annexes: AnnexRef[];
+  withLaw?: boolean;
+}) {
+  return (
+    <span className={styles.annexChips}>
+      {annexes.map((ref) => {
+        const label = withLaw ? `${ref.law} ${ref.label}` : ref.label;
+        const key = `${ref.law}::${ref.annex}`;
+        return ref.url ? (
+          <a
+            key={key}
+            href={ref.url}
+            target="_blank"
+            rel="noreferrer"
+            data-kind={ref.kind}
+          >
+            {label} <em>{ref.title}</em>
+          </a>
+        ) : (
+          <span key={key} data-kind={ref.kind}>
+            {label} <em>{ref.title}</em>
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
 function OnePageCanvas({
   institution,
   relatedSlugs,
+  annexRefs,
 }: {
   institution: Institution;
   relatedSlugs: Map<string, string>;
+  annexRefs: AnnexRef[];
 }) {
   const { canvas, verification } = institution;
   const sourceByLaw = new Map(
@@ -155,6 +192,21 @@ function OnePageCanvas({
       [source.officialName ?? source.law, source],
     ]),
   );
+  // "(계약예규) 공사계약일반조건" 같은 접두어 차이를 넘어 별표를 근거 행에 붙인다.
+  const stripPrefix = (name: string) => name.replace(/^\([^)]*\)\s*/, "").trim();
+  const annexByLaw = new Map<string, AnnexRef[]>();
+  for (const ref of annexRefs) {
+    const list = annexByLaw.get(ref.law) ?? [];
+    list.push(ref);
+    annexByLaw.set(ref.law, list);
+  }
+  const matchedLaws = new Set(
+    canvas.legalBasis
+      .map((basis) => stripPrefix(basis.law))
+      .filter((law) => annexByLaw.has(law)),
+  );
+  // 근거 행에 못 붙은 별표(근거 법령 목록 밖의 규정을 조문이 인용하는 경우)도 버리지 않는다.
+  const unmatched = annexRefs.filter((ref) => !matchedLaws.has(ref.law));
 
   return (
     <section id="institution-one-page" className={styles.canvasSection}>
@@ -186,6 +238,7 @@ function OnePageCanvas({
           <div className={styles.legalRows}>
             {canvas.legalBasis.map((basis) => {
               const source = sourceByLaw.get(basis.law);
+              const annexes = annexByLaw.get(stripPrefix(basis.law)) ?? [];
               return (
                 <div key={`${basis.kind}:${basis.law}`}>
                   {source ? (
@@ -195,11 +248,25 @@ function OnePageCanvas({
                   ) : (
                     <strong>{basis.law}</strong>
                   )}
-                  <span>{basis.articles ?? "적용 범위 확인 필요"}</span>
+                  <span>
+                    {basis.articles ?? "적용 범위 확인 필요"}
+                    {annexes.length > 0 && (
+                      <AnnexChips annexes={annexes} />
+                    )}
+                  </span>
                   <small>{basis.kind}</small>
                 </div>
               );
             })}
+            {unmatched.length > 0 && (
+              <div className={styles.annexExtraRow}>
+                <strong>조문이 인용하는 별표·서식</strong>
+                <span>
+                  <AnnexChips annexes={unmatched} withLaw />
+                </span>
+                <small>별표·서식</small>
+              </div>
+            )}
           </div>
         </CanvasBlock>
 

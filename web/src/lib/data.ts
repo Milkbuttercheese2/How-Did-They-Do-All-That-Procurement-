@@ -5,7 +5,9 @@ import path from "path";
 import summaries from "../../data/summaries.json";
 import categoryOrder from "../../data/category-order.json";
 import fieldVerificationQueue from "../../data/field-verification-queue.json";
+import annexRefs from "../../data/annex-refs.json";
 import type {
+  AnnexRef,
   FieldVerificationQueue,
   Institution,
   InstitutionSummary,
@@ -132,6 +134,12 @@ export function getAllSlugs(): string[] {
     .readdirSync(DATA_DIR)
     .filter((f) => f.endsWith(".json"))
     .map((f) => f.replace(".json", ""));
+}
+
+export function getInstitutionAnnexRefs(slug: string): AnnexRef[] {
+  // 같은 이유(Worker 파일시스템 없음)로 빌드 산출물을 쓴다.
+  // → scripts/generate-annex-refs.mjs
+  return (annexRefs as Record<string, AnnexRef[]>)[slug] ?? [];
 }
 
 export function getFieldVerificationQueue(): FieldVerificationQueue {

@@ -52,6 +52,7 @@ jobs:
         run: |
           node scripts/populate-annexes.mjs
           node scripts/populate-annex-texts.mjs
+          node scripts/generate-annex-refs.mjs
 
       - name: Full audit (개정발 불일치 검출)
         run: |
@@ -64,7 +65,7 @@ jobs:
         run: |
           git config user.name "law-autoupdate-bot"
           git config user.email "actions@github.com"
-          git add sources/law-cache web/data docs
+          git add sources/law-cache web/data web/public/annexes.json docs
           if git diff --cached --quiet; then
             echo "개정 변화 없음"
           else
